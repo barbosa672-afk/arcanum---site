@@ -2,10 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ARCANUM Propriedade Intelectual | Proteção Estratégica</title>
-  <meta name="description" content="Blindagem jurídica e gestão estratégica de marcas, patentes e ativos intelectuais." />
-
+  <meta name="description" content="Proteção estratégica de marcas, patentes e softwares com inteligência jurídica e visão de negócios."/>
   <style>
     :root{
       --azul:#0f4c5c;
@@ -13,37 +12,175 @@
       --dourado:#f2c14e;
       --cinza:#64748b;
       --fundo:#ffffff;
-      --whats-green:#25d366;
+      --whats:#25d366;
     }
-
     *{box-sizing:border-box}
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-      color:#0b1220;
-      background:var(--fundo);
-      scroll-behavior:smooth;
+      margin:0; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Inter, Roboto, Arial, sans-serif;
+      color:#0b1220; background:#fff; scroll-behavior:smooth;
     }
-
+    .container{max-width:1120px;margin:0 auto;padding:24px}
     .muted{color:var(--cinza)}
-
     header{
-      position:sticky; top:0;
-      backdrop-filter: blur(8px);
-      background: rgba(255,255,255,.9);
+      position:sticky;top:0;z-index:100;
+      background:rgba(255,255,255,.85); backdrop-filter: blur(10px);
       border-bottom:1px solid #eef0f3;
-      z-index:100;
     }
-
-    .container{max-width:1120px;margin:0 auto;padding:20px}
     .nav{display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.05em}
-
     nav a{margin-left:18px;text-decoration:none;color:#334155;font-weight:500}
     nav a:hover{color:var(--azul)}
 
-    .hero{padding:90px 0;background: radial-gradient(1000px 500px at 10% -10%, rgba(242,193,78,.12), transparent),
-                                 radial-gradient(1000px 500px at 90% 20%, rgba(15,76,92,.12), transparent);}
-    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+    /* HERO */
+    .hero{padding:120px 0 90px;background:
+      radial-gradient(900px 400px at 10% -10%, rgba(242,193,78,.14), transparent),
+      radial-gradient(900px 400px at 90% 10%, rgba(15,76,92,.14), transparent);}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center}
+    h1{font-size:clamp(36px,4vw,58px);line-height:1.05;margin:0 0 20px}
+    .lead{font-size:19px;line-height:1.6;max-width:46ch}
 
-    h1{font-size: clamp(3
+    .cta{display:flex;gap:12px;margin-top:28px}
+    .btn{
+      padding:14px 24px;border-radius:12px;border:1px solid var(--azul);
+      background:var(--azul);color:#fff;font-weight:600;text-decoration:none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow:0 10px 25px rgba(15,76,92,.15);
+    }
+    .btn:hover{transform: translateY(-2px); background:var(--azul-escuro)}
+    .btn.alt{background:#fff;color:var(--azul)}
+
+    .card{
+      border:1px solid #eef0f3;border-radius:20px;padding:28px;background:#fff;
+      box-shadow:0 30px 60px rgba(0,0,0,.08);
+      transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+    }
+    .card:hover{transform: translateY(-6px) scale(1.01); box-shadow:0 40px 80px rgba(0,0,0,.12)}
+
+    section{padding:100px 0}
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+
+    footer{border-top:1px solid #eef0f3;padding:40px 0;font-size:.9rem}
+
+    /* WhatsApp */
+    .whatsapp-btn{
+      position:fixed;right:28px;bottom:28px;width:64px;height:64px;border-radius:50%;
+      background:var(--whats);display:flex;align-items:center;justify-content:center;
+      box-shadow:0 20px 40px rgba(0,0,0,.25); z-index:999;
+      transition: transform .25s ease;
+    }
+    .whatsapp-btn:hover{transform: scale(1.1)}
+    .whatsapp-btn svg{width:34px;height:34px;fill:#fff}
+
+    /* Animations */
+    .reveal{opacity:0; transform: translateY(40px); transition: all .9s cubic-bezier(.2,.8,.2,1)}
+    .reveal.show{opacity:1; transform: translateY(0)}
+
+    @media(max-width:900px){
+      .hero-grid{grid-template-columns:1fr;text-align:center}
+      .cta{justify-content:center}
+      nav{display:none}
+      .steps{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <strong>ARCANUM</strong>
+    <nav>
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Metodologia</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero reveal">
+    <div class="container hero-grid">
+      <div>
+        <h1>Transformamos inovação em patrimônio protegido.</h1>
+        <p class="lead muted">Proteção estratégica de marcas, patentes e softwares com visão jurídica e inteligência de negócios.</p>
+        <div class="cta">
+          <a class="btn" href="https://wa.me/5516992553003" target="_blank">Falar com Consultor</a>
+          <a class="btn alt" href="#servicos">Ver Soluções</a>
+        </div>
+      </div>
+      <div class="card">
+        <strong>Blindagem Jurídica 360º</strong>
+        <p class="muted">Do diagnóstico à concessão, cuidamos da integridade do seu ativo intelectual.</p>
+        <ul class="muted">
+          <li>Marcas & Patentes</li>
+          <li>Softwares</li>
+          <li>Monitoramento</li>
+          <li>Defesa administrativa</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos" class="reveal">
+    <div class="container">
+      <h2>Especialidades</h2>
+      <div class="services">
+        <div class="card">Registro de Marcas</div>
+        <div class="card">Patentes</div>
+        <div class="card">Softwares</div>
+        <div class="card">Vigilância</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="reveal" style="background:#f8fafc">
+    <div class="container">
+      <h2>Como atuamos</h2>
+      <div class="steps">
+        <div class="card">1. Diagnóstico</div>
+        <div class="card">2. Estratégia</div>
+        <div class="card">3. Concessão</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="reveal">
+    <div class="container">
+      <h2>Sobre a Arcanum</h2>
+      <p class="muted">A ARCANUM PROPRIEDADE INTELECTUAL atua na proteção estratégica de ativos intangíveis, conectando inovação a segurança jurídica.</p>
+    </div>
+  </section>
+
+  <section id="contato" class="reveal">
+    <div class="container">
+      <h2>Fale com um consultor</h2>
+      <p class="lead muted">Atendimento direto pelo WhatsApp.</p>
+      <a class="btn" href="https://wa.me/5516992553003" target="_blank">Iniciar conversa no WhatsApp</a>
+      <p class="muted" style="margin-top:12px">📱 (16) 99255-3003</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container muted">
+    © <span id="year"></span> ARCANUM Propriedade Intelectual. Todos os direitos reservados.
+  </div>
+</footer>
+
+<a class="whatsapp-btn" href="https://wa.me/5516992553003" target="_blank" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157z"/>
+  </svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+  }, {threshold:.2});
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
