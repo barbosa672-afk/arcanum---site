@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ARCANUM — Engenharia Jurídica de Ativos Intangíveis</title>
+<title>ARCANUM — Propriedade Intelectual</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -16,20 +16,20 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:Inter,system-ui,sans-serif;
-  background:#ffffff;
+  background:#fff;
   color:var(--texto);
-  line-height:1.65;
+  line-height:1.6;
   overflow-x:hidden;
 }
 
 .container{max-width:1200px;margin:auto;padding:0 24px;}
-section{padding:80px 0;}
+section{padding:70px 0;}
 h1,h2{letter-spacing:-.02em}
 
-/* Header pill */
+/* Header liquid glass */
 header{
   position:fixed;
-  top:14px;
+  top:16px;
   left:50%;
   transform:translateX(-50%);
   z-index:100;
@@ -38,87 +38,99 @@ header{
   display:flex;
   align-items:center;
   gap:26px;
-  padding:12px 28px;
+  padding:12px 30px;
   border-radius:999px;
-  backdrop-filter: blur(26px) saturate(180%);
-  background:rgba(255,255,255,0.6);
-  border:1px solid rgba(255,255,255,.8);
+  backdrop-filter: blur(28px) saturate(180%);
+  background:rgba(255,255,255,0.55);
+  border:1px solid rgba(255,255,255,.9);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.6),
-    0 12px 30px rgba(0,0,0,.12);
+    inset 0 1px 0 rgba(255,255,255,.7),
+    0 20px 40px rgba(0,0,0,.15);
+  transition:.4s ease;
+  position:relative;
+  overflow:hidden;
 }
+.nav-pill::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.8), transparent 60%);
+  opacity:.0;
+  transition:.3s ease;
+}
+.nav-pill:hover::before{opacity:.8;}
+.nav-pill:hover{transform:translateX(-50%) scale(1.03);}
+
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--azul);}
 .brand img{
   width:34px;
-  filter: drop-shadow(0 0 14px rgba(212,163,55,.7));
+  filter: drop-shadow(0 0 16px rgba(212,163,55,.8));
   animation: logoGlow 4s ease-in-out infinite;
 }
 @keyframes logoGlow{
   0%,100%{filter: drop-shadow(0 0 10px rgba(212,163,55,.4));}
-  50%{filter: drop-shadow(0 0 22px rgba(212,163,55,.9));}
+  50%{filter: drop-shadow(0 0 24px rgba(212,163,55,.9));}
 }
-nav a{margin-left:18px;text-decoration:none;color:#000;opacity:.7;font-size:14px;white-space:nowrap;}
+nav a{margin-left:16px;text-decoration:none;color:#000;opacity:.7;font-size:14px;}
 nav a:hover{opacity:1}
 
 /* Hero */
-.hero{padding-top:160px;text-align:center;position:relative;}
+.hero{padding-top:170px;text-align:center;}
 .logo-full-wrap{
   display:flex;
   justify-content:center;
-  margin-bottom:40px;
-  position:relative;
+  margin-bottom:30px;
 }
 .logo-full{
-  width:min(680px,80vw);
-  aspect-ratio:3/2;
-  background:url("logo-full.png") center/contain no-repeat;
-  opacity:.28;
-  filter: saturate(130%) drop-shadow(0 0 40px rgba(212,163,55,.35));
-  transform:scale(1.05);
+  width:min(640px,80vw);
+  background:transparent;
+  filter: drop-shadow(0 0 60px rgba(212,163,55,.35));
+  opacity:.35;
+  transform:scale(1.04);
   transition:.4s ease;
 }
-.hero h1{font-size:clamp(42px,7vw,72px);}
-.hero p{max-width:980px;margin:28px auto;font-size:22px;color:#444}
+.hero h1{font-size:clamp(40px,7vw,70px);}
+.hero p{max-width:980px;margin:22px auto;font-size:21px;color:#444}
 
 /* Glass bubble cards */
 .bubble{
   position:relative;
   background:rgba(255,255,255,0.55);
-  backdrop-filter: blur(28px) saturate(180%);
-  border-radius:36px;
-  padding:64px;
-  border:1px solid rgba(255,255,255,.8);
-  margin-bottom:64px;
-  overflow:hidden;
+  backdrop-filter: blur(30px) saturate(180%);
+  border-radius:34px;
+  padding:56px;
+  border:1px solid rgba(255,255,255,.85);
+  margin-bottom:48px;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.6),
-    0 30px 60px rgba(0,0,0,.12);
+    0 28px 55px rgba(0,0,0,.14);
+  overflow:hidden;
 }
 .bubble::before{
   content:"";
   position:absolute;inset:0;
-  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), 
-    rgba(255,255,255,.55), transparent 60%);
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.6), transparent 60%);
   pointer-events:none;
 }
 .bubble::after{
   content:"";
-  position:absolute;inset:-60%;
-  background:linear-gradient(120deg, rgba(255,255,255,.45), transparent 45%, rgba(255,255,255,.25));
-  animation: waterMove 18s linear infinite;
+  position:absolute;inset:-50%;
+  background:linear-gradient(120deg, rgba(255,255,255,.5), transparent 45%, rgba(255,255,255,.3));
+  animation: waterMove 16s linear infinite;
   mix-blend-mode: overlay;
   pointer-events:none;
 }
+
 @keyframes waterMove{
-  from{transform:translate(-35%,-35%) rotate(0deg);}
-  to{transform:translate(35%,35%) rotate(360deg);}
+  from{transform:translate(-30%,-30%) rotate(0deg);}
+  to{transform:translate(30%,30%) rotate(360deg);}
 }
 
 /* Buttons liquid lens */
 .btn{
   position:relative;
   display:inline-block;
-  padding:18px 42px;
+  padding:16px 36px;
   border-radius:999px;
   background:var(--azul);
   color:#fff;
@@ -130,7 +142,7 @@ nav a:hover{opacity:1}
 .btn::before{
   content:"";
   position:absolute;inset:-40%;
-  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.8), transparent 55%);
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.9), transparent 55%);
   opacity:0;
   transition:.25s ease;
 }
@@ -144,7 +156,7 @@ footer{padding:60px 0;text-align:center;color:#777;font-size:13px;}
 
 @media(max-width:900px){
   nav{display:none}
-  .bubble{padding:42px}
+  .bubble{padding:38px}
 }
 </style>
 </head>
@@ -170,13 +182,13 @@ footer{padding:60px 0;text-align:center;color:#777;font-size:13px;}
 <main>
   <section class="hero">
     <div class="logo-full-wrap">
-      <div class="logo-full"></div>
+      <img src="logo-full.png" class="logo-full" alt="">
     </div>
 
     <div class="container">
       <h1>O invisível que sustenta o seu império.</h1>
       <p>
-        A ARCANUM estrutura juridicamente marcas, patentes e <em>software</em> para transformar ativos intangíveis em valor patrimonial real, mensurável e defensável em processos de <em>valuation</em> e operações de <em>M&A</em>.
+        A ARCANUM estrutura juridicamente marcas, patentes e <em>software</em> para transformar ativos intangíveis em valor patrimonial real, mensurável e defensável em processos de <em>valuation</em>, expansão societária e operações de <em>M&A</em>.
       </p>
       <a href="https://wa.me/5516992553003" class="btn">Iniciar atendimento no WhatsApp</a>
     </div>
@@ -185,28 +197,52 @@ footer{padding:60px 0;text-align:center;color:#777;font-size:13px;}
   <section id="marcas" class="container">
     <div class="bubble">
       <h2>Registro de Marcas</h2>
-      <p> ... (mantém o mesmo texto detalhado do bloco anterior) </p>
+      <p>
+        A marca é o principal ativo estratégico de qualquer empresa. Ela concentra reputação, percepção de valor, posicionamento de mercado e reconhecimento do público. Na ARCANUM, o processo de proteção marcária é conduzido de forma técnica e estratégica, iniciando-se pela análise de viabilidade jurídica no INPI, investigação de anterioridades e riscos de colidência com marcas preexistentes.  
+        <br><br>
+        Estruturamos pedidos de registro com enquadramento técnico preciso nas classes adequadas, mitigando riscos de indeferimento e aumentando o grau de blindagem jurídica do ativo. Atuamos também em defesas administrativas, oposições, recursos e manifestações em casos de exigências formais ou conflitos com terceiros.  
+        <br><br>
+        Além do registro, orientamos sobre uso correto da marca, política de licenciamento, contratos de cessão e estratégias de expansão territorial, assegurando que o ativo seja juridicamente sólido, economicamente valorizável e plenamente explorável em cenários de crescimento, franquias, <em>joint ventures</em> e operações de <em>M&A</em>.
+      </p>
     </div>
   </section>
 
   <section id="patentes" class="container">
     <div class="bubble">
       <h2>Patentes e Inovação Tecnológica</h2>
-      <p> ... (mantém o mesmo texto detalhado do bloco anterior) </p>
+      <p>
+        A proteção patentária viabiliza a exclusividade econômica sobre soluções técnicas inovadoras, resguardando investimentos em pesquisa, desenvolvimento e engenharia. A ARCANUM atua desde a análise de patenteabilidade até a elaboração técnica do pedido, com descrição detalhada, reivindicações estrategicamente estruturadas e acompanhamento integral do processo junto ao INPI.  
+        <br><br>
+        Nosso trabalho contempla a construção de ativos de inovação alinhados à estratégia empresarial, permitindo que tecnologias sejam convertidas em vantagens competitivas defensáveis, contratos de licenciamento, monetização por royalties e valorização em processos de <em>valuation</em>.  
+        <br><br>
+        Atuamos também na gestão do portfólio tecnológico, auxiliando empresas a mapear seus ativos de inovação, estruturar políticas de proteção e mitigar riscos de infração, litígios e perda de exclusividade em mercados estratégicos.
+      </p>
     </div>
   </section>
 
   <section id="software" class="container">
     <div class="bubble">
       <h2>Proteção de Software</h2>
-      <p> ... (mantém o mesmo texto detalhado do bloco anterior) </p>
+      <p>
+        Sistemas, plataformas digitais e soluções em <em>software</em> representam hoje parcela significativa do valor econômico das empresas modernas. A ARCANUM estrutura a proteção jurídica desses ativos por meio do registro de programas de computador, organização contratual de direitos autorais e definição clara de titularidade entre sócios, desenvolvedores e investidores.  
+        <br><br>
+        Atuamos na elaboração de contratos de desenvolvimento, cessão de direitos, licenciamento e uso, assegurando que o ativo digital pertença juridicamente à empresa e não ao programador individual. Essa organização jurídica é essencial para evitar contingências em processos de investimento, rodadas de captação, auditorias de <em>due diligence</em> e operações de <em>M&A</em>.  
+        <br><br>
+        Também auxiliamos na estruturação de políticas internas de proteção de código, confidencialidade, governança de propriedade intelectual e compliance tecnológico.
+      </p>
     </div>
   </section>
 
   <section id="transferencia" class="container">
     <div class="bubble">
       <h2>Transferência de Titularidade, Contratos e Compliance</h2>
-      <p> ... (mantém o mesmo texto detalhado do bloco anterior) </p>
+      <p>
+        A transferência de titularidade de marcas, patentes e ativos de <em>software</em> exige rigor técnico e formal, sob pena de nulidade, insegurança jurídica e perda de valor econômico. A ARCANUM estrutura juridicamente cessões, licenças, contratos de exploração econômica e reorganizações societárias envolvendo ativos intangíveis.  
+        <br><br>
+        Atuamos na elaboração de instrumentos contratuais que regulam titularidade, uso, sublicenciamento, exploração comercial, cláusulas de confidencialidade, não concorrência e governança de ativos intangíveis.  
+        <br><br>
+        Implementamos estruturas de <em>compliance</em> em propriedade intelectual, assegurando que a empresa opere em conformidade regulatória, minimize riscos jurídicos, preserve valor patrimonial e mantenha rastreabilidade documental de seus ativos estratégicos ao longo do tempo.
+      </p>
     </div>
   </section>
 
@@ -219,7 +255,7 @@ footer{padding:60px 0;text-align:center;color:#777;font-size:13px;}
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-document.querySelectorAll('.bubble, .btn').forEach(el=>{
+document.querySelectorAll('.bubble, .btn, .nav-pill').forEach(el=>{
   el.addEventListener('mousemove', e=>{
     const r = el.getBoundingClientRect();
     el.style.setProperty('--mx', ((e.clientX - r.left)/r.width)*100+'%');
@@ -227,11 +263,11 @@ document.querySelectorAll('.bubble, .btn').forEach(el=>{
   });
 });
 
-/* parallax suave da logo */
+/* parallax da logo full */
 window.addEventListener("scroll", ()=>{
-  const y = window.scrollY * 0.08;
+  const y = window.scrollY * 0.12;
   const logo = document.querySelector(".logo-full");
-  logo.style.transform = `translateY(${y}px) scale(1.05)`;
+  logo.style.transform = `translateY(${y}px) scale(1.04)`;
 });
 </script>
 
