@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARCANUM Propriedade Intelectual</title>
+  <meta name="description" content="Proteção estratégica de marcas, patentes, softwares e ativos intelectuais." />
+  <style>
+    :root{
+      --azul: #0f4c5c; /* azul petróleo */
+      --dourado: #f2c14e; /* dourado suave */
+      --cinza: #6b7280;
+      --fundo: #ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color:#0b1220; background:var(--fundo);
+    }
+    header{
+      position:sticky; top:0; backdrop-filter: blur(6px);
+      background: rgba(255,255,255,.85); border-bottom:1px solid #eef0f3; z-index:10;
+    }
+    .container{max-width:1120px; margin:0 auto; padding:20px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.12em}
+    .logo{
+      width:40px; height:40px; border:2px solid var(--azul); border-radius:10px; display:grid; place-items:center;
+    }
+    .logo svg{width:26px; height:26px}
+    nav a{margin-left:16px; text-decoration:none; color:#0b1220; font-weight:500}
+    nav a:hover{color:var(--azul)}
+
+    .hero{
+      background: radial-gradient(1200px 400px at 10% -10%, rgba(242,193,78,.15), transparent),
+                  radial-gradient(1200px 400px at 90% 10%, rgba(15,76,92,.15), transparent);
+    }
+    .hero-grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:40px; align-items:center}
+    .badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(15,76,92,.08); color:var(--azul); font-weight:600}
+    h1{font-size: clamp(32px, 4vw, 52px); line-height:1.05; margin:14px 0}
+    .lead{font-size: clamp(16px, 2vw, 18px); color:#334155; max-width:52ch}
+    .cta{display:flex; gap:12px; margin-top:22px}
+    .btn{padding:12px 18px; border-radius:12px; border:1px solid var(--azul); background:var(--azul); color:#fff; font-weight:600; text-decoration:none}
+    .btn.alt{background:#fff; color:var(--azul)}
+
+    .card{
+      border:1px solid #eef0f3; border-radius:16px; padding:18px; box-shadow: 0 10px 20px rgba(0,0,0,.04);
+    }
+    .services{display:grid; grid-template-columns: repeat(4,1fr); gap:16px}
+    .services h3{margin:8px 0}
+
+    section{padding:64px 0}
+    .section-title{font-size:28px; margin-bottom:10px}
+    .muted{color:var(--cinza)}
+
+    .steps{display:grid; grid-template-columns: repeat(3,1fr); gap:16px}
+
+    footer{border-top:1px solid #eef0f3; padding:24px 0}
+
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns: 1fr}
+      .services{grid-template-columns: repeat(2,1fr)}
+      .steps{grid-template-columns: 1fr}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-label="Símbolo Arcanum">
+          <!-- Ícone minimalista (triângulo + círculo) em SVG -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,10 90,85 10,85" stroke="#0f4c5c" stroke-width="6" fill="none"/>
+            <circle cx="50" cy="55" r="8" fill="#f2c14e"/>
+          </svg>
+        </div>
+        <span>ARCANUM</span>
+      </div>
+      <nav>
+        <a href="#servicos">Serviços</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">Propriedade Intelectual</span>
+          <h1>Protegendo o que nasce da sua mente.</h1>
+          <p class="lead">Registro, gestão e defesa de marcas, patentes e softwares com rigor técnico, visão jurídica e inteligência de negócios.</p>
+          <div class="cta">
+            <a class="btn" href="#contato">Falar com um especialista</a>
+            <a class="btn alt" href="#servicos">Ver serviços</a>
+          </div>
+        </div>
+        <div class="card">
+          <strong>Atendimento estratégico</strong>
+          <p class="muted">Análise de viabilidade, busca de anterioridade, protocolo no INPI e acompanhamento até a concessão.</p>
+          <ul class="muted">
+            <li>Marcas</li>
+            <li>Patentes</li>
+            <li>Softwares</li>
+            <li>Desenhos industriais</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos">
+      <div class="container">
+        <h2 class="section-title">Serviços</h2>
+        <p class="muted">Soluções completas para proteger seus ativos intangíveis.</p>
+        <div class="services">
+          <div class="card"><h3>Registro de Marcas</h3><p class="muted">Busca, estratégia de classes, protocolo e acompanhamento no INPI.</p></div>
+          <div class="card"><h3>Patentes</h3><p class="muted">Depósito, redação técnica e gestão de prazos.</p></div>
+          <div class="card"><h3>Softwares</h3><p class="muted">Registro e documentação de autoria.</p></div>
+          <div class="card"><h3>Monitoramento</h3><p class="muted">Vigilância de colidências e medidas administrativas.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+      <div class="container">
+        <h2 class="section-title">Como funciona</h2>
+        <div class="steps">
+          <div class="card"><strong>1. Diagnóstico</strong><p class="muted">Entendemos o seu negócio e os riscos.</p></div>
+          <div class="card"><strong>2. Estratégia</strong><p class="muted">Definimos o melhor caminho jurídico.</p></div>
+          <div class="card"><strong>3. Execução</strong><p class="muted">Protocolamos e acompanhamos até a concessão.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <h2 class="section-title">Sobre a Arcanum</h2>
+        <p class="muted">A ARCANUM PROPRIEDADE INTELECTUAL atua com foco em proteção estratégica de ativos intelectuais, unindo rigor técnico, visão jurídica e inteligência de negócios para garantir segurança jurídica e crescimento sustentável.</p>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <h2 class="section-title">Contato</h2>
+        <div class="card">
+          <form onsubmit="event.preventDefault(); alert('Mensagem enviada! Em breve entraremos em contato.');">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+              <input required placeholder="Nome" style="padding:10px; border-radius:10px; border:1px solid #e5e7eb"/>
+              <input required type="email" placeholder="Email" style="padding:10px; border-radius:10px; border:1px solid #e5e7eb"/>
+            </div>
+            <textarea required placeholder="Conte brevemente sua necessidade" style="margin-top:12px; width:100%; padding:10px; border-radius:10px; border:1px solid #e5e7eb"></textarea>
+            <button class="btn" type="submit" style="margin-top:12px">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container muted">© <span id="year"></span> ARCANUM Propriedade Intelectual. Todos os direitos reservados.</div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
