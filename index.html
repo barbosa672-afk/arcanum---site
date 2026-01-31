@@ -1,184 +1,259 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ARCANUM — Propriedade Intelectual Estratégica</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ARCANUM — Propriedade Intelectual Estratégica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --azul:#0f4c5c;
-  --dourado:#d4a337;
-  --texto:#1d1d1f;
-  --suave:#6e6e73;
-  --bg:#ffffff;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--texto);
-  overflow-x:hidden;
-}
+  <style>
+    :root {
+      --azul: #0f4c5c;
+      --dourado: #d4a337;
+      --cinza-claro: #f5f7f9;
+      --texto: #1d1d1f;
+      --texto-suave: #5b5b60;
+      --vidro: rgba(255,255,255,0.55);
+    }
 
-/* Header */
-header{
-  position:fixed; top:0; width:100%;
-  backdrop-filter: blur(18px);
-  background:rgba(255,255,255,.75);
-  z-index:1000;
-}
-.nav{max-width:1100px;margin:auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--azul)}
-.brand img{height:26px}
-nav a{margin-left:18px;text-decoration:none;color:var(--texto);opacity:.7;font-size:14px}
-nav a:hover{opacity:1}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: white;
+      color: var(--texto);
+      line-height: 1.7;
+    }
 
-/* Hero */
-.hero{
-  position:relative;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-}
-.hero video{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover;
-  filter:brightness(.8);
-}
-.hero::after{
-  content:"";
-  position:absolute; inset:0;
-  background:radial-gradient(circle at center, rgba(255,255,255,.85), rgba(255,255,255,.95));
-}
-.hero-content{position:relative; z-index:2; max-width:900px; padding:0 24px}
-.hero h1{font-size:clamp(42px,7vw,72px);letter-spacing:-.04em;margin-bottom:24px}
-.hero p{font-size:22px;color:var(--suave);margin-bottom:40px}
-.cta{
-  display:inline-block;
-  background:linear-gradient(135deg,var(--azul),#08313a);
-  color:#fff; padding:18px 44px;
-  border-radius:999px; text-decoration:none; font-weight:700;
-  transition:.5s cubic-bezier(.2,.8,.2,1);
-}
-.cta:hover{transform:translateY(-8px) scale(1.05); box-shadow:0 30px 70px rgba(15,76,92,.4)}
+    .container { max-width: 1100px; margin: auto; padding: 0 24px; }
 
-/* Liquid blur cursor */
-.liquid{
-  position:fixed;
-  width:280px;height:280px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(212,163,55,.25), rgba(212,163,55,0));
-  filter: blur(60px);
-  pointer-events:none;
-  mix-blend-mode: multiply;
-  transform:translate(-50%,-50%);
-  z-index:0;
-}
+    /* Header Liquid Glass */
+    header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1120px;
+      backdrop-filter: blur(30px) saturate(180%);
+      background: var(--vidro);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 20px 50px rgba(0,0,0,.08);
+      z-index: 1000;
+    }
 
-/* Sections */
-section{padding:140px 24px; transition:all .9s cubic-bezier(.2,.8,.2,1)}
-.container{max-width:1100px;margin:auto}
-.section-title{font-size:40px;margin-bottom:20px}
-.section-text{max-width:900px;color:var(--suave);font-size:18px}
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 22px;
+    }
 
-/* Microparallax */
-.parallax{
-  transform:translateY(40px);
-  opacity:0;
-  transition:1s cubic-bezier(.2,.8,.2,1);
-}
-.parallax.show{
-  transform:none;
-  opacity:1;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--azul);
+    }
 
-/* Footer */
-footer{text-align:center;padding:60px 24px;color:var(--suave)}
-</style>
+    .brand img { height: 26px; }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: var(--texto);
+      font-size: 14px;
+      opacity: .7;
+      transition: .3s;
+    }
+    nav a:hover { opacity: 1; }
+
+    /* Hero */
+    .hero {
+      padding: 180px 0 140px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(212,163,55,.15), transparent 40%),
+                  radial-gradient(circle at 80% 10%, rgba(15,76,92,.12), transparent 40%);
+      z-index: -1;
+    }
+
+    .hero img.logo-full {
+      max-width: 380px;
+      opacity: 0.12;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 64px);
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .lead {
+      font-size: 20px;
+      color: var(--texto-suave);
+      max-width: 760px;
+      margin: 0 auto 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 34px;
+      border-radius: 40px;
+      background: var(--azul);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: .3s;
+    }
+    .btn:hover { transform: translateY(-3px) scale(1.03); }
+
+    section { padding: 120px 0; }
+
+    .glass {
+      backdrop-filter: blur(30px);
+      background: rgba(255,255,255,0.6);
+      border-radius: 28px;
+      padding: 60px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.08);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    h2 { font-size: 40px; margin-bottom: 20px; }
+    h3 { font-size: 26px; margin: 30px 0 10px; color: var(--azul); }
+    p { margin-bottom: 16px; color: var(--texto-suave); }
+
+    footer {
+      padding: 60px 0;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+    }
+
+    @media(max-width: 768px){
+      header { top: 10px; }
+      .glass { padding: 30px 20px; }
+      nav { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="liquid" id="liquid"></div>
-
 <header>
-  <div class="nav">
+  <div class="nav container">
     <div class="brand">
       <img src="logo-icon.png" alt="Arcanum">
-      ARCANUM
+      <span>ARCANUM</span>
     </div>
     <nav>
-      <a href="#sobre">Sobre</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#valuation">Valuation</a>
-      <a href="https://wa.me/5516992553003" target="_blank">Especialista</a>
+      <a href="#importancia">Importância</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#patentes">Patentes</a>
+      <a href="#software">Software</a>
+      <a href="https://wa.me/5516992553003">WhatsApp</a>
     </nav>
   </div>
 </header>
 
+<main>
+
 <section class="hero">
-  <video src="hero-video.mp4" autoplay muted loop playsinline></video>
-  <div class="hero-content">
-    <h1>O invisível que sustenta o seu império.</h1>
-    <p>Marcas, patentes e softwares são os verdadeiros ativos estratégicos do seu negócio.</p>
-    <a class="cta" href="https://wa.me/5516992553003" target="_blank">Iniciar atendimento estratégico</a>
+  <div class="hero-bg"></div>
+  <div class="container">
+    <img src="logo-full.png" class="logo-full" alt="Arcanum">
+    <h1>O que não é registrado não é seu.</h1>
+    <p class="lead">
+      A ARCANUM atua na estruturação, proteção e valorização de ativos intangíveis. 
+      Transformamos marcas, tecnologias e inovações em patrimônio juridicamente blindado e financeiramente relevante.
+    </p>
+    <a href="https://wa.me/5516992553003" class="btn">Iniciar Atendimento no WhatsApp</a>
   </div>
 </section>
 
-<section id="sobre">
-  <div class="container parallax">
-    <h2 class="section-title">Sobre a Arcanum</h2>
-    <p class="section-text">
-      A Arcanum estrutura juridicamente ativos intangíveis para que ideias se tornem patrimônio econômico, escalável e defensável.
+<section id="importancia">
+  <div class="container glass">
+    <h2>Por que a Propriedade Intelectual define o valor do seu negócio</h2>
+    <p>
+      Em mercados maduros, mais de 70% do valor de uma empresa está concentrado em ativos intangíveis: marca, tecnologia, reputação, software, métodos e inovação. 
+      O registro formal desses ativos é o que transforma percepção em patrimônio real.
+    </p>
+    <p>
+      Empresas que não registram sua marca ou tecnologia operam juridicamente descobertas. Todo investimento em marketing, posicionamento e crescimento fica vulnerável à perda, apropriação por terceiros ou bloqueios administrativos.
+    </p>
+    <p>
+      No valuation empresarial, marcas e patentes registradas podem ser contabilizadas como ativos, utilizadas em operações de M&A, estruturação societária, licenciamento, franquias e captação de investimento. 
+      O registro não é um custo: é um instrumento de valorização patrimonial.
+    </p>
+    <p>
+      O empresário que ignora a propriedade intelectual costuma agir sob a falsa sensação de que “nunca vai acontecer comigo”. Na prática, quando o problema aparece, ele já perdeu o direito de reagir estrategicamente.
     </p>
   </div>
 </section>
 
-<section id="servicos">
-  <div class="container parallax">
-    <h2 class="section-title">Serviços</h2>
-    <p class="section-text">
-      Registro de marcas, patentes, softwares, desenho industrial, contratos e proteção estratégica do seu capital intelectual.
+<section id="marcas">
+  <div class="container glass">
+    <h2>Registro de Marcas</h2>
+    <p>
+      A marca é o ativo central da identidade de qualquer negócio. É o que conecta percepção, confiança e valor ao produto ou serviço. 
+      Sem o registro no INPI, sua marca é apenas um nome informal — juridicamente frágil e facilmente apropriável por terceiros.
+    </p>
+    <p>
+      A ARCANUM conduz todo o processo de proteção marcária: pesquisa de anterioridade, análise de risco, enquadramento estratégico nas classes corretas e acompanhamento técnico até a concessão definitiva.
+    </p>
+    <p>
+      Além do registro, estruturamos a vigilância contínua para impedir cópias, colidências e usos indevidos. 
+      Marcas fortes não são apenas criadas — são juridicamente defendidas ao longo do tempo.
     </p>
   </div>
 </section>
 
-<section id="valuation">
-  <div class="container parallax">
-    <h2 class="section-title">Valuation & Ativos Intangíveis</h2>
-    <p class="section-text">
-      Empresas que não registram seus ativos intangíveis operam sem lastro patrimonial. Em processos de M&A, auditorias, captação de investimentos ou internacionalização, marcas e patentes registradas são tratadas como valor financeiro real.
+<section id="patentes">
+  <div class="container glass">
+    <h2>Patentes e Inovação Tecnológica</h2>
+    <p>
+      A patente é a proteção legal da inovação. Sem ela, qualquer concorrente pode reproduzir sua solução, reduzir seu preço e eliminar sua vantagem competitiva.
+    </p>
+    <p>
+      A ARCANUM atua na estruturação técnica de pedidos de patente, redação de relatórios descritivos, análise de estado da técnica e gestão estratégica do portfólio de inovação.
+    </p>
+    <p>
+      Para empresas inovadoras, a patente não é apenas proteção — é instrumento de barreira de mercado, poder de negociação e geração de valor estratégico.
     </p>
   </div>
 </section>
+
+<section id="software">
+  <div class="container glass">
+    <h2>Registro de Software</h2>
+    <p>
+      O software é hoje o núcleo de valor de startups, plataformas e empresas digitais. 
+      O registro formal garante prova de autoria, segurança jurídica em rodadas de investimento e proteção contra apropriação por ex-sócios, ex-funcionários ou concorrentes.
+    </p>
+    <p>
+      A ARCANUM estrutura o registro de código-fonte, documentação técnica e blindagem contratual, assegurando que a tecnologia pertença juridicamente à empresa — e não às pessoas que a desenvolveram.
+    </p>
+  </div>
+</section>
+
+</main>
 
 <footer>
-  © <span id="year"></span> ARCANUM — Propriedade Intelectual Estratégica
+  <div class="container">
+    © <span id="year"></span> ARCANUM Propriedade Intelectual — Todos os direitos reservados.
+  </div>
 </footer>
 
 <script>
-document.getElementById("year").textContent=new Date().getFullYear();
-
-/* Liquid blur follow mouse */
-const liquid=document.getElementById("liquid");
-document.addEventListener("mousemove",e=>{
-  liquid.style.left=e.clientX+"px";
-  liquid.style.top=e.clientY+"px";
-});
-
-/* Microparallax reveal */
-const els=document.querySelectorAll(".parallax");
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add("show");
-  });
-},{threshold:.2});
-els.forEach(el=>obs.observe(el));
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
