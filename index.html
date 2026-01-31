@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ARCANUM Propriedade Intelectual | Proteção Estratégica</title>
-  <meta name="description" content="Proteção estratégica de marcas, patentes e softwares com inteligência jurídica e visão de negócios."/>
+  <title>ARCANUM Propriedade Intelectual | Proteção Estratégica de Marcas, Patentes e Softwares</title>
+  <meta name="description" content="ARCANUM Propriedade Intelectual: registro e proteção de marcas, patentes e softwares com estratégia jurídica e visão de negócios."/>
   <style>
     :root{
       --azul:#0f4c5c;
@@ -14,84 +14,70 @@
       --fundo:#ffffff;
       --whats:#25d366;
     }
-
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Roboto, Arial, sans-serif;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif;
       color:#0b1220;
       background:#fff;
+      line-height:1.6;
     }
-
-    .container{max-width:1120px;margin:0 auto;padding:24px}
+    img{max-width:100%;display:block}
+    .container{max-width:1180px;margin:0 auto;padding:28px}
     .muted{color:var(--cinza)}
-
     header{
       position:sticky;top:0;z-index:100;
-      background:rgba(255,255,255,.9);
+      background:rgba(255,255,255,.92);
       backdrop-filter: blur(10px);
       border-bottom:1px solid #eef0f3;
     }
-
-    .nav{display:flex;align-items:center;justify-content:space-between}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:40px}
+    .brand strong{font-size:1.1rem;letter-spacing:.08em}
     nav a{margin-left:18px;text-decoration:none;color:#334155;font-weight:500}
     nav a:hover{color:var(--azul)}
 
     .hero{
-      padding:110px 0 90px;
+      padding:120px 0 100px;
       background:
         radial-gradient(900px 400px at 10% -10%, rgba(242,193,78,.15), transparent),
         radial-gradient(900px 400px at 90% 10%, rgba(15,76,92,.15), transparent);
     }
-    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
-
-    h1{font-size:clamp(34px,4vw,56px);line-height:1.05;margin:0 0 20px}
-    h2{font-size:clamp(26px,3vw,36px);margin-bottom:16px}
-    .lead{font-size:18px;line-height:1.6;max-width:46ch}
-
-    .cta{display:flex;gap:12px;margin-top:26px}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+    h1{font-size:clamp(36px,4vw,60px);line-height:1.05;margin:0 0 18px}
+    h2{font-size:clamp(28px,3vw,40px);margin-bottom:16px}
+    h3{margin:0 0 10px}
+    .lead{font-size:18px;max-width:58ch}
+    .cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
     .btn{
-      padding:14px 24px;border-radius:12px;border:1px solid var(--azul);
+      padding:14px 26px;border-radius:14px;border:1px solid var(--azul);
       background:var(--azul);color:#fff;font-weight:600;text-decoration:none;
-      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-      box-shadow:0 10px 25px rgba(15,76,92,.15);
+      transition:.2s ease; box-shadow:0 12px 28px rgba(15,76,92,.18);
     }
     .btn:hover{transform:translateY(-2px);background:var(--azul-escuro)}
     .btn.alt{background:#fff;color:var(--azul)}
-
     .card{
-      border:1px solid #eef0f3;border-radius:20px;padding:28px;background:#fff;
-      box-shadow:0 20px 40px rgba(0,0,0,.08);
-      transition:transform .3s ease, box-shadow .3s ease;
+      border:1px solid #eef0f3;border-radius:22px;padding:30px;background:#fff;
+      box-shadow:0 22px 44px rgba(0,0,0,.08);
+      transition:.25s ease;
     }
-    .card:hover{transform:translateY(-4px);box-shadow:0 30px 60px rgba(0,0,0,.12)}
-
-    section{padding:100px 0}
-    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-
+    .card:hover{transform:translateY(-4px);box-shadow:0 32px 64px rgba(0,0,0,.12)}
+    section{padding:110px 0}
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
     footer{border-top:1px solid #eef0f3;padding:36px 0;font-size:.9rem}
 
-    /* WhatsApp floating button */
     .whatsapp-btn{
-      position:fixed;right:26px;bottom:26px;width:62px;height:62px;border-radius:50%;
+      position:fixed;right:26px;bottom:26px;width:64px;height:64px;border-radius:50%;
       background:var(--whats);display:flex;align-items:center;justify-content:center;
       box-shadow:0 18px 36px rgba(0,0,0,.25);z-index:999;
-      transition:transform .2s ease;
     }
-    .whatsapp-btn:hover{transform:scale(1.08)}
     .whatsapp-btn svg{width:34px;height:34px;fill:#fff}
-
-    /* Subtle reveal animation (safe) */
-    .reveal{opacity:1; transform:none}
-    .fade{opacity:0; transform:translateY(24px); animation:fadeUp .9s ease forwards}
-    @keyframes fadeUp{to{opacity:1; transform:none}}
 
     @media(max-width:900px){
       .hero-grid{grid-template-columns:1fr;text-align:center}
       .cta{justify-content:center}
       nav{display:none}
-      .steps{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -99,11 +85,14 @@
 
 <header>
   <div class="container nav">
-    <strong>ARCANUM</strong>
+    <div class="brand">
+      <img src="logo.png" alt="Logo Arcanum"/>
+      <strong>ARCANUM PI</strong>
+    </div>
     <nav>
-      <a href="#servicos">Serviços</a>
-      <a href="#como-funciona">Metodologia</a>
       <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#metodologia">Metodologia</a>
       <a href="#contato">Contato</a>
     </nav>
   </div>
@@ -112,63 +101,112 @@
 <main>
   <section class="hero">
     <div class="container hero-grid">
-      <div class="fade">
-        <h1>Transformamos inovação em patrimônio protegido.</h1>
-        <p class="lead muted">Proteção estratégica de marcas, patentes e softwares com visão jurídica e inteligência de negócios.</p>
+      <div>
+        <h1>ARCANUM Propriedade Intelectual</h1>
+        <p class="lead muted">Protegendo o que nasce da sua mente.</p>
+        <p class="muted">
+          Atuamos na proteção estratégica de ativos intangíveis, conectando inovação,
+          criatividade e tecnologia à segurança jurídica necessária para crescimento,
+          escala e consolidação de negócios no mercado brasileiro.
+        </p>
         <div class="cta">
-          <a class="btn" href="https://wa.me/5516992553003" target="_blank">Falar com Consultor</a>
-          <a class="btn alt" href="#servicos">Ver Soluções</a>
+          <a class="btn" href="https://wa.me/5516992553003" target="_blank">Falar com um Consultor</a>
+          <a class="btn alt" href="#servicos">Conhecer os Serviços</a>
         </div>
       </div>
-      <div class="card fade" style="animation-delay:.15s">
-        <strong>Blindagem Jurídica 360º</strong>
-        <p class="muted">Do diagnóstico à concessão, cuidamos da integridade do seu ativo intelectual.</p>
-        <ul class="muted">
-          <li>Marcas & Patentes</li>
-          <li>Softwares</li>
-          <li>Monitoramento</li>
-          <li>Defesa administrativa</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="servicos">
-    <div class="container">
-      <h2>Especialidades</h2>
-      <div class="services">
-        <div class="card fade">Registro de Marcas</div>
-        <div class="card fade" style="animation-delay:.05s">Patentes</div>
-        <div class="card fade" style="animation-delay:.1s">Softwares</div>
-        <div class="card fade" style="animation-delay:.15s">Vigilância</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="como-funciona" style="background:#f8fafc">
-    <div class="container">
-      <h2>Como atuamos</h2>
-      <div class="steps">
-        <div class="card fade">1. Diagnóstico</div>
-        <div class="card fade" style="animation-delay:.05s">2. Estratégia</div>
-        <div class="card fade" style="animation-delay:.1s">3. Concessão</div>
+      <div class="card">
+        <h3>Blindagem Jurídica do seu Negócio</h3>
+        <p class="muted">
+          Marcas, patentes e softwares são hoje os principais ativos estratégicos de
+          empresas modernas. A ausência de proteção adequada expõe negócios a riscos
+          jurídicos, perda de valor de marca, bloqueios de expansão e conflitos
+          judiciais que podem comprometer anos de construção.
+        </p>
+        <p class="muted">
+          Nossa atuação vai além do protocolo de pedidos: estruturamos uma camada
+          contínua de proteção, monitoramento e defesa administrativa dos seus direitos.
+        </p>
       </div>
     </div>
   </section>
 
   <section id="sobre">
     <div class="container">
-      <h2>Sobre a Arcanum</h2>
-      <p class="muted">A ARCANUM PROPRIEDADE INTELECTUAL atua na proteção estratégica de ativos intangíveis, conectando inovação à segurança jurídica e crescimento sustentável.</p>
+      <h2>Quem Somos</h2>
+      <p class="muted">
+        A ARCANUM Propriedade Intelectual é um escritório especializado na gestão e
+        proteção estratégica de ativos intelectuais. Atendemos empreendedores,
+        startups, profissionais liberais e empresas em expansão que compreendem
+        que marca, tecnologia e inovação são patrimônios que precisam ser
+        juridicamente estruturados e protegidos.
+      </p>
+      <p class="muted">
+        Nossa metodologia combina análise jurídica, visão de negócios e estratégia
+        de posicionamento de marca, criando uma blindagem que permite ao cliente
+        crescer com segurança, previsibilidade e valorização patrimonial.
+      </p>
     </div>
   </section>
 
-  <section id="contato">
+  <section id="servicos" style="background:#f8fafc">
     <div class="container">
-      <h2>Fale com um consultor</h2>
-      <p class="lead muted">Atendimento direto pelo WhatsApp.</p>
-      <a class="btn" href="https://wa.me/5516992553003" target="_blank">Iniciar conversa no WhatsApp</a>
-      <p class="muted" style="margin-top:12px">📱 (16) 99255-3003</p>
+      <h2>Nossos Serviços</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Registro de Marcas</h3>
+          <p class="muted">
+            Realizamos o estudo de viabilidade, pesquisa de anterioridade,
+            definição de classes estratégicas e condução completa do processo
+            de registro junto ao INPI. Atuamos também na defesa contra oposições,
+            manifestações técnicas e indeferimentos, garantindo maior taxa de
+            sucesso e proteção real da identidade do seu negócio.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Patentes e Desenhos Industriais</h3>
+          <p class="muted">
+            Estruturamos pedidos de patente e registro de desenho industrial,
+            orientando desde a fase de concepção da invenção até o depósito e
+            acompanhamento técnico-jurídico do processo. Atuamos de forma
+            estratégica para proteger soluções tecnológicas e diferenciais
+            competitivos no mercado.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Registro de Software</h3>
+          <p class="muted">
+            Protegemos juridicamente softwares, aplicativos e sistemas digitais,
+            assegurando a titularidade dos direitos autorais, a segurança em
+            negociações com investidores e a proteção contra cópias ou uso
+            indevido da tecnologia desenvolvida.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="metodologia">
+    <div class="container">
+      <h2>Metodologia de Atuação</h2>
+      <p class="muted">
+        Nossa atuação segue uma metodologia estruturada em três pilares:
+        diagnóstico estratégico do ativo intelectual, definição de rota jurídica
+        de proteção e acompanhamento contínuo com foco em blindagem e expansão.
+      </p>
+      <p class="muted">
+        Isso garante não apenas o registro formal, mas a construção de uma base
+        sólida para crescimento, licenciamento, franquias, valuation de marca e
+        negociações societárias.
+      </p>
+    </div>
+  </section>
+
+  <section id="contato" style="background:#0f4c5c;color:#fff">
+    <div class="container">
+      <h2>Fale com um Consultor</h2>
+      <p>Atendimento direto via WhatsApp para diagnóstico inicial e orientação estratégica.</p>
+      <a class="btn alt" href="https://wa.me/5516992553003" target="_blank">Iniciar Conversa no WhatsApp</a>
+      <p style="margin-top:12px">📱 (16) 99255-3003</p>
     </div>
   </section>
 </main>
