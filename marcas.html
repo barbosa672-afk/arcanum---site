@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ARCANUM — Registro de Marcas</title>
+  <meta name="description" content="Registro de marcas como ativo estratégico para valuation, expansão e proteção jurídica.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul: #0f4c5c;
+      --dourado: #d4a337;
+      --texto: #1d1d1f;
+      --texto-suave: #6e6e73;
+      --bg: #ffffff;
+      --bg-soft: #f5f5f7;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--texto);line-height:1.6}
+    header{position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.05);z-index:10}
+    .container{max-width:980px;margin:0 auto;padding:24px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--azul)}
+    .brand img{height:24px}
+    a{color:var(--azul);text-decoration:none}
+    h1{font-size:clamp(36px,6vw,56px);letter-spacing:-.03em;margin:40px 0 24px}
+    h2{font-size:28px;margin:60px 0 16px}
+    p{color:var(--texto-suave);margin-bottom:18px;font-size:18px}
+    .hero{padding:120px 0 80px}
+    .box{background:var(--bg-soft);border-radius:24px;padding:36px;margin:40px 0}
+    .risk{border-left:5px solid var(--dourado);padding-left:24px}
+    .cta{display:inline-block;margin-top:32px;background:var(--azul);color:#fff;padding:16px 36px;border-radius:999px;font-weight:600;transition:.4s}
+    .cta:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(15,76,92,.3)}
+    footer{text-align:center;padding:40px 0;color:var(--texto-suave)}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container brand">
+    <a href="index.html" class="brand">
+      <img src="logo-icon.png" alt="Arcanum">
+      <span>ARCANUM</span>
+    </a>
+  </div>
+</header>
+
+<main class="container hero">
+  <h1>Registro de Marcas como Ativo Estratégico</h1>
+  <p>
+    A marca é o principal vetor de valor percebido pelo mercado. Em empresas maduras, ela representa parcela relevante do valuation,
+    influencia diretamente processos de fusões e aquisições (M&A), viabiliza franquias, licenciamentos e consolida barreiras competitivas.
+  </p>
+  <p>
+    O registro de marca no INPI não é uma formalidade cartorial: trata-se da constituição jurídica de um ativo intangível que pode ser
+    contabilizado, avaliado, transferido e monetizado. Sem o registro, a empresa opera sem lastro jurídico sobre o próprio nome.
+  </p>
+
+  <div class="box">
+    <h2>Por que empresários perdem valor ao não registrar?</h2>
+    <p>
+      Empresas que investem em branding, marketing e posicionamento sem registrar sua marca estão, na prática, capitalizando um ativo
+      que não lhes pertence juridicamente. Isso inviabiliza operações estruturadas de crescimento e reduz drasticamente a atratividade
+      para investidores e compradores estratégicos.
+    </p>
+  </div>
+
+  <div class="box risk">
+    <h2>O risco jurídico da omissão</h2>
+    <p>
+      A ausência de registro permite que terceiros reivindiquem a titularidade do nome ou identidade visual, obrigando o empresário
+      a rebranding forçado, retirada de produtos do mercado e, em cenários críticos, indenizações por uso indevido de marca.
+    </p>
+    <p>
+      O custo de registrar é marginal quando comparado ao custo de perder uma marca consolidada. O risco jurídico é assimétrico:
+      pequeno para quem registra, devastador para quem negligencia.
+    </p>
+  </div>
+
+  <a class="cta" href="https://wa.me/5516992553003">Iniciar proteção da minha marca</a>
+</main>
+
+<footer>
+  © <span id="year"></span> ARCANUM — Propriedade Intelectual Estratégica
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
