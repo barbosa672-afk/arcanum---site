@@ -4,7 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>ARCANUM — Engenharia Jurídica de Ativos Intangíveis</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -20,9 +19,13 @@ body{
   font-family:Inter,system-ui,sans-serif;
   background:#fff;
   color:var(--texto);
-  line-height:1.6;
+  line-height:1.65;
   overflow-x:hidden;
 }
+
+.container{max-width:1200px;margin:auto;padding:0 24px;}
+section{padding:120px 0;}
+h1,h2,h3{letter-spacing:-.02em;}
 
 /* Header */
 header{
@@ -32,86 +35,69 @@ header{
   border-bottom:1px solid rgba(0,0,0,.05);
   z-index:100;
 }
-.container{max-width:1180px;margin:auto;padding:0 24px;}
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--azul);}
-
-/* Glow pulsante no ícone */
 .brand img{
   width:34px;
-  filter: drop-shadow(0 0 12px rgba(212,163,55,.6));
+  filter: drop-shadow(0 0 14px rgba(212,163,55,.6));
   animation: logoGlow 4s ease-in-out infinite;
 }
-
 @keyframes logoGlow{
-  0%,100%{filter: drop-shadow(0 0 10px rgba(212,163,55,.4));}
-  50%{filter: drop-shadow(0 0 22px rgba(212,163,55,.85));}
+  0%,100%{filter: drop-shadow(0 0 10px rgba(212,163,55,.35));}
+  50%{filter: drop-shadow(0 0 22px rgba(212,163,55,.8));}
 }
-
-nav a{margin-left:28px;text-decoration:none;color:#000;opacity:.7;font-size:14px;}
-nav a:hover{opacity:1;}
+nav a{margin-left:26px;text-decoration:none;color:#000;opacity:.7;font-size:14px;}
+nav a:hover{opacity:1}
 
 /* HERO */
-.hero{padding-top:140px;position:relative;overflow:hidden;}
+.hero{padding-top:160px;position:relative;overflow:hidden;}
 .logo-full{
   position:absolute;inset:0;
   background:url("logo-full.png") center/contain no-repeat;
-  opacity:.55;
-  filter: blur(0.5px) saturate(140%) drop-shadow(0 0 60px rgba(212,163,55,.35));
+  opacity:.28; /* transparência como antes */
+  filter: saturate(130%) drop-shadow(0 0 40px rgba(212,163,55,.25));
   transform:scale(1.1);
+  pointer-events:none;
   transition:.4s ease;
-  animation: logoBreath 10s ease-in-out infinite;
 }
-
-@keyframes logoBreath{
-  0%,100%{opacity:.48; filter: blur(0.6px) saturate(130%) drop-shadow(0 0 40px rgba(212,163,55,.25));}
-  50%{opacity:.65; filter: blur(0.2px) saturate(160%) drop-shadow(0 0 80px rgba(212,163,55,.5));}
-}
-
 .hero-content{position:relative;padding:160px 0 120px;text-align:center;}
-.hero h1{font-size:clamp(42px,7vw,72px);letter-spacing:-.03em;}
-.hero p{max-width:900px;margin:30px auto;font-size:22px;color:#444;}
+.hero h1{font-size:clamp(42px,7vw,72px);}
+.hero p{max-width:980px;margin:28px auto;font-size:22px;color:#444}
 
 /* GLASS */
 .glass{
   position:relative;
-  background:rgba(255,255,255,0.55);
+  background:rgba(255,255,255,0.6);
   backdrop-filter: blur(26px) saturate(180%);
   border-radius:28px;
-  padding:72px;
-  margin:48px 0;
-  border:1px solid rgba(255,255,255,.5);
+  padding:64px;
+  border:1px solid rgba(255,255,255,.6);
+  margin-bottom:64px;
   overflow:hidden;
 }
-
-/* Reflexo dinâmico */
 .glass::before{
   content:"";
   position:absolute;inset:0;
   background:radial-gradient(circle at var(--mx,50%) var(--my,50%), 
-    rgba(255,255,255,0.45), transparent 60%);
+    rgba(255,255,255,.45), transparent 60%);
   opacity:.8;
   pointer-events:none;
 }
-
-/* Vidro molhado */
 .glass::after{
   content:"";
   position:absolute;inset:-50%;
-  background:
-    linear-gradient(120deg, rgba(255,255,255,0.35), transparent 45%, rgba(255,255,255,0.25));
-  animation: waterMove 14s linear infinite;
+  background:linear-gradient(120deg, rgba(255,255,255,.35), transparent 45%, rgba(255,255,255,.25));
+  animation: waterMove 16s linear infinite;
   mix-blend-mode: overlay;
   pointer-events:none;
 }
-
 @keyframes waterMove{
-  from{transform:translateX(-30%) translateY(-30%) rotate(0deg);}
-  to{transform:translateX(30%) translateY(30%) rotate(360deg);}
+  from{transform:translate(-30%,-30%) rotate(0deg);}
+  to{transform:translate(30%,30%) rotate(360deg);}
 }
 
-/* Botões com lente líquida */
-.liquid-btn{
+/* Botões */
+.btn{
   position:relative;
   display:inline-block;
   padding:18px 40px;
@@ -123,34 +109,23 @@ nav a:hover{opacity:1;}
   overflow:hidden;
   transition:.4s cubic-bezier(.2,.8,.2,1);
 }
-
-.liquid-btn::before{
+.btn::before{
   content:"";
   position:absolute;inset:-40%;
-  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), 
-    rgba(255,255,255,0.7), transparent 55%);
-  opacity:0;
-  transition:.3s ease;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.75), transparent 55%);
+  opacity:0; transition:.3s ease;
 }
+.btn:hover::before{opacity:1;}
+.btn:hover{transform:scale(1.06); box-shadow:0 20px 40px rgba(0,0,0,.2);}
 
-.liquid-btn:hover::before{opacity:1;}
-.liquid-btn:hover{transform:scale(1.06); box-shadow:0 20px 40px rgba(0,0,0,.2);}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px;}
 
-/* CTA */
-.cta{
-  background:var(--azul);
-  color:#fff;
-  padding:120px 0;
-  text-align:center;
-}
-.cta .liquid-btn{background:#fff;color:var(--azul);}
+footer{padding:60px 0;text-align:center;color:#777;font-size:13px;}
 
-/* Footer */
-footer{padding:60px 0;text-align:center;font-size:13px;color:#777;}
-
-@media(max-width:768px){
-  nav{display:none;}
-  .glass{padding:40px;}
+@media(max-width:900px){
+  nav{display:none}
+  .grid{grid-template-columns:1fr}
+  .glass{padding:40px}
 }
 </style>
 </head>
@@ -179,36 +154,92 @@ footer{padding:60px 0;text-align:center;font-size:13px;color:#777;}
     <div class="container hero-content">
       <h1>O invisível que sustenta o seu império.</h1>
       <p>
-        A ARCANUM estrutura juridicamente marcas, patentes e <em>software</em> para transformar ativos intangíveis em valor patrimonial real, mensurável e protegível em processos de <em>valuation</em> e operações de <em>M&A</em>.
+        A ARCANUM estrutura juridicamente marcas, patentes e <em>software</em> para transformar ativos intangíveis em valor patrimonial real, mensurável e defensável em processos de <em>valuation</em> e operações de <em>M&A</em>.
       </p>
-      <a href="https://wa.me/5516992553003" class="liquid-btn">Iniciar atendimento no WhatsApp</a>
+      <a href="https://wa.me/5516992553003" class="btn">Iniciar atendimento no WhatsApp</a>
     </div>
   </section>
 
-  <!-- Seções seguem como antes -->
-  <!-- Mantidas as descrições longas que você já aprovou -->
+  <section id="marcas" class="container">
+    <div class="glass">
+      <h2>Registro de Marcas</h2>
+      <p>
+        O registro de marca é a certidão de nascimento jurídica do seu negócio. Sem ele, a empresa opera em permanente insegurança, pois não há exclusividade legal sobre o nome, logotipo ou identidade distintiva. O investimento em marketing, posicionamento e reputação fica exposto ao risco de apropriação por terceiros.
+      </p>
+      <p>
+        Uma marca registrada consolida valor econômico mensurável no balanço patrimonial, amplia o poder de negociação em processos de <em>valuation</em>, facilita operações de <em>M&A</em> e viabiliza estratégias de expansão como franquias, licenciamento e cessão onerosa de direitos. A ausência de registro, por outro lado, pode resultar em bloqueios judiciais, proibição de uso da marca, indenizações por uso indevido e perda integral do ativo construído ao longo dos anos.
+      </p>
+    </div>
+  </section>
+
+  <section id="patentes" class="container">
+    <div class="glass">
+      <h2>Patentes e Inovação Tecnológica</h2>
+      <p>
+        A proteção patentária cria barreiras de entrada legais contra concorrentes, assegurando exclusividade de exploração econômica da inovação. Patentes não são apenas instrumentos jurídicos: são mecanismos estratégicos de valorização empresarial, fundamentais para captação de investimentos, negociação com fundos e fortalecimento da posição competitiva no mercado.
+      </p>
+      <p>
+        Ignorar a proteção de uma invenção é permitir que terceiros explorem comercialmente sua tecnologia, muitas vezes com maior capacidade financeira e de distribuição. Em cenários de disputa, a ausência de patente inviabiliza a defesa jurídica da exclusividade e compromete diretamente a atratividade da empresa em processos de <em>M&A</em> e rodadas de investimento.
+      </p>
+    </div>
+  </section>
+
+  <section id="software" class="container">
+    <div class="glass">
+      <h2>Proteção de <em>Software</em> e Ativos Digitais</h2>
+      <p>
+        O código-fonte é o núcleo estratégico de empresas de base tecnológica. O registro de <em>software</em> assegura prova legal de autoria, essencial em disputas societárias, conflitos trabalhistas com desenvolvedores, processos de auditoria de <em>valuation</em> e operações de <em>M&A</em>.
+      </p>
+      <p>
+        Empresas que negligenciam a formalização da titularidade de <em>software</em> enfrentam riscos jurídicos relevantes, como perda de direitos sobre a tecnologia, questionamentos em due diligence e redução substancial de valor percebido por investidores. A proteção adequada do <em>software</em> é um pilar estrutural da governança corporativa moderna.
+      </p>
+    </div>
+  </section>
+
+  <section id="transferencia" class="container">
+    <div class="glass">
+      <h2>Transferência de Titularidade, Contratos e <em>Compliance</em></h2>
+      <p>
+        A transferência de titularidade de marcas, patentes e <em>software</em> exige formalização contratual rigorosa e registro perante os órgãos competentes. Sem esse cuidado, a cadeia de titularidade pode ser questionada, gerando insegurança jurídica, passivos ocultos e fragilidade em auditorias de <em>valuation</em> e operações de <em>M&A</em>.
+      </p>
+      <p>
+        Estruturamos contratos de cessão, licenciamento, acordos de confidencialidade, cláusulas de propriedade intelectual em contratos de desenvolvimento e políticas internas de <em>compliance</em>. O objetivo é garantir governança, rastreabilidade de titularidade e previsibilidade jurídica, reduzindo riscos operacionais e fortalecendo a atratividade da empresa perante investidores e parceiros estratégicos.
+      </p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="glass" style="text-align:center">
+      <h2>Sua empresa está protegida ou exposta?</h2>
+      <p>
+        A ausência de proteção formal dos ativos intangíveis compromete diretamente o valor da empresa, aumenta riscos jurídicos e fragiliza negociações estratégicas. Estruturar propriedade intelectual é uma decisão de governança corporativa, não uma mera formalidade burocrática.
+      </p>
+      <a href="https://wa.me/5516992553003" class="btn">Falar com um consultor</a>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <p>© <span id="year"></span> ARCANUM</p>
+  <p>© <span id="year"></span> ARCANUM — Propriedade Intelectual & Estratégia Empresarial</p>
 </footer>
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* mouse tracking para reflexos */
-document.querySelectorAll('.glass, .liquid-btn').forEach(el=>{
+/* reflexo dinâmico */
+document.querySelectorAll('.glass, .btn').forEach(el=>{
   el.addEventListener('mousemove', e=>{
     const r = el.getBoundingClientRect();
-    el.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
-    el.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+    el.style.setProperty('--mx', ((e.clientX - r.left)/r.width)*100+'%');
+    el.style.setProperty('--my', ((e.clientY - r.top)/r.height)*100+'%');
   });
 });
 
-/* parallax logo full */
+/* logo full viva (parallax suave) */
 window.addEventListener("scroll", ()=>{
   const y = window.scrollY * 0.12;
-  document.querySelector(".logo-full").style.transform = `translateY(${y}px) scale(1.1)`;
+  const logo = document.querySelector(".logo-full");
+  logo.style.transform = `translateY(${y}px) scale(1.1)`;
 });
 </script>
 
