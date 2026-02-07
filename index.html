@@ -3,8 +3,56 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ARCANUM — Propriedade Intelectual</title>
+    <title>ARCANUM — Propriedade Intelectual | Registro de Marcas e Patentes</title>
+    
+    <!-- Meta Tags SEO -->
+    <meta name="description" content="Registro de marcas, patentes e proteção de software no INPI. Consultoria especializada em propriedade intelectual para empresas em Ribeirão Preto e todo Brasil.">
+    <meta name="keywords" content="registro de marca, patente, propriedade intelectual, INPI, software, Ribeirão Preto, advogado marcas, registro INPI">
+    <meta name="author" content="Arcanum Propriedade Intelectual">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arcanumpi.com.br">
+    <meta property="og:title" content="ARCANUM — Propriedade Intelectual">
+    <meta property="og:description" content="Proteção jurídica de ativos intangíveis com visão estratégica de negócio. Registro de marcas, patentes e software.">
+    <meta property="og:image" content="https://arcanumpi.com.br/logo-full.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://arcanumpi.com.br">
+    <meta property="twitter:title" content="ARCANUM — Propriedade Intelectual">
+    <meta property="twitter:description" content="Proteção jurídica de ativos intangíveis com visão estratégica de negócio.">
+    <meta property="twitter:image" content="https://arcanumpi.com.br/logo-full.png">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://arcanumpi.com.br">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LegalService",
+        "name": "Arcanum Propriedade Intelectual",
+        "description": "Registro de marcas, patentes e proteção de software no INPI",
+        "url": "https://arcanumpi.com.br",
+        "telephone": "+55-16-99255-3003",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ribeirão Preto",
+            "addressRegion": "SP",
+            "addressCountry": "BR"
+        },
+        "priceRange": "$$",
+        "areaServed": "BR"
+    }
+    </script>
+    
     <style>
         :root{
             --azul:#0f4c5c;
@@ -83,13 +131,98 @@
             0%,100%{filter: drop-shadow(0 0 10px rgba(212,163,55,.4));}
             50%{filter: drop-shadow(0 0 26px rgba(212,163,55,.9));}
         }
-        nav a{margin-left:16px;text-decoration:none;color:#000;opacity:.7;font-size:14px;}
+        nav a{margin-left:16px;text-decoration:none;color:#000;opacity:.7;font-size:14px;transition:.3s ease;}
         nav a:hover{opacity:1}
+        
+        /* ===== MENU MOBILE HAMBURGUER ===== */
+        .menu-toggle{
+            display:none;
+            flex-direction:column;
+            gap:5px;
+            cursor:pointer;
+            padding:8px;
+        }
+        .menu-toggle span{
+            width:24px;
+            height:2px;
+            background:var(--azul);
+            transition:.3s ease;
+            border-radius:2px;
+        }
+        .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px);}
+        .menu-toggle.active span:nth-child(2){opacity:0;}
+        .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px);}
+        
+        .mobile-menu{
+            display:none;
+            position:fixed;
+            top:80px;
+            left:16px;
+            right:16px;
+            background:var(--vidro);
+            backdrop-filter: blur(28px) saturate(180%);
+            border:1px solid var(--borda-vidro);
+            border-radius:24px;
+            padding:20px;
+            box-shadow:0 18px 40px rgba(0,0,0,.14);
+            z-index:99;
+            opacity:0;
+            transform:translateY(-20px);
+            transition:.3s cubic-bezier(.2,.8,.2,1);
+        }
+        .mobile-menu.active{
+            display:block;
+            opacity:1;
+            transform:translateY(0);
+        }
+        .mobile-menu a{
+            display:block;
+            padding:12px 16px;
+            text-decoration:none;
+            color:#000;
+            border-radius:12px;
+            margin-bottom:8px;
+            transition:.3s ease;
+        }
+        .mobile-menu a:hover{
+            background:rgba(15,76,92,.1);
+        }
+        
+        /* ===== WHATSAPP FLUTUANTE ===== */
+        .whatsapp-float{
+            position:fixed;
+            bottom:24px;
+            right:24px;
+            width:64px;
+            height:64px;
+            background:#25D366;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 8px 24px rgba(37,211,102,.4), 0 4px 8px rgba(0,0,0,.2);
+            z-index:999;
+            transition:transform .3s ease, box-shadow .3s ease;
+            animation:pulseWpp 2s ease-in-out infinite;
+        }
+        .whatsapp-float:hover{
+            transform:scale(1.1);
+            box-shadow:0 12px 32px rgba(37,211,102,.5), 0 6px 12px rgba(0,0,0,.3);
+        }
+        .whatsapp-float svg{
+            width:36px;
+            height:36px;
+            fill:#fff;
+        }
+        @keyframes pulseWpp{
+            0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.4), 0 4px 8px rgba(0,0,0,.2);}
+            50%{box-shadow:0 8px 32px rgba(37,211,102,.6), 0 4px 12px rgba(0,0,0,.25);}
+        }
         
         /* ===== LAYOUT ===== */
         .container{max-width:1200px;margin:auto;padding:0 22px;}
         section{padding:64px 0;}
-        .tight{padding:44px 0;} /* menos espaço entre tópicos */
+        .tight{padding:44px 0;}
         
         /* ===== HERO ===== */
         .hero{padding-top:160px;text-align:center;}
@@ -155,6 +288,40 @@
         .bubble h2{margin-bottom:12px; color:var(--azul);}
         .bubble p{color:#3f3f46; font-size:17px; margin-bottom:12px}
         
+        /* ===== SEÇÃO DE NÚMEROS/STATS ===== */
+        .stats{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+            gap:32px;
+            margin-top:32px;
+        }
+        .stat-item{
+            text-align:center;
+            padding:24px;
+            background:rgba(255,255,255,.5);
+            border-radius:20px;
+            border:1px solid rgba(212,163,55,.2);
+            transition:.3s ease;
+        }
+        .stat-item:hover{
+            transform:translateY(-4px);
+            box-shadow:0 12px 28px rgba(0,0,0,.12);
+        }
+        .stat-number{
+            display:block;
+            font-size:clamp(36px,5vw,52px);
+            font-weight:700;
+            color:var(--dourado);
+            line-height:1.2;
+            margin-bottom:8px;
+        }
+        .stat-label{
+            display:block;
+            font-size:15px;
+            color:var(--cinza);
+            font-weight:500;
+        }
+        
         /* ===== ANIMAÇÕES CINEMATOGRÁFICAS POR SEÇÃO ===== */
         .reveal{opacity:0; transform: translateY(26px) scale(.98); filter: blur(6px);}
         .reveal.in{opacity:1; transform:none; filter:none; transition: 900ms cubic-bezier(.2,.8,.2,1);}
@@ -177,11 +344,23 @@
         /* ===== MOBILE ===== */
         @media(max-width:900px){
             nav{display:none;}
+            .menu-toggle{display:flex;}
             .hero{padding-top:136px;}
             .bubble{padding:26px;}
             .hero h1{font-size:30px;}
             .hero p{font-size:16.5px;}
             .logo-full{opacity:.38;}
+            .stats{grid-template-columns:1fr;}
+            .whatsapp-float{
+                width:56px;
+                height:56px;
+                bottom:20px;
+                right:20px;
+            }
+            .whatsapp-float svg{
+                width:30px;
+                height:30px;
+            }
         }
     </style>
 </head>
@@ -201,13 +380,34 @@
                 <a href="#transferencia">Transferência</a>
                 <a href="https://wa.me/5516992553003">WhatsApp</a>
             </nav>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
+    
+    <!-- Menu Mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#marcas">Marcas</a>
+        <a href="#patentes">Patentes</a>
+        <a href="#software">Software</a>
+        <a href="#transferencia">Transferência</a>
+        <a href="https://wa.me/5516992553003">WhatsApp</a>
+    </div>
+    
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/5516992553003" class="whatsapp-float" aria-label="Fale conosco no WhatsApp" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.247 1.408 1.417-5.267-0.325-0.528c-1.344-2.184-2.054-4.693-2.054-7.253 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.305 19.463c-0.396-0.198-2.348-1.158-2.713-1.291s-0.627-0.198-0.892 0.198c-0.264 0.396-1.026 1.291-1.256 1.556s-0.462 0.297-0.858 0.099c-0.396-0.198-1.673-0.617-3.186-1.966-1.177-1.050-1.973-2.347-2.204-2.743s-0.025-0.61 0.174-0.807c0.178-0.177 0.396-0.462 0.594-0.693s0.264-0.396 0.396-0.66c0.132-0.264 0.066-0.495-0.033-0.693s-0.892-2.146-1.222-2.938c-0.322-0.769-0.649-0.665-0.892-0.677-0.231-0.012-0.495-0.015-0.759-0.015s-0.693 0.099-1.056 0.495c-0.363 0.396-1.388 1.356-1.388 3.306s1.421 3.836 1.619 4.101c0.198 0.264 2.794 4.266 6.769 5.982 0.945 0.408 1.684 0.652 2.26 0.835 0.951 0.302 1.816 0.259 2.501 0.157 0.762-0.114 2.348-0.96 2.679-1.887s0.331-1.723 0.231-1.887c-0.099-0.165-0.363-0.264-0.759-0.462z"/>
+        </svg>
+    </a>
     
     <main>
         <section class="hero reveal">
             <div class="logo-full-wrap">
-                <img src="logo-full.png" class="logo-full" alt="Logo Arcanum">
+                <img src="logo-full.png" class="logo-full" alt="Logo Arcanum" loading="lazy">
             </div>
             <div class="container">
                 <h1 class="parallax-title">Proteção jurídica de ativos intangíveis com visão estratégica de negócio.</h1>
@@ -215,6 +415,30 @@
                     Estruturamos marcas, patentes e <em>software</em> para que deixem de ser apenas ideias e passem a integrar o patrimônio real da empresa, com segurança jurídica, capacidade de monetização e impacto direto em processos de <em>valuation</em>, expansão societária e operações de <em>M&A</em>.
                 </p>
                 <a href="https://wa.me/5516992553003" class="btn">Iniciar atendimento no WhatsApp</a>
+            </div>
+        </section>
+        
+        <!-- SEÇÃO DE NÚMEROS -->
+        <section class="container tight reveal">
+            <div class="bubble">
+                <h2>Experiência comprovada em Propriedade Intelectual</h2>
+                <p>
+                    Nossa atuação combina expertise técnico-jurídica com visão estratégica de negócio, transformando ativos intangíveis em vantagem competitiva mensurável e auditável para empresas de todos os portes.
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Marcas registradas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Anos de atuação</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Taxa de aprovação</span>
+                    </div>
+                </div>
             </div>
         </section>
         
@@ -302,6 +526,31 @@
     <script>
         /* Ano */
         document.getElementById("year").textContent = new Date().getFullYear();
+        
+        /* Menu Mobile Toggle */
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        /* Fechar menu ao clicar em link */
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        /* Fechar menu ao clicar fora */
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
         
         /* Parallax sutil da logo */
         const logo = document.querySelector(".logo-full");
