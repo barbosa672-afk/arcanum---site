@@ -1,298 +1,344 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ARCANUM — Propriedade Intelectual</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --azul:#0f4c5c;
-  --dourado:#d4a337;
-  --texto:#1d1d1f;
-  --cinza:#4b5563;
-  --vidro: rgba(255,255,255,.6);
-  --borda-vidro: rgba(255,255,255,.9);
-}
-
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:Inter,system-ui,sans-serif;
-  color:var(--texto);
-  background:#fff;
-  line-height:1.7;
-  overflow-x:hidden;
-}
-
-/* ===== FUNDO ABSTRATO LÍQUIDO (CSS PURO) ===== */
-.liquid-bg{
-  position:fixed; inset:-20%;
-  z-index:-1;
-  background:
-    radial-gradient(1200px 800px at 10% 10%, rgba(212,163,55,.18), transparent 60%),
-    radial-gradient(900px 700px at 90% 20%, rgba(15,76,92,.18), transparent 60%),
-    radial-gradient(800px 600px at 30% 80%, rgba(212,163,55,.12), transparent 60%);
-  filter: blur(40px) saturate(130%);
-  animation: liquidFloat 18s ease-in-out infinite alternate;
-}
-@keyframes liquidFloat{
-  0%{transform:translate3d(0,0,0) scale(1);}
-  100%{transform:translate3d(-4%,3%,0) scale(1.05);}
-}
-
-/* ===== HEADER VIDRO (PÍLULA) ===== */
-header{
-  position:fixed; top:16px; left:0; right:0; z-index:100;
-  display:flex; justify-content:center; pointer-events:none;
-}
-.nav-pill{
-  pointer-events:auto;
-  width:calc(100% - 32px); max-width:1200px;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px 22px; border-radius:999px;
-  backdrop-filter: blur(28px) saturate(180%);
-  background:var(--vidro);
-  border:1px solid var(--borda-vidro);
-  box-shadow:0 18px 40px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.8);
-  transition:.35s ease;
-}
-.nav-pill:hover{box-shadow:0 22px 56px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.9);}
-.brand{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--azul);}
-.brand img{
-  width:30px;
-  filter: drop-shadow(0 0 18px rgba(212,163,55,.7));
-  animation: logoGlow 4s ease-in-out infinite;
-}
-@keyframes logoGlow{
-  0%,100%{filter: drop-shadow(0 0 10px rgba(212,163,55,.4));}
-  50%{filter: drop-shadow(0 0 26px rgba(212,163,55,.9));}
-}
-nav a{margin-left:16px;text-decoration:none;color:#000;opacity:.7;font-size:14px;}
-nav a:hover{opacity:1}
-
-/* ===== LAYOUT ===== */
-.container{max-width:1200px;margin:auto;padding:0 22px;}
-section{padding:64px 0;}
-.tight{padding:44px 0;}
-
-/* ===== HERO ===== */
-.hero{padding-top:160px;text-align:center;}
-.logo-full-wrap{display:flex;justify-content:center;margin-bottom:24px;}
-.logo-full{
-  width:min(640px,82vw);
-  opacity:.45;
-  filter: drop-shadow(0 0 70px rgba(212,163,55,.35));
-  mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
-  -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
-  transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .4s ease;
-}
-.hero h1{
-  font-size:clamp(34px,6vw,56px);
-  max-width:980px; margin:0 auto 14px;
-  letter-spacing:-.02em;
-}
-.hero p{
-  max-width:62ch; margin:0 auto 26px;
-  font-size:19px; color:var(--cinza);
-}
-
-/* ===== BOTÕES (LENTE LÍQUIDA) ===== */
-.btn{
-  position:relative; display:inline-block;
-  padding:14px 34px; border-radius:999px;
-  background:linear-gradient(135deg, rgba(15,76,92,.95), rgba(15,76,92,.8));
-  color:#fff; text-decoration:none; font-weight:500;
-  overflow:hidden; isolation:isolate;
-  box-shadow:0 14px 34px rgba(0,0,0,.18);
-  transition:transform .25s ease, box-shadow .25s ease;
-}
-.btn::before{
-  content:""; position:absolute; inset:-40%;
-  background: radial-gradient(300px 120px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.45), transparent 60%);
-  mix-blend-mode: screen; opacity:.0; transition:.25s ease;
-}
-.btn:hover{transform:scale(1.04); box-shadow:0 20px 44px rgba(0,0,0,.22);}
-.btn:hover::before{opacity:.9}
-
-/* ===== BOLHAS DE VIDRO (CARDS) ===== */
-.bubble{
-  background:rgba(255,255,255,0.62);
-  backdrop-filter: blur(28px) saturate(160%);
-  border-radius:28px; padding:42px;
-  border:1px solid var(--borda-vidro);
-  margin-bottom:28px;
-  box-shadow:0 22px 50px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.75);
-}
-.bubble h2{margin-bottom:12px; color:var(--azul);}
-.bubble p{color:#3f3f46; font-size:17px; margin-bottom:12px}
-
-/* ===== ANIMAÇÕES ===== */
-.reveal{opacity:0; transform: translateY(26px) scale(.98); filter: blur(6px);}
-.reveal.in{opacity:1; transform:none; filter:none; transition: 900ms cubic-bezier(.2,.8,.2,1);}
-.parallax-title{will-change: transform; transition: transform .2s ease-out;}
-
-/* ===== ASSINATURA / FOOTER ===== */
-.signature{ text-align:center; padding:56px 20px 24px; font-size:14px; color:#8b8b8b; letter-spacing:.08em; }
-footer{text-align:center;padding:32px;color:#777;font-size:13px;}
-
-/* ===== TIPOGRAFIA PREMIUM (DESKTOP) ===== */
-.justificado{
-  text-align: justify;
-  line-height: 1.22;
-  letter-spacing: -0.015em;
-  hyphens: auto;
-}
-.hero p.premium-copy{
-  text-align: justify;
-  line-height: 1.7;
-  letter-spacing: -0.005em;
-  hyphens: auto;
-}
-.bubble p{
-  text-align: justify;
-  line-height: 1.8;
-  letter-spacing: -0.004em;
-  hyphens: auto;
-}
-
-/* ===== MOBILE ===== */
-@media(max-width:900px){
-  nav{display:none;}
-  .hero{padding-top:136px;}
-  .bubble{padding:26px;}
-  .hero h1{font-size:30px;}
-  .hero p{font-size:16.5px; max-width:100%;}
-  .logo-full{opacity:.38;}
-
-  .justificado,
-  .hero p.premium-copy,
-  .bubble p{
-    text-align:center;
-    line-height:1.6;
-    letter-spacing:0;
-    hyphens:none;
-  }
-}
-</style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ARCANUM — Propriedade Intelectual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --azul:#0f4c5c;
+            --dourado:#d4a337;
+            --texto:#1d1d1f;
+            --cinza:#4b5563;
+            --vidro: rgba(255,255,255,.6);
+            --borda-vidro: rgba(255,255,255,.9);
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{
+            font-family:Inter,system-ui,sans-serif;
+            color:var(--texto);
+            background:#fff;
+            line-height:1.7;
+            overflow-x:hidden;
+        }
+        
+        /* Justificação de parágrafos */
+        p {
+            text-align: justify;
+        }
+        
+        /* ===== FUNDO ABSTRATO LÍQUIDO (CSS PURO) ===== */
+        .liquid-bg{
+            position:fixed;
+            inset:-20%;
+            z-index:-1;
+            background:
+                radial-gradient(1200px 800px at 10% 10%, rgba(212,163,55,.18), transparent 60%),
+                radial-gradient(900px 700px at 90% 20%, rgba(15,76,92,.18), transparent 60%),
+                radial-gradient(800px 600px at 30% 80%, rgba(212,163,55,.12), transparent 60%);
+            filter: blur(40px) saturate(130%);
+            animation: liquidFloat 18s ease-in-out infinite alternate;
+        }
+        @keyframes liquidFloat{
+            0%{transform:translate3d(0,0,0) scale(1);}
+            100%{transform:translate3d(-4%,3%,0) scale(1.05);}
+        }
+        
+        /* ===== HEADER VIDRO (PÍLULA) ===== */
+        header{
+            position:fixed;
+            top:16px;
+            left:0;
+            right:0;
+            z-index:100;
+            display:flex;
+            justify-content:center;
+            pointer-events:none;
+        }
+        .nav-pill{
+            pointer-events:auto;
+            width:calc(100% - 32px);
+            max-width:1200px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:12px 22px;
+            border-radius:999px;
+            backdrop-filter: blur(28px) saturate(180%);
+            background:var(--vidro);
+            border:1px solid var(--borda-vidro);
+            box-shadow:0 18px 40px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.8);
+            transition:.35s ease;
+        }
+        .nav-pill:hover{box-shadow:0 22px 56px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.9);}
+        .brand{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--azul);}
+        .brand img{
+            width:30px;
+            filter: drop-shadow(0 0 18px rgba(212,163,55,.7));
+            animation: logoGlow 4s ease-in-out infinite;
+        }
+        @keyframes logoGlow{
+            0%,100%{filter: drop-shadow(0 0 10px rgba(212,163,55,.4));}
+            50%{filter: drop-shadow(0 0 26px rgba(212,163,55,.9));}
+        }
+        nav a{margin-left:16px;text-decoration:none;color:#000;opacity:.7;font-size:14px;}
+        nav a:hover{opacity:1}
+        
+        /* ===== LAYOUT ===== */
+        .container{max-width:1200px;margin:auto;padding:0 22px;}
+        section{padding:64px 0;}
+        .tight{padding:44px 0;} /* menos espaço entre tópicos */
+        
+        /* ===== HERO ===== */
+        .hero{padding-top:160px;text-align:center;}
+        .logo-full-wrap{display:flex;justify-content:center;margin-bottom:24px;}
+        .logo-full{
+            width:min(640px,82vw);
+            opacity:.45;
+            filter: drop-shadow(0 0 70px rgba(212,163,55,.35));
+            mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
+            -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
+            transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .4s ease;
+        }
+        .hero h1{
+            font-size:clamp(34px,6vw,56px);
+            max-width:980px;
+            margin:0 auto 14px;
+            letter-spacing:-.02em;
+        }
+        .hero p{
+            max-width:980px;
+            margin:0 auto 26px;
+            font-size:19px;
+            color:var(--cinza);
+        }
+        
+        /* ===== BOTÕES (LENTE LÍQUIDA) ===== */
+        .btn{
+            position:relative;
+            display:inline-block;
+            padding:14px 34px;
+            border-radius:999px;
+            background:linear-gradient(135deg, rgba(15,76,92,.95), rgba(15,76,92,.8));
+            color:#fff;
+            text-decoration:none;
+            font-weight:500;
+            overflow:hidden;
+            isolation:isolate;
+            box-shadow:0 14px 34px rgba(0,0,0,.18);
+            transition:transform .25s ease, box-shadow .25s ease;
+        }
+        .btn::before{
+            content:"";
+            position:absolute;
+            inset:-40%;
+            background: radial-gradient(300px 120px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.45), transparent 60%);
+            mix-blend-mode: screen;
+            opacity:.0;
+            transition:.25s ease;
+        }
+        .btn:hover{transform:scale(1.04); box-shadow:0 20px 44px rgba(0,0,0,.22);}
+        .btn:hover::before{opacity:.9}
+        
+        /* ===== BOLHAS DE VIDRO (CARDS) ===== */
+        .bubble{
+            background:rgba(255,255,255,0.62);
+            backdrop-filter: blur(28px) saturate(160%);
+            border-radius:28px;
+            padding:42px;
+            border:1px solid var(--borda-vidro);
+            margin-bottom:28px;
+            box-shadow:0 22px 50px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.75);
+        }
+        .bubble h2{margin-bottom:12px; color:var(--azul);}
+        .bubble p{color:#3f3f46; font-size:17px; margin-bottom:12px}
+        
+        /* ===== ANIMAÇÕES CINEMATOGRÁFICAS POR SEÇÃO ===== */
+        .reveal{opacity:0; transform: translateY(26px) scale(.98); filter: blur(6px);}
+        .reveal.in{opacity:1; transform:none; filter:none; transition: 900ms cubic-bezier(.2,.8,.2,1);}
+        
+        /* ===== MICROPARALLAX EM TÍTULOS ===== */
+        .parallax-title{will-change: transform; transition: transform .2s ease-out;}
+        
+        /* ===== ASSINATURA ===== */
+        .signature{
+            text-align:center;
+            padding:56px 20px 24px;
+            font-size:14px;
+            color:#8b8b8b;
+            letter-spacing:.08em;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer{text-align:center;padding:32px;color:#777;font-size:13px;}
+        
+        /* ===== MOBILE ===== */
+        @media(max-width:900px){
+            nav{display:none;}
+            .hero{padding-top:136px;}
+            .bubble{padding:26px;}
+            .hero h1{font-size:30px;}
+            .hero p{font-size:16.5px;}
+            .logo-full{opacity:.38;}
+        }
+    </style>
 </head>
-
 <body>
-<div class="liquid-bg"></div>
-
-<header>
-  <div class="nav-pill">
-    <div class="brand">
-      <img src="logo-icon.png" alt="Arcanum">
-      ARCANUM
-    </div>
-    <nav>
-      <a href="#marcas">Marcas</a>
-      <a href="#patentes">Patentes</a>
-      <a href="#software">Software</a>
-      <a href="#transferencia">Transferência</a>
-      <a href="https://wa.me/5516992553003">WhatsApp</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="hero reveal">
-    <div class="logo-full-wrap">
-      <img src="logo-full.png" class="logo-full" alt="Logo Arcanum">
-    </div>
-    <div class="container">
-      <h1 class="parallax-title justificado">Proteção jurídica de ativos intangíveis com visão estratégica de negócio.</h1>
-      <p class="premium-copy">
-        Estruturamos marcas, patentes e <em>software</em> para que deixem de ser apenas ideias e passem a integrar o patrimônio real da empresa, com segurança jurídica, capacidade de monetização e impacto direto em processos de <em>valuation</em>, expansão societária e operações de <em>M&A</em>.
-      </p>
-      <a href="https://wa.me/5516992553003" class="btn">Iniciar atendimento no WhatsApp</a>
-    </div>
-  </section>
-
-  <section class="container tight reveal">
-    <div class="bubble">
-      <h2>Importância estratégica dos ativos intangíveis</h2>
-      <p>
-        No ambiente empresarial contemporâneo, os ativos que mais agregam valor não são necessariamente físicos. Marcas fortes, tecnologias proprietárias e soluções digitais escaláveis constituem a base do valor percebido de uma empresa perante investidores, parceiros e o mercado. Em processos de <em>valuation</em>, esses ativos são mensurados como elementos determinantes do preço da companhia.
-      </p>
-      <p>
-        A ausência de proteção formal transforma tais ativos em riscos jurídicos latentes. Empresas que negligenciam a estruturação da Propriedade Intelectual ficam vulneráveis a disputas, perdas de exclusividade, bloqueios operacionais e até mesmo à inviabilização de operações de captação de recursos. A proteção jurídica converte o intangível em patrimônio auditável, negociável e transferível.
-      </p>
-    </div>
-  </section>
-
-  <section id="marcas" class="container tight reveal">
-    <div class="bubble">
-      <h2>Registro de Marcas</h2>
-      <p>...</p>
-    </div>
-  </section>
-
-  <section id="patentes" class="container tight reveal">
-    <div class="bubble">
-      <h2>Patentes e Inovação</h2>
-      <p>...</p>
-    </div>
-  </section>
-
-  <section id="software" class="container tight reveal">
-    <div class="bubble">
-      <h2>Proteção de <em>Software</em></h2>
-      <p>...</p>
-    </div>
-  </section>
-
-  <section id="transferencia" class="container tight reveal">
-    <div class="bubble">
-      <h2>Transferência de titularidade, contratos e <em>compliance</em></h2>
-      <p>...</p>
-    </div>
-  </section>
-
-  <div class="signature reveal">
-    O invisível que sustenta o seu império.
-  </div>
-</main>
-
-<footer>
-  © <span id="year"></span> ARCANUM — Propriedade Intelectual
-</footer>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-const logo = document.querySelector(".logo-full");
-window.addEventListener("scroll", ()=>{
-  const y = window.scrollY * 0.12;
-  if(logo) logo.style.transform = `translateY(${y}px)`;
-});
-
-document.querySelectorAll('.btn').forEach(btn=>{
-  btn.addEventListener('mousemove', e=>{
-    const r = btn.getBoundingClientRect();
-    btn.style.setProperty('--mx', `${e.clientX - r.left}px`);
-    btn.style.setProperty('--my', `${e.clientY - r.top}px`);
-  });
-});
-
-const titles = document.querySelectorAll('.parallax-title');
-window.addEventListener('mousemove', e=>{
-  const cx = window.innerWidth/2, cy = window.innerHeight/2;
-  titles.forEach(t=>{
-    const dx = (e.clientX - cx) * 0.002;
-    const dy = (e.clientY - cy) * 0.002;
-    t.style.transform = `translate(${dx}px)`;
-  });
-});
-
-const io = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.classList.add('in'); }
-  });
-},{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+    <div class="liquid-bg"></div>
+    
+    <header>
+        <div class="nav-pill">
+            <div class="brand">
+                <img src="logo-icon.png" alt="Arcanum">
+                ARCANUM
+            </div>
+            <nav>
+                <a href="#marcas">Marcas</a>
+                <a href="#patentes">Patentes</a>
+                <a href="#software">Software</a>
+                <a href="#transferencia">Transferência</a>
+                <a href="https://wa.me/5516992553003">WhatsApp</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero reveal">
+            <div class="logo-full-wrap">
+                <img src="logo-full.png" class="logo-full" alt="Logo Arcanum">
+            </div>
+            <div class="container">
+                <h1 class="parallax-title">Proteção jurídica de ativos intangíveis com visão estratégica de negócio.</h1>
+                <p>
+                    Estruturamos marcas, patentes e <em>software</em> para que deixem de ser apenas ideias e passem a integrar o patrimônio real da empresa, com segurança jurídica, capacidade de monetização e impacto direto em processos de <em>valuation</em>, expansão societária e operações de <em>M&A</em>.
+                </p>
+                <a href="https://wa.me/5516992553003" class="btn">Iniciar atendimento no WhatsApp</a>
+            </div>
+        </section>
+        
+        <section class="container tight reveal">
+            <div class="bubble">
+                <h2>Importância estratégica dos ativos intangíveis</h2>
+                <p>
+                    No ambiente empresarial contemporâneo, os ativos que mais agregam valor não são necessariamente físicos. Marcas fortes, tecnologias proprietárias e soluções digitais escaláveis constituem a base do valor percebido de uma empresa perante investidores, parceiros e o mercado. Em processos de <em>valuation</em>, esses ativos são mensurados como elementos determinantes do preço da companhia.
+                </p>
+                <p>
+                    A ausência de proteção formal transforma tais ativos em riscos jurídicos latentes. Empresas que negligenciam a estruturação da Propriedade Intelectual ficam vulneráveis a disputas, perdas de exclusividade, bloqueios operacionais e até mesmo à inviabilização de operações de captação de recursos. A proteção jurídica converte o intangível em patrimônio auditável, negociável e transferível.
+                </p>
+            </div>
+        </section>
+        
+        <section id="marcas" class="container tight reveal">
+            <div class="bubble">
+                <h2>Registro de Marcas</h2>
+                <p>
+                    A marca é o principal vetor de reconhecimento de um negócio. O registro junto ao INPI confere exclusividade de uso em todo o território nacional, impedindo terceiros de explorarem sinais distintivos idênticos ou semelhantes no mesmo segmento. Sem o registro, o empresário opera sob incerteza jurídica: investimentos em branding, marketing e expansão podem ser comprometidos por litígios futuros.
+                </p>
+                <p>
+                    Nossa atuação envolve busca de anterioridade, análise de colidências fonéticas e ideológicas, enquadramento estratégico nas classes adequadas, acompanhamento processual e defesa contra oposições. O resultado é a construção de um ativo jurídico sólido, apto a ser licenciado, franqueado ou integrado a operações de <em>M&A</em>.
+                </p>
+                <p>
+                    O apelo é claro: negligenciar o registro expõe o empresário ao risco de perder o direito de uso do próprio nome comercial, ser compelido a rebranding forçado e arcar com indenizações por uso indevido. O registro não é custo; é blindagem patrimonial.
+                </p>
+            </div>
+        </section>
+        
+        <section id="patentes" class="container tight reveal">
+            <div class="bubble">
+                <h2>Patentes e Inovação</h2>
+                <p>
+                    Patentes protegem soluções técnicas, produtos e processos inovadores, criando barreiras de entrada legais contra concorrentes. A concessão de patente assegura ao titular o monopólio temporário de exploração econômica, elemento crucial para capturar retorno sobre investimentos em pesquisa e desenvolvimento.
+                </p>
+                <p>
+                    Atuamos desde a busca do estado da técnica até a redação técnica do relatório descritivo e reivindicações, gestão de prazos, respostas a exigências e estratégia de proteção internacional quando aplicável. A inovação, quando desprotegida, se torna commodity; quando patenteada, converte-se em vantagem competitiva sustentável.
+                </p>
+                <p>
+                    Ignorar a proteção patentária pode resultar na apropriação por terceiros de soluções desenvolvidas internamente, inviabilizando a exploração exclusiva e reduzindo drasticamente o valor estratégico da empresa em avaliações de <em>valuation</em>.
+                </p>
+            </div>
+        </section>
+        
+        <section id="software" class="container tight reveal">
+            <div class="bubble">
+                <h2>Proteção de <em>Software</em></h2>
+                <p>
+                    Em empresas digitais, o <em>software</em> é o núcleo operacional do modelo de negócios. O registro do código-fonte assegura prova de autoria, elemento crítico em disputas envolvendo propriedade intelectual, conflitos societários, saída de colaboradores-chave e processos de auditoria para investimento.
+                </p>
+                <p>
+                    Estruturamos a proteção jurídica do código, políticas de propriedade intelectual em contratos de desenvolvimento, cessões de direitos autorais e governança de ativos digitais. Essa abordagem garante segurança para escalar produtos, licenciar tecnologias e estruturar operações de <em>M&A</em> com menor fricção jurídica.
+                </p>
+                <p>
+                    A ausência de proteção adequada expõe a empresa a vazamento de tecnologia, disputas de titularidade e bloqueios contratuais que podem comprometer rodadas de investimento e a continuidade operacional.
+                </p>
+            </div>
+        </section>
+        
+        <section id="transferencia" class="container tight reveal">
+            <div class="bubble">
+                <h2>Transferência de titularidade, contratos e <em>compliance</em></h2>
+                <p>
+                    A transferência de titularidade de marcas, patentes e direitos autorais exige rigor formal para produzir efeitos perante terceiros. Estruturamos cessões, licenças, contratos de franquia, acordos de confidencialidade e políticas internas de <em>compliance</em> para assegurar a integridade jurídica dos ativos.
+                </p>
+                <p>
+                    Em operações societárias, a correta titularidade é condição para fechamento de negócios e auditorias de <em>due diligence</em>. Ativos mal titulados podem gerar contingências, atrasar transações e reduzir o valor percebido da empresa em processos de <em>valuation</em>.
+                </p>
+                <p>
+                    Nosso foco é transformar a Propriedade Intelectual em estrutura jurídica organizada, auditável e alinhada às melhores práticas de governança corporativa.
+                </p>
+            </div>
+        </section>
+        
+        <div class="signature reveal">
+            O invisível que sustenta o seu império.
+        </div>
+    </main>
+    
+    <footer>
+        © <span id="year"></span> ARCANUM — Propriedade Intelectual
+    </footer>
+    
+    <script>
+        /* Ano */
+        document.getElementById("year").textContent = new Date().getFullYear();
+        
+        /* Parallax sutil da logo */
+        const logo = document.querySelector(".logo-full");
+        window.addEventListener("scroll", ()=>{
+            const y = window.scrollY * 0.12;
+            if(logo) logo.style.transform = `translateY(${y}px)`;
+        });
+        
+        /* Lente líquida nos botões */
+        document.querySelectorAll('.btn').forEach(btn=>{
+            btn.addEventListener('mousemove', e=>{
+                const r = btn.getBoundingClientRect();
+                btn.style.setProperty('--mx', `${e.clientX - r.left}px`);
+                btn.style.setProperty('--my', `${e.clientY - r.top}px`);
+            });
+        });
+        
+        /* Microparallax em títulos */
+        const titles = document.querySelectorAll('.parallax-title');
+        window.addEventListener('mousemove', e=>{
+            const cx = window.innerWidth/2, cy = window.innerHeight/2;
+            titles.forEach(t=>{
+                const dx = (e.clientX - cx) * 0.002;
+                const dy = (e.clientY - cy) * 0.002;
+                t.style.transform = `translate(${dx}px, ${dy}px)`;
+            });
+        });
+        
+        /* Reveal cinematográfico por seção */
+        const io = new IntersectionObserver(entries=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){
+                    e.target.classList.add('in');
+                }
+            });
+        },{threshold:.15});
+        document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    </script>
 </body>
 </html>
