@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ARCANUM — Propriedade Intelectual | Registro de Marcas e Patentes</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo-icon.png">
+    
     <!-- Meta Tags SEO -->
     <meta name="description" content="Registro de marcas, patentes e proteção de software no INPI. Consultoria especializada em propriedade intelectual para empresas em Ribeirão Preto e todo Brasil.">
     <meta name="keywords" content="registro de marca, patente, propriedade intelectual, INPI, software, Ribeirão Preto, advogado marcas, registro INPI">
@@ -219,6 +222,39 @@
             50%{box-shadow:0 8px 32px rgba(37,211,102,.6), 0 4px 12px rgba(0,0,0,.25);}
         }
         
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-top{
+            position:fixed;
+            bottom:100px;
+            right:24px;
+            width:52px;
+            height:52px;
+            background:var(--azul);
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 8px 24px rgba(15,76,92,.3);
+            z-index:998;
+            opacity:0;
+            visibility:hidden;
+            transition:all .3s ease;
+            cursor:pointer;
+        }
+        .scroll-top.visible{
+            opacity:1;
+            visibility:visible;
+        }
+        .scroll-top:hover{
+            transform:translateY(-4px);
+            box-shadow:0 12px 32px rgba(15,76,92,.4);
+        }
+        .scroll-top svg{
+            width:24px;
+            height:24px;
+            fill:#fff;
+        }
+        
         /* ===== LAYOUT ===== */
         .container{max-width:1200px;margin:auto;padding:0 22px;}
         section{padding:64px 0;}
@@ -322,6 +358,115 @@
             font-weight:500;
         }
         
+        /* ===== DIFERENCIAIS ===== */
+        .diferenciais-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+            gap:24px;
+            margin-top:32px;
+        }
+        .diferencial-item{
+            display:flex;
+            gap:16px;
+            padding:24px;
+            background:rgba(255,255,255,.4);
+            border-radius:18px;
+            border:1px solid rgba(212,163,55,.15);
+            transition:.3s ease;
+        }
+        .diferencial-item:hover{
+            transform:translateY(-2px);
+            box-shadow:0 8px 20px rgba(0,0,0,.1);
+            border-color:rgba(212,163,55,.3);
+        }
+        .diferencial-icon{
+            flex-shrink:0;
+            width:44px;
+            height:44px;
+            background:linear-gradient(135deg, var(--dourado), #b8912d);
+            border-radius:12px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:22px;
+        }
+        .diferencial-content h3{
+            font-size:16px;
+            color:var(--azul);
+            margin-bottom:6px;
+            font-weight:600;
+        }
+        .diferencial-content p{
+            font-size:14px;
+            color:var(--cinza);
+            line-height:1.5;
+            margin:0;
+        }
+        
+        /* ===== FAQ ===== */
+        .faq-item{
+            background:rgba(255,255,255,.4);
+            border-radius:18px;
+            border:1px solid rgba(212,163,55,.15);
+            margin-bottom:16px;
+            overflow:hidden;
+            transition:.3s ease;
+        }
+        .faq-item:hover{
+            border-color:rgba(212,163,55,.3);
+        }
+        .faq-question{
+            padding:20px 24px;
+            cursor:pointer;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:16px;
+            user-select:none;
+        }
+        .faq-question h3{
+            font-size:17px;
+            color:var(--azul);
+            font-weight:600;
+            margin:0;
+        }
+        .faq-toggle{
+            flex-shrink:0;
+            width:28px;
+            height:28px;
+            border-radius:50%;
+            background:rgba(15,76,92,.1);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            transition:.3s ease;
+            font-size:20px;
+            color:var(--azul);
+        }
+        .faq-item.active .faq-toggle{
+            transform:rotate(45deg);
+            background:var(--azul);
+            color:#fff;
+        }
+        .faq-answer{
+            max-height:0;
+            overflow:hidden;
+            transition:max-height .3s ease, padding .3s ease;
+        }
+        .faq-item.active .faq-answer{
+            max-height:800px;
+            padding:0 24px 20px;
+        }
+        .faq-answer p{
+            font-size:15px;
+            color:#3f3f46;
+            line-height:1.6;
+            margin-bottom:10px;
+        }
+        .faq-answer p:last-child{
+            margin-bottom:0;
+        }
+        
         /* ===== ANIMAÇÕES CINEMATOGRÁFICAS POR SEÇÃO ===== */
         .reveal{opacity:0; transform: translateY(26px) scale(.98); filter: blur(6px);}
         .reveal.in{opacity:1; transform:none; filter:none; transition: 900ms cubic-bezier(.2,.8,.2,1);}
@@ -351,6 +496,7 @@
             .hero p{font-size:16.5px;}
             .logo-full{opacity:.38;}
             .stats{grid-template-columns:1fr;}
+            .diferenciais-grid{grid-template-columns:1fr;}
             .whatsapp-float{
                 width:56px;
                 height:56px;
@@ -360,6 +506,16 @@
             .whatsapp-float svg{
                 width:30px;
                 height:30px;
+            }
+            .scroll-top{
+                width:48px;
+                height:48px;
+                bottom:86px;
+                right:20px;
+            }
+            .scroll-top svg{
+                width:20px;
+                height:20px;
             }
         }
     </style>
@@ -377,7 +533,7 @@
                 <a href="#marcas">Marcas</a>
                 <a href="#patentes">Patentes</a>
                 <a href="#software">Software</a>
-                <a href="#transferencia">Transferência</a>
+                <a href="#faq">FAQ</a>
                 <a href="https://wa.me/5516992553003">WhatsApp</a>
             </nav>
             <div class="menu-toggle" id="menuToggle">
@@ -393,7 +549,7 @@
         <a href="#marcas">Marcas</a>
         <a href="#patentes">Patentes</a>
         <a href="#software">Software</a>
-        <a href="#transferencia">Transferência</a>
+        <a href="#faq">FAQ</a>
         <a href="https://wa.me/5516992553003">WhatsApp</a>
     </div>
     
@@ -403,6 +559,13 @@
             <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.247 1.408 1.417-5.267-0.325-0.528c-1.344-2.184-2.054-4.693-2.054-7.253 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.305 19.463c-0.396-0.198-2.348-1.158-2.713-1.291s-0.627-0.198-0.892 0.198c-0.264 0.396-1.026 1.291-1.256 1.556s-0.462 0.297-0.858 0.099c-0.396-0.198-1.673-0.617-3.186-1.966-1.177-1.050-1.973-2.347-2.204-2.743s-0.025-0.61 0.174-0.807c0.178-0.177 0.396-0.462 0.594-0.693s0.264-0.396 0.396-0.66c0.132-0.264 0.066-0.495-0.033-0.693s-0.892-2.146-1.222-2.938c-0.322-0.769-0.649-0.665-0.892-0.677-0.231-0.012-0.495-0.015-0.759-0.015s-0.693 0.099-1.056 0.495c-0.363 0.396-1.388 1.356-1.388 3.306s1.421 3.836 1.619 4.101c0.198 0.264 2.794 4.266 6.769 5.982 0.945 0.408 1.684 0.652 2.26 0.835 0.951 0.302 1.816 0.259 2.501 0.157 0.762-0.114 2.348-0.96 2.679-1.887s0.331-1.723 0.231-1.887c-0.099-0.165-0.363-0.264-0.759-0.462z"/>
         </svg>
     </a>
+    
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4l-8 8h5v8h6v-8h5z"/>
+        </svg>
+    </div>
     
     <main>
         <section class="hero reveal">
@@ -427,16 +590,63 @@
                 </p>
                 <div class="stats">
                     <div class="stat-item">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Marcas registradas</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">15+</span>
+                        <span class="stat-number">5+</span>
                         <span class="stat-label">Anos de atuação</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">98%</span>
                         <span class="stat-label">Taxa de aprovação</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SEÇÃO DE DIFERENCIAIS -->
+        <section class="container tight reveal">
+            <div class="bubble">
+                <h2>Por que escolher a Arcanum</h2>
+                <div class="diferenciais-grid">
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon">⚡</div>
+                        <div class="diferencial-content">
+                            <h3>Atendimento personalizado</h3>
+                            <p>Consultoria técnica adaptada ao perfil e necessidades específicas de cada empresa.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon">📊</div>
+                        <div class="diferencial-content">
+                            <h3>Acompanhamento em tempo real</h3>
+                            <p>Transparência total no andamento processual e prazos do INPI.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon">🎯</div>
+                        <div class="diferencial-content">
+                            <h3>Visão estratégica de negócio</h3>
+                            <p>Proteção alinhada a operações de M&A, valuation e governança corporativa.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon">💼</div>
+                        <div class="diferencial-content">
+                            <h3>Consultoria jurídica integrada</h3>
+                            <p>Estruturação completa de contratos, cessões e políticas de compliance.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon">🔒</div>
+                        <div class="diferencial-content">
+                            <h3>Segurança jurídica total</h3>
+                            <p>Blindagem patrimonial e redução de riscos em disputas e contingências.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon">⏱️</div>
+                        <div class="diferencial-content">
+                            <h3>Resposta ágil</h3>
+                            <p>Retorno em até 24 horas para demandas urgentes e dúvidas técnicas.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -514,6 +724,73 @@
             </div>
         </section>
         
+        <!-- SEÇÃO FAQ -->
+        <section id="faq" class="container tight reveal">
+            <div class="bubble">
+                <h2>Perguntas Frequentes</h2>
+                <p style="margin-bottom:24px;">
+                    Respondemos as dúvidas mais comuns sobre registro de marcas, patentes e proteção de ativos intangíveis.
+                </p>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Quanto tempo demora o registro de marca?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O processo de registro de marca no INPI, em média, leva de 8 a 24 meses, podendo variar conforme existência de oposições de terceiros, exigências formais do INPI e recursos administrativos durante o processo.</p>
+                        <p>Apesar do prazo, o pedido já gera prioridade: a partir do protocolo, terceiros não podem registrar marca idêntica ou semelhante para o mesmo segmento.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Posso registrar uma marca que já está em uso?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim. No Brasil, o sistema é baseado no princípio da anterioridade do pedido (quem deposita primeiro tem prioridade).</p>
+                        <p>Contudo, quem já utiliza a marca anteriormente pode ter direito de precedência, desde que comprove uso contínuo e de boa-fé. Por isso, é essencial realizar uma busca de anterioridade antes do pedido, para avaliar riscos de oposição ou indeferimento.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Qual a diferença entre marca nominativa, figurativa e mista?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Marca nominativa:</strong> protege apenas o nome da marca (ex: "ARCANUM"), independentemente de fonte ou estilo visual.</p>
+                        <p><strong>Marca figurativa:</strong> protege apenas o elemento visual (símbolo, ícone, logotipo sem texto).</p>
+                        <p><strong>Marca mista:</strong> protege a combinação entre nome + logotipo (forma mais comum no mercado).</p>
+                        <p>A escolha do tipo de marca impacta diretamente no alcance da proteção jurídica.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>O que acontece se minha marca for indeferida?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Se o pedido for indeferido pelo INPI, ainda é possível apresentar recurso administrativo dentro do prazo legal, ajustar estratégia de proteção (ex: novo pedido, alteração de marca) ou avaliar risco jurídico de uso continuado da marca.</p>
+                        <p>Um indeferimento não impede automaticamente o uso, mas aumenta o risco de conflitos, notificações extrajudiciais e ações judiciais.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Preciso renovar o registro de marca?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim. O registro de marca tem validade de 10 anos, contados a partir da concessão, e pode ser renovado indefinidamente por períodos sucessivos de 10 anos.</p>
+                        <p>A não renovação implica na perda do direito exclusivo, permitindo que terceiros registrem a marca.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <div class="signature reveal">
             O invisível que sustenta o seu império.
         </div>
@@ -550,6 +827,42 @@
                 menuToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
             }
+        });
+        
+        /* Scroll to Top Button */
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        /* FAQ Accordion */
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Fechar todos os outros
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle o clicado
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
         });
         
         /* Parallax sutil da logo */
