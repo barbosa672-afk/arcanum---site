@@ -528,6 +528,141 @@
 
         footer{text-align:center;padding:32px;color:#777;font-size:13px;}
 
+        /* Estilos para inputs do formulário */
+        .form-field{
+            margin-bottom:12px;
+        }
+        .form-field label{
+            display:block;
+            font-size:14px;
+            color:var(--cinza);
+            margin-bottom:4px;
+        }
+        .form-field input,
+        .form-field textarea{
+            width:100%;
+            padding:10px 12px;
+            border-radius:10px;
+            border:1px solid #d4d4d4;
+            font-family:inherit;
+            font-size:14px;
+            outline:none;
+            background:rgba(255,255,255,.9);
+        }
+        .form-field input:focus,
+        .form-field textarea:focus{
+            border-color:var(--azul);
+            box-shadow:0 0 0 1px rgba(15,76,92,.15);
+        }
+
+        /* ESTILOS DO POPUP MODERNO */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-content {
+            background: var(--vidro);
+            backdrop-filter: blur(32px) saturate(180%);
+            border: 1px solid var(--borda-vidro);
+            border-radius: 28px;
+            padding: 48px;
+            max-width: 520px;
+            width: calc(100% - 40px);
+            box-shadow: 0 28px 64px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,.9);
+            text-align: center;
+            animation: popupSlideUp 0.4s cubic-bezier(.2,.8,.2,1);
+            position: relative;
+        }
+
+        @keyframes popupSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .popup-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            box-shadow: 0 12px 32px rgba(34, 197, 94, 0.4);
+            animation: checkmarkPulse 0.6s ease;
+        }
+
+        @keyframes checkmarkPulse {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .popup-content h3 {
+            color: var(--azul);
+            font-size: 26px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .popup-content p {
+            margin-bottom: 32px;
+            color: var(--cinza);
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .popup-close {
+            background: linear-gradient(135deg, var(--azul), #0a3a47);
+            color: #fff;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(15, 76, 92, 0.3);
+        }
+
+        .popup-close:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(15, 76, 92, 0.4);
+        }
+
         @media(max-width:900px){
             nav{display:none;}
             .menu-toggle{display:flex;}
@@ -558,33 +693,17 @@
                 width:20px;
                 height:20px;
             }
-        }
-
-        /* Estilos simples para inputs do formulário (mantendo o design geral) */
-        .form-field{
-            margin-bottom:12px;
-        }
-        .form-field label{
-            display:block;
-            font-size:14px;
-            color:var(--cinza);
-            margin-bottom:4px;
-        }
-        .form-field input,
-        .form-field textarea{
-            width:100%;
-            padding:10px 12px;
-            border-radius:10px;
-            border:1px solid #d4d4d4;
-            font-family:inherit;
-            font-size:14px;
-            outline:none;
-            background:rgba(255,255,255,.9);
-        }
-        .form-field input:focus,
-        .form-field textarea:focus{
-            border-color:var(--azul);
-            box-shadow:0 0 0 1px rgba(15,76,92,.15);
+            .popup-content {
+                padding: 36px 24px;
+            }
+            .popup-icon {
+                width: 64px;
+                height: 64px;
+                font-size: 36px;
+            }
+            .popup-content h3 {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
@@ -634,6 +753,16 @@
             <path d="M12 4l-8 8h5v8h6v-8h5z"/>
         </svg>
     </button>
+
+    <!-- POPUP MODERNO -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <div class="popup-icon">✓</div>
+            <h3>Mensagem Enviada!</h3>
+            <p>Recebemos sua mensagem com sucesso. Nossa equipe retornará em até 24 horas com orientações iniciais sobre a proteção dos seus ativos intangíveis.</p>
+            <button class="popup-close" onclick="fecharPopup()">Entendi</button>
+        </div>
+    </div>
 
     <main>
         <section class="hero reveal">
@@ -863,10 +992,11 @@
                 <p>
                     Envie sua mensagem e retornamos com orientações iniciais sobre a proteção dos seus ativos intangíveis.
                 </p>
-                <form action="https://formsubmit.co/empresagbferreira@gmail.com" method="POST">
+
+                <form id="formContato" action="https://formsubmit.co/empresagbferreira@gmail.com" method="POST">
                     <!-- Configurações FormSubmit (não aparecem para o usuário) -->
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://arcanumpi.com.br/#contato">
+                    <input type="hidden" name="_next" value="https://arcanumpi.com.br/#contato-enviado">
                     <input type="hidden" name="_template" value="table">
 
                     <div class="form-field">
@@ -905,12 +1035,14 @@
     </main>
 
     <footer>
-        © <span id="year"></span> ARCANUM — Propriedade Intelectual
+        <span id="year"></span> ARCANUM — Propriedade Intelectual
     </footer>
 
     <script defer>
-        document.getElementById("year").textContent = new Date().getFullYear();
+        // Ano dinâmico
+        document.getElementById('year').textContent = new Date().getFullYear();
 
+        // Menu mobile toggle
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -921,6 +1053,7 @@
             menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
         });
 
+        // Fechar menu ao clicar nos links
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
@@ -930,6 +1063,7 @@
             });
         });
 
+        // Fechar menu ao clicar fora
         document.addEventListener('click', (e) => {
             if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
                 menuToggle.classList.remove('active');
@@ -939,8 +1073,8 @@
             }
         });
 
+        // Scroll to top button
         const scrollTopBtn = document.getElementById('scrollTop');
-
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) {
                 scrollTopBtn.classList.add('visible');
@@ -950,23 +1084,23 @@
         });
 
         scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
+        // FAQ accordion
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const faqItem = question.parentElement;
                 const isActive = faqItem.classList.contains('active');
 
+                // Fechar todos os outros
                 document.querySelectorAll('.faq-item').forEach(item => {
                     item.classList.remove('active');
                     const btn = item.querySelector('.faq-question');
                     if (btn) btn.setAttribute('aria-expanded', 'false');
                 });
 
+                // Toggle no atual
                 if (!isActive) {
                     faqItem.classList.add('active');
                     question.setAttribute('aria-expanded', 'true');
@@ -977,38 +1111,76 @@
             });
         });
 
-        const logo = document.querySelector(".logo-full");
-        window.addEventListener("scroll", ()=>{
+        // Parallax no logo
+        const logo = document.querySelector('.logo-full');
+        window.addEventListener('scroll', () => {
             const y = window.scrollY * 0.12;
             if(logo) logo.style.transform = `translateY(${y}px)`;
         });
 
-        document.querySelectorAll('.btn').forEach(btn=>{
-            btn.addEventListener('mousemove', e=>{
+        // Efeito hover nos botões
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
                 const r = btn.getBoundingClientRect();
                 btn.style.setProperty('--mx', `${e.clientX - r.left}px`);
                 btn.style.setProperty('--my', `${e.clientY - r.top}px`);
             });
         });
 
+        // Parallax nos títulos
         const titles = document.querySelectorAll('.parallax-title');
-        window.addEventListener('mousemove', e=>{
+        window.addEventListener('mousemove', (e) => {
             const cx = window.innerWidth/2, cy = window.innerHeight/2;
-            titles.forEach(t=>{
+            titles.forEach(t => {
                 const dx = (e.clientX - cx) * 0.002;
                 const dy = (e.clientY - cy) * 0.002;
                 t.style.transform = `translate(${dx}px, ${dy}px)`;
             });
         });
 
-        const io = new IntersectionObserver(entries=>{
-            entries.forEach(e=>{
-                if(e.isIntersecting){
-                    e.target.classList.add('in');
-                }
+        // Intersection Observer para reveal
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if(e.isIntersecting) e.target.classList.add('in');
             });
-        },{threshold:.15});
-        document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+        }, {threshold:.15});
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // ===== POPUP MODERNO - FUNÇÕES =====
+        function mostrarPopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.add('active');
+        }
+
+        function fecharPopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.remove('active');
+            // Limpar o hash da URL para evitar que o popup apareça novamente
+            if (window.location.hash === '#contato-enviado') {
+                history.replaceState(null, null, ' ');
+            }
+        }
+
+        // Fechar popup ao clicar fora dele
+        document.getElementById('popupOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                fecharPopup();
+            }
+        });
+
+        // Fechar popup com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                fecharPopup();
+            }
+        });
+
+        // Verificar se o usuário foi redirecionado após enviar o formulário
+        if (window.location.hash === '#contato-enviado') {
+            setTimeout(() => {
+                mostrarPopup();
+            }, 300); // Pequeno delay para melhor experiência visual
+        }
     </script>
 </body>
 </html>
