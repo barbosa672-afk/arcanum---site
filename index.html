@@ -168,19 +168,47 @@
                 color: #d4d4d8;
             }
             
+            /* ===== CORREÇÃO: Labels e inputs do formulário ===== */
+            .form-field label {
+                color: #d4d4d8 !important;
+                font-weight: 600;
+            }
+            
             .form-field input,
             .form-field textarea {
-                background: rgba(30,30,30,.8);
-                border-color: #444;
+                background: rgba(30,30,30,.9);
+                border-color: #555;
                 color: #e4e4e7;
             }
             
-            .form-field label {
-                color: #a1a1aa;
+            .form-field input::placeholder,
+            .form-field textarea::placeholder {
+                color: #888;
+                opacity: 1;
+            }
+            
+            .form-field input:focus,
+            .form-field textarea:focus {
+                border-color: var(--dourado);
+                box-shadow: 0 0 0 3px rgba(212,163,55,.2);
+                background: rgba(40,40,40,.95);
+            }
+            
+            .form-field input:focus ~ label,
+            .form-field textarea:focus ~ label {
+                color: var(--dourado) !important;
             }
             
             footer {
                 color: #999;
+            }
+            
+            .signature {
+                color: #999;
+            }
+            
+            .hero p {
+                color: #a1a1aa;
             }
         }
         
@@ -849,10 +877,6 @@
             box-shadow:0 0 0 3px rgba(15,76,92,.1);
             transform: translateY(-2px);
             background: #fff;
-        }
-        .form-field input:focus + label,
-        .form-field textarea:focus + label{
-            color: var(--azul);
         }
 
         .popup-overlay {
