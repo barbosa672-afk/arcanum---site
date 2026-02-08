@@ -125,12 +125,8 @@
             overflow-x:hidden;
         }
 
-        /* Justificação de parágrafos */
-        p {
-            text-align: justify;
-        }
+        p { text-align: justify; }
 
-        /* ===== FUNDO ABSTRATO LÍQUIDO (CSS PURO) ===== */
         .liquid-bg{
             position:fixed;
             inset:-20%;
@@ -147,7 +143,6 @@
             100%{transform:translate3d(-4%,3%,0) scale(1.05);}
         }
 
-        /* ===== HEADER VIDRO (PÍLULA) ===== */
         header{
             position:fixed;
             top:16px;
@@ -194,7 +189,6 @@
         }
         nav a:hover{opacity:1}
 
-        /* ===== MENU MOBILE HAMBURGUER ===== */
         .menu-toggle{
             display:none;
             flex-direction:column;
@@ -248,7 +242,6 @@
             background:rgba(15,76,92,.1);
         }
 
-        /* ===== WHATSAPP FLUTUANTE ===== */
         .whatsapp-float{
             position:fixed;
             bottom:24px;
@@ -279,7 +272,6 @@
             50%{box-shadow:0 8px 32px rgba(37,211,102,.6), 0 4px 12px rgba(0,0,0,.25);}
         }
 
-        /* ===== SCROLL TO TOP BUTTON ===== */
         .scroll-top{
             position:fixed;
             bottom:100px;
@@ -312,12 +304,10 @@
             fill:#fff;
         }
 
-        /* ===== LAYOUT ===== */
         .container{max-width:1200px;margin:auto;padding:0 22px;}
         section{padding:64px 0;}
         .tight{padding:44px 0;}
 
-        /* ===== HERO ===== */
         .hero{padding-top:160px;text-align:center;}
         .logo-full-wrap{display:flex;justify-content:center;margin-bottom:24px;}
         .logo-full{
@@ -341,7 +331,6 @@
             color:var(--cinza);
         }
 
-        /* ===== BOTÕES (LENTE LÍQUIDA) ===== */
         .btn{
             position:relative;
             display:inline-block;
@@ -368,7 +357,6 @@
         .btn:hover{transform:scale(1.04); box-shadow:0 20px 44px rgba(0,0,0,.22);}
         .btn:hover::before{opacity:.9}
 
-        /* ===== BOLHAS DE VIDRO (CARDS) ===== */
         .bubble{
             background:rgba(255,255,255,0.62);
             backdrop-filter: blur(28px) saturate(160%);
@@ -381,7 +369,6 @@
         .bubble h2{margin-bottom:12px; color:var(--azul);}
         .bubble p{color:#3f3f46; font-size:17px; margin-bottom:12px}
 
-        /* ===== SEÇÃO DE NÚMEROS/STATS ===== */
         .stats{
             display:grid;
             grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
@@ -415,7 +402,6 @@
             font-weight:500;
         }
 
-        /* ===== DIFERENCIAIS ===== */
         .diferenciais-grid{
             display:grid;
             grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
@@ -460,7 +446,6 @@
             margin:0;
         }
 
-        /* ===== FAQ ===== */
         .faq-item{
             background:rgba(255,255,255,.4);
             border-radius:18px;
@@ -480,6 +465,10 @@
             align-items:center;
             gap:16px;
             user-select:none;
+            width:100%;
+            border:none;
+            background:transparent;
+            text-align:left;
         }
         .faq-question h3{
             font-size:17px;
@@ -524,14 +513,11 @@
             margin-bottom:0;
         }
 
-        /* ===== ANIMAÇÕES CINEMATOGRÁFICAS POR SEÇÃO ===== */
         .reveal{opacity:0; transform: translateY(26px) scale(.98); filter: blur(6px);}
         .reveal.in{opacity:1; transform:none; filter:none; transition: 900ms cubic-bezier(.2,.8,.2,1);}
 
-        /* ===== MICROPARALLAX EM TÍTULOS ===== */
         .parallax-title{will-change: transform; transition: transform .2s ease-out;}
 
-        /* ===== ASSINATURA ===== */
         .signature{
             text-align:center;
             padding:56px 20px 24px;
@@ -540,10 +526,8 @@
             letter-spacing:.08em;
         }
 
-        /* ===== FOOTER ===== */
         footer{text-align:center;padding:32px;color:#777;font-size:13px;}
 
-        /* ===== MOBILE ===== */
         @media(max-width:900px){
             nav{display:none;}
             .menu-toggle{display:flex;}
@@ -575,6 +559,33 @@
                 height:20px;
             }
         }
+
+        /* Estilos simples para inputs do formulário (mantendo o design geral) */
+        .form-field{
+            margin-bottom:12px;
+        }
+        .form-field label{
+            display:block;
+            font-size:14px;
+            color:var(--cinza);
+            margin-bottom:4px;
+        }
+        .form-field input,
+        .form-field textarea{
+            width:100%;
+            padding:10px 12px;
+            border-radius:10px;
+            border:1px solid #d4d4d4;
+            font-family:inherit;
+            font-size:14px;
+            outline:none;
+            background:rgba(255,255,255,.9);
+        }
+        .form-field input:focus,
+        .form-field textarea:focus{
+            border-color:var(--azul);
+            box-shadow:0 0 0 1px rgba(15,76,92,.15);
+        }
     </style>
 </head>
 <body>
@@ -591,7 +602,7 @@
                 <a href="#patentes">Patentes</a>
                 <a href="#software">Software</a>
                 <a href="#faq">FAQ</a>
-                <a href="https://wa.me/5516992553003">WhatsApp</a>
+                <a href="#contato">Contato</a>
             </nav>
             <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
                 <span></span>
@@ -607,7 +618,7 @@
         <a href="#patentes">Patentes</a>
         <a href="#software">Software</a>
         <a href="#faq">FAQ</a>
-        <a href="https://wa.me/5516992553003">WhatsApp</a>
+        <a href="#contato">Contato</a>
     </nav>
 
     <!-- WhatsApp Flutuante -->
@@ -638,7 +649,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DE NÚMEROS -->
         <section class="container tight reveal">
             <div class="bubble">
                 <h2>Experiência comprovada em Propriedade Intelectual</h2>
@@ -658,7 +668,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DE DIFERENCIAIS -->
         <section class="container tight reveal">
             <div class="bubble">
                 <h2>Por que escolher a Arcanum</h2>
@@ -781,7 +790,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO FAQ -->
         <section id="faq" class="container tight reveal" aria-labelledby="faq-title">
             <div class="bubble">
                 <h2 id="faq-title">Perguntas Frequentes</h2>
@@ -848,6 +856,49 @@
             </div>
         </section>
 
+        <!-- SEÇÃO CONTATO (FormSubmit) -->
+        <section id="contato" class="container tight reveal" aria-labelledby="contato-title">
+            <div class="bubble">
+                <h2 id="contato-title">Fale com a Arcanum</h2>
+                <p>
+                    Envie sua mensagem e retornamos com orientações iniciais sobre a proteção dos seus ativos intangíveis.
+                </p>
+                <form action="https://formsubmit.co/empresagbferreira@gmail.com" method="POST">
+                    <!-- Configurações FormSubmit (não aparecem para o usuário) -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://arcanumpi.com.br/#contato">
+                    <input type="hidden" name="_template" value="table">
+
+                    <div class="form-field">
+                        <label for="nome">Nome completo</label>
+                        <input id="nome" name="nome" type="text" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">E-mail</label>
+                        <input id="email" name="email" type="email" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="empresa">Empresa (opcional)</label>
+                        <input id="empresa" name="empresa" type="text">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="assunto">Assunto</label>
+                        <input id="assunto" name="assunto" type="text" placeholder="Registro de marca, patente, software..." required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Enviar mensagem</button>
+                </form>
+            </div>
+        </section>
+
         <div class="signature reveal">
             O invisível que sustenta o seu império.
         </div>
@@ -858,10 +909,8 @@
     </footer>
 
     <script defer>
-        /* Ano */
         document.getElementById("year").textContent = new Date().getFullYear();
 
-        /* Menu Mobile Toggle */
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -872,7 +921,6 @@
             menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
         });
 
-        /* Fechar menu ao clicar em link */
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
@@ -882,7 +930,6 @@
             });
         });
 
-        /* Fechar menu ao clicar fora */
         document.addEventListener('click', (e) => {
             if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
                 menuToggle.classList.remove('active');
@@ -892,7 +939,6 @@
             }
         });
 
-        /* Scroll to Top Button */
         const scrollTopBtn = document.getElementById('scrollTop');
 
         window.addEventListener('scroll', () => {
@@ -910,20 +956,17 @@
             });
         });
 
-        /* FAQ Accordion */
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const faqItem = question.parentElement;
                 const isActive = faqItem.classList.contains('active');
 
-                // Fechar todos os outros
                 document.querySelectorAll('.faq-item').forEach(item => {
                     item.classList.remove('active');
                     const btn = item.querySelector('.faq-question');
                     if (btn) btn.setAttribute('aria-expanded', 'false');
                 });
 
-                // Toggle o clicado
                 if (!isActive) {
                     faqItem.classList.add('active');
                     question.setAttribute('aria-expanded', 'true');
@@ -934,14 +977,12 @@
             });
         });
 
-        /* Parallax sutil da logo */
         const logo = document.querySelector(".logo-full");
         window.addEventListener("scroll", ()=>{
             const y = window.scrollY * 0.12;
             if(logo) logo.style.transform = `translateY(${y}px)`;
         });
 
-        /* Lente líquida nos botões */
         document.querySelectorAll('.btn').forEach(btn=>{
             btn.addEventListener('mousemove', e=>{
                 const r = btn.getBoundingClientRect();
@@ -950,7 +991,6 @@
             });
         });
 
-        /* Microparallax em títulos */
         const titles = document.querySelectorAll('.parallax-title');
         window.addEventListener('mousemove', e=>{
             const cx = window.innerWidth/2, cy = window.innerHeight/2;
@@ -961,7 +1001,6 @@
             });
         });
 
-        /* Reveal cinematográfico por seção */
         const io = new IntersectionObserver(entries=>{
             entries.forEach(e=>{
                 if(e.isIntersecting){
