@@ -877,3 +877,138 @@
                     <div class="form-field">
                         <label for="email">E-mail</label>
                         <input id="email" name="email" type="email" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="empresa">Empresa (opcional)</label>
+                        <input id="empresa" name="empresa" type="text">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="assunto">Assunto</label>
+                        <input id="assunto" name="assunto" type="text" placeholder="Registro de marca, patente, software..." required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Enviar mensagem</button>
+                </form>
+            </div>
+        </section>
+
+        <div class="signature reveal">
+            O invisível que sustenta o seu império.
+        </div>
+    </main>
+
+    <footer>
+        © <span id="year"></span> ARCANUM — Propriedade Intelectual
+    </footer>
+
+    <script defer>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+        });
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Abrir menu');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Abrir menu');
+            }
+        });
+
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    const btn = item.querySelector('.faq-question');
+                    if (btn) btn.setAttribute('aria-expanded', 'false');
+                });
+
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    question.setAttribute('aria-expanded', 'true');
+                } else {
+                    faqItem.classList.remove('active');
+                    question.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        const logo = document.querySelector(".logo-full");
+        window.addEventListener("scroll", ()=>{
+            const y = window.scrollY * 0.12;
+            if(logo) logo.style.transform = `translateY(${y}px)`;
+        });
+
+        document.querySelectorAll('.btn').forEach(btn=>{
+            btn.addEventListener('mousemove', e=>{
+                const r = btn.getBoundingClientRect();
+                btn.style.setProperty('--mx', `${e.clientX - r.left}px`);
+                btn.style.setProperty('--my', `${e.clientY - r.top}px`);
+            });
+        });
+
+        const titles = document.querySelectorAll('.parallax-title');
+        window.addEventListener('mousemove', e=>{
+            const cx = window.innerWidth/2, cy = window.innerHeight/2;
+            titles.forEach(t=>{
+                const dx = (e.clientX - cx) * 0.002;
+                const dy = (e.clientY - cy) * 0.002;
+                t.style.transform = `translate(${dx}px, ${dy}px)`;
+            });
+        });
+
+        const io = new IntersectionObserver(entries=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){
+                    e.target.classList.add('in');
+                }
+            });
+        },{threshold:.15});
+        document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    </script>
+</body>
+</html>
