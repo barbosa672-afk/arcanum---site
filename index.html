@@ -114,24 +114,92 @@
             --cinza:#4b5563;
             --vidro: rgba(255,255,255,.6);
             --borda-vidro: rgba(255,255,255,.9);
+            --bg-body: #fff;
         }
+        
+        /* ===== DARK MODE AUTOMÁTICO ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --texto: #e4e4e7;
+                --cinza: #a1a1aa;
+                --vidro: rgba(30,30,30,.75);
+                --borda-vidro: rgba(80,80,80,.9);
+                --bg-body: #0a0a0a;
+            }
+            
+            body {
+                color: var(--texto);
+            }
+            
+            .liquid-bg {
+                background:
+                    radial-gradient(1200px 800px at 10% 10%, rgba(212,163,55,.15), transparent 60%),
+                    radial-gradient(900px 700px at 90% 20%, rgba(15,76,92,.15), transparent 60%),
+                    radial-gradient(800px 600px at 30% 80%, rgba(212,163,55,.1), transparent 60%) !important;
+            }
+            
+            nav a, .mobile-menu a {
+                color: #e4e4e7;
+            }
+            
+            .bubble {
+                background: rgba(20,20,20,0.7);
+                border: 1px solid rgba(80,80,80,.5);
+            }
+            
+            .bubble h2 {
+                color: var(--dourado);
+            }
+            
+            .bubble p {
+                color: #d4d4d8;
+            }
+            
+            .stat-item, .diferencial-item, .faq-item {
+                background: rgba(30,30,30,.6);
+                border-color: rgba(212,163,55,.2);
+            }
+            
+            .faq-question h3 {
+                color: var(--dourado);
+            }
+            
+            .faq-answer p {
+                color: #d4d4d8;
+            }
+            
+            .form-field input,
+            .form-field textarea {
+                background: rgba(30,30,30,.8);
+                border-color: #444;
+                color: #e4e4e7;
+            }
+            
+            .form-field label {
+                color: #a1a1aa;
+            }
+            
+            footer {
+                color: #999;
+            }
+        }
+        
         *{margin:0;padding:0;box-sizing:border-box;}
         html{
             scroll-behavior:smooth;
-            /* Scroll suavizado adicional para navegadores modernos */
             scroll-padding-top: 100px;
         }
         body{
             font-family:Inter,system-ui,sans-serif;
             color:var(--texto);
-            background:#fff;
+            background: var(--bg-body);
             line-height:1.7;
             overflow-x:hidden;
+            transition: background-color .3s ease, color .3s ease;
         }
 
         p { text-align: justify; }
 
-        /* ===== MELHORIAS: Hardware Acceleration para Performance ===== */
         .liquid-bg{
             position:fixed;
             inset:-20%;
@@ -142,13 +210,43 @@
                 radial-gradient(800px 600px at 30% 80%, rgba(212,163,55,.12), transparent 60%);
             filter: blur(40px) saturate(130%);
             animation: liquidFloat 20s ease-in-out infinite alternate;
-            /* Hardware acceleration */
             will-change: transform;
             transform: translateZ(0);
+            transition: background .3s ease;
         }
         @keyframes liquidFloat{
             0%{transform:translate3d(0,0,0) scale(1);}
             100%{transform:translate3d(-4%,3%,0) scale(1.05);}
+        }
+
+        /* ===== PROGRESS BAR DE SCROLL ===== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--azul), var(--dourado));
+            z-index: 10001;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform .1s ease;
+            box-shadow: 0 2px 10px rgba(212,163,55,.5);
+        }
+
+        /* ===== TRANSIÇÃO DE PÁGINA ===== */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, var(--azul), var(--dourado));
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s cubic-bezier(.4,0,.2,1);
+        }
+
+        .page-transition-overlay.active {
+            opacity: 1;
+            pointer-events: all;
         }
 
         header{
@@ -162,7 +260,6 @@
             pointer-events:none;
         }
         
-        /* ===== MELHORIAS: Transição mais suave no header ===== */
         .nav-pill{
             pointer-events:auto;
             width:calc(100% - 32px);
@@ -177,7 +274,6 @@
             border:1px solid var(--borda-vidro);
             box-shadow:0 18px 40px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.8);
             transition: all .4s cubic-bezier(.4,0,.2,1);
-            /* Hardware acceleration */
             will-change: transform, box-shadow;
             transform: translateZ(0);
         }
@@ -209,12 +305,11 @@
             50%{filter: drop-shadow(0 0 26px rgba(212,163,55,.9));}
         }
         
-        /* ===== MELHORIAS: Links com micro-interação ===== */
         nav a{
             position: relative;
             margin-left:16px;
             text-decoration:none;
-            color:#000;
+            color:currentColor;
             opacity:.7;
             font-size:14px;
             transition: all .3s cubic-bezier(.4,0,.2,1);
@@ -286,7 +381,7 @@
             display:block;
             padding:12px 16px;
             text-decoration:none;
-            color:#000;
+            color:currentColor;
             border-radius:12px;
             margin-bottom:8px;
             transition: all .3s cubic-bezier(.4,0,.2,1);
@@ -297,7 +392,6 @@
             transform: translateX(8px);
         }
 
-        /* ===== MELHORIAS: WhatsApp com animação mais suave ===== */
         .whatsapp-float{
             position:fixed;
             bottom:24px;
@@ -314,7 +408,6 @@
             transition: all .4s cubic-bezier(.4,0,.2,1);
             animation:pulseWpp 2.5s ease-in-out infinite;
             cursor: pointer;
-            /* Hardware acceleration */
             will-change: transform;
             transform: translateZ(0);
         }
@@ -339,7 +432,6 @@
             50%{box-shadow:0 12px 36px rgba(37,211,102,.6), 0 6px 14px rgba(0,0,0,.25);}
         }
 
-        /* ===== MELHORIAS: Scroll to top mais fluido ===== */
         .scroll-top{
             position:fixed;
             bottom:100px;
@@ -357,7 +449,6 @@
             visibility:hidden;
             transition: all .4s cubic-bezier(.4,0,.2,1);
             cursor:pointer;
-            /* Hardware acceleration */
             will-change: transform, opacity;
             transform: translateZ(0) scale(0.8);
         }
@@ -390,21 +481,25 @@
         .hero{padding-top:160px;text-align:center;}
         .logo-full-wrap{display:flex;justify-content:center;margin-bottom:24px;}
         
-        /* ===== MELHORIAS: Logo com transição mais natural ===== */
+        /* ===== LAZY LOADING IMAGES ===== */
         .logo-full{
             width:min(640px,82vw);
             opacity:.45;
-            filter: drop-shadow(0 0 70px rgba(212,163,55,.35));
+            filter: drop-shadow(0 0 70px rgba(212,163,55,.35)) blur(10px);
             mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
             -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
             transition: all .8s cubic-bezier(.4,0,.2,1);
-            /* Hardware acceleration */
             will-change: transform, filter;
             transform: translateZ(0);
         }
+        
+        .logo-full.loaded {
+            filter: drop-shadow(0 0 70px rgba(212,163,55,.35)) blur(0);
+        }
+        
         .logo-full:hover{
             opacity: .65;
-            filter: drop-shadow(0 0 90px rgba(212,163,55,.5));
+            filter: drop-shadow(0 0 90px rgba(212,163,55,.5)) blur(0);
             transform: scale(1.02) translateZ(0);
         }
         
@@ -421,7 +516,6 @@
             color:var(--cinza);
         }
 
-        /* ===== MELHORIAS: Botão com interação magnética ===== */
         .btn{
             position:relative;
             display:inline-block;
@@ -437,7 +531,6 @@
             transition: all .4s cubic-bezier(.4,0,.2,1);
             cursor: pointer;
             border: none;
-            /* Hardware acceleration */
             will-change: transform;
             transform: translateZ(0);
         }
@@ -474,7 +567,6 @@
             box-shadow:0 12px 24px rgba(0,0,0,.2);
         }
         
-        /* ===== MELHORIAS: Loading state para botão ===== */
         .btn.loading{
             pointer-events: none;
             opacity: 0.7;
@@ -497,7 +589,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* ===== MELHORIAS: Bubbles com efeito hover mais interessante ===== */
         .bubble{
             background:rgba(255,255,255,0.62);
             backdrop-filter: blur(28px) saturate(160%);
@@ -507,7 +598,6 @@
             margin-bottom:28px;
             box-shadow:0 22px 50px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.75);
             transition: all .5s cubic-bezier(.4,0,.2,1);
-            /* Hardware acceleration */
             will-change: transform, box-shadow;
             transform: translateZ(0);
         }
@@ -532,7 +622,6 @@
             margin-top:32px;
         }
         
-        /* ===== MELHORIAS: Stats com contador animado ===== */
         .stat-item{
             text-align:center;
             padding:24px;
@@ -541,7 +630,6 @@
             border:1px solid rgba(212,163,55,.2);
             transition: all .4s cubic-bezier(.4,0,.2,1);
             cursor: default;
-            /* Hardware acceleration */
             will-change: transform;
             transform: translateZ(0);
         }
@@ -576,7 +664,6 @@
             margin-top:32px;
         }
         
-        /* ===== MELHORIAS: Diferenciais com animação stagger ===== */
         .diferencial-item{
             display:flex;
             gap:16px;
@@ -586,7 +673,6 @@
             border:1px solid rgba(212,163,55,.15);
             transition: all .4s cubic-bezier(.4,0,.2,1);
             cursor: default;
-            /* Hardware acceleration */
             will-change: transform;
             transform: translateZ(0);
         }
@@ -629,7 +715,6 @@
             margin:0;
         }
 
-        /* ===== MELHORIAS: FAQ com animação suave ===== */
         .faq-item{
             background:rgba(255,255,255,.4);
             border-radius:18px;
@@ -706,7 +791,6 @@
             margin-bottom:0;
         }
 
-        /* ===== MELHORIAS: Reveal com animação mais natural ===== */
         .reveal{
             opacity:0; 
             transform: translateY(40px) scale(.97); 
@@ -735,7 +819,6 @@
 
         footer{text-align:center;padding:32px;color:#777;font-size:13px;}
 
-        /* ===== MELHORIAS: Inputs do formulário com micro-interações ===== */
         .form-field{
             margin-bottom:16px;
             position: relative;
@@ -772,7 +855,6 @@
             color: var(--azul);
         }
 
-        /* ESTILOS DO POPUP MODERNO */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -927,7 +1009,6 @@
             }
         }
         
-        /* ===== MELHORIAS: Smooth scrollbar ===== */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -945,11 +1026,17 @@
 </head>
 <body>
     <div class="liquid-bg" aria-hidden="true"></div>
+    
+    <!-- PROGRESS BAR -->
+    <div class="scroll-progress"></div>
+    
+    <!-- TRANSIÇÃO DE PÁGINA -->
+    <div class="page-transition-overlay"></div>
 
     <header>
         <div class="nav-pill">
             <div class="brand">
-                <img src="logo-icon.png" alt="Logo Arcanum Propriedade Intelectual" loading="lazy">
+                <img src="logo-icon.png" alt="Logo Arcanum Propriedade Intelectual" loading="lazy" data-src="logo-icon.png">
                 ARCANUM
             </div>
             <nav role="navigation" aria-label="Navegação principal">
@@ -967,7 +1054,6 @@
         </div>
     </header>
 
-    <!-- Menu Mobile -->
     <nav class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Navegação mobile">
         <a href="#marcas">Marcas</a>
         <a href="#patentes">Patentes</a>
@@ -976,21 +1062,18 @@
         <a href="#contato">Contato</a>
     </nav>
 
-    <!-- WhatsApp Flutuante -->
     <a href="https://wa.me/5516992553003" class="whatsapp-float" aria-label="Fale conosco no WhatsApp" target="_blank" rel="noopener">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.247 1.408 1.417-5.267-0.325-0.528c-1.344-2.184-2.054-4.693-2.054-7.253 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.305 19.463c-0.396-0.198-2.348-1.158-2.713-1.291s-0.627-0.198-0.892 0.198c-0.264 0.396-1.026 1.291-1.256 1.556s-0.462 0.297-0.858 0.099c-0.396-0.198-1.673-0.617-3.186-1.966-1.177-1.050-1.973-2.347-2.204-2.743s-0.025-0.61 0.174-0.807c0.178-0.177 0.396-0.462 0.594-0.693s0.264-0.396 0.396-0.66c0.132-0.264 0.066-0.495-0.033-0.693s-0.892-2.146-1.222-2.938c-0.322-0.769-0.649-0.665-0.892-0.677-0.231-0.012-0.495-0.015-0.759-0.015s-0.693 0.099-1.056 0.495c-0.363 0.396-1.388 1.356-1.388 3.306s1.421 3.836 1.619 4.101c0.198 0.264 2.794 4.266 6.769 5.982 0.945 0.408 1.684 0.652 2.26 0.835 0.951 0.302 1.816 0.259 2.501 0.157 0.762-0.114 2.348-0.96 2.679-1.887s0.331-1.723 0.231-1.887c-0.099-0.165-0.363-0.264-0.759-0.462z"/>
         </svg>
     </a>
 
-    <!-- Scroll to Top Button -->
     <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo" type="button">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12 4l-8 8h5v8h6v-8h5z"/>
         </svg>
     </button>
 
-    <!-- POPUP MODERNO -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-content">
             <div class="popup-icon">✓</div>
@@ -1003,7 +1086,8 @@
     <main>
         <section class="hero reveal">
             <div class="logo-full-wrap">
-                <img src="logo-full.png" class="logo-full" alt="Logo completo Arcanum Propriedade Intelectual" loading="lazy">
+                <!-- LAZY LOADING na imagem principal -->
+                <img data-src="logo-full.png" class="logo-full lazy-image" alt="Logo completo Arcanum Propriedade Intelectual" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 200'%3E%3C/svg%3E">
             </div>
             <div class="container">
                 <h1 class="parallax-title">Proteção jurídica de ativos intangíveis com visão estratégica de negócio.</h1>
@@ -1221,7 +1305,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO CONTATO (FormSubmit) -->
         <section id="contato" class="container tight reveal" aria-labelledby="contato-title">
             <div class="bubble">
                 <h2 id="contato-title">Fale com a Arcanum</h2>
@@ -1230,7 +1313,6 @@
                 </p>
 
                 <form id="formContato" action="https://formsubmit.co/empresagbferreira@gmail.com" method="POST">
-                    <!-- Configurações FormSubmit (não aparecem para o usuário) -->
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_next" value="https://arcanumpi.com.br/#contato-enviado">
                     <input type="hidden" name="_template" value="table">
@@ -1278,6 +1360,63 @@
         // Ano dinâmico
         document.getElementById('year').textContent = new Date().getFullYear();
 
+        // ===== 1. TRANSIÇÕES DE PÁGINA SUAVES =====
+        const pageOverlay = document.querySelector('.page-transition-overlay');
+        const internalLinks = document.querySelectorAll('a[href^="#"]');
+        
+        internalLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                
+                // Animação de saída
+                pageOverlay.classList.add('active');
+                
+                setTimeout(() => {
+                    window.location.hash = target;
+                    
+                    // Scroll suave para o elemento
+                    if (target !== '#') {
+                        const element = document.querySelector(target);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                    
+                    setTimeout(() => {
+                        pageOverlay.classList.remove('active');
+                    }, 100);
+                }, 400);
+            });
+        });
+
+        // ===== 2. LAZY LOADING DE IMAGENS =====
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px'
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+
+        // ===== 3. PROGRESS BAR DE SCROLL =====
+        const scrollProgress = document.querySelector('.scroll-progress');
+        
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / scrollHeight);
+            scrollProgress.style.transform = `scaleX(${scrolled})`;
+        }, { passive: true });
+
         // Menu mobile toggle
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -1289,7 +1428,6 @@
             menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
         });
 
-        // Fechar menu ao clicar nos links
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
@@ -1299,7 +1437,6 @@
             });
         });
 
-        // Fechar menu ao clicar fora
         document.addEventListener('click', (e) => {
             if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
                 menuToggle.classList.remove('active');
@@ -1309,7 +1446,6 @@
             }
         });
 
-        // ===== MELHORIA: Scroll to top com animação suave ===== 
         const scrollTopBtn = document.getElementById('scrollTop');
         
         window.addEventListener('scroll', () => {
@@ -1327,13 +1463,12 @@
             });
         });
 
-        // ===== MELHORIA: FAQ com transição mais suave =====
+        // FAQ
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const faqItem = question.parentElement;
                 const isActive = faqItem.classList.contains('active');
 
-                // Fechar todos os outros com animação
                 document.querySelectorAll('.faq-item').forEach(item => {
                     if (item !== faqItem) {
                         item.classList.remove('active');
@@ -1342,7 +1477,6 @@
                     }
                 });
 
-                // Toggle no atual
                 if (!isActive) {
                     faqItem.classList.add('active');
                     question.setAttribute('aria-expanded', 'true');
@@ -1353,7 +1487,7 @@
             });
         });
 
-        // ===== MELHORIA: Parallax no logo com debounce =====
+        // Parallax no logo
         const logo = document.querySelector('.logo-full');
         let ticking = false;
         
@@ -1368,7 +1502,7 @@
             }
         }, { passive: true });
 
-        // ===== MELHORIA: Efeito magnético nos botões =====
+        // Efeito magnético nos botões
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const r = btn.getBoundingClientRect();
@@ -1384,7 +1518,7 @@
             });
         });
 
-        // ===== MELHORIA: Parallax suave nos títulos =====
+        // Parallax nos títulos
         const titles = document.querySelectorAll('.parallax-title');
         let mouseTicking = false;
         
@@ -1404,7 +1538,7 @@
             }
         }, { passive: true });
 
-        // ===== MELHORIA: Intersection Observer otimizado =====
+        // Intersection Observer
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1413,7 +1547,6 @@
         const io = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if(entry.isIntersecting) {
-                    // Animação stagger
                     setTimeout(() => {
                         entry.target.classList.add('in');
                     }, index * 100);
@@ -1424,25 +1557,7 @@
         
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        // ===== MELHORIA: Animação stagger nos diferenciais =====
-        const diferencialObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const items = entry.target.querySelectorAll('.diferencial-item');
-                    items.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.style.animation = `fadeInUp 0.6s cubic-bezier(.4,0,.2,1) forwards`;
-                        }, index * 100);
-                    });
-                    diferencialObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        const diferenciais = document.querySelector('.diferenciais-grid');
-        if (diferenciais) diferencialObserver.observe(diferenciais);
-
-        // ===== POPUP FUNCTIONS =====
+        // POPUP
         function mostrarPopup() {
             const overlay = document.getElementById('popupOverlay');
             overlay.classList.add('active');
@@ -1474,29 +1589,13 @@
             }, 400);
         }
 
-        // ===== MELHORIA: Loading state no formulário =====
+        // Loading no formulário
         const formContato = document.getElementById('formContato');
         formContato.addEventListener('submit', function(e) {
             const btn = this.querySelector('.btn');
             btn.classList.add('loading');
             btn.textContent = 'Enviando...';
         });
-
-        // ===== ANIMAÇÃO CSS ADICIONAL =====
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
