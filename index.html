@@ -168,6 +168,7 @@
                 color: #d4d4d8;
             }
             
+            /* ===== CORREÇÃO: Labels e inputs do formulário ===== */
             .form-field label {
                 color: #d4d4d8 !important;
                 font-weight: 600;
@@ -419,92 +420,11 @@
             transform: translateX(8px);
         }
 
-        /* ===== BOTÕES FLUTUANTES (DESKTOP) ===== */
-
-        .whatsapp-float,
-        .instagram-float,
-        .scroll-top{
-            position:fixed;
-            right:24px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            border-radius:20px;
-            background: rgba(255,255,255,0.78);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255,255,255,0.95);
-            box-shadow:0 18px 40px rgba(0,0,0,.18);
-            transition: all .4s cubic-bezier(.4,0,.2,1);
-            cursor: pointer;
-            will-change: transform, opacity;
-            transform: translateZ(0);
+        
+            50%{box-shadow:0 12px 36px rgba(37,211,102,.6), 0 6px 14px rgba(0,0,0,.25);}
         }
 
-        .whatsapp-float{
-            bottom:24px;
-            width:60px;
-            height:60px;
-            z-index:999;
-        }
-
-        .instagram-float{
-            bottom:94px;
-            width:52px;
-            height:52px;
-            z-index:998;
-        }
-
-        .scroll-top{
-            bottom:156px;
-            width:52px;
-            height:52px;
-            z-index:997;
-            opacity:0;
-            visibility:hidden;
-            transform: translateZ(0) scale(0.9);
-        }
-
-        .scroll-top.visible{
-            opacity:0.9;
-            visibility:visible;
-            transform: translateZ(0) scale(1);
-        }
-
-        .whatsapp-float svg,
-        .instagram-float svg,
-        .scroll-top svg{
-            width:24px;
-            height:24px;
-            fill: var(--azul);
-            opacity: 0.9;
-            transition: transform .3s ease, opacity .3s ease;
-        }
-
-        .whatsapp-float svg{ fill:#25D366; }
-        .instagram-float svg{ fill:#e1306c; }
-
-        .whatsapp-float:hover,
-        .instagram-float:hover,
-        .scroll-top:hover{
-            transform: translateY(-4px) translateZ(0) scale(1.05);
-            box-shadow:0 22px 50px rgba(0,0,0,.22);
-        }
-
-        .whatsapp-float:hover svg,
-        .instagram-float:hover svg,
-        .scroll-top:hover svg{
-            transform: translateY(-1px);
-            opacity: 1;
-        }
-
-        .whatsapp-float:active,
-        .instagram-float:active,
-        .scroll-top:active{
-            transform: translateY(-1px) translateZ(0) scale(0.97);
-        }
-
-        /* mata o pulse antigo */
-        @keyframes pulseWpp {}
+        
 
         .container{max-width:1200px;margin:auto;padding:0 22px;}
         section{padding:64px 0;}
@@ -513,6 +433,7 @@
         .hero{padding-top:160px;text-align:center;}
         .logo-full-wrap{display:flex;justify-content:center;margin-bottom:24px;}
         
+        /* ===== LAZY LOADING IMAGES ===== */
         .logo-full{
             width:min(640px,82vw);
             opacity:.45;
@@ -1003,7 +924,6 @@
             .logo-full{opacity:.38;}
             .stats{grid-template-columns:1fr;}
             .diferenciais-grid{grid-template-columns:1fr;}
-
             .whatsapp-float{
                 width:56px;
                 height:56px;
@@ -1011,32 +931,29 @@
                 right:20px;
             }
             .whatsapp-float svg{
-                width:24px;
-                height:24px;
+                width:30px;
+                height:30px;
             }
-
             .instagram-float{
-                width:48px;
-                height:48px;
+                width:46px;
+                height:46px;
                 bottom:86px;
                 right:20px;
             }
             .instagram-float svg{
-                width:22px;
-                height:22px;
+                width:24px;
+                height:24px;
             }
-
             .scroll-top{
                 width:48px;
                 height:48px;
-                bottom:144px;
+                bottom:142px;
                 right:20px;
             }
             .scroll-top svg{
                 width:20px;
                 height:20px;
             }
-
             .popup-content {
                 padding: 36px 24px;
             }
@@ -1063,13 +980,116 @@
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, var(--dourado), var(--azul));
         }
+
+        
+
+        /* ===== BOTÕES FLUTUANTES UNIFICADOS ===== */
+        .whatsapp-float,
+        .instagram-float,
+        .scroll-top{
+            position:fixed;
+            right:24px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:20px;
+            background: rgba(255,255,255,0.78);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.95);
+            box-shadow:0 18px 40px rgba(0,0,0,.18);
+            transition: all .4s cubic-bezier(.4,0,.2,1);
+            cursor: pointer;
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            text-decoration: none;
+        }
+        .whatsapp-float{
+            bottom:24px;
+            width:60px;
+            height:60px;
+            z-index:999;
+        }
+        .instagram-float{
+            bottom:94px;
+            width:52px;
+            height:52px;
+            z-index:998;
+        }
+        .scroll-top{
+            bottom:156px;
+            width:52px;
+            height:52px;
+            z-index:997;
+            opacity:0;
+            visibility:hidden;
+            transform: translateZ(0) scale(0.9);
+            background: rgba(255,255,255,0.78);
+            border: none;
+        }
+        .scroll-top.visible{
+            opacity:0.9;
+            visibility:visible;
+            transform: translateZ(0) scale(1);
+        }
+        .whatsapp-float svg,
+        .instagram-float svg,
+        .scroll-top svg{
+            width:24px;
+            height:24px;
+            fill: var(--azul);
+            opacity: 0.9;
+            transition: transform .3s ease, opacity .3s ease;
+        }
+        .whatsapp-float svg{ fill:#25D366; }
+        .instagram-float svg{ fill:#e1306c; }
+        .whatsapp-float:hover,
+        .instagram-float:hover,
+        .scroll-top:hover{
+            transform: translateY(-4px) translateZ(0) scale(1.05);
+            box-shadow:0 22px 50px rgba(0,0,0,.22);
+        }
+        .whatsapp-float:hover svg,
+        .instagram-float:hover svg,
+        .scroll-top:hover svg{
+            transform: translateY(-1px);
+            opacity: 1;
+        }
+        .whatsapp-float:active,
+        .instagram-float:active,
+        .scroll-top:active{
+            transform: translateY(-1px) translateZ(0) scale(0.97);
+        }
+        @keyframes pulseWpp {}
+
+        @media(max-width:900px){
+            .whatsapp-float{
+                width:56px !important;
+                height:56px !important;
+                bottom:20px !important;
+                right:20px !important;
+            }
+            .instagram-float{
+                width:48px !important;
+                height:48px !important;
+                bottom:86px !important;
+                right:20px !important;
+            }
+            .scroll-top{
+                width:48px !important;
+                height:48px !important;
+                bottom:144px !important;
+                right:20px !important;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="liquid-bg" aria-hidden="true"></div>
     
+    <!-- PROGRESS BAR -->
     <div class="scroll-progress"></div>
     
+    <!-- TRANSIÇÃO DE PÁGINA -->
     <div class="page-transition-overlay"></div>
 
     <header>
@@ -1101,7 +1121,7 @@
         <a href="#contato">Contato</a>
     </nav>
 
-    <!-- WHATSAPP FLOAT -->
+        <!-- WHATSAPP FLOAT -->
     <a href="https://wa.me/5516992553003"
        class="whatsapp-float"
        aria-label="Fale conosco no WhatsApp"
@@ -1121,43 +1141,544 @@
        target="_blank"
        rel="noopener">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4 2.21 0 4 1.791 4 4 0 2.21-1.79 4-4 4zm6.406-11.845c0 .796-.646 1.441-1.441 1.441-.796 0-1.441-.646-1.441-1.441 0-.796.646-1.441 1.441-1.441.795 0 1.441.646 1.441 1.441z"/>
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </svg>
     </a>
 
     <!-- SCROLL TOP -->
-    <button class="scroll-top" id="scrollTopBtn" aria-label="Voltar ao topo" title="Voltar ao topo">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
+    <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo" title="Voltar ao topo" type="button">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12 4l-8 8h5v8h6v-8h5z"/>
         </svg>
     </button>
 
-    <!-- AQUI ENTRA TODO O RESTO DO CONTEÚDO DA PÁGINA (hero, seções, FAQ, contato etc.) -->
-    <!-- Mantém exatamente o que você já tinha no body, abaixo dos botões flutuantes -->
+    <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo" type="button">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 4l-8 8h5v8h6v-8h5z"/>
+        </svg>
+    </button>
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <div class="popup-icon">✓</div>
+            <h3>Mensagem Enviada!</h3>
+            <p>Recebemos sua mensagem com sucesso. Nossa equipe retornará em até 24 horas com orientações iniciais sobre a proteção dos seus ativos intangíveis.</p>
+            <button class="popup-close" onclick="fecharPopup()">Entendi</button>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero reveal">
+            <div class="logo-full-wrap">
+                <!-- LAZY LOADING na imagem principal -->
+                <img data-src="logo-full.png" class="logo-full lazy-image" alt="Logo completo Arcanum Propriedade Intelectual" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 200'%3E%3C/svg%3E">
+            </div>
+            <div class="container">
+                <h1 class="parallax-title">Proteção jurídica de ativos intangíveis com visão estratégica de negócio.</h1>
+                <p>
+                    Estruturamos marcas, patentes e <em>software</em> para que deixem de ser apenas ideias e passem a integrar o patrimônio real da empresa, com segurança jurídica, capacidade de monetização e impacto direto em processos de <em>valuation</em>, expansão societária e operações de <em>M&A</em>.
+                </p>
+                <a href="https://wa.me/5516992553003" class="btn">Iniciar atendimento no WhatsApp</a>
+            </div>
+        </section>
+
+        <section class="container tight reveal">
+            <div class="bubble">
+                <h2>Experiência comprovada em Propriedade Intelectual</h2>
+                <p>
+                    Nossa atuação combina expertise técnico-jurídica com visão estratégica de negócio, transformando ativos intangíveis em vantagem competitiva mensurável e auditável para empresas de todos os portes.
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Anos de atuação</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Taxa de aprovação</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container tight reveal">
+            <div class="bubble">
+                <h2>Por que escolher a Arcanum</h2>
+                <div class="diferenciais-grid">
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon" aria-hidden="true">⚡</div>
+                        <div class="diferencial-content">
+                            <h3>Atendimento personalizado</h3>
+                            <p>Consultoria técnica adaptada ao perfil e necessidades específicas de cada empresa.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon" aria-hidden="true">📊</div>
+                        <div class="diferencial-content">
+                            <h3>Acompanhamento em tempo real</h3>
+                            <p>Transparência total no andamento processual e prazos do INPI.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon" aria-hidden="true">🎯</div>
+                        <div class="diferencial-content">
+                            <h3>Visão estratégica de negócio</h3>
+                            <p>Proteção alinhada a operações de M&A, valuation e governança corporativa.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon" aria-hidden="true">💼</div>
+                        <div class="diferencial-content">
+                            <h3>Consultoria jurídica integrada</h3>
+                            <p>Estruturação completa de contratos, cessões e políticas de compliance.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon" aria-hidden="true">🔒</div>
+                        <div class="diferencial-content">
+                            <h3>Segurança jurídica total</h3>
+                            <p>Blindagem patrimonial e redução de riscos em disputas e contingências.</p>
+                        </div>
+                    </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon" aria-hidden="true">⏱️</div>
+                        <div class="diferencial-content">
+                            <h3>Resposta ágil</h3>
+                            <p>Retorno em até 24 horas para demandas urgentes e dúvidas técnicas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container tight reveal">
+            <div class="bubble">
+                <h2>Importância estratégica dos ativos intangíveis</h2>
+                <p>
+                    No ambiente empresarial contemporâneo, os ativos que mais agregam valor não são necessariamente físicos. Marcas fortes, tecnologias proprietárias e soluções digitais escaláveis constituem a base do valor percebido de uma empresa perante investidores, parceiros e o mercado. Em processos de <em>valuation</em>, esses ativos são mensurados como elementos determinantes do preço da companhia.
+                </p>
+                <p>
+                    A ausência de proteção formal transforma tais ativos em riscos jurídicos latentes. Empresas que negligenciam a estruturação da Propriedade Intelectual ficam vulneráveis a disputas, perdas de exclusividade, bloqueios operacionais e até mesmo à inviabilização de operações de captação de recursos. A proteção jurídica converte o intangível em patrimônio auditável, negociável e transferível.
+                </p>
+            </div>
+        </section>
+
+        <section id="marcas" class="container tight reveal">
+            <div class="bubble">
+                <h2>Registro de Marcas</h2>
+                <p>
+                    A marca é o principal vetor de reconhecimento de um negócio. O registro junto ao INPI confere exclusividade de uso em todo o território nacional, impedindo terceiros de explorarem sinais distintivos idênticos ou semelhantes no mesmo segmento. Sem o registro, o empresário opera sob incerteza jurídica: investimentos em branding, marketing e expansão podem ser comprometidos por litígios futuros.
+                </p>
+                <p>
+                    Nossa atuação envolve busca de anterioridade, análise de colidências fonéticas e ideológicas, enquadramento estratégico nas classes adequadas, acompanhamento processual e defesa contra oposições. O resultado é a construção de um ativo jurídico sólido, apto a ser licenciado, franqueado ou integrado a operações de <em>M&A</em>.
+                </p>
+                <p>
+                    O apelo é claro: negligenciar o registro expõe o empresário ao risco de perder o direito de uso do próprio nome comercial, ser compelido a rebranding forçado e arcar com indenizações por uso indevido. O registro não é custo; é blindagem patrimonial.
+                </p>
+            </div>
+        </section>
+
+        <section id="patentes" class="container tight reveal">
+            <div class="bubble">
+                <h2>Patentes e Inovação</h2>
+                <p>
+                    Patentes protegem soluções técnicas, produtos e processos inovadores, criando barreiras de entrada legais contra concorrentes. A concessão de patente assegura ao titular o monopólio temporário de exploração econômica, elemento crucial para capturar retorno sobre investimentos em pesquisa e desenvolvimento.
+                </p>
+                <p>
+                    Atuamos desde a busca do estado da técnica até a redação técnica do relatório descritivo e reivindicações, gestão de prazos, respostas a exigências e estratégia de proteção internacional quando aplicável. A inovação, quando desprotegida, se torna commodity; quando patenteada, converte-se em vantagem competitiva sustentável.
+                </p>
+                <p>
+                    Ignorar a proteção patentária pode resultar na apropriação por terceiros de soluções desenvolvidas internamente, inviabilizando a exploração exclusiva e reduzindo drasticamente o valor estratégico da empresa em avaliações de <em>valuation</em>.
+                </p>
+            </div>
+        </section>
+
+        <section id="software" class="container tight reveal">
+            <div class="bubble">
+                <h2>Proteção de <em>Software</em></h2>
+                <p>
+                    Em empresas digitais, o <em>software</em> é o núcleo operacional do modelo de negócios. O registro do código-fonte assegura prova de autoria, elemento crítico em disputas envolvendo propriedade intelectual, conflitos societários, saída de colaboradores-chave e processos de auditoria para investimento.
+                </p>
+                <p>
+                    Estruturamos a proteção jurídica do código, políticas de propriedade intelectual em contratos de desenvolvimento, cessões de direitos autorais e governança de ativos digitais. Essa abordagem garante segurança para escalar produtos, licenciar tecnologias e estruturar operações de <em>M&A</em> com menor fricção jurídica.
+                </p>
+                <p>
+                    A ausência de proteção adequada expõe a empresa a vazamento de tecnologia, disputas de titularidade e bloqueios contratuais que podem comprometer rodadas de investimento e a continuidade operacional.
+                </p>
+            </div>
+        </section>
+
+        <section id="transferencia" class="container tight reveal">
+            <div class="bubble">
+                <h2>Transferência de titularidade, contratos e <em>compliance</em></h2>
+                <p>
+                    A transferência de titularidade de marcas, patentes e direitos autorais exige rigor formal para produzir efeitos perante terceiros. Estruturamos cessões, licenças, contratos de franquia, acordos de confidencialidade e políticas internas de <em>compliance</em> para assegurar a integridade jurídica dos ativos.
+                </p>
+                <p>
+                    Em operações societárias, a correta titularidade é condição para fechamento de negócios e auditorias de <em>due diligence</em>. Ativos mal titulados podem gerar contingências, atrasar transações e reduzir o valor percebido da empresa em processos de <em>valuation</em>.
+                </p>
+                <p>
+                    Nosso foco é transformar a Propriedade Intelectual em estrutura jurídica organizada, auditável e alinhada às melhores práticas de governança corporativa.
+                </p>
+            </div>
+        </section>
+
+        <section id="faq" class="container tight reveal" aria-labelledby="faq-title">
+            <div class="bubble">
+                <h2 id="faq-title">Perguntas Frequentes</h2>
+                <p style="margin-bottom:24px;">
+                    Respondemos as dúvidas mais comuns sobre registro de marcas, patentes e proteção de ativos intangíveis.
+                </p>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <h3>Quanto tempo demora o registro de marca?</h3>
+                        <div class="faq-toggle" aria-hidden="true">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O processo de registro de marca no INPI, em média, leva de 8 a 24 meses, podendo variar conforme existência de oposições de terceiros, exigências formais do INPI e recursos administrativos durante o processo.</p>
+                        <p>Apesar do prazo, o pedido já gera prioridade: a partir do protocolo, terceiros não podem registrar marca idêntica ou semelhante para o mesmo segmento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <h3>Posso registrar uma marca que já está em uso?</h3>
+                        <div class="faq-toggle" aria-hidden="true">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim. No Brasil, o sistema é baseado no princípio da anterioridade do pedido (quem deposita primeiro tem prioridade).</p>
+                        <p>Contudo, quem já utiliza a marca anteriormente pode ter direito de precedência, desde que comprove uso contínuo e de boa-fé. Por isso, é essencial realizar uma busca de anterioridade antes do pedido, para avaliar riscos de oposição ou indeferimento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <h3>Qual a diferença entre marca nominativa, figurativa e mista?</h3>
+                        <div class="faq-toggle" aria-hidden="true">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Marca nominativa:</strong> protege apenas o nome da marca (ex: "ARCANUM"), independentemente de fonte ou estilo visual.</p>
+                        <p><strong>Marca figurativa:</strong> protege apenas o elemento visual (símbolo, ícone, logotipo sem texto).</p>
+                        <p><strong>Marca mista:</strong> protege a combinação entre nome + logotipo (forma mais comum no mercado).</p>
+                        <p>A escolha do tipo de marca impacta diretamente no alcance da proteção jurídica.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <h3>O que acontece se minha marca for indeferida?</h3>
+                        <div class="faq-toggle" aria-hidden="true">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Se o pedido for indeferido pelo INPI, ainda é possível apresentar recurso administrativo dentro do prazo legal, ajustar estratégia de proteção (ex: novo pedido, alteração de marca) ou avaliar risco jurídico de uso continuado da marca.</p>
+                        <p>Um indeferimento não impede automaticamente o uso, mas aumenta o risco de conflitos, notificações extrajudiciais e ações judiciais.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <h3>Preciso renovar o registro de marca?</h3>
+                        <div class="faq-toggle" aria-hidden="true">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim. O registro de marca tem validade de 10 anos, contados a partir da concessão, e pode ser renovado indefinidamente por períodos sucessivos de 10 anos.</p>
+                        <p>A não renovação implica na perda do direito exclusivo, permitindo que terceiros registrem a marca.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="container tight reveal" aria-labelledby="contato-title">
+            <div class="bubble">
+                <h2 id="contato-title">Fale com a Arcanum</h2>
+                <p>
+                    Envie sua mensagem e retornamos com orientações iniciais sobre a proteção dos seus ativos intangíveis.
+                </p>
+
+                <form id="formContato" action="https://formsubmit.co/empresagbferreira@gmail.com" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://arcanumpi.com.br/#contato-enviado">
+                    <input type="hidden" name="_template" value="table">
+
+                    <div class="form-field">
+                        <label for="nome">Nome completo</label>
+                        <input id="nome" name="nome" type="text" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">E-mail</label>
+                        <input id="email" name="email" type="email" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="empresa">Empresa (opcional)</label>
+                        <input id="empresa" name="empresa" type="text">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="assunto">Assunto</label>
+                        <input id="assunto" name="assunto" type="text" placeholder="Registro de marca, patente, software..." required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Enviar mensagem</button>
+                </form>
+            </div>
+        </section>
+
+        <div class="signature reveal">
+            O invisível que sustenta o seu império.
+        </div>
+    </main>
 
     <footer>
-        <!-- seu footer existente -->
+        <span id="year"></span> ARCANUM — Propriedade Intelectual &nbsp;·&nbsp; <a href="https://www.instagram.com/arcanumpi" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;opacity:.7;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">@arcanumpi</a>
     </footer>
 
-    <script>
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
+    <script defer>
+        // Ano dinâmico
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ===== 1. TRANSIÇÕES DE PÁGINA SUAVES =====
+        const pageOverlay = document.querySelector('.page-transition-overlay');
+        const internalLinks = document.querySelectorAll('a[href^="#"]');
+        
+        internalLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                
+                // Animação de saída
+                pageOverlay.classList.add('active');
+                
+                setTimeout(() => {
+                    window.location.hash = target;
+                    
+                    // Scroll suave para o elemento
+                    if (target !== '#') {
+                        const element = document.querySelector(target);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                    
+                    setTimeout(() => {
+                        pageOverlay.classList.remove('active');
+                    }, 100);
+                }, 400);
+            });
+        });
+
+        // ===== 2. LAZY LOADING DE IMAGENS =====
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px'
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+
+        // ===== 3. PROGRESS BAR DE SCROLL =====
+        const scrollProgress = document.querySelector('.scroll-progress');
+        
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / scrollHeight);
+            scrollProgress.style.transform = `scaleX(${scrolled})`;
+        }, { passive: true });
+
+        // Menu mobile toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+        });
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Abrir menu');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Abrir menu');
+            }
+        });
+
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) {
                 scrollTopBtn.classList.add('visible');
             } else {
                 scrollTopBtn.classList.remove('visible');
             }
-        });
+        }, { passive: true });
+
         scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ 
+                top: 0, 
+                behavior: 'smooth' 
+            });
         });
 
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        menuToggle.addEventListener('click', () => {
-            const active = mobileMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active', active);
-            menuToggle.setAttribute('aria-expanded', active ? 'true' : 'false');
+        // FAQ
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                        const btn = item.querySelector('.faq-question');
+                        if (btn) btn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    question.setAttribute('aria-expanded', 'true');
+                } else {
+                    faqItem.classList.remove('active');
+                    question.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Parallax no logo
+        const logo = document.querySelector('.logo-full');
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const y = window.scrollY * 0.12;
+                    if(logo) logo.style.transform = `translateY(${y}px) translateZ(0)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // Efeito magnético nos botões
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const r = btn.getBoundingClientRect();
+                const x = e.clientX - r.left;
+                const y = e.clientY - r.top;
+                btn.style.setProperty('--mx', `${x}px`);
+                btn.style.setProperty('--my', `${y}px`);
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.setProperty('--mx', '50%');
+                btn.style.setProperty('--my', '50%');
+            });
+        });
+
+        // Parallax nos títulos
+        const titles = document.querySelectorAll('.parallax-title');
+        let mouseTicking = false;
+        
+        window.addEventListener('mousemove', (e) => {
+            if (!mouseTicking) {
+                window.requestAnimationFrame(() => {
+                    const cx = window.innerWidth/2;
+                    const cy = window.innerHeight/2;
+                    titles.forEach(t => {
+                        const dx = (e.clientX - cx) * 0.015;
+                        const dy = (e.clientY - cy) * 0.015;
+                        t.style.transform = `translate(${dx}px, ${dy}px)`;
+                    });
+                    mouseTicking = false;
+                });
+                mouseTicking = true;
+            }
+        }, { passive: true });
+
+        // Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if(entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('in');
+                    }, index * 100);
+                    io.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // POPUP
+        function mostrarPopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.add('active');
+        }
+
+        function fecharPopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.remove('active');
+            if (window.location.hash === '#contato-enviado') {
+                history.replaceState(null, null, ' ');
+            }
+        }
+
+        document.getElementById('popupOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                fecharPopup();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                fecharPopup();
+            }
+        });
+
+        if (window.location.hash === '#contato-enviado') {
+            setTimeout(() => {
+                mostrarPopup();
+            }, 400);
+        }
+
+        // Loading no formulário
+        const formContato = document.getElementById('formContato');
+        formContato.addEventListener('submit', function(e) {
+            const btn = this.querySelector('.btn');
+            btn.classList.add('loading');
+            btn.textContent = 'Enviando...';
         });
     </script>
 </body>
