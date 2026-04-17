@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARCANUM — Propriedade Intelectual | Registro de Marcas, Patentes e Software</title>
+
+<!-- Security headers (meta fallback; prefer equivalent HTTP headers at the hosting layer) -->
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.allorigins.win https://api.bcb.gov.br https://brapi.dev https://economia.awesomeapi.com.br; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy"
+      content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()">
+
 <meta name="description" content="Registro de marcas, patentes e proteção de software no INPI. Consultoria especializada em propriedade intelectual para empresas em Ribeirão Preto e todo Brasil.">
 <meta name="keywords" content="registro de marca, patente, propriedade intelectual, INPI, software, Ribeirão Preto, advogado marcas, registro INPI">
 <meta name="author" content="Arcanum Propriedade Intelectual">
@@ -875,7 +883,6 @@ footer {
     </div>
 
     <form id="formContato" class="contato-form" action="https://formsubmit.co/empresagbferreira@gmail.com" method="POST" novalidate>
-      <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://arcanumpi.com.br/#contato-enviado">
       <input type="hidden" name="_template" value="table">
       <div class="form-field">
@@ -1295,6 +1302,20 @@ let allArt = [], curFilter = 'todos';
 
 const proxyUrl = (u) => 'https://api.allorigins.win/get?url=' + encodeURIComponent(u);
 
+/* Escape HTML special chars before interpolation into innerHTML.
+   RSS titles/summaries come from third-party feeds and must be treated as untrusted. */
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => (
+  { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+));
+
+/* Only allow http(s) + mailto + tel for article links; reject javascript:, data:, etc. */
+const safeUrl = (u) => {
+  try {
+    const url = new URL(u, window.location.href);
+    return /^(https?|mailto|tel):$/i.test(url.protocol) ? url.href : '#';
+  } catch { return '#'; }
+};
+
 const timeAgo = (d) => {
   const dt = new Date(d); if (isNaN(dt.getTime())) return 'Recente';
   const s = Math.floor((Date.now() - dt.getTime()) / 1000);
@@ -1334,9 +1355,9 @@ function showModal(a) {
   $('#m-tag').className = 'tag ' + tgc;
   $('#m-tag').textContent = tgl;
   $('#m-title').textContent = a.title;
-  $('#m-meta').innerHTML = '<span class="src">' + a.source + '</span><span class="dot"> · </span><span>' + (a.time || '') + '</span>';
+  $('#m-meta').innerHTML = '<span class="src">' + esc(a.source) + '</span><span class="dot"> · </span><span>' + esc(a.time || '') + '</span>';
   $('#m-body').textContent = a.summary || a.title;
-  $('#m-link').href = a.link || '#';
+  $('#m-link').href = safeUrl(a.link);
   $('#modal').classList.add('open');
 }
 
@@ -1346,10 +1367,10 @@ function mkCard(a, extra = '') {
   const tgl = a.tglbl || (CAT_LABEL[cat] || cat);
   const d = document.createElement('div');
   d.className = 'card' + (extra ? ' ' + extra : '');
-  d.innerHTML = '<span class="tag ' + tgc + '">' + tgl + '</span>' +
-                '<h3 class="ct">' + a.title + '</h3>' +
-                (a.summary ? '<p class="ce">' + a.summary + '</p>' : '') +
-                '<div class="cm"><span class="src">' + a.source + '</span><span class="dot">·</span><span>' + (a.time || '') + '</span></div>';
+  d.innerHTML = '<span class="tag ' + esc(tgc) + '">' + esc(tgl) + '</span>' +
+                '<h3 class="ct">' + esc(a.title) + '</h3>' +
+                (a.summary ? '<p class="ce">' + esc(a.summary) + '</p>' : '') +
+                '<div class="cm"><span class="src">' + esc(a.source) + '</span><span class="dot">·</span><span>' + esc(a.time || '') + '</span></div>';
   d.addEventListener('click', () => showModal(a));
   return d;
 }
@@ -1357,18 +1378,18 @@ function mkHero(a) {
   const d = document.createElement('div');
   d.className = 'card card-hero';
   d.innerHTML = '<span class="tag tg-des">Destaque</span>' +
-                '<h2 class="ct">' + a.title + '</h2>' +
-                '<p class="ce">' + (a.summary || '') + '</p>' +
-                '<div class="cm"><span class="src">' + a.source + '</span><span class="dot">·</span><span>' + (a.time || '') + '</span></div>';
+                '<h2 class="ct">' + esc(a.title) + '</h2>' +
+                '<p class="ce">' + esc(a.summary || '') + '</p>' +
+                '<div class="cm"><span class="src">' + esc(a.source) + '</span><span class="dot">·</span><span>' + esc(a.time || '') + '</span></div>';
   d.addEventListener('click', () => showModal(a));
   return d;
 }
 function mkListItem(a, n) {
   const d = document.createElement('div');
   d.className = 'list-item';
-  d.innerHTML = '<div class="lnum">' + n + '</div>' +
-                '<div><div class="ltitle">' + a.title + '</div>' +
-                '<div class="cm" style="margin-top:.3rem;"><span class="src">' + a.source + '</span><span class="dot">·</span><span>' + (a.time || '') + '</span></div></div>';
+  d.innerHTML = '<div class="lnum">' + esc(n) + '</div>' +
+                '<div><div class="ltitle">' + esc(a.title) + '</div>' +
+                '<div class="cm" style="margin-top:.3rem;"><span class="src">' + esc(a.source) + '</span><span class="dot">·</span><span>' + esc(a.time || '') + '</span></div></div>';
   d.addEventListener('click', () => showModal(a));
   return d;
 }
