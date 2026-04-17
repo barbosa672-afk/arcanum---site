@@ -52,7 +52,7 @@
      X-Frame-Options meta equivalent. Configure `X-Frame-Options: DENY` or a real
      `Content-Security-Policy: frame-ancestors 'none'` HTTP header at the hosting
      or CDN layer (e.g. Cloudflare Transform Rules) to actually block framing. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.bcb.gov.br https://economia.awesomeapi.com.br https://brapi.dev https://api.allorigins.win https://corsproxy.io https://api.codetabs.com https://api.rss2json.com; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://subscribe-forms.beehiiv.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.bcb.gov.br https://economia.awesomeapi.com.br https://brapi.dev https://api.allorigins.win https://corsproxy.io https://api.codetabs.com https://api.rss2json.com https://arcanum-tax-newsletter.beehiiv.com https://subscribe-forms.beehiiv.com; frame-src https://subscribe-forms.beehiiv.com; form-action https://formsubmit.co https://arcanum-tax-newsletter.beehiiv.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()">
 <link rel="icon" type="image/png" href="logo-icon.png">
@@ -495,7 +495,7 @@ header {
 .newsletter {
   background: var(--slate); border-radius: var(--r4);
   padding: 2.25rem 2.5rem; margin-bottom: 2.5rem;
-  display: flex; gap: 2rem; align-items: center;
+  display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;
   position: relative; overflow: hidden;
   box-shadow: 0 8px 40px rgba(78,110,128,.28);
 }
@@ -504,11 +504,16 @@ header {
 .nl-text { flex: 1; }
 .nl-text h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: #fff; margin-bottom: .3rem; }
 .nl-text p { font-size: 13px; color: rgba(255,255,255,.58); }
+.nl-embed { flex: 0 0 480px; max-width: 100%; display: flex; align-items: center; justify-content: flex-end; }
+.nl-embed iframe { background: transparent; border-radius: var(--r3); box-shadow: 0 4px 20px rgba(0,0,0,.18); }
 .nl-form { display: flex; flex: 0 0 360px; border-radius: var(--rp); overflow: hidden; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(20px); }
 .nl-form input { flex: 1; background: none; border: none; color: #fff; padding: .7rem 1.25rem; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; min-width: 0; }
 .nl-form input::placeholder { color: rgba(255,255,255,.42); }
 .nl-form button { background: var(--gold); border: none; color: #fff; padding: .7rem 1.4rem; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: background .2s; white-space: nowrap; }
 .nl-form button:hover { background: var(--gold-l); }
+.nl-msg { flex-basis: 100%; margin-top: .9rem; font-size: 13px; color: rgba(255,255,255,.85); text-align: right; }
+.nl-msg.ok { color: var(--gold-l); }
+.nl-msg.err { color: #ffb4b4; }
 
 /* Modal */
 .modal-bd { display: none; position: fixed; inset: 0; background: rgba(30,58,74,.3); backdrop-filter: blur(12px); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
@@ -743,7 +748,7 @@ footer {
   .g-feat { grid-template-columns: 1fr; } .card-hero { grid-row: 1; min-height: 320px; }
   .g2 { grid-template-columns: 1fr; } .g3 { grid-template-columns: 1fr 1fr; }
   .g4 { grid-template-columns: 1fr 1fr; } .f-grid { grid-template-columns: 1fr 1fr; }
-  .newsletter { flex-direction: column; } .nl-form { flex: 0 0 100%; width: 100%; }
+  .newsletter { flex-direction: column; } .nl-form { flex: 0 0 100%; width: 100%; } .nl-embed { flex: 0 0 auto; width: 100%; justify-content: center; }
   .pi-hero { grid-template-columns: 1fr; gap: 1rem; text-align: center; padding: 1.5rem .5rem; }
   .pi-hero-actions { justify-content: center; }
   .pi-hero-visual { order: -1; }
@@ -759,6 +764,101 @@ footer {
   .float-contact { right: 14px; bottom: 14px; }
   .float-btn { width: 46px; height: 46px; }
   .float-btn svg { width: 22px; height: 22px; }
+}
+
+/* ═══════════════ SPONSOR SLOTS (patrocínio) ═══════════════ */
+/* Editorial-friendly, always labeled (CONAR). See SPONSORS config in JS. */
+.sponsor-tag {
+  display: inline-block; font-family: 'DM Sans', sans-serif;
+  font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  padding: .22rem .55rem; border-radius: 6px;
+  background: var(--gold); color: #fff; border: 1px solid var(--gold-d);
+}
+.sponsor-lbl {
+  display: flex; align-items: center; gap: .6rem; margin-bottom: .85rem;
+  font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--slate);
+}
+.sponsor-lbl::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, var(--gold-b), transparent);
+}
+/* Strip (PI view — "Parceiros") */
+.sponsor-strip {
+  margin: 2.5rem 0 2rem; padding: 1.4rem 1.6rem;
+  background: rgba(255,255,255,.55); border: 1px solid rgba(78,110,128,.14);
+  border-radius: var(--r3); backdrop-filter: blur(10px);
+}
+.sponsor-strip-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.sponsor-item {
+  display: flex; flex-direction: column; gap: .35rem;
+  padding: .95rem 1.1rem; border-radius: var(--r2);
+  background: rgba(255,255,255,.7); border: 1px solid rgba(78,110,128,.12);
+  text-decoration: none; color: inherit; transition: all .2s;
+}
+.sponsor-item:hover { transform: translateY(-2px); border-color: var(--gold-b); box-shadow: 0 6px 22px rgba(78,110,128,.12); }
+.sponsor-item-brand { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+.sponsor-item-desc { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+.sponsor-item.placeholder {
+  border-style: dashed; border-color: var(--gold-b); background: var(--gold-g);
+  align-items: center; justify-content: center; text-align: center; min-height: 78px;
+}
+.sponsor-item.placeholder .sponsor-item-brand { color: var(--gold-d); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+.sponsor-item.placeholder .sponsor-item-desc { color: var(--slate); font-size: 11px; }
+
+/* Leaderboard (News view — abaixo dos indicadores) */
+.sponsor-lb {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin: 1.5rem 0; padding: 1rem 1.4rem;
+  background: linear-gradient(90deg, rgba(201,168,67,.08), rgba(78,110,128,.06));
+  border: 1px solid var(--gold-b); border-radius: var(--r2);
+  text-decoration: none; color: inherit; transition: all .2s;
+}
+.sponsor-lb:hover { border-color: var(--gold); box-shadow: 0 4px 18px rgba(201,168,67,.18); }
+.sponsor-lb-body { flex: 1; min-width: 0; }
+.sponsor-lb-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.sponsor-lb-desc { font-size: 12.5px; color: var(--ink-3); line-height: 1.45; }
+.sponsor-lb.placeholder {
+  border-style: dashed; background: transparent; justify-content: center; text-align: center;
+}
+.sponsor-lb.placeholder .sponsor-lb-brand { color: var(--gold-d); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+
+/* Sidebar card (News view — entre Calendário e Legislação) */
+.sponsor-sb {
+  padding: 1.1rem 1.25rem; border-radius: var(--r2);
+  background: rgba(255,255,255,.6); border: 1px solid rgba(78,110,128,.14); backdrop-filter: blur(8px);
+  display: flex; flex-direction: column; gap: .5rem;
+  text-decoration: none; color: inherit; transition: all .2s;
+}
+.sponsor-sb:hover { border-color: var(--gold-b); }
+.sponsor-sb-head { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); display: flex; align-items: center; gap: .5rem; }
+.sponsor-sb-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); }
+.sponsor-sb-desc { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+.sponsor-sb.placeholder { border-style: dashed; background: var(--gold-g); border-color: var(--gold-b); }
+.sponsor-sb.placeholder .sponsor-sb-brand { color: var(--gold-d); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+
+/* Native card (News view — acima de Últimas Notícias) */
+.sponsor-native {
+  margin: .5rem 0 1.25rem; padding: 1.25rem 1.4rem;
+  border-radius: var(--r3); background: rgba(255,255,255,.7);
+  border: 1px solid var(--gold-b); border-left: 3px solid var(--gold);
+  display: flex; gap: 1.25rem; align-items: center;
+  text-decoration: none; color: inherit; transition: all .2s;
+}
+.sponsor-native:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,67,.15); }
+.sponsor-native-body { flex: 1; min-width: 0; }
+.sponsor-native-head { display: flex; align-items: center; gap: .6rem; margin-bottom: .35rem; }
+.sponsor-native-src { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--slate); }
+.sponsor-native-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: .3rem; }
+.sponsor-native-desc { font-size: 13px; color: var(--ink-3); line-height: 1.5; }
+.sponsor-native.placeholder { border-style: dashed; border-color: var(--gold-b); justify-content: center; text-align: center; }
+.sponsor-native.placeholder .sponsor-native-title { color: var(--gold-d); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+
+@media (max-width: 640px) {
+  .sponsor-lb, .sponsor-native { flex-direction: column; align-items: flex-start; gap: .5rem; }
 }
 </style>
 </head>
@@ -1036,6 +1136,12 @@ footer {
     </form>
   </div>
 
+  <!-- ═══════ SPONSOR STRIP (PI view) — Parceiros e apoiadores ═══════ -->
+  <div class="sponsor-strip" id="piSponsorStrip" hidden>
+    <div class="sponsor-lbl"><span class="sponsor-tag">Publi</span> Parceiros</div>
+    <div class="sponsor-strip-grid" id="piSponsorStripGrid"></div>
+  </div>
+
   <div class="signature">O invisível que sustenta o seu império.</div>
 </main>
 
@@ -1061,6 +1167,9 @@ footer {
     <div class="ind sk-ind"><div class="ind-lbl">Ibovespa</div><div class="ind-val">—</div><div class="ind-ch neutral">—</div></div>
   </div>
 
+  <!-- ═══════ SPONSOR LEADERBOARD (News view) — abaixo dos indicadores ═══════ -->
+  <div id="newsSponsorLb" hidden></div>
+
   <div class="rss-status">
     <div class="rdot loading" id="rdot"></div>
     <span id="rstat">Carregando notícias das fontes RSS…</span>
@@ -1077,6 +1186,9 @@ footer {
   </div>
   <div class="g-feat" id="fg"></div>
 
+  <!-- ═══════ SPONSOR NATIVE CARD (News view) — antes de Últimas Notícias ═══════ -->
+  <div id="newsSponsorNative" hidden></div>
+
   <div class="sec"><h2>Últimas Notícias</h2></div>
   <div class="g3" id="ng"></div>
 
@@ -1090,6 +1202,8 @@ footer {
         <div class="sb-head">Calendário Fiscal</div>
         <div class="sb-body" id="cal"></div>
       </div>
+      <!-- ═══════ SPONSOR SIDEBAR (News view) — entre Calendário e Legislação ═══════ -->
+      <div id="newsSponsorSb" hidden></div>
       <div class="sb-box">
         <div class="sb-head">Legislação Recente</div>
         <div class="sb-body" id="leg"></div>
@@ -1097,16 +1211,25 @@ footer {
     </div>
   </div>
 
-  <div class="newsletter">
+  <div class="newsletter" id="newsletter">
     <div class="nl-text">
       <h3>Receba o Briefing Diário</h3>
       <p>As principais notícias tributárias e fiscais no seu e-mail, às 7h da manhã.</p>
     </div>
-    <div class="nl-form">
-      <input type="email" id="nl-in" placeholder="seu@email.com.br">
-      <button id="nl-btn" type="button">Assinar</button>
+    <!-- Beehiiv official subscribe form embed — hosted iframe (subscribe-forms.beehiiv.com)
+         bypassa o 403 Cloudflare Challenge que o endpoint /create retorna pra POSTs externos.
+         Form editável em https://app.beehiiv.com/subscribe_forms -->
+    <div class="nl-embed">
+      <iframe
+        src="https://subscribe-forms.beehiiv.com/b791d7ff-cd4e-4b9a-bbbd-bfe65c94fa59"
+        class="beehiiv-embed" data-test-id="beehiiv-embed"
+        frameborder="0" scrolling="no"
+        title="Inscrição — Briefing Diário Arcanum Tax News"
+        loading="lazy"
+        style="width:100%; max-width:480px; height:300px; margin:0; border:0; background:transparent;"></iframe>
     </div>
   </div>
+  <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
 
   <div class="sec"><h2>Jurisprudência em Destaque</h2></div>
   <div class="g4" id="jg"></div>
@@ -1160,7 +1283,7 @@ footer {
       </ul></div>
       <div class="f-col" data-view="news" hidden><h4>Institucional</h4><ul>
         <li><a href="#" data-goto="pi">Voltar ao site Arcanum</a></li>
-        <li><a href="#" data-scroll="nl-in">Newsletter</a></li>
+        <li><a href="#" data-scroll="newsletter">Newsletter</a></li>
       </ul></div>
     </div>
     <div class="f-bot">
@@ -1240,6 +1363,125 @@ let currentView = 'pi';
 let rssLoaded = false;
 let indicesLoaded = false;
 
+/* ═══════════════════════════════════════════════════════════════
+   SPONSOR SLOTS  —  Configuração dos slots de patrocínio
+   ═══════════════════════════════════════════════════════════════
+   Como preencher um slot:
+     1. Altere `enabled: true`
+     2. Preencha brand/desc/href
+     3. `tag` define o selo ("Patrocinado", "Publi", "Apoio", "Parceiro")
+   Como deixar vazio (placeholder "Anuncie aqui"):
+     - Deixe `enabled: false`  (o card vira placeholder clicável com mailto)
+   Slots disponíveis:
+     - piStrip:  até 3 cards horizontais no rodapé da view PI (Registro)
+     - newsLb:   leaderboard largo abaixo dos indicadores (view Notícias)
+     - newsSb:   card no sidebar entre Calendário e Legislação (view Notícias)
+     - newsNat:  card "nativo" (estilo editorial) antes de Últimas Notícias
+   ═══════════════════════════════════════════════════════════════ */
+const SPONSOR_CONTACT = 'contato@arcanumpi.com.br';
+const SPONSORS = {
+  piStrip: [
+    { enabled: false, tag: 'Parceiro',    brand: '', desc: '', href: '' },
+    { enabled: false, tag: 'Parceiro',    brand: '', desc: '', href: '' },
+    { enabled: false, tag: 'Parceiro',    brand: '', desc: '', href: '' },
+  ],
+  newsLb:  { enabled: false, tag: 'Patrocinado', brand: '', desc: '', href: '' },
+  newsSb:  { enabled: false, tag: 'Patrocinado', brand: '', desc: '', href: '' },
+  newsNat: { enabled: false, tag: 'Publi',        brand: '', src: '', title: '', desc: '', href: '' },
+};
+
+const sponsorMailto = (label) =>
+  `mailto:${SPONSOR_CONTACT}?subject=${encodeURIComponent('Patrocínio — Arcanum ' + label)}&body=${encodeURIComponent('Olá, tenho interesse no slot de patrocínio "' + label + '" do site arcanumpi.com.br. Gostaria de receber informações sobre disponibilidade e valores.\n\nEmpresa:\nResponsável:\nTelefone:\nSegmento:')}`;
+
+const renderSponsors = () => {
+  // 1) PI strip — 3 cards ou placeholders
+  const stripGrid = document.getElementById('piSponsorStripGrid');
+  const stripWrap = document.getElementById('piSponsorStrip');
+  if (stripGrid && stripWrap) {
+    stripGrid.innerHTML = SPONSORS.piStrip.map((s, i) => {
+      if (s.enabled && s.brand) {
+        return `<a class="sponsor-item" href="${s.href}" target="_blank" rel="sponsored noopener">
+          <span class="sponsor-item-brand">${s.brand}</span>
+          <span class="sponsor-item-desc">${s.desc}</span>
+        </a>`;
+      }
+      return `<a class="sponsor-item placeholder" href="${sponsorMailto('Parceiros #' + (i + 1))}">
+        <span class="sponsor-item-brand">Anuncie aqui</span>
+        <span class="sponsor-item-desc">contato@arcanumpi.com.br</span>
+      </a>`;
+    }).join('');
+    stripWrap.hidden = false;
+  }
+
+  // 2) News leaderboard
+  const lb = document.getElementById('newsSponsorLb');
+  if (lb) {
+    const s = SPONSORS.newsLb;
+    lb.innerHTML = (s.enabled && s.brand)
+      ? `<a class="sponsor-lb" href="${s.href}" target="_blank" rel="sponsored noopener">
+          <span class="sponsor-tag">${s.tag || 'Patrocinado'}</span>
+          <div class="sponsor-lb-body">
+            <div class="sponsor-lb-brand">${s.brand}</div>
+            <div class="sponsor-lb-desc">${s.desc}</div>
+          </div>
+        </a>`
+      : `<a class="sponsor-lb placeholder" href="${sponsorMailto('Leaderboard Notícias')}">
+          <span class="sponsor-tag">Publi</span>
+          <div class="sponsor-lb-body">
+            <div class="sponsor-lb-brand">Anuncie aqui</div>
+            <div class="sponsor-lb-desc">Slot de destaque para escritórios, contabilidades e softwares tributários. contato@arcanumpi.com.br</div>
+          </div>
+        </a>`;
+    lb.hidden = false;
+  }
+
+  // 3) News sidebar card
+  const sb = document.getElementById('newsSponsorSb');
+  if (sb) {
+    const s = SPONSORS.newsSb;
+    sb.innerHTML = (s.enabled && s.brand)
+      ? `<a class="sponsor-sb" href="${s.href}" target="_blank" rel="sponsored noopener">
+          <div class="sponsor-sb-head"><span class="sponsor-tag">${s.tag || 'Patrocinado'}</span></div>
+          <div class="sponsor-sb-brand">${s.brand}</div>
+          <div class="sponsor-sb-desc">${s.desc}</div>
+        </a>`
+      : `<a class="sponsor-sb placeholder" href="${sponsorMailto('Sidebar Notícias')}">
+          <div class="sponsor-sb-head"><span class="sponsor-tag">Publi</span></div>
+          <div class="sponsor-sb-brand">Anuncie aqui</div>
+          <div class="sponsor-sb-desc">Espaço reservado. ${SPONSOR_CONTACT}</div>
+        </a>`;
+    sb.hidden = false;
+  }
+
+  // 4) News native card (before Últimas)
+  const nat = document.getElementById('newsSponsorNative');
+  if (nat) {
+    const s = SPONSORS.newsNat;
+    nat.innerHTML = (s.enabled && s.title)
+      ? `<a class="sponsor-native" href="${s.href}" target="_blank" rel="sponsored noopener">
+          <div class="sponsor-native-body">
+            <div class="sponsor-native-head">
+              <span class="sponsor-tag">${s.tag || 'Publi'}</span>
+              <span class="sponsor-native-src">${s.src || s.brand || ''}</span>
+            </div>
+            <div class="sponsor-native-title">${s.title}</div>
+            <div class="sponsor-native-desc">${s.desc}</div>
+          </div>
+        </a>`
+      : `<a class="sponsor-native placeholder" href="${sponsorMailto('Card patrocinado (Destaques)')}">
+          <div class="sponsor-native-body">
+            <div class="sponsor-native-head">
+              <span class="sponsor-tag">Publi</span>
+              <span class="sponsor-native-src">Reservado</span>
+            </div>
+            <div class="sponsor-native-title">Seu conteúdo patrocinado aqui</div>
+            <div class="sponsor-native-desc">Destaque editorial entre os cards. Ideal para escritórios de advocacia, contabilidades e softwares tributários. ${SPONSOR_CONTACT}</div>
+          </div>
+        </a>`;
+    nat.hidden = false;
+  }
+};
+
 const BRANDS = {
   pi: {
     n: 'Arcanum', s: 'Propriedade Intelectual',
@@ -1300,6 +1542,9 @@ const setView = (v) => {
 
   // Scroll to top on switch
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'auto' : 'auto' });
+
+  // Render sponsor slots (deferred to microtask so SPONSORS const is live)
+  Promise.resolve().then(() => { try { renderSponsors(); } catch (e) { console.error('[SPONSORS]', e); } });
 
   // Lazy-load news content — surface any error to the status bar so
   // "Carregando…" never hangs silently if something throws.
@@ -1790,11 +2035,10 @@ $('#m-close').addEventListener('click', () => $('#modal').classList.remove('open
 $('#modal').addEventListener('click', (e) => { if (e.target === $('#modal')) $('#modal').classList.remove('open'); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { $('#modal').classList.remove('open'); $('#popupOverlay').classList.remove('active'); } });
 
-$('#nl-btn').addEventListener('click', () => {
-  const inp = $('#nl-in');
-  if (inp.value.includes('@')) { inp.value = ''; inp.placeholder = '✓ Cadastro realizado!'; setTimeout(() => inp.placeholder = 'seu@email.com.br', 3000); }
-  else { inp.placeholder = 'Insira um e-mail válido'; inp.focus(); }
-});
+/* Newsletter — via iframe oficial do Beehiiv (subscribe-forms.beehiiv.com).
+   O form é renderizado pelo iframe; validação, POST e confirmação ficam
+   100% dentro da origem do Beehiiv, bypassando o 403 Cloudflare Challenge
+   que bloqueava POSTs externos pro endpoint /create. */
 
 /* Scroll to top */
 const stbtn = $('#stbtn');
@@ -1813,6 +2057,9 @@ window.addEventListener('hashchange', () => {
 /* Auto-refresh (somente quando a view de notícias já foi carregada) */
 setInterval(() => { if (rssLoaded) loadRSS(); }, 10 * 60 * 1000);
 setInterval(() => { if (indicesLoaded) loadIndices(); }, 5 * 60 * 1000);
+
+/* Render sponsor slots on initial load — PI e Notícias têm slots em ambas as views */
+Promise.resolve().then(() => { try { renderSponsors(); } catch (e) { console.error('[SPONSORS init]', e); } });
 </script>
 
 </body>
