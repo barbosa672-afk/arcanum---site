@@ -1326,7 +1326,15 @@ $$('.faq-q').forEach(btn => {
 /* ─── Conversion tracking (GA4 + Google Ads) ──────────────────
    Dispara eventos em cliques de alta intenção (WhatsApp, e-mail,
    Instagram) e no envio do formulário. Seguro para rodar mesmo
-   sem IDs configurados — `gtag` é um stub até o gtag.js carregar. */
+   sem IDs configurados — `gtag` é um stub até o gtag.js carregar.
+
+   Todos os eventos vão para o GA4 (para análise e otimização).
+   A conversão do Google Ads só é disparada para eventos explicitamente
+   marcados como conversão em ARCANUM_ADS_CONVERSION_EVENTS abaixo —
+   por padrão, apenas `generate_lead` (envio do formulário) para não
+   inflar contagens no Ads com cliques de baixa intenção. */
+const ARCANUM_ADS_CONVERSION_EVENTS = new Set(['generate_lead']);
+
 function arcanumTrack(eventName, params) {
   try {
     if (typeof window.gtag === 'function') {
@@ -1336,7 +1344,12 @@ function arcanumTrack(eventName, params) {
     const adsId = cfg.GOOGLE_ADS_ID;
     const label = cfg.CONVERSION_LABEL_LEAD;
     const isPlaceholder = (v) => !v || /X{6,}/.test(v);
-    if (!isPlaceholder(adsId) && !isPlaceholder(label) && typeof window.gtag === 'function') {
+    if (
+      ARCANUM_ADS_CONVERSION_EVENTS.has(eventName) &&
+      !isPlaceholder(adsId) &&
+      !isPlaceholder(label) &&
+      typeof window.gtag === 'function'
+    ) {
       window.gtag('event', 'conversion', { send_to: adsId + '/' + label });
     }
   } catch (_) { /* no-op */ }
