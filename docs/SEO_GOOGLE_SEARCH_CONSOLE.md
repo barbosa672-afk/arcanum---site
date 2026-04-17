@@ -44,7 +44,7 @@ explicação de lei, etc).
 | `index.html` — `<head>`         | Title, description e keywords expandidos para cobrir PI **e** notícias tributárias/fiscais.    |
 | `index.html` — `<head>`         | Meta tags `geo.*`, `theme-color`, `hreflang`, `robots` com `max-image-preview:large`.          |
 | `index.html` — `<head>`         | Open Graph + Twitter Card (aparece bonito quando o link é compartilhado).                      |
-| `index.html` — `<head>`         | JSON-LD com `Organization` + `WebSite` + `LegalService` (nome, NAP, serviços, SearchAction).   |
+| `index.html` — `<head>`         | JSON-LD com `Organization` + `WebSite` + `LegalService` (nome, NAP, serviços, logo, áreas atendidas). |
 | `index.html` — `<head>`         | Placeholder `google-site-verification` para você colar o token do Search Console.              |
 | `sitemap.xml`                   | Expandido com todas as seções + referência de imagem (logo).                                   |
 | `robots.txt` (novo)             | Permite indexação, aponta pro sitemap, autoriza `Googlebot-Image`.                             |
