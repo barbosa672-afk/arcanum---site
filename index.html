@@ -1364,19 +1364,25 @@ async function fetchText(url, proxy, outerSignal, timeoutMs = 5000) {
 }
 
 function parseFeedXml(text, src) {
-  const doc = new DOMParser().parseFromString(text, 'text/xml');
-  if (doc.querySelector('parsererror')) return [];
-  const items = Array.from(doc.querySelectorAll('item, entry'));
-  if (!items.length) return [];
-  return items.slice(0, 15).map(it => {
-    const title = (it.querySelector('title')?.textContent || '').trim();
-    const linkEl = it.querySelector('link');
-    const link = (linkEl?.getAttribute('href') || linkEl?.textContent || it.querySelector('guid')?.textContent || '#').trim();
-    const summary = (it.querySelector('description, summary, content')?.textContent || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 300);
-    const pub = it.querySelector('pubDate, published, updated')?.textContent || '';
-    const pubMs = parseDate(pub);
-    return { title, link, summary, source: src.name, cat: src.cat, time: pub ? timeAgo(pub) : 'Recente', _pubMs: pubMs };
-  }).filter(a => a.title);
+  try {
+    const doc = new DOMParser().parseFromString(text, 'text/xml');
+    if (doc.querySelector('parsererror')) return [];
+    const items = Array.from(doc.querySelectorAll('item, entry'));
+    if (!items.length) return [];
+    return items.slice(0, 15).map(it => {
+      const title = (it.querySelector('title')?.textContent || '').trim();
+      const linkEl = it.querySelector('link');
+      const link = (linkEl?.getAttribute('href') || linkEl?.textContent || it.querySelector('guid')?.textContent || '#').trim();
+      const summary = (it.querySelector('description, summary, content')?.textContent || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 300);
+      const pub = it.querySelector('pubDate, published, updated')?.textContent || '';
+      const pd = new Date(pub);
+      const pubMs = isNaN(pd.getTime()) ? 0 : pd.getTime();
+      return { title, link, summary, source: src.name, cat: src.cat, time: pub ? timeAgo(pub) : 'Recente', _pubMs: pubMs };
+    }).filter(a => a.title);
+  } catch (e) {
+    console.warn('[RSS] parseFeedXml failed for', src?.name, e?.message || e);
+    return [];
+  }
 }
 
 async function fetchFeed(src) {
@@ -1392,7 +1398,8 @@ async function fetchFeed(src) {
     }));
     outer.abort();
     return items;
-  } catch {
+  } catch (e) {
+    console.warn('[RSS]', src?.name, 'all proxies failed:', e?.errors?.map(x => x?.message).join(' | ') || e?.message || e);
     outer.abort();
     return [];
   }
