@@ -1,0 +1,14 @@
+# robots.txt — Arcanum Propriedade Intelectual
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Permite explicitamente o crawler do Google Ads (verificação de landing page).
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+Sitemap: https://arcanumpi.com.br/sitemap.xml
