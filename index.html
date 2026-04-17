@@ -21,7 +21,7 @@
      X-Frame-Options meta equivalent. Configure `X-Frame-Options: DENY` or a real
      `Content-Security-Policy: frame-ancestors 'none'` HTTP header at the hosting
      or CDN layer (e.g. Cloudflare Transform Rules) to actually block framing. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.bcb.gov.br https://economia.awesomeapi.com.br https://brapi.dev https://api.allorigins.win https://corsproxy.io https://api.codetabs.com https://api.rss2json.com https://arcanum-tax-newsletter.beehiiv.com; form-action https://formsubmit.co https://arcanum-tax-newsletter.beehiiv.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://subscribe-forms.beehiiv.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.bcb.gov.br https://economia.awesomeapi.com.br https://brapi.dev https://api.allorigins.win https://corsproxy.io https://api.codetabs.com https://api.rss2json.com https://arcanum-tax-newsletter.beehiiv.com https://subscribe-forms.beehiiv.com; frame-src https://subscribe-forms.beehiiv.com; form-action https://formsubmit.co https://arcanum-tax-newsletter.beehiiv.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()">
 <link rel="icon" type="image/png" href="logo-icon.png">
@@ -379,6 +379,8 @@ header {
 .nl-text { flex: 1; }
 .nl-text h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: #fff; margin-bottom: .3rem; }
 .nl-text p { font-size: 13px; color: rgba(255,255,255,.58); }
+.nl-embed { flex: 0 0 480px; max-width: 100%; display: flex; align-items: center; justify-content: flex-end; }
+.nl-embed iframe { background: transparent; border-radius: var(--r3); box-shadow: 0 4px 20px rgba(0,0,0,.18); }
 .nl-form { display: flex; flex: 0 0 360px; border-radius: var(--rp); overflow: hidden; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(20px); }
 .nl-form input { flex: 1; background: none; border: none; color: #fff; padding: .7rem 1.25rem; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; min-width: 0; }
 .nl-form input::placeholder { color: rgba(255,255,255,.42); }
@@ -1089,17 +1091,20 @@ footer {
       <h3>Receba o Briefing Diário</h3>
       <p>As principais notícias tributárias e fiscais no seu e-mail, às 7h da manhã.</p>
     </div>
-    <form class="nl-form" id="nl-form"
-          action="https://arcanum-tax-newsletter.beehiiv.com/create"
-          method="post" target="_blank" novalidate>
-      <input type="email" id="nl-in" name="email" placeholder="seu@email.com.br" required autocomplete="email">
-      <button id="nl-btn" type="submit">Assinar</button>
-      <input type="hidden" name="fallback_path" value="/subscribe/confirm">
-      <input type="hidden" name="subscribe_success_message" value="Inscrito! Confirme no seu e-mail.">
-      <input type="hidden" name="subscribe_error_message" value="Ops, tente novamente.">
-    </form>
-    <p id="nl-msg" class="nl-msg" hidden></p>
+    <!-- Beehiiv official subscribe form embed — hosted iframe (subscribe-forms.beehiiv.com)
+         bypassa o 403 Cloudflare Challenge que o endpoint /create retorna pra POSTs externos.
+         Form editável em https://app.beehiiv.com/subscribe_forms -->
+    <div class="nl-embed">
+      <iframe
+        src="https://subscribe-forms.beehiiv.com/b791d7ff-cd4e-4b9a-bbbd-bfe65c94fa59"
+        class="beehiiv-embed" data-test-id="beehiiv-embed"
+        frameborder="0" scrolling="no"
+        title="Inscrição — Briefing Diário Arcanum Tax News"
+        loading="lazy"
+        style="width:100%; max-width:480px; height:300px; margin:0; border:0; background:transparent;"></iframe>
+    </div>
   </div>
+  <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
 
   <div class="sec"><h2>Jurisprudência em Destaque</h2></div>
   <div class="g4" id="jg"></div>
@@ -1905,52 +1910,10 @@ $('#m-close').addEventListener('click', () => $('#modal').classList.remove('open
 $('#modal').addEventListener('click', (e) => { if (e.target === $('#modal')) $('#modal').classList.remove('open'); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { $('#modal').classList.remove('open'); $('#popupOverlay').classList.remove('active'); } });
 
-/* ═══════════════ Newsletter — integração Beehiiv ═══════════════
-   Fluxo:
-   1) Tenta enviar via fetch (no-cors) pro endpoint público da publicação.
-      Como é no-cors, não conseguimos ler a resposta — mas o POST chega
-      e o e-mail é gravado. Mostramos "Inscrição realizada" otimista.
-   2) Se fetch falhar (ex.: rede), faz fallback removendo preventDefault
-      e deixando o form submeter normalmente (abre /subscribe/confirm em
-      nova aba por causa do target=_blank + action do form).
-═══════════════════════════════════════════════════════════════ */
-const nlForm = $('#nl-form');
-const nlMsg  = $('#nl-msg');
-const nlShow = (text, kind) => {
-  if (!nlMsg) return;
-  nlMsg.textContent = text;
-  nlMsg.className = 'nl-msg ' + (kind || '');
-  nlMsg.hidden = false;
-};
-if (nlForm) {
-  nlForm.addEventListener('submit', async (e) => {
-    const inp = $('#nl-in');
-    const email = (inp && inp.value || '').trim();
-    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-    if (!validEmail) {
-      e.preventDefault();
-      nlShow('Insira um e-mail válido.', 'err');
-      inp && inp.focus();
-      return;
-    }
-    // Best-effort async submit via no-cors so a pessoa não sai do site.
-    e.preventDefault();
-    const btn = $('#nl-btn');
-    if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
-    try {
-      const fd = new FormData(nlForm);
-      await fetch(nlForm.action, { method: 'POST', body: fd, mode: 'no-cors' });
-      if (inp) inp.value = '';
-      nlShow('✓ Inscrição enviada. Confirme no seu e-mail.', 'ok');
-    } catch (err) {
-      console.warn('[NL] fetch falhou, fallback submit', err);
-      // Fallback: submit tradicional (abre aba do Beehiiv)
-      nlForm.submit();
-    } finally {
-      if (btn) { btn.disabled = false; btn.textContent = 'Assinar'; }
-    }
-  });
-}
+/* Newsletter — via iframe oficial do Beehiiv (subscribe-forms.beehiiv.com).
+   O form é renderizado pelo iframe; validação, POST e confirmação ficam
+   100% dentro da origem do Beehiiv, bypassando o 403 Cloudflare Challenge
+   que bloqueava POSTs externos pro endpoint /create. */
 
 /* Scroll to top */
 const stbtn = $('#stbtn');
