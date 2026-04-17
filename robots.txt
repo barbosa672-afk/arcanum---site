@@ -1,0 +1,14 @@
+# robots.txt — Arcanum
+# https://www.robotstxt.org/robotstxt.html
+# Guia Google: https://developers.google.com/search/docs/crawling-indexing/robots/intro
+
+# Todos os crawlers podem indexar tudo.
+User-agent: *
+Allow: /
+
+# Google Images (permite aparecer o logo em pesquisa de imagens).
+User-agent: Googlebot-Image
+Allow: /
+
+# Sitemap principal.
+Sitemap: https://arcanumpi.com.br/sitemap.xml
