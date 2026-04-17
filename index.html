@@ -1097,6 +1097,206 @@
             .btn { padding: 12px 20px; }
         }
 
+        /* ===== NOTÍCIAS & ÍNDICES ===== */
+        .indices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 8px 0 28px;
+        }
+        .indice {
+            background: rgba(255,255,255,.55);
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+            border: 1px solid rgba(255,255,255,.8);
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: var(--shadow-1);
+            transition: transform .25s var(--ease-smooth), box-shadow .25s var(--ease-smooth);
+        }
+        .indice:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-2);
+        }
+        .indice-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--cinza);
+            margin-bottom: 6px;
+        }
+        .indice-value {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--azul);
+            line-height: 1.1;
+        }
+        .indice-change {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .indice-change.up   { color: #16a34a; }
+        .indice-change.down { color: #dc2626; }
+        .indice-change.flat { color: var(--cinza-light); }
+        .indice.skeleton .indice-value,
+        .indice.skeleton .indice-change {
+            background: linear-gradient(90deg, rgba(15,76,92,.08) 25%, rgba(15,76,92,.14) 50%, rgba(15,76,92,.08) 75%);
+            background-size: 200% 100%;
+            animation: indSkel 1.2s ease-in-out infinite;
+            color: transparent;
+            border-radius: 6px;
+            display: inline-block;
+            min-width: 70px;
+        }
+        @keyframes indSkel {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .rss-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--cinza);
+            margin: 4px 0 20px;
+        }
+        .rss-dot {
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            background: var(--cinza-light);
+            animation: rssPulse 1.6s ease-in-out infinite;
+        }
+        .rss-dot.live  { background: #16a34a; animation: rssPulse 2s ease-in-out infinite; }
+        .rss-dot.error { background: #dc2626; animation: none; }
+        @keyframes rssPulse {
+            0%, 100% { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
+            50%      { box-shadow: 0 0 0 6px transparent; opacity: .6; }
+        }
+
+        .news-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .news-filter {
+            padding: 7px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(15,76,92,.15);
+            background: rgba(255,255,255,.55);
+            color: var(--cinza);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all .2s var(--ease-smooth);
+            font-family: inherit;
+        }
+        .news-filter:hover {
+            background: rgba(255,255,255,.8);
+            color: var(--azul);
+        }
+        .news-filter.active {
+            background: linear-gradient(135deg, var(--azul), var(--azul-light));
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(15,76,92,.22);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+        }
+        .news-card {
+            background: rgba(255,255,255,.6);
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+            border: 1px solid rgba(255,255,255,.8);
+            border-radius: 14px;
+            padding: 18px 18px 16px;
+            box-shadow: var(--shadow-1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform .3s var(--ease-smooth), box-shadow .3s var(--ease-smooth), background .3s;
+            min-height: 170px;
+        }
+        .news-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,.75);
+            box-shadow: var(--shadow-2);
+        }
+        .news-tag {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-start;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+        .news-tag.tg-tri { background: rgba(212,163,55,.16); color: var(--dourado-dark); }
+        .news-tag.tg-fis { background: rgba(15,76,92,.12);  color: var(--azul); }
+        .news-tag.tg-eco { background: rgba(34,139,34,.12); color: #166534; }
+        .news-tag.tg-jur { background: rgba(120,58,178,.12); color: #6b21a8; }
+        .news-tag.tg-ref { background: rgba(220,38,38,.10); color: #b91c1c; }
+        .news-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+            color: var(--texto);
+            margin: 0;
+        }
+        .news-card p {
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--cinza);
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .news-meta {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--cinza-light);
+            padding-top: 8px;
+            border-top: 1px solid rgba(15,76,92,.08);
+        }
+        .news-meta .src {
+            font-weight: 600;
+            color: var(--azul);
+        }
+        .news-card.skeleton {
+            pointer-events: none;
+        }
+        .news-card.skeleton .sk-bar {
+            background: linear-gradient(90deg, rgba(15,76,92,.08) 25%, rgba(15,76,92,.14) 50%, rgba(15,76,92,.08) 75%);
+            background-size: 200% 100%;
+            animation: indSkel 1.2s ease-in-out infinite;
+            border-radius: 4px;
+            height: 12px;
+        }
+
+        @media (max-width: 640px) {
+            .news-grid { grid-template-columns: 1fr; }
+            .indice-value { font-size: 18px; }
+        }
+
         /* --- PREFERÊNCIA DE MOVIMENTO REDUZIDO --- */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -1128,6 +1328,7 @@
                 <a href="#marcas">Marcas</a>
                 <a href="#patentes">Patentes</a>
                 <a href="#software">Software</a>
+                <a href="#noticias">Notícias</a>
                 <a href="#faq">FAQ</a>
                 <a href="#contato">Contato</a>
             </nav>
@@ -1145,6 +1346,7 @@
         <a href="#marcas">Marcas</a>
         <a href="#patentes">Patentes</a>
         <a href="#software">Software</a>
+        <a href="#noticias">Notícias</a>
         <a href="#faq">FAQ</a>
         <a href="#contato">Contato</a>
     </nav>
@@ -1368,6 +1570,43 @@
                     <p>
                         Atuamos na regularização de ativos intangíveis, estruturação de portfólios de PI para captação de investimento e suporte jurídico em operações de fusão, aquisição e reestruturação societária.
                     </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTÍCIAS & ÍNDICES -->
+        <section id="noticias" class="container tight reveal" aria-labelledby="noticias-title">
+            <div class="content-wrap">
+                <div class="bubble">
+                    <h2 id="noticias-title">Notícias &amp; Índices</h2>
+                    <p style="margin-bottom:18px;">
+                        Acompanhe em tempo real os principais índices econômicos e as últimas notícias tributárias, fiscais e econômicas das fontes oficiais e da imprensa especializada.
+                    </p>
+
+                    <div class="indices-grid" id="indicesGrid" aria-label="Indicadores econômicos em tempo real">
+                        <div class="indice skeleton"><div class="indice-label">SELIC</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
+                        <div class="indice skeleton"><div class="indice-label">IPCA (12m)</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
+                        <div class="indice skeleton"><div class="indice-label">USD / BRL</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
+                        <div class="indice skeleton"><div class="indice-label">EUR / BRL</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
+                        <div class="indice skeleton"><div class="indice-label">BTC / BRL</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
+                        <div class="indice skeleton"><div class="indice-label">Ibovespa</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
+                    </div>
+
+                    <div class="rss-status" role="status" aria-live="polite">
+                        <span class="rss-dot" id="rssDot" aria-hidden="true"></span>
+                        <span id="rssStatus">Carregando notícias das fontes RSS…</span>
+                    </div>
+
+                    <div class="news-filters" role="tablist" aria-label="Filtrar notícias por categoria">
+                        <button class="news-filter active" data-filter="todos" type="button" role="tab" aria-selected="true">Todas</button>
+                        <button class="news-filter" data-filter="tributario" type="button" role="tab" aria-selected="false">Tributário</button>
+                        <button class="news-filter" data-filter="fiscal" type="button" role="tab" aria-selected="false">Fiscal</button>
+                        <button class="news-filter" data-filter="economico" type="button" role="tab" aria-selected="false">Econômico</button>
+                        <button class="news-filter" data-filter="jurisprudencia" type="button" role="tab" aria-selected="false">Jurisprudência</button>
+                        <button class="news-filter" data-filter="reformas" type="button" role="tab" aria-selected="false">Reformas</button>
+                    </div>
+
+                    <div class="news-grid" id="newsGrid" aria-live="polite"></div>
                 </div>
             </div>
         </section>
@@ -1645,6 +1884,297 @@
                 }
             });
         });
+
+        // ═══════════════════════════════════════════════════════════════
+        // NOTÍCIAS & ÍNDICES — RSS + indicadores econômicos ao vivo
+        // ═══════════════════════════════════════════════════════════════
+
+        // --- Fontes RSS (tributário / fiscal / econômico / jurisprudência / reformas)
+        const RSS_FEEDS = [
+            { name: 'Receita Federal',    url: 'https://www.gov.br/receitafederal/pt-br/assuntos/noticias/RSS',                 cat: 'tributario'     },
+            { name: 'JOTA',               url: 'https://www.jota.info/feed',                                                    cat: 'tributario'     },
+            { name: 'Contábeis',          url: 'https://www.contabeis.com.br/noticias/rss.xml',                                 cat: 'tributario'     },
+            { name: 'Consultor Jurídico', url: 'https://www.conjur.com.br/rss.xml',                                             cat: 'tributario'     },
+            { name: 'Banco Central',      url: 'https://www.bcb.gov.br/api/Feed/noticias/rss.xml',                              cat: 'economico'      },
+            { name: 'InfoMoney',          url: 'https://www.infomoney.com.br/feed/',                                            cat: 'economico'      },
+            { name: 'Valor Econômico',    url: 'https://valor.globo.com/financas/rss.xml',                                      cat: 'economico'      },
+            { name: 'Tesouro Nacional',   url: 'https://www.tesourotransparente.gov.br/noticias/rss',                           cat: 'fiscal'         },
+            { name: 'STF',                url: 'https://portal.stf.jus.br/servicos/rss/noticias.asp',                           cat: 'jurisprudencia' },
+            { name: 'STJ',                url: 'https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/rss.aspx',   cat: 'jurisprudencia' },
+            { name: 'Agência Senado',     url: 'https://www12.senado.leg.br/noticias/rss/ultimas',                              cat: 'reformas'       },
+            { name: 'Agência Câmara',     url: 'https://www.camara.leg.br/noticias/rss.xml',                                    cat: 'reformas'       },
+        ];
+
+        const CAT_LABEL = {
+            tributario: 'Tributário',
+            fiscal: 'Fiscal',
+            economico: 'Econômico',
+            jurisprudencia: 'Jurisprudência',
+            reformas: 'Reformas',
+        };
+        const CAT_TAG_CLASS = {
+            tributario: 'tg-tri',
+            fiscal: 'tg-fis',
+            economico: 'tg-eco',
+            jurisprudencia: 'tg-jur',
+            reformas: 'tg-ref',
+        };
+
+        const TAX_KEYWORDS = [
+            'tribut','fiscal','imposto','arrecad','receita federal','selic','copom','irpf','irpj','csll',
+            'pis','cofins','icms','iss','ipi','ibs','cbs','reforma tributária','simples nacional','carf',
+            'pgfn','nota fiscal','nfe','planejamento tributário','contribuição','alíquota','base de cálculo',
+            'isenção','parcelamento','débito fiscal','auto de infração','sped','dctf','dirf','e-social',
+            'reinf','certidão','lucro real','lucro presumido','mei','previdência','inss','orçamento',
+            'déficit','superávit','pib','inflação','economia','desoneração','benefício fiscal','crédito tributário',
+            'câmbio','dívida','tributação','fisco','stf','stj','decreto','instrução normativa','lei complementar',
+            'pec','projeto de lei','senado','câmara','fazenda','bolsa','ibovespa','juros','dólar','banco central',
+        ];
+
+        const isRelevantNews = (text) => {
+            const s = text.toLowerCase();
+            return TAX_KEYWORDS.some(k => s.includes(k));
+        };
+
+        // Fallback editorial caso todos os feeds falhem (sem rede ou CORS bloqueado)
+        const NEWS_FALLBACK = [
+            { title: 'Copom mantém taxa Selic e sinaliza cautela nos próximos ciclos', source: 'Banco Central', cat: 'economico', link: 'https://www.bcb.gov.br', summary: 'Comunicado destaca resiliência da atividade e persistência das expectativas de inflação acima da meta. Decisão unânime.', time: 'Atualizando…' },
+            { title: 'Receita Federal publica instrução normativa sobre EFD-Reinf', source: 'Receita Federal', cat: 'tributario', link: 'https://www.gov.br/receitafederal', summary: 'Ajuste no prazo de entrega para o Lucro Real atende demanda do setor empresarial e de entidades contábeis.', time: 'Atualizando…' },
+            { title: 'STF retoma julgamento sobre tributação de depósitos judiciais', source: 'STF', cat: 'jurisprudencia', link: 'https://portal.stf.jus.br', summary: 'Ministros avaliam se valores em depósito devem ser tributados antes do trânsito em julgado. Impacto bilionário.', time: 'Atualizando…' },
+            { title: 'Senado avança na regulamentação do IBS e da CBS', source: 'Agência Senado', cat: 'reformas', link: 'https://www12.senado.leg.br', summary: 'Projeto define alíquotas de referência, Comitê Gestor e cronograma de transição para a Reforma Tributária.', time: 'Atualizando…' },
+            { title: 'Tesouro Nacional registra resultado primário acima das projeções', source: 'Tesouro Nacional', cat: 'fiscal', link: 'https://www.tesouro.fazenda.gov.br', summary: 'Arrecadação federal em alta e contenção de despesas discricionárias sustentam melhora do resultado fiscal.', time: 'Atualizando…' },
+            { title: 'STJ define critérios para dedutibilidade de despesas no IRPJ', source: 'STJ', cat: 'jurisprudencia', link: 'https://www.stj.jus.br', summary: 'Decisão consolida entendimento sobre requisitos de necessidade e usualidade para dedução de despesas operacionais.', time: 'Atualizando…' },
+            { title: 'Câmara aprova ajustes na regulamentação do IVA Dual', source: 'Agência Câmara', cat: 'reformas', link: 'https://www.camara.leg.br', summary: 'Texto define cronograma de redução gradual de PIS, COFINS, IPI, ICMS e ISS e mecanismos de compensação aos Estados.', time: 'Atualizando…' },
+            { title: 'Arrecadação federal mantém trajetória de alta no trimestre', source: 'Receita Federal', cat: 'fiscal', link: 'https://www.gov.br/receitafederal', summary: 'Crescimento real impulsionado por IRPJ, CSLL e reoneração parcial da folha de pagamentos.', time: 'Atualizando…' },
+            { title: 'InfoMoney — Ibovespa acompanha humor global; juros dos EUA em foco', source: 'InfoMoney', cat: 'economico', link: 'https://www.infomoney.com.br', summary: 'Investidores avaliam cenário fiscal doméstico e próximas decisões de política monetária no Brasil e nos EUA.', time: 'Atualizando…' },
+        ];
+
+        // ---------- Tempo relativo ----------
+        const timeAgo = (dateStr) => {
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return 'Recente';
+            const sec = Math.floor((Date.now() - d.getTime()) / 1000);
+            if (sec < 60)      return 'Agora';
+            if (sec < 3600)    return `Há ${Math.floor(sec/60)} min`;
+            if (sec < 86400)   return `Há ${Math.floor(sec/3600)}h`;
+            if (sec < 172800)  return 'Ontem';
+            return `Há ${Math.floor(sec/86400)} dias`;
+        };
+
+        const fmtBRL = (n, digits = 2) =>
+            Number(n).toLocaleString('pt-BR', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+
+        // ---------- Proxy RSS (allorigins, CORS aberto) ----------
+        const rssProxy = (url) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+
+        const fetchFeed = async (src) => {
+            try {
+                const ctl = new AbortController();
+                const to = setTimeout(() => ctl.abort(), 10000);
+                const r = await fetch(rssProxy(src.url), { signal: ctl.signal });
+                clearTimeout(to);
+                if (!r.ok) return [];
+                const j = await r.json();
+                const doc = new DOMParser().parseFromString(j.contents || '', 'text/xml');
+                const items = [...doc.querySelectorAll('item, entry')].slice(0, 10);
+                return items.map(it => {
+                    const title = (it.querySelector('title')?.textContent || '').trim();
+                    const linkEl = it.querySelector('link');
+                    const link = (linkEl?.getAttribute('href') || linkEl?.textContent || it.querySelector('guid')?.textContent || '#').trim();
+                    const desc = (it.querySelector('description, summary, content')?.textContent || '').replace(/<[^>]+>/g, '').trim().slice(0, 220);
+                    const pub = it.querySelector('pubDate, published, updated')?.textContent || '';
+                    return { title, link, summary: desc, source: src.name, cat: src.cat, time: pub ? timeAgo(pub) : 'Recente' };
+                }).filter(a => a.title && isRelevantNews(a.title + ' ' + a.summary));
+            } catch {
+                return [];
+            }
+        };
+
+        // ---------- Renderização das notícias ----------
+        let allNews = [];
+        let activeFilter = 'todos';
+
+        const buildNewsCard = (a) => {
+            const tgCls = CAT_TAG_CLASS[a.cat] || 'tg-tri';
+            const tgLbl = CAT_LABEL[a.cat] || a.cat;
+            const el = document.createElement('a');
+            el.className = 'news-card';
+            el.href = a.link || '#';
+            el.target = '_blank';
+            el.rel = 'noopener noreferrer';
+            el.innerHTML = `
+                <span class="news-tag ${tgCls}">${tgLbl}</span>
+                <h3>${a.title}</h3>
+                ${a.summary ? `<p>${a.summary}</p>` : ''}
+                <div class="news-meta">
+                    <span class="src">${a.source}</span>
+                    <span>·</span>
+                    <span>${a.time || ''}</span>
+                </div>`;
+            return el;
+        };
+
+        const buildSkeleton = () => {
+            const el = document.createElement('div');
+            el.className = 'news-card skeleton';
+            el.innerHTML = `
+                <div class="sk-bar" style="width:72px"></div>
+                <div class="sk-bar" style="width:95%"></div>
+                <div class="sk-bar" style="width:78%"></div>
+                <div class="sk-bar" style="width:60%;margin-top:auto"></div>`;
+            return el;
+        };
+
+        const renderNews = (list) => {
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = '';
+            const pool = list.length ? list : NEWS_FALLBACK;
+            pool.slice(0, 9).forEach(a => grid.appendChild(buildNewsCard(a)));
+        };
+
+        const renderSkeletons = () => {
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 6; i++) grid.appendChild(buildSkeleton());
+        };
+
+        const applyFilter = (cat) => {
+            activeFilter = cat;
+            document.querySelectorAll('.news-filter').forEach(b => {
+                const match = b.dataset.filter === cat;
+                b.classList.toggle('active', match);
+                b.setAttribute('aria-selected', match ? 'true' : 'false');
+            });
+            const filtered = cat === 'todos' ? allNews : allNews.filter(a => a.cat === cat);
+            renderNews(filtered.length ? filtered : (cat === 'todos' ? NEWS_FALLBACK : []));
+        };
+
+        const loadRSS = async () => {
+            const dot = document.getElementById('rssDot');
+            const st  = document.getElementById('rssStatus');
+            renderSkeletons();
+            try {
+                const results = await Promise.allSettled(RSS_FEEDS.map(fetchFeed));
+                const all = results.flatMap(r => r.status === 'fulfilled' ? r.value : []);
+                const okCount = results.filter(r => r.status === 'fulfilled' && r.value.length).length;
+                // mistura leve para diversificar fontes
+                all.sort(() => Math.random() - 0.5);
+                allNews = all;
+                if (all.length) {
+                    dot.className = 'rss-dot live';
+                    st.textContent = `${all.length} notícias · ${okCount}/${RSS_FEEDS.length} fontes ativas · Atualizado ${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+                } else {
+                    dot.className = 'rss-dot error';
+                    st.textContent = 'Fontes RSS indisponíveis — exibindo conteúdo editorial';
+                }
+            } catch {
+                allNews = [];
+                dot.className = 'rss-dot error';
+                st.textContent = 'Erro ao carregar RSS — exibindo conteúdo editorial';
+            }
+            applyFilter(activeFilter);
+        };
+
+        // ---------- Indicadores econômicos ao vivo ----------
+        const setIndice = (idx, value, change, dir = 'flat') => {
+            const el = document.querySelectorAll('#indicesGrid .indice')[idx];
+            if (!el) return;
+            el.classList.remove('skeleton');
+            el.querySelector('.indice-value').textContent = value;
+            const c = el.querySelector('.indice-change');
+            c.className = `indice-change ${dir}`;
+            c.textContent = change;
+        };
+        const setIndiceError = (idx) => {
+            const el = document.querySelectorAll('#indicesGrid .indice')[idx];
+            if (!el) return;
+            el.classList.remove('skeleton');
+            el.querySelector('.indice-value').textContent = '—';
+            const c = el.querySelector('.indice-change');
+            c.className = 'indice-change flat';
+            c.textContent = 'Indisponível';
+        };
+
+        const loadAwesomeAPI = async () => {
+            // USD-BRL, EUR-BRL, BTC-BRL  (awesomeapi: CORS aberto, sem chave)
+            try {
+                const r = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL', { signal: AbortSignal.timeout(9000) });
+                if (!r.ok) throw 0;
+                const d = await r.json();
+                const pairs = [
+                    { key: 'USDBRL', idx: 2, digits: 4 },
+                    { key: 'EURBRL', idx: 3, digits: 4 },
+                    { key: 'BTCBRL', idx: 4, digits: 0 },
+                ];
+                for (const { key, idx, digits } of pairs) {
+                    const q = d[key];
+                    if (!q) { setIndiceError(idx); continue; }
+                    const val  = Number(q.bid);
+                    const pct  = Number(q.pctChange);
+                    const dir  = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
+                    const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '▶';
+                    setIndice(idx, `R$ ${fmtBRL(val, digits)}`, `${arrw} ${Math.abs(pct).toFixed(2)}%`, dir);
+                }
+            } catch {
+                [2,3,4].forEach(setIndiceError);
+            }
+        };
+
+        const loadBCB = async () => {
+            // Banco Central / SGS — CORS aberto, sem chave
+            // 432 = SELIC meta anual, 433 = IPCA mensal
+            const fetchSGS = async (serie, n = 12) => {
+                const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${serie}/dados/ultimos/${n}?formato=json`;
+                const r = await fetch(url, { signal: AbortSignal.timeout(9000) });
+                if (!r.ok) throw 0;
+                return r.json();
+            };
+            // SELIC
+            try {
+                const s = await fetchSGS(432, 1);
+                const last = Number(s[s.length - 1].valor);
+                setIndice(0, `${fmtBRL(last, 2)}%`, 'Meta a.a.', 'flat');
+            } catch { setIndiceError(0); }
+            // IPCA 12 meses
+            try {
+                const s = await fetchSGS(433, 12);
+                const acc12 = s.reduce((p, c) => (1 + Number(c.valor)/100) * p, 1);
+                const pct = (acc12 - 1) * 100;
+                setIndice(1, `${fmtBRL(pct, 2)}%`, 'Acumulado 12m', pct > 4.5 ? 'up' : pct < 3 ? 'down' : 'flat');
+            } catch { setIndiceError(1); }
+        };
+
+        const loadIbovespa = async () => {
+            // brapi.dev — CORS aberto, sem chave para 3 req/5s
+            try {
+                const r = await fetch('https://brapi.dev/api/quote/%5EBVSP?range=1d', { signal: AbortSignal.timeout(9000) });
+                if (!r.ok) throw 0;
+                const d = await r.json();
+                const q = d.results && d.results[0];
+                if (!q || q.regularMarketPrice == null) throw 0;
+                const price = Number(q.regularMarketPrice);
+                const pct = Number(q.regularMarketChangePercent || 0);
+                const dir = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
+                const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '▶';
+                setIndice(5, `${price.toLocaleString('pt-BR', { maximumFractionDigits: 0 })} pts`, `${arrw} ${Math.abs(pct).toFixed(2)}%`, dir);
+            } catch { setIndiceError(5); }
+        };
+
+        const loadIndices = () => {
+            loadAwesomeAPI();
+            loadBCB();
+            loadIbovespa();
+        };
+
+        // ---------- Init seção Notícias ----------
+        document.querySelectorAll('.news-filter').forEach(btn => {
+            btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+        });
+        loadIndices();
+        loadRSS();
+        // Auto-refresh a cada 10 min (notícias) e 5 min (índices)
+        setInterval(loadRSS, 10 * 60 * 1000);
+        setInterval(loadIndices, 5 * 60 * 1000);
     </script>
 </body>
 </html>
