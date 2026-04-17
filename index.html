@@ -1176,10 +1176,23 @@ const setView = (v) => {
   // Scroll to top on switch
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'auto' : 'auto' });
 
-  // Lazy-load news content
+  // Lazy-load news content — surface any error to the status bar so
+  // "Carregando…" never hangs silently if something throws.
   if (v === 'news') {
-    if (!rssLoaded)     { rssLoaded = true;     loadRSS(); }
-    if (!indicesLoaded) { indicesLoaded = true; loadIndices(); }
+    if (!rssLoaded) {
+      rssLoaded = true;
+      Promise.resolve().then(() => loadRSS()).catch((err) => {
+        console.error('[RSS] loadRSS crashed:', err);
+        const st = document.getElementById('rstat');
+        const dot = document.getElementById('rdot');
+        if (st) st.textContent = 'Erro ao carregar RSS: ' + (err?.message || err);
+        if (dot) dot.className = 'rdot error';
+      });
+    }
+    if (!indicesLoaded) {
+      indicesLoaded = true;
+      Promise.resolve().then(() => loadIndices()).catch((err) => console.error('[IDX]', err));
+    }
   }
 };
 
