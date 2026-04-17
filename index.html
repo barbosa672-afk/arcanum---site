@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ARCANUM — Propriedade Intelectual | Registro de Marcas e Patentes</title>
 
+    <!-- Security Headers (meta fallback; prefer equivalent HTTP headers at the hosting layer) -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy"
+          content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo-icon.png">
 
@@ -1451,7 +1458,6 @@
                     </p>
 
                     <form id="formContato" action="https://formsubmit.co/empresagbferreira@gmail.com" method="POST" novalidate>
-                        <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_next" value="https://arcanumpi.com.br/#contato-enviado">
                         <input type="hidden" name="_template" value="table">
 
