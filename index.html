@@ -1,2180 +1,1566 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ARCANUM — Propriedade Intelectual | Registro de Marcas e Patentes</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo-icon.png">
-
-    <!-- Meta Tags SEO -->
-    <meta name="description" content="Registro de marcas, patentes e proteção de software no INPI. Consultoria especializada em propriedade intelectual para empresas em Ribeirão Preto e todo Brasil.">
-    <meta name="keywords" content="registro de marca, patente, propriedade intelectual, INPI, software, Ribeirão Preto, advogado marcas, registro INPI">
-    <meta name="author" content="Arcanum Propriedade Intelectual">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://arcanumpi.com.br">
-    <meta property="og:title" content="ARCANUM — Propriedade Intelectual">
-    <meta property="og:description" content="Proteção jurídica de ativos intangíveis com visão estratégica de negócio. Registro de marcas, patentes e software.">
-    <meta property="og:image" content="https://arcanumpi.com.br/logo-full.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://arcanumpi.com.br">
-    <meta property="twitter:title" content="ARCANUM — Propriedade Intelectual">
-    <meta property="twitter:description" content="Proteção jurídica de ativos intangíveis com visão estratégica de negócio.">
-    <meta property="twitter:image" content="https://arcanumpi.com.br/logo-full.png">
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://arcanumpi.com.br">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Structured Data (Schema.org - Negócio) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LegalService",
-        "name": "Arcanum Propriedade Intelectual",
-        "description": "Registro de marcas, patentes e proteção de software no INPI",
-        "url": "https://arcanumpi.com.br",
-        "telephone": "+55-16-99255-3003",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Ribeirão Preto",
-            "addressRegion": "SP",
-            "addressCountry": "BR"
-        },
-        "priceRange": "$$",
-        "areaServed": "BR"
-    }
-    </script>
-
-    <!-- Structured Data (Schema.org - FAQPage) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Quanto tempo demora o registro de marca?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "O processo de registro de marca no INPI, em média, leva de 8 a 24 meses, podendo variar conforme existência de oposições de terceiros, exigências formais do INPI e recursos administrativos durante o processo. Apesar do prazo, o pedido já gera prioridade: a partir do protocolo, terceiros não podem registrar marca idêntica ou semelhante para o mesmo segmento."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Posso registrar uma marca que já está em uso?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sim. No Brasil, o sistema é baseado no princípio da anterioridade do pedido, isto é, quem deposita primeiro tem prioridade. Contudo, quem já utiliza a marca anteriormente pode ter direito de precedência, desde que comprove uso contínuo e de boa-fé, motivo pelo qual é essencial realizar uma busca de anterioridade antes do pedido."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Qual a diferença entre marca nominativa, figurativa e mista?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Marca nominativa protege apenas o nome da marca, independentemente de fonte ou estilo visual. Marca figurativa protege somente o elemento visual, como símbolos, ícones ou logotipos sem texto. Marca mista protege a combinação entre nome e logotipo, forma mais comum no mercado. A escolha do tipo impacta diretamente no alcance da proteção jurídica."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "O que acontece se minha marca for indeferida?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Se o pedido for indeferido pelo INPI, ainda é possível apresentar recurso administrativo dentro do prazo legal, ajustar a estratégia de proteção por meio de novo pedido ou alteração da marca e avaliar o risco jurídico de uso continuado. O indeferimento não impede automaticamente o uso da marca, mas aumenta o risco de conflitos, notificações extrajudiciais e ações judiciais."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Preciso renovar o registro de marca?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sim. O registro de marca tem validade de 10 anos a partir da concessão e pode ser renovado indefinidamente por períodos sucessivos de 10 anos. A falta de renovação implica perda do direito exclusivo, permitindo que terceiros registrem a mesma marca."
-          }
-        }
-      ]
-    }
-    </script>
-
-    <style>
-        /* ===== VARIÁVEIS ===== */
-        :root {
-            --azul:         #0f4c5c;
-            --azul-light:   #1a6b7f;
-            --azul-dark:    #0a3a47;
-            --dourado:      #d4a337;
-            --dourado-light: #e8b84f;
-            --dourado-dark: #b8912d;
-            --texto:        #1d1d1f;
-            --texto-light:  #4a4a4a;
-            --cinza:        #52525b;
-            --cinza-light:  #7a7a82;
-            
-            /* Glassmorphism refinado */
-            --vidro:        rgba(255,255,255,.72);
-            --vidro-hover:  rgba(255,255,255,.82);
-            --borda-vidro:  rgba(255,255,255,.88);
-            --borda-vidro-hover: rgba(255,255,255,.95);
-            --bg-body:      #f0f0f6;
-            --bg-overlay:   rgba(15,76,92,.04);
-
-            /* Sombras refinadas */
-            --shadow-1: 0 2px 8px rgba(0,0,0,.04);
-            --shadow-2: 0 8px 24px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.03);
-            --shadow-3: 0 16px 48px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.06);
-            --shadow-inset: inset 0 1px 0 rgba(255,255,255,.8), inset 0 -1px 0 rgba(255,255,255,.4);
-
-            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-
-            /* Espaçamentos responsivos */
-            --section-pad:  64px 0;
-            --section-tight: 48px 0;
-            --bubble-pad:   32px 40px;
-            --content-px:   clamp(16px, 5vw, 64px);
-        }
-
-        /* ===== RESET ===== */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        body {
-            font-family: Inter, system-ui, sans-serif;
-            color: var(--texto);
-            background: var(--bg-body);
-            line-height: 1.75;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        p { text-align: justify; }
-
-        img { max-width: 100%; height: auto; display: block; }
-
-        /* ===== FUNDO LÍQUIDO ===== */
-        .liquid-bg {
-            position: fixed;
-            inset: -20%;
-            z-index: -1;
-            background:
-                radial-gradient(1400px 900px at 15% 5%, rgba(212,163,55,.14), transparent 65%),
-                radial-gradient(1000px 800px at 85% 25%, rgba(15,76,92,.14), transparent 65%),
-                radial-gradient(900px 700px at 25% 85%, rgba(212,163,55,.09), transparent 65%);
-            filter: blur(50px) saturate(120%);
-            animation: liquidFloat 25s ease-in-out infinite alternate;
-            will-change: transform;
-            transform: translateZ(0);
-        }
-
-        @keyframes liquidFloat {
-            0%   { transform: translate3d(0,   0,  0) scale(1);    }
-            100% { transform: translate3d(-4%, 3%, 0) scale(1.05); }
-        }
-
-        /* ===== PROGRESS BAR ===== */
-        .scroll-progress {
-            position: fixed;
-            top: 0; left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--azul), var(--dourado));
-            z-index: 10001;
-            transform-origin: left;
-            transform: scaleX(0);
-            transition: transform .1s ease;
-            box-shadow: 0 2px 10px rgba(212,163,55,.5);
-        }
-
-        /* ===== TRANSIÇÃO DE PÁGINA ===== */
-        .page-transition-overlay {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(135deg, var(--azul), var(--dourado));
-            z-index: 99999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .4s cubic-bezier(.4,0,.2,1);
-        }
-        .page-transition-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        /* ===== HEADER / NAV PILL ===== */
-        header {
-            position: fixed;
-            top: 16px;
-            left: 0; right: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            pointer-events: none;
-        }
-
-        .nav-pill {
-            pointer-events: auto;
-            width: calc(100% - clamp(32px, 8vw, 128px));
-            max-width: 840px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 24px;
-            border-radius: 999px;
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            background: var(--vidro);
-            border: 1.5px solid var(--borda-vidro);
-            box-shadow: var(--shadow-inset), var(--shadow-2);
-            transition: all .35s var(--ease-smooth);
-            transform: translateZ(0);
-        }
-        .nav-pill:hover {
-            background: var(--vidro-hover);
-            border-color: var(--borda-vidro-hover);
-            box-shadow: var(--shadow-inset), var(--shadow-3);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            color: var(--azul);
-            text-decoration: none;
-            transition: transform .3s cubic-bezier(.4,0,.2,1);
-            flex-shrink: 0;
-        }
-        .brand:hover { transform: scale(1.02); }
-
-        .brand img {
-            width: 30px;
-            filter: drop-shadow(0 0 18px rgba(212,163,55,.7));
-            animation: logoGlow 4s ease-in-out infinite;
-            transition: filter .3s ease;
-        }
-        @keyframes logoGlow {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(212,163,55,.4)); }
-            50%       { filter: drop-shadow(0 0 26px rgba(212,163,55,.9)); }
-        }
-
-        nav a {
-            position: relative;
-            margin-left: 16px;
-            text-decoration: none;
-            color: currentColor;
-            opacity: .7;
-            font-size: 14px;
-            transition: all .3s cubic-bezier(.4,0,.2,1);
-        }
-        nav a::after {
-            content: "";
-            position: absolute;
-            bottom: -4px; left: 50%;
-            width: 0; height: 2px;
-            background: var(--dourado);
-            transition: all .3s cubic-bezier(.4,0,.2,1);
-            transform: translateX(-50%);
-        }
-        nav a:hover { opacity: 1; transform: translateY(-1px); }
-        nav a:hover::after { width: 80%; }
-
-        /* ===== MENU TOGGLE ===== */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 8px;
-            background: none;
-            border: none;
-            transition: transform .3s ease;
-            touch-action: manipulation;
-        }
-        .menu-toggle:hover { transform: scale(1.1); }
-        .menu-toggle span {
-            width: 24px; height: 2px;
-            background: var(--azul);
-            transition: all .3s cubic-bezier(.4,0,.2,1);
-            border-radius: 2px;
-            display: block;
-        }
-        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .menu-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-        /* ===== MENU MOBILE ===== */
-        .mobile-menu {
-            position: fixed;
-            top: 76px;
-            left: 16px; right: 16px;
-            background: var(--vidro);
-            backdrop-filter: blur(40px) saturate(190%);
-            -webkit-backdrop-filter: blur(40px) saturate(190%);
-            border: 1.5px solid var(--borda-vidro);
-            border-radius: 24px;
-            padding: 12px;
-            box-shadow: var(--shadow-inset), 0 20px 48px rgba(0,0,0,.15);
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-12px) scale(0.98);
-            transition: opacity .35s var(--ease-smooth),
-                        transform .35s var(--ease-smooth),
-                        visibility .35s;
-            pointer-events: none;
-        }
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
-        }
-        .mobile-menu a {
-            display: block;
-            padding: 13px 16px;
-            text-decoration: none;
-            color: var(--texto);
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 500;
-            transition: all .25s cubic-bezier(.4,0,.2,1);
-        }
-        .mobile-menu a:hover,
-        .mobile-menu a:focus {
-            background: rgba(15,76,92,.09);
-            color: var(--azul);
-            padding-left: 22px;
-        }
-        .mobile-menu a + a {
-            border-top: 1px solid rgba(212,163,55,.1);
-        }
-
-        /* ===== LAYOUT ===== */
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 0;
-        }
-
-        .content-wrap {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 0 var(--content-px);
-        }
-
-        section {
-            padding: var(--section-pad);
-            position: relative;
-        }
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(212,163,55,.1), transparent);
-            opacity: 0.5;
-        }
-        .tight { padding: var(--section-tight); }
-
-        /* ===== HERO ===== */
-        .hero {
-            padding-top: 160px;
-            padding-bottom: 64px;
-            text-align: center;
-            position: relative;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(212,163,55,.2), transparent);
-        }
-        .logo-full-wrap {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 32px;
-            animation: fadeInDown 0.8s var(--ease-smooth);
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== LAZY LOADING IMAGES ===== */
-        .logo-full {
-            width: min(640px, 82vw);
-            opacity: .45;
-            filter: drop-shadow(0 0 70px rgba(212,163,55,.35)) blur(10px);
-            mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
-            -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
-            transition: all .8s cubic-bezier(.4,0,.2,1);
-            will-change: transform, filter;
-            transform: translateZ(0);
-        }
-        .logo-full.loaded {
-            filter: drop-shadow(0 0 70px rgba(212,163,55,.35)) blur(0);
-        }
-        .logo-full:hover {
-            opacity: .65;
-            filter: drop-shadow(0 0 90px rgba(212,163,55,.5)) blur(0);
-            transform: scale(1.02) translateZ(0);
-        }
-
-        .hero h1 {
-            font-size: clamp(26px, 5vw, 48px);
-            max-width: 720px;
-            margin: 0 auto 20px;
-            letter-spacing: -.035em;
-            line-height: 1.2;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--azul), var(--azul-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero p {
-            max-width: 640px;
-            margin: 0 auto 32px;
-            font-size: clamp(15px, 1.8vw, 17px);
-            color: var(--texto-light);
-            letter-spacing: -0.005em;
-            line-height: 1.8;
-        }
-
-        /* ===== BOTÃO ===== */
-        .btn {
-            position: relative;
-            display: inline-block;
-            padding: 15px 40px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, var(--azul), var(--azul-light));
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            letter-spacing: -0.01em;
-            overflow: hidden;
-            isolation: isolate;
-            box-shadow: 0 16px 40px rgba(15,76,92,.25);
-            transition: all .35s var(--ease-smooth);
-            cursor: pointer;
-            border: 1px solid rgba(255,255,255,.2);
-            transform: translateZ(0);
-            touch-action: manipulation;
-            white-space: nowrap;
-        }
-        .btn::before {
-            content: "";
-            position: absolute;
-            inset: -40%;
-            background: radial-gradient(300px 120px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.45), transparent 60%);
-            mix-blend-mode: screen;
-            opacity: 0;
-            transition: opacity .3s ease;
-        }
-        .btn::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 999px;
-            padding: 2px;
-            background: linear-gradient(135deg, rgba(212,163,55,.6), rgba(212,163,55,0));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity .3s ease;
-        }
-        .btn:hover {
-            transform: translateY(-3px) translateZ(0);
-            box-shadow: 0 20px 48px rgba(15,76,92,.35);
-            background: linear-gradient(135deg, var(--azul-light), #2a8fa0);
-        }
-        .btn:hover::before { opacity: 1; }
-        .btn:hover::after  { opacity: 1; }
-        .btn:active {
-            transform: scale(0.97) translateZ(0);
-            box-shadow: var(--shadow-1);
-            transition: transform .1s ease, box-shadow .1s ease;
-        }
-        .btn.loading {
-            pointer-events: none;
-            opacity: 0.7;
-        }
-        .btn.loading::after {
-            content: "";
-            position: absolute;
-            width: 16px; height: 16px;
-            top: 50%; left: 50%;
-            margin-left: -8px; margin-top: -8px;
-            border: 2px solid transparent;
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: btnSpin 0.6s linear infinite;
-        }
-        @keyframes btnSpin { to { transform: rotate(360deg); } }
-
-        /* ===== BUBBLE (CARD) ===== */
-        .bubble {
-            background: var(--vidro);
-            backdrop-filter: blur(32px) saturate(160%);
-            -webkit-backdrop-filter: blur(32px) saturate(160%);
-            border-radius: 20px;
-            padding: var(--bubble-pad);
-            border: 1.5px solid var(--borda-vidro);
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-inset), var(--shadow-2);
-            transition: all .4s var(--ease-smooth);
-            transform: translateZ(0);
-        }
-        .bubble:hover {
-            transform: translateY(-4px) translateZ(0);
-            background: var(--vidro-hover);
-            border-color: var(--borda-vidro-hover);
-            box-shadow: var(--shadow-inset), var(--shadow-3);
-        }
-        .bubble h2 {
-            font-size: clamp(18px, 2.4vw, 24px);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.3;
-            margin-bottom: 16px;
-            color: var(--azul);
-            transition: color .35s var(--ease-smooth);
-            background: linear-gradient(135deg, var(--azul), var(--azul-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .bubble:hover h2 {
-            background: linear-gradient(135deg, var(--dourado), var(--dourado-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .bubble p {
-            color: var(--texto-light);
-            font-size: clamp(14px, 1.5vw, 16px);
-            letter-spacing: -0.005em;
-            line-height: 1.8;
-            margin-bottom: 14px;
-        }
-
-        /* ===== STATS ===== */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-        }
-        .stat-item {
-            text-align: center;
-            padding: 24px 18px;
-            background: rgba(255,255,255,.6);
-            border-radius: 16px;
-            border: 1.5px solid rgba(212,163,55,.18);
-            transition: all .35s var(--ease-smooth);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-        .stat-item:hover {
-            transform: translateY(-3px) translateZ(0);
-            background: rgba(255,255,255,.72);
-            box-shadow: var(--shadow-2);
-            border-color: rgba(212,163,55,.35);
-        }
-        .stat-number {
-            display: block;
-            font-size: clamp(32px, 5vw, 44px);
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--dourado), var(--dourado-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            margin-bottom: 8px;
-            letter-spacing: -0.03em;
-        }
-        .stat-label {
-            display: block;
-            font-size: 13px;
-            color: var(--cinza-light);
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        /* ===== DIFERENCIAIS ===== */
-        .diferenciais-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-            margin-top: 16px;
-        }
-        .diferencial-item {
-            display: flex;
-            gap: 16px;
-            padding: 22px 24px;
-            background: rgba(255,255,255,.55);
-            border-radius: 16px;
-            border: 1.5px solid rgba(212,163,55,.15);
-            transition: all .35s var(--ease-smooth);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-        .diferencial-item:hover {
-            transform: translateY(-3px) translateZ(0);
-            background: rgba(255,255,255,.68);
-            box-shadow: var(--shadow-2);
-            border-color: rgba(212,163,55,.3);
-        }
-        .diferencial-icon {
-            flex-shrink: 0;
-            width: 44px; height: 44px;
-            background: linear-gradient(135deg, var(--dourado), var(--dourado-dark));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 8px 24px rgba(212,163,55,.25);
-            transition: all .35s var(--ease-smooth);
-        }
-        .diferencial-item:hover .diferencial-icon {
-            transform: scale(1.08) rotate(5deg);
-            box-shadow: 0 12px 32px rgba(212,163,55,.35);
-        }
-        .diferencial-content h3 {
-            font-size: 15px;
-            color: var(--azul);
-            margin-bottom: 6px;
-            font-weight: 600;
-            transition: color .35s var(--ease-smooth);
-        }
-        .diferencial-item:hover .diferencial-content h3 {
-            color: var(--dourado);
-        }
-        .diferencial-content p {
-            font-size: 14px;
-            color: var(--texto-light);
-            line-height: 1.6;
-            margin: 0;
-            text-align: left;
-        }
-
-        /* ===== FAQ ===== */
-        .faq-item {
-            background: rgba(255,255,255,.55);
-            border-radius: 16px;
-            border: 1.5px solid rgba(212,163,55,.15);
-            margin-bottom: 10px;
-            overflow: hidden;
-            transition: all .35s var(--ease-smooth);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-        .faq-item:hover {
-            border-color: rgba(212,163,55,.3);
-            background: rgba(255,255,255,.65);
-            box-shadow: var(--shadow-1);
-        }
-
-        .faq-question {
-            padding: 16px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            user-select: none;
-            width: 100%;
-            border: none;
-            background: transparent;
-            text-align: left;
-            touch-action: manipulation;
-        }
-        .faq-question h3 {
-            font-size: clamp(15px, 1.6vw, 16px);
-            color: var(--azul);
-            font-weight: 600;
-            margin: 0;
-            transition: color .35s var(--ease-smooth);
-            line-height: 1.45;
-        }
-        .faq-question:hover h3 {
-            color: var(--dourado);
-        }
-
-        .faq-toggle {
-            flex-shrink: 0;
-            width: 28px; height: 28px;
-            border-radius: 50%;
-            background: rgba(15,76,92,.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all .4s cubic-bezier(.4,0,.2,1);
-            font-size: 20px;
-            color: var(--azul);
-            line-height: 1;
-        }
-        .faq-item.active .faq-toggle {
-            transform: rotate(135deg);
-            background: var(--azul);
-            color: #fff;
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .5s cubic-bezier(.4,0,.2,1),
-                        padding .5s cubic-bezier(.4,0,.2,1);
-        }
-        .faq-item.active .faq-answer {
-            max-height: 800px;
-            padding: 0 20px 16px;
-        }
-        .faq-answer p {
-            font-size: 14px;
-            color: var(--texto-light);
-            line-height: 1.75;
-            margin-bottom: 10px;
-            text-align: left;
-        }
-        .faq-answer p:last-child { margin-bottom: 0; }
-        .faq-answer strong {
-            color: var(--azul);
-            font-weight: 600;
-        }
-
-        /* ===== FORMULÁRIO ===== */
-        .form-field {
-            margin-bottom: 16px;
-            position: relative;
-        }
-        .form-field label {
-            display: block;
-            font-size: 14px;
-            color: var(--cinza);
-            margin-bottom: 6px;
-            transition: color .3s ease;
-            font-weight: 500;
-        }
-        .form-field input,
-        .form-field textarea {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 12px;
-            border: 1.5px solid #d4d4d4;
-            font-family: inherit;
-            font-size: 16px; /* 16px evita zoom automático em iOS */
-            outline: none;
-            background: rgba(255,255,255,.95);
-            transition: all .3s cubic-bezier(.4,0,.2,1);
-            -webkit-appearance: none;
-            appearance: none;
-        }
-        .form-field input:focus,
-        .form-field textarea:focus {
-            border-color: var(--azul);
-            box-shadow: 0 0 0 4px rgba(15,76,92,.12);
-            background: #fff;
-        }
-        .form-field textarea { resize: vertical; min-height: 110px; }
-
-        /* ===== REVEAL (SCROLL ANIMATION) ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(18px);
-        }
-        .reveal.in {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity .5s var(--ease-out), transform .5s var(--ease-out);
-        }
-
-        /* ===== ASSINATURA / FOOTER ===== */
-        .signature {
-            text-align: center;
-            padding: 56px 20px 24px;
-            font-size: 14px;
-            color: #8b8b8b;
-            letter-spacing: .08em;
-        }
-        footer {
-            text-align: center;
-            padding: 28px 20px 36px;
-            color: #777;
-            font-size: 13px;
-        }
-
-        /* ===== POPUP ===== */
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.75);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            animation: fadeIn 0.3s ease;
-            padding: 20px;
-        }
-        .popup-overlay.active { display: flex; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-
-        .popup-content {
-            background: var(--vidro);
-            backdrop-filter: blur(40px) saturate(200%);
-            -webkit-backdrop-filter: blur(40px) saturate(200%);
-            border: 1.5px solid var(--borda-vidro);
-            border-radius: 32px;
-            padding: clamp(32px, 7vw, 52px);
-            max-width: 540px;
-            width: 100%;
-            box-shadow: var(--shadow-inset), 0 32px 72px rgba(0,0,0,.25);
-            text-align: center;
-            animation: popupSlideUp 0.5s cubic-bezier(.4,0,.2,1);
-            position: relative;
-        }
-
-        @keyframes popupSlideUp {
-            from { opacity: 0; transform: translateY(40px) scale(0.9); }
-            to   { opacity: 1; transform: translateY(0)   scale(1);   }
-        }
-
-        .popup-icon {
-            width: 80px; height: 80px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 44px;
-            box-shadow: 0 16px 40px rgba(34,197,94,.35), inset 0 1px 0 rgba(255,255,255,.5);
-            animation: checkmarkBounce 0.8s cubic-bezier(.4,0,.2,1);
-        }
-
-        @keyframes checkmarkBounce {
-            0%   { transform: scale(0) rotate(-45deg); opacity: 0; }
-            50%  { transform: scale(1.2) rotate(10deg); }
-            100% { transform: scale(1) rotate(0deg);   opacity: 1; }
-        }
-
-        .popup-content h3 {
-            color: var(--azul);
-            font-size: clamp(20px, 4vw, 26px);
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-        .popup-content p {
-            margin-bottom: 28px;
-            color: var(--cinza);
-            font-size: clamp(14px, 1.5vw, 16px);
-            line-height: 1.6;
-            text-align: center;
-        }
-        .popup-close {
-            background: linear-gradient(135deg, var(--azul), #0a3a47);
-            color: #fff;
-            border: none;
-            padding: 14px 36px;
-            border-radius: 999px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s cubic-bezier(.4,0,.2,1);
-            box-shadow: 0 8px 20px rgba(15,76,92,.3);
-            touch-action: manipulation;
-        }
-        .popup-close:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 12px 32px rgba(15,76,92,.5);
-        }
-        .popup-close:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-
-        /* ===== BOTÕES FLUTUANTES ===== */
-        .whatsapp-float,
-        .instagram-float,
-        .scroll-top {
-            position: fixed;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 14px;
-            background: rgba(255,255,255,0.84);
-            backdrop-filter: blur(20px) saturate(150%);
-            -webkit-backdrop-filter: blur(20px) saturate(150%);
-            border: 1px solid rgba(255,255,255,.9);
-            box-shadow: 0 1px 0 rgba(255,255,255,.65) inset, var(--shadow-2);
-            transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
-            cursor: pointer;
-            transform: translateZ(0);
-            text-decoration: none;
-            touch-action: manipulation;
-        }
-        .whatsapp-float  { bottom: 22px;  width: 50px; height: 50px; z-index: 999; }
-        .instagram-float { bottom: 82px;  width: 43px; height: 43px; z-index: 998; }
-        .scroll-top {
-            bottom: 135px; width: 43px; height: 43px; z-index: 997;
-            opacity: 0; visibility: hidden;
-            transform: translateY(6px) translateZ(0);
-            border: none;
-        }
-        .scroll-top.visible {
-            opacity: .8; visibility: visible;
-            transform: translateY(0) translateZ(0);
-            transition: opacity .4s var(--ease-out), transform .4s var(--ease-out), visibility .4s;
-        }
-        .whatsapp-float svg,
-        .instagram-float svg,
-        .scroll-top svg { width: 20px; height: 20px; }
-        .whatsapp-float svg  { fill: #25D366; }
-        .instagram-float svg { fill: #e1306c; }
-        .scroll-top svg      { fill: var(--azul); }
-
-        .whatsapp-float:hover,
-        .instagram-float:hover,
-        .scroll-top:hover {
-            transform: translateY(-4px) translateZ(0) scale(1.05);
-            box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, var(--shadow-3);
-        }
-        .whatsapp-float:active,
-        .instagram-float:active,
-        .scroll-top:active {
-            transform: scale(0.94) translateZ(0);
-            transition: transform .1s ease;
-        }
-
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(212,163,55,.08); }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--azul), var(--dourado));
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--dourado), var(--azul));
-        }
-
-        /* ============================================================
-           BREAKPOINTS RESPONSIVOS
-           ============================================================ */
-
-        /* --- TABLET GRANDE (≤ 1024px) --- */
-        @media (max-width: 1024px) {
-            .diferenciais-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* --- TABLET (≤ 900px) --- */
-        @media (max-width: 900px) {
-            :root {
-                --section-pad:   52px 0;
-                --section-tight: 40px 0;
-                --bubble-pad:    28px 32px;
-            }
-
-            nav { display: none; }
-            .menu-toggle { display: flex; }
-
-            .hero {
-                padding-top: 120px;
-                padding-bottom: 44px;
-            }
-            .hero h1 { font-size: clamp(22px, 5vw, 34px); }
-            .hero p  { font-size: 15px; }
-
-            .logo-full { opacity: .38; }
-
-            .stats { grid-template-columns: repeat(2, 1fr); }
-
-            .diferenciais-grid { grid-template-columns: 1fr; }
-
-            .whatsapp-float  { bottom: 16px !important; right: 14px !important; width: 48px !important; height: 48px !important; }
-            .instagram-float { bottom: 74px !important; right: 14px !important; width: 40px !important; height: 40px !important; }
-            .scroll-top      { bottom: 124px !important; right: 14px !important; width: 40px !important; height: 40px !important; }
-        }
-
-        /* --- MOBILE GRANDE (≤ 640px) --- */
-        @media (max-width: 640px) {
-            :root {
-                --section-pad:   40px 0;
-                --section-tight: 32px 0;
-                --bubble-pad:    24px 22px;
-                --content-px:    16px;
-            }
-
-            .nav-pill {
-                width: calc(100% - 24px);
-                padding: 9px 14px;
-            }
-            .brand { font-size: 14px; }
-            .brand img { width: 26px; }
-
-            .hero {
-                padding-top: 100px;
-                padding-bottom: 36px;
-            }
-            .hero h1 {
-                font-size: clamp(20px, 6vw, 28px);
-                letter-spacing: -.02em;
-            }
-            .hero p { font-size: 14px; }
-            .logo-full-wrap { margin-bottom: 20px; }
-
-            .btn {
-                padding: 13px 26px;
-                font-size: 14px;
-                width: 100%;
-                text-align: center;
-            }
-
-            .bubble {
-                border-radius: 14px;
-            }
-            .bubble h2 { font-size: clamp(16px, 4.5vw, 20px); }
-
-            .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .stat-item { padding: 16px 12px; }
-
-            .diferencial-item { padding: 14px 16px; gap: 12px; }
-            .diferencial-icon { width: 36px; height: 36px; font-size: 16px; }
-
-            .faq-question { padding: 14px 16px; }
-            .faq-item.active .faq-answer { padding: 0 16px 14px; }
-
-            .form-field input,
-            .form-field textarea { padding: 11px 12px; }
-
-            .signature { padding: 40px 20px 20px; font-size: 13px; }
-
-            footer { padding: 20px 16px 32px; }
-        }
-
-        /* --- MOBILE PEQUENO (≤ 380px) --- */
-        @media (max-width: 380px) {
-            :root {
-                --bubble-pad: 16px 14px;
-                --content-px: 12px;
-            }
-
-            .nav-pill { padding: 8px 12px; }
-            .brand span { display: none; } /* Oculta texto "ARCANUM" no header, mantém só o ícone */
-
-            .hero h1 { font-size: 19px; }
-            .hero p  { font-size: 13px; }
-
-            .stats { grid-template-columns: 1fr; }
-
-            .btn { padding: 12px 20px; }
-        }
-
-        /* ===== NOTÍCIAS & ÍNDICES ===== */
-        .indices-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
-            margin: 8px 0 28px;
-        }
-        .indice {
-            background: rgba(255,255,255,.55);
-            backdrop-filter: blur(20px) saturate(150%);
-            -webkit-backdrop-filter: blur(20px) saturate(150%);
-            border: 1px solid rgba(255,255,255,.8);
-            border-radius: 14px;
-            padding: 14px 16px;
-            box-shadow: var(--shadow-1);
-            transition: transform .25s var(--ease-smooth), box-shadow .25s var(--ease-smooth);
-        }
-        .indice:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-2);
-        }
-        .indice-label {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            color: var(--cinza);
-            margin-bottom: 6px;
-        }
-        .indice-value {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--azul);
-            line-height: 1.1;
-        }
-        .indice-change {
-            display: inline-block;
-            margin-top: 6px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .indice-change.up   { color: #16a34a; }
-        .indice-change.down { color: #dc2626; }
-        .indice-change.flat { color: var(--cinza-light); }
-        .indice.skeleton .indice-value,
-        .indice.skeleton .indice-change {
-            background: linear-gradient(90deg, rgba(15,76,92,.08) 25%, rgba(15,76,92,.14) 50%, rgba(15,76,92,.08) 75%);
-            background-size: 200% 100%;
-            animation: indSkel 1.2s ease-in-out infinite;
-            color: transparent;
-            border-radius: 6px;
-            display: inline-block;
-            min-width: 70px;
-        }
-        @keyframes indSkel {
-            0%   { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .rss-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            color: var(--cinza);
-            margin: 4px 0 20px;
-        }
-        .rss-dot {
-            width: 9px; height: 9px;
-            border-radius: 50%;
-            background: var(--cinza-light);
-            animation: rssPulse 1.6s ease-in-out infinite;
-        }
-        .rss-dot.live  { background: #16a34a; animation: rssPulse 2s ease-in-out infinite; }
-        .rss-dot.error { background: #dc2626; animation: none; }
-        @keyframes rssPulse {
-            0%, 100% { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
-            50%      { box-shadow: 0 0 0 6px transparent; opacity: .6; }
-        }
-
-        .news-filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-        .news-filter {
-            padding: 7px 14px;
-            border-radius: 999px;
-            border: 1px solid rgba(15,76,92,.15);
-            background: rgba(255,255,255,.55);
-            color: var(--cinza);
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all .2s var(--ease-smooth);
-            font-family: inherit;
-        }
-        .news-filter:hover {
-            background: rgba(255,255,255,.8);
-            color: var(--azul);
-        }
-        .news-filter.active {
-            background: linear-gradient(135deg, var(--azul), var(--azul-light));
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 4px 12px rgba(15,76,92,.22);
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 14px;
-        }
-        .news-card {
-            background: rgba(255,255,255,.6);
-            backdrop-filter: blur(20px) saturate(150%);
-            -webkit-backdrop-filter: blur(20px) saturate(150%);
-            border: 1px solid rgba(255,255,255,.8);
-            border-radius: 14px;
-            padding: 18px 18px 16px;
-            box-shadow: var(--shadow-1);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-decoration: none;
-            color: inherit;
-            transition: transform .3s var(--ease-smooth), box-shadow .3s var(--ease-smooth), background .3s;
-            min-height: 170px;
-        }
-        .news-card:hover {
-            transform: translateY(-3px);
-            background: rgba(255,255,255,.75);
-            box-shadow: var(--shadow-2);
-        }
-        .news-tag {
-            display: inline-flex;
-            align-items: center;
-            align-self: flex-start;
-            padding: 3px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: .04em;
-            text-transform: uppercase;
-        }
-        .news-tag.tg-tri { background: rgba(212,163,55,.16); color: var(--dourado-dark); }
-        .news-tag.tg-fis { background: rgba(15,76,92,.12);  color: var(--azul); }
-        .news-tag.tg-eco { background: rgba(34,139,34,.12); color: #166534; }
-        .news-tag.tg-jur { background: rgba(120,58,178,.12); color: #6b21a8; }
-        .news-tag.tg-ref { background: rgba(220,38,38,.10); color: #b91c1c; }
-        .news-card h3 {
-            font-size: 15px;
-            font-weight: 600;
-            line-height: 1.4;
-            letter-spacing: -0.01em;
-            color: var(--texto);
-            margin: 0;
-        }
-        .news-card p {
-            font-size: 13px;
-            line-height: 1.55;
-            color: var(--cinza);
-            margin: 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .news-meta {
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: var(--cinza-light);
-            padding-top: 8px;
-            border-top: 1px solid rgba(15,76,92,.08);
-        }
-        .news-meta .src {
-            font-weight: 600;
-            color: var(--azul);
-        }
-        .news-card.skeleton {
-            pointer-events: none;
-        }
-        .news-card.skeleton .sk-bar {
-            background: linear-gradient(90deg, rgba(15,76,92,.08) 25%, rgba(15,76,92,.14) 50%, rgba(15,76,92,.08) 75%);
-            background-size: 200% 100%;
-            animation: indSkel 1.2s ease-in-out infinite;
-            border-radius: 4px;
-            height: 12px;
-        }
-
-        @media (max-width: 640px) {
-            .news-grid { grid-template-columns: 1fr; }
-            .indice-value { font-size: 18px; }
-        }
-
-        /* --- PREFERÊNCIA DE MOVIMENTO REDUZIDO --- */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: .01ms !important;
-                transition-duration: .01ms !important;
-            }
-            .liquid-bg { animation: none; }
-            .brand img { animation: none; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCANUM — Propriedade Intelectual | Registro de Marcas, Patentes e Software</title>
+<meta name="description" content="Registro de marcas, patentes e proteção de software no INPI. Consultoria especializada em propriedade intelectual para empresas em Ribeirão Preto e todo Brasil.">
+<meta name="keywords" content="registro de marca, patente, propriedade intelectual, INPI, software, Ribeirão Preto, advogado marcas, registro INPI">
+<meta name="author" content="Arcanum Propriedade Intelectual">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="ARCANUM — Propriedade Intelectual">
+<meta property="og:description" content="Registro de marcas, patentes e proteção de software. Consultoria especializada em propriedade intelectual.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arcanumpi.com.br">
+<meta property="og:locale" content="pt_BR">
+<link rel="canonical" href="https://arcanumpi.com.br">
+<link rel="icon" type="image/png" href="logo-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* =============================================================
+   ARCANUM — design system extraído do portal Arcanum Tax News.
+   Paleta: petróleo escuro + ardósia azulada + dourado âmbar.
+   Tipografia: Playfair Display (serif) + DM Sans (sans).
+   ============================================================= */
+:root {
+  --bg-a:   #dde4ec;
+  --bg-b:   #cdd8e3;
+  --bg-c:   #c2cdd9;
+
+  --glass-heavy:  rgba(255,255,255,0.78);
+  --glass-mid:    rgba(255,255,255,0.60);
+  --glass-light:  rgba(255,255,255,0.42);
+  --glass-border: rgba(255,255,255,0.88);
+  --glass-shine:  rgba(255,255,255,0.95);
+  --glass-shadow: rgba(78,110,128,0.11);
+
+  --ink:    #1e3a4a;
+  --ink-2:  #2d5060;
+  --ink-3:  #4e6e80;
+  --ink-4:  #8fa3b0;
+  --ink-5:  rgba(30,58,74,0.32);
+
+  --gold:   #c9a843;
+  --gold-l: #dfc06a;
+  --gold-d: #9e7c26;
+  --gold-g: rgba(201,168,67,0.14);
+  --gold-b: rgba(201,168,67,0.30);
+
+  --slate:  #4e6e80;
+  --slate-l:#7a9aac;
+  --slate-g:rgba(78,110,128,0.10);
+
+  --green:  #2a7c52;
+  --red:    #b84040;
+  --blue:   #2d5a8a;
+  --amber:  #b07820;
+
+  --r1: 10px; --r2: 16px; --r3: 22px; --r4: 32px; --rp: 999px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-a);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 100% 65% at 10% -5%,  rgba(196,214,228,0.85) 0%, transparent 55%),
+    radial-gradient(ellipse 80%  55% at 90% 105%, rgba(180,200,220,0.70) 0%, transparent 55%),
+    radial-gradient(ellipse 60%  40% at 50%  48%, rgba(212,222,232,0.45) 0%, transparent 65%),
+    linear-gradient(155deg, #dde4ec 0%, #ccd7e2 45%, #c0ccd8 100%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ─────────── HEADER ─────────── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  padding: .65rem 1.75rem;
+  background: rgba(255,255,255,0.58);
+  backdrop-filter: blur(32px) saturate(1.7);
+  -webkit-backdrop-filter: blur(32px) saturate(1.7);
+  border-bottom: 1px solid rgba(255,255,255,0.75);
+  box-shadow: 0 1px 0 rgba(78,110,128,0.06), 0 4px 24px rgba(78,110,128,0.07);
+}
+.h-inner {
+  max-width: 1320px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; flex-shrink: 0; cursor: pointer; border: 0; background: transparent; padding: 0; font-family: inherit; }
+.logo-text .n {
+  font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700;
+  color: var(--slate); letter-spacing: .1em; text-transform: uppercase;
+  display: block; line-height: 1;
+}
+.logo-text .s {
+  font-size: 8.5px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-top: 3px; font-weight: 600;
+}
+
+/* Nav pill — floating pill */
+.nav-pill {
+  display: flex;
+  background: rgba(255,255,255,0.80);
+  border: 1px solid rgba(255,255,255,0.92);
+  border-radius: var(--rp);
+  padding: .3rem .4rem; gap: .1rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 18px rgba(78,110,128,0.10);
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav-pill::-webkit-scrollbar { display: none; }
+.nav-pill[hidden] { display: none; }
+.nav-btn {
+  font-size: 12px; font-weight: 500; color: var(--ink-3);
+  text-decoration: none; padding: .4rem .9rem;
+  border-radius: var(--rp); white-space: nowrap;
+  cursor: pointer; border: none; background: none;
+  font-family: 'DM Sans', sans-serif; transition: all .18s;
+}
+.nav-btn:hover { color: var(--ink); background: rgba(255,255,255,.6); }
+.nav-btn.active { background: var(--slate); color: #fff; box-shadow: 0 2px 10px rgba(78,110,128,.22); }
+
+/* View switcher (right side of header) */
+.switcher {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .55rem 1.1rem;
+  border-radius: var(--rp);
+  background: linear-gradient(135deg, var(--slate), var(--ink-2));
+  color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,.22);
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  box-shadow: 0 4px 18px rgba(30,58,74,.22);
+  transition: all .22s;
+}
+.switcher:hover { transform: translateY(-1px); box-shadow: 0 8px 26px rgba(30,58,74,.28); }
+.switcher.alt {
+  background: rgba(255,255,255,.62); color: var(--slate);
+  border-color: rgba(255,255,255,.88);
+  box-shadow: 0 2px 12px rgba(78,110,128,.12);
+}
+.switcher.alt:hover { background: rgba(255,255,255,.88); color: var(--ink); }
+
+/* Search */
+.s-wrap { position: relative; flex: 0 0 230px; }
+.s-wrap input {
+  width: 100%;
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(255,255,255,.88);
+  border-radius: var(--rp);
+  padding: .5rem 1rem .5rem 2.2rem;
+  color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 13px;
+  outline: none; backdrop-filter: blur(16px); transition: all .2s;
+}
+.s-wrap input:focus { background: rgba(255,255,255,.85); border-color: var(--gold-b); box-shadow: 0 0 0 3px var(--gold-g); }
+.s-wrap input::placeholder { color: var(--ink-4); }
+.s-icon { position: absolute; left: .8rem; top: 50%; transform: translateY(-50%); color: var(--ink-4); font-size: 13px; pointer-events: none; }
+
+/* ─────────── TICKER (Notícias) ─────────── */
+.ticker-wrap {
+  position: relative; z-index: 1;
+  background: rgba(255,255,255,0.38);
+  border-bottom: 1px solid rgba(255,255,255,0.65);
+  backdrop-filter: blur(16px);
+  display: flex; align-items: center; overflow: hidden;
+}
+.ticker-badge {
+  flex-shrink: 0; background: var(--gold); color: #fff;
+  font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  padding: .45rem .9rem; align-self: stretch; display: flex; align-items: center;
+}
+.ticker-track { flex: 1; overflow: hidden; padding: .45rem 0; }
+.ticker-inner { display: inline-flex; gap: 3rem; animation: tick 60s linear infinite; }
+@keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.t-item { font-size: 11.5px; color: var(--ink-3); white-space: nowrap; }
+.t-item b { color: var(--gold-d); font-weight: 600; margin-right: .35rem; }
+
+/* ─────────── PAGE ─────────── */
+.page { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 2rem 1.5rem; }
+.page[hidden] { display: none; }
+
+/* Section label */
+.sec { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.25rem; }
+.sec h2 {
+  font-family: 'Playfair Display', serif; font-size: 12.5px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--slate); white-space: nowrap;
+}
+.sec::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(78,110,128,.2), transparent); }
+
+/* Alert */
+.alert {
+  background: rgba(255,255,255,.58); border: 1px solid rgba(255,255,255,.88);
+  border-left: 3px solid var(--gold); border-radius: var(--r2);
+  padding: .9rem 1.25rem; margin-bottom: 2rem;
+  display: flex; gap: .85rem; align-items: flex-start;
+  backdrop-filter: blur(20px); box-shadow: 0 4px 20px var(--glass-shadow);
+}
+.alert-icon { font-size: 15px; margin-top: 2px; flex-shrink: 0; }
+.alert-text { font-size: 13.5px; color: var(--ink-3); line-height: 1.55; }
+.alert-text strong { color: var(--ink); }
+
+/* Indicators */
+.indicators { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-bottom: 2.5rem; }
+.ind {
+  background: rgba(255,255,255,.60); border: 1px solid rgba(255,255,255,.9);
+  border-radius: var(--r2); padding: 1rem 1.1rem;
+  backdrop-filter: blur(24px) saturate(1.3);
+  box-shadow: 0 2px 16px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
+  transition: transform .2s, box-shadow .2s; position: relative; overflow: hidden;
+}
+.ind::before { content: ''; position: absolute; top: 0; left: 12px; right: 12px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,1), transparent); }
+.ind:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(78,110,128,.16), inset 0 1px 0 rgba(255,255,255,.95); }
+.ind-lbl { font-size: 9.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-4); margin-bottom: .35rem; }
+.ind-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: .22rem; }
+.ind-ch { font-size: 11px; font-weight: 500; }
+.up { color: var(--green); } .down { color: var(--red); } .neutral { color: var(--ink-4); }
+.ind.sk-ind .ind-val, .ind.sk-ind .ind-ch {
+  background: linear-gradient(90deg, rgba(78,110,128,.09) 25%, rgba(78,110,128,.16) 50%, rgba(78,110,128,.09) 75%);
+  background-size: 200% 100%; animation: sh 1.6s infinite; color: transparent;
+  border-radius: 6px; display: inline-block; min-width: 66px;
+}
+
+/* Tags */
+.tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: .22rem .65rem; border-radius: var(--rp); margin-bottom: .65rem; }
+.tg-tri { background: rgba(185,64,64,.10);  color: #8a2020; border: 1px solid rgba(185,64,64,.18); }
+.tg-fis { background: rgba(45,90,138,.10);  color: #1e3a6e; border: 1px solid rgba(45,90,138,.18); }
+.tg-eco { background: rgba(42,125,82,.10);  color: #1a5c3a; border: 1px solid rgba(42,125,82,.18); }
+.tg-pre { background: rgba(100,60,140,.10); color: #4a1a7a; border: 1px solid rgba(100,60,140,.18); }
+.tg-ref { background: var(--gold-g); color: var(--gold-d); border: 1px solid var(--gold-b); }
+.tg-des { background: var(--gold); color: #fff; border: 1px solid var(--gold); }
+.tg-stf { background: rgba(185,64,64,.10); color: #8a2020; border: 1px solid rgba(185,64,64,.15); }
+.tg-stj { background: rgba(45,90,138,.10); color: #1e3a6e; border: 1px solid rgba(45,90,138,.15); }
+.tg-carf{ background: rgba(176,120,32,.10); color: var(--amber); border: 1px solid rgba(176,120,32,.18); }
+.tg-trf { background: rgba(42,125,82,.10); color: #1a5c3a; border: 1px solid rgba(42,125,82,.15); }
+
+/* Glass Card */
+.card {
+  background: rgba(255,255,255,.60); border: 1px solid rgba(255,255,255,.88);
+  border-radius: var(--r3); padding: 1.5rem; cursor: pointer;
+  position: relative; overflow: hidden;
+  backdrop-filter: blur(24px) saturate(1.3);
+  box-shadow: 0 2px 20px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
+  transition: transform .25s cubic-bezier(.25,.46,.45,.94), box-shadow .25s;
+}
+.card::before {
+  content: ''; position: absolute; top: 0; left: 14px; right: 14px; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,1), transparent);
+  pointer-events: none;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(78,110,128,.17), inset 0 1px 0 rgba(255,255,255,.95); }
+.card .ct { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.4; color: var(--ink); margin-bottom: .55rem; }
+.card .ce { font-size: 13.5px; line-height: 1.6; color: var(--ink-3); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: .85rem; }
+.card .cm { font-size: 11px; color: var(--ink-4); display: flex; align-items: center; gap: .4rem; }
+.card .cm .src { color: var(--slate); font-weight: 600; }
+.card .cm .dot { color: var(--ink-5); }
+
+.card-hero {
+  grid-row: 1 / span 2;
+  min-height: 360px;
+  background:
+    linear-gradient(135deg, rgba(78,110,128,0.88), rgba(30,58,74,0.95)),
+    radial-gradient(ellipse at top right, rgba(201,168,67,0.25), transparent 60%);
+  color: #fff; display: flex; flex-direction: column; justify-content: flex-end;
+  border-color: rgba(255,255,255,.14);
+}
+.card-hero::before { display: none; }
+.card-hero .ct { color: #fff; font-size: 1.5rem; line-height: 1.3; }
+.card-hero .ce { color: rgba(255,255,255,.75); -webkit-line-clamp: 4; }
+.card-hero .cm .src { color: var(--gold-l); }
+.card-hero .cm { color: rgba(255,255,255,.55); }
+.card-hero .cm .dot { color: rgba(255,255,255,.35); }
+
+/* Grids */
+.g-feat { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: 12px; margin-bottom: 2.5rem; }
+.g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.g2 { display: grid; grid-template-columns: 2fr 1fr; gap: 1.75rem; margin-bottom: 2.5rem; align-items: start; }
+
+/* Filter bar */
+.filter-bar { display: flex; gap: .5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.fbtn {
+  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase; padding: .38rem 1rem;
+  border-radius: var(--rp); border: 1px solid rgba(255,255,255,.72);
+  background: rgba(255,255,255,.48); color: var(--ink-3); cursor: pointer;
+  transition: all .18s; backdrop-filter: blur(12px);
+}
+.fbtn:hover { background: rgba(255,255,255,.75); color: var(--ink); border-color: rgba(255,255,255,.92); }
+.fbtn.active { background: var(--slate); border-color: var(--slate); color: #fff; box-shadow: 0 2px 10px rgba(78,110,128,.22); }
+
+/* Numbered list */
+.list-cards { display: flex; flex-direction: column; gap: 4px; }
+.list-item { display: flex; gap: 1rem; padding: .85rem 1.1rem; border-radius: var(--r2); cursor: pointer; transition: background .18s, transform .18s; align-items: flex-start; }
+.list-item:hover { background: rgba(255,255,255,.52); transform: translateX(3px); }
+.lnum { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: rgba(78,110,128,.17); line-height: 1; width: 2rem; flex-shrink: 0; text-align: right; margin-top: 2px; }
+.ltitle { font-family: 'Playfair Display', serif; font-size: .93rem; font-weight: 700; line-height: 1.35; color: var(--ink); margin-bottom: .3rem; }
+
+/* Sidebar */
+.sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+.sb-box {
+  background: rgba(255,255,255,.56); border: 1px solid rgba(255,255,255,.85);
+  border-radius: var(--r3); overflow: hidden;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 2px 20px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
+}
+.sb-head { padding: .85rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,.6); font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); background: rgba(255,255,255,.38); }
+.sb-body { padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: .9rem; }
+.cal-item { display: flex; gap: .75rem; align-items: flex-start; }
+.cal-date { background: var(--gold-g); border: 1px solid var(--gold-b); color: var(--gold-d); font-size: 9px; font-weight: 700; letter-spacing: .05em; padding: .25rem .55rem; border-radius: 8px; white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
+.cal-lbl { font-size: 13px; font-weight: 500; color: var(--ink); }
+.cal-note { font-size: 11.5px; color: var(--ink-4); margin-top: 1px; }
+.leg-item { padding-left: .75rem; border-left: 2px solid var(--gold); }
+.leg-code { font-size: 11px; font-weight: 700; color: var(--gold-d); margin-bottom: 2px; letter-spacing: .04em; }
+.leg-desc { font-size: 13px; color: var(--ink); }
+.leg-date { font-size: 10.5px; color: var(--ink-4); margin-top: 2px; }
+
+/* RSS status */
+.rss-status {
+  display: flex; align-items: center; gap: .5rem; font-size: 11px; color: var(--ink-4);
+  margin-bottom: 1rem; padding: .45rem .8rem;
+  background: rgba(255,255,255,.45); border: 1px solid rgba(255,255,255,.7);
+  border-radius: var(--rp); width: fit-content; backdrop-filter: blur(12px);
+}
+.rdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.rdot.loading { background: var(--amber); animation: pulse 1s infinite; }
+.rdot.live    { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2.5s infinite; }
+.rdot.error   { background: var(--red); }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+
+/* Skeleton */
+.sk { background: linear-gradient(90deg, rgba(78,110,128,.07) 25%, rgba(78,110,128,.14) 50%, rgba(78,110,128,.07) 75%); background-size: 200% 100%; animation: sh 1.6s infinite; border-radius: 7px; }
+@keyframes sh { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Sources */
+.sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin-bottom: 2.5rem; }
+.src-card {
+  background: rgba(255,255,255,.52); border: 1px solid rgba(255,255,255,.82);
+  border-radius: var(--r2); padding: 1rem;
+  display: flex; flex-direction: column; align-items: center; gap: .55rem;
+  cursor: pointer; text-align: center; backdrop-filter: blur(20px);
+  box-shadow: 0 2px 12px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.9);
+  transition: all .2s;
+}
+.src-card:hover { background: rgba(255,255,255,.78); transform: translateY(-2px); box-shadow: 0 6px 22px rgba(78,110,128,.15); }
+.src-logo { width: 44px; height: 44px; border-radius: 10px; background: rgba(78,110,128,.09); border: 1px solid rgba(78,110,128,.14); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: var(--slate); }
+.src-name { font-size: 11px; font-weight: 500; color: var(--ink-4); }
+
+/* Newsletter */
+.newsletter {
+  background: var(--slate); border-radius: var(--r4);
+  padding: 2.25rem 2.5rem; margin-bottom: 2.5rem;
+  display: flex; gap: 2rem; align-items: center;
+  position: relative; overflow: hidden;
+  box-shadow: 0 8px 40px rgba(78,110,128,.28);
+}
+.newsletter::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,.22), transparent); }
+.newsletter::after { content: ''; position: absolute; right: -50px; top: -50px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(ellipse, rgba(255,255,255,.07) 0%, transparent 65%); pointer-events: none; }
+.nl-text { flex: 1; }
+.nl-text h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: #fff; margin-bottom: .3rem; }
+.nl-text p { font-size: 13px; color: rgba(255,255,255,.58); }
+.nl-form { display: flex; flex: 0 0 360px; border-radius: var(--rp); overflow: hidden; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(20px); }
+.nl-form input { flex: 1; background: none; border: none; color: #fff; padding: .7rem 1.25rem; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; min-width: 0; }
+.nl-form input::placeholder { color: rgba(255,255,255,.42); }
+.nl-form button { background: var(--gold); border: none; color: #fff; padding: .7rem 1.4rem; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: background .2s; white-space: nowrap; }
+.nl-form button:hover { background: var(--gold-l); }
+
+/* Modal */
+.modal-bd { display: none; position: fixed; inset: 0; background: rgba(30,58,74,.3); backdrop-filter: blur(12px); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+.modal-bd.open { display: flex; }
+.modal {
+  background: rgba(255,255,255,.82); border: 1px solid rgba(255,255,255,.96);
+  border-radius: var(--r4); max-width: 720px; width: 100%; max-height: 82vh; overflow-y: auto;
+  backdrop-filter: blur(40px) saturate(1.5);
+  box-shadow: 0 24px 80px rgba(30,58,74,.2), inset 0 1px 0 rgba(255,255,255,1);
+  position: relative;
+}
+.modal-head { padding: 1.75rem 2rem 1.25rem; border-bottom: 1px solid rgba(78,110,128,.09); position: sticky; top: 0; background: rgba(255,255,255,.9); backdrop-filter: blur(40px); border-radius: var(--r4) var(--r4) 0 0; z-index: 1; }
+.modal-x { position: absolute; top: 1.25rem; right: 1.5rem; background: rgba(78,110,128,.1); border: 1px solid rgba(78,110,128,.14); color: var(--ink-3); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+.modal-x:hover { background: rgba(78,110,128,.18); color: var(--ink); }
+.modal-body { padding: 1.5rem 2rem 2rem; }
+.modal-body p { font-size: 15px; line-height: 1.8; color: var(--ink-3); margin-bottom: 1rem; }
+.modal-link { display: inline-flex; align-items: center; gap: .4rem; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); text-decoration: none; border: 1px solid rgba(78,110,128,.24); padding: .5rem 1.1rem; border-radius: var(--rp); background: rgba(78,110,128,.07); transition: all .15s; margin-top: .5rem; }
+.modal-link:hover { background: var(--slate); color: #fff; border-color: var(--slate); }
+
+/* Scroll top */
+.stbtn {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 50; width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.92);
+  color: var(--slate); font-size: 16px; cursor: pointer; display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(20px); box-shadow: 0 4px 20px var(--glass-shadow); transition: all .2s;
+}
+.stbtn.on { display: flex; }
+.stbtn:hover { background: rgba(255,255,255,.9); transform: translateY(-2px); }
+
+/* Footer */
+footer {
+  position: relative; z-index: 1;
+  background: rgba(255,255,255,.42); border-top: 1px solid rgba(255,255,255,.7);
+  backdrop-filter: blur(24px); margin-top: 2rem;
+}
+.f-inner { max-width: 1320px; margin: 0 auto; padding: 3rem 1.5rem 1.5rem; }
+.f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(78,110,128,.1); margin-bottom: 1.5rem; }
+.f-logo .n { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--slate); letter-spacing: .1em; text-transform: uppercase; display: block; }
+.f-logo .s { font-size: 8.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); display: block; margin-top: 3px; font-weight: 600; }
+.f-desc { font-size: 13px; color: var(--ink-4); line-height: 1.7; margin-top: 1rem; }
+.f-col h4 { font-size: 9.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); margin-bottom: 1rem; }
+.f-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+.f-col a { color: var(--ink-4); text-decoration: none; font-size: 13px; transition: color .2s; cursor: pointer; }
+.f-col a:hover { color: var(--slate); }
+.f-bot { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-5); gap: 1rem; flex-wrap: wrap; }
+.f-dis { font-size: 11px; color: var(--ink-5); line-height: 1.7; border-top: 1px solid rgba(78,110,128,.08); padding-top: 1rem; margin-top: 1rem; }
+
+/* Fade-up animation */
+@keyframes fu { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.page > * { animation: fu .5s ease both; }
+.page > *:nth-child(1) { animation-delay: .04s; } .page > *:nth-child(2) { animation-delay: .08s; }
+.page > *:nth-child(3) { animation-delay: .12s; } .page > *:nth-child(4) { animation-delay: .16s; }
+.page > *:nth-child(5) { animation-delay: .20s; } .page > *:nth-child(6) { animation-delay: .24s; }
+.page > *:nth-child(7) { animation-delay: .28s; } .page > *:nth-child(8) { animation-delay: .32s; }
+.page > *:nth-child(9) { animation-delay: .36s; }
+
+/* ═══════════════ PI VIEW (site de Registro) ═══════════════ */
+
+/* Hero */
+.pi-hero {
+  display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: center;
+  padding: 3rem 1rem 2rem;
+}
+.pi-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4.5vw, 3.1rem);
+  font-weight: 700; line-height: 1.1; letter-spacing: -.015em;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.pi-hero h1 em {
+  font-style: italic; font-weight: 500; color: var(--gold-d);
+  background: linear-gradient(180deg, transparent 62%, var(--gold-g) 62%);
+}
+.pi-hero p { font-size: 1.05rem; line-height: 1.7; color: var(--ink-3); margin-bottom: 1.75rem; max-width: 560px; }
+.pi-hero-actions { display: flex; gap: .85rem; flex-wrap: wrap; }
+.btn-primary, .btn-ghost {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .85rem 1.6rem; border-radius: var(--rp);
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer; transition: all .25s; border: 1px solid transparent;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--slate), var(--ink-2));
+  color: #fff; border-color: rgba(255,255,255,.22);
+  box-shadow: 0 8px 24px rgba(30,58,74,.25);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(30,58,74,.35); background: linear-gradient(135deg, var(--ink-2), var(--ink)); }
+.btn-ghost {
+  background: rgba(255,255,255,.6); color: var(--slate);
+  border-color: rgba(255,255,255,.88); backdrop-filter: blur(18px);
+  box-shadow: 0 2px 14px rgba(78,110,128,.1);
+}
+.btn-ghost:hover { background: rgba(255,255,255,.88); color: var(--ink); }
+.pi-hero-visual {
+  display: flex; justify-content: center; align-items: center;
+}
+.pi-hero-visual img { width: clamp(220px, 35vw, 360px); height: auto; opacity: .9; filter: drop-shadow(0 20px 40px rgba(78,110,128,.25)); }
+
+/* Pillars — stat cards */
+.pi-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.pillar {
+  background: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.88);
+  border-radius: var(--r2); padding: 1.25rem 1.25rem;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 2px 18px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
+}
+.pillar-num { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--slate); line-height: 1; }
+.pillar-num::first-letter { color: var(--gold); }
+.pillar-lbl { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-4); margin-top: .4rem; }
+.pillar-desc { font-size: 13px; color: var(--ink-3); line-height: 1.55; margin-top: .5rem; }
+
+/* Service card (PI) — expanded card with long-form body */
+.pi-card {
+  background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.88);
+  border-radius: var(--r3); padding: 2rem 2.25rem;
+  backdrop-filter: blur(24px) saturate(1.3);
+  box-shadow: 0 2px 24px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
+  margin-bottom: 1.25rem;
+}
+.pi-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--ink); margin-bottom: .3rem; }
+.pi-card .pi-sub { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-d); margin-bottom: .9rem; }
+.pi-card p { font-size: 14.5px; line-height: 1.75; color: var(--ink-3); margin-bottom: .85rem; }
+.pi-card p em { font-style: italic; color: var(--ink); }
+
+/* FAQ */
+.faq-item {
+  background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.82);
+  border-radius: var(--r2); overflow: hidden;
+  backdrop-filter: blur(20px); box-shadow: 0 2px 14px var(--glass-shadow);
+  margin-bottom: .65rem;
+}
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 1rem 1.4rem;
+  background: none; border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 14.5px; font-weight: 600;
+  color: var(--ink); text-align: left;
+  gap: 1rem;
+}
+.faq-q:hover { background: rgba(255,255,255,.4); }
+.faq-toggle {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--gold-g); color: var(--gold-d);
+  border: 1px solid var(--gold-b);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 400; flex-shrink: 0;
+  transition: transform .3s;
+}
+.faq-item.active .faq-toggle { transform: rotate(45deg); background: var(--gold); color: #fff; border-color: var(--gold); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .45s cubic-bezier(.25,.8,.25,1), padding .35s;
+  color: var(--ink-3);
+}
+.faq-a-inner { padding: 0 1.4rem 1.15rem; font-size: 14px; line-height: 1.7; }
+.faq-a-inner p + p { margin-top: .55rem; }
+.faq-item.active .faq-a { max-height: 600px; }
+
+/* Contato */
+.contato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; margin-bottom: 2.5rem; }
+.contato-info { display: flex; flex-direction: column; gap: 1rem; }
+.contato-item {
+  background: rgba(255,255,255,.52); border: 1px solid rgba(255,255,255,.82);
+  border-radius: var(--r2); padding: 1.1rem 1.3rem;
+  backdrop-filter: blur(18px);
+  display: flex; gap: .9rem; align-items: flex-start;
+}
+.contato-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--gold-g); border: 1px solid var(--gold-b); display: flex; align-items: center; justify-content: center; color: var(--gold-d); flex-shrink: 0; }
+.contato-lbl { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); margin-bottom: .15rem; }
+.contato-val { font-size: 14px; color: var(--ink); font-weight: 500; }
+.contato-val a { color: inherit; text-decoration: none; }
+.contato-val a:hover { color: var(--slate); }
+
+.contato-form {
+  background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.88);
+  border-radius: var(--r3); padding: 1.75rem 1.85rem;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 4px 24px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
+}
+.form-field { margin-bottom: 1rem; }
+.form-field label { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); margin-bottom: .38rem; }
+.form-field input, .form-field textarea {
+  width: 100%; padding: .75rem 1rem;
+  background: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.92);
+  border-radius: var(--r1); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);
+  outline: none; transition: all .2s; resize: vertical;
+}
+.form-field input:focus, .form-field textarea:focus { background: rgba(255,255,255,.88); border-color: var(--gold-b); box-shadow: 0 0 0 3px var(--gold-g); }
+.form-submit { width: 100%; padding: .85rem 1.4rem; border-radius: var(--rp); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, var(--slate), var(--ink-2)); box-shadow: 0 6px 20px rgba(30,58,74,.25); transition: all .25s; }
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30,58,74,.35); }
+.form-submit.loading { opacity: .72; pointer-events: none; }
+
+/* Signature */
+.signature {
+  text-align: center; font-family: 'Playfair Display', serif; font-style: italic;
+  color: var(--ink-4); font-size: 15px; margin: 3rem 0 2rem; letter-spacing: .02em;
+}
+
+/* WhatsApp / Instagram floats (preservados do site original) */
+.float-contact {
+  position: fixed; right: 20px; bottom: 20px; z-index: 60;
+  display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
+}
+.float-btn {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; text-decoration: none; cursor: pointer; border: none;
+  box-shadow: 0 10px 28px rgba(0,0,0,.22); transition: all .25s;
+}
+.float-btn:hover { transform: scale(1.08); }
+.fl-wa { background: #25d366; }
+.fl-ig { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4); }
+.fl-wa svg, .fl-ig svg { width: 26px; height: 26px; }
+
+/* Popup (confirmação de envio) */
+.popup-overlay { position: fixed; inset: 0; z-index: 250; background: rgba(30,58,74,.36); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 1.5rem; }
+.popup-overlay.active { display: flex; }
+.popup {
+  background: rgba(255,255,255,.94); border: 1px solid rgba(255,255,255,.98);
+  border-radius: var(--r4); padding: 2rem 2.25rem; max-width: 440px; width: 100%;
+  text-align: center; box-shadow: 0 24px 80px rgba(30,58,74,.22);
+}
+.popup h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--ink); margin-bottom: .55rem; }
+.popup p { font-size: 14px; color: var(--ink-3); margin-bottom: 1.25rem; }
+.popup-close { padding: .65rem 1.4rem; border: none; background: var(--slate); color: #fff; border-radius: var(--rp); cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.popup-close:hover { background: var(--ink-2); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .g-feat { grid-template-columns: 1fr; } .card-hero { grid-row: 1; min-height: 320px; }
+  .g2 { grid-template-columns: 1fr; } .g3 { grid-template-columns: 1fr 1fr; }
+  .g4 { grid-template-columns: 1fr 1fr; } .f-grid { grid-template-columns: 1fr 1fr; }
+  .newsletter { flex-direction: column; } .nl-form { flex: 0 0 100%; width: 100%; }
+  .pi-hero { grid-template-columns: 1fr; gap: 1rem; text-align: center; padding: 1.5rem .5rem; }
+  .pi-hero-actions { justify-content: center; }
+  .pi-hero-visual { order: -1; }
+  .pi-pillars { grid-template-columns: 1fr 1fr; }
+  .contato-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .g3, .g4 { grid-template-columns: 1fr; } .f-grid { grid-template-columns: 1fr; }
+  .page { padding: 1rem; } .h-inner { flex-wrap: wrap; } .s-wrap { flex: 0 0 100%; order: 3; }
+  .indicators { grid-template-columns: repeat(2, 1fr); } .nav-pill { max-width: 100%; }
+  .pi-pillars { grid-template-columns: 1fr; }
+  .pi-card { padding: 1.5rem 1.25rem; }
+  .float-contact { right: 14px; bottom: 14px; }
+  .float-btn { width: 46px; height: 46px; }
+  .float-btn svg { width: 22px; height: 22px; }
+}
+</style>
 </head>
 <body>
-    <div class="liquid-bg" aria-hidden="true"></div>
 
-    <!-- PROGRESS BAR -->
-    <div class="scroll-progress" role="progressbar" aria-hidden="true"></div>
-
-    <!-- TRANSIÇÃO DE PÁGINA -->
-    <div class="page-transition-overlay" aria-hidden="true"></div>
-
-    <!-- HEADER -->
-    <header>
-        <div class="nav-pill">
-            <a href="#" class="brand" aria-label="Arcanum — Página inicial">
-                <img src="logo-icon.png" alt="" loading="lazy" data-src="logo-icon.png" width="30" height="30">
-                <span>ARCANUM</span>
-            </a>
-            <nav role="navigation" aria-label="Navegação principal">
-                <a href="#marcas">Marcas</a>
-                <a href="#patentes">Patentes</a>
-                <a href="#software">Software</a>
-                <a href="#noticias">Notícias</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contato">Contato</a>
-            </nav>
-            <button class="menu-toggle" id="menuToggle" type="button"
-                    aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <!-- MENU MOBILE -->
-    <nav class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Navegação mobile">
-        <a href="#marcas">Marcas</a>
-        <a href="#patentes">Patentes</a>
-        <a href="#software">Software</a>
-        <a href="#noticias">Notícias</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contato">Contato</a>
-    </nav>
-
-    <!-- WHATSAPP FLOAT -->
-    <a href="https://wa.me/5516992553003"
-       class="whatsapp-float"
-       aria-label="Fale conosco no WhatsApp"
-       title="Atendimento imediato no WhatsApp"
-       target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.247 1.408 1.417-5.267-0.325-0.528c-1.344-2.184-2.054-4.693-2.054-7.253 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.305 19.463c-0.396-0.198-2.348-1.158-2.713-1.291s-0.627-0.198-0.892 0.198c-0.264 0.396-1.026 1.291-1.256 1.556s-0.462 0.297-0.858 0.099c-0.396-0.198-1.673-0.617-3.186-1.966-1.177-1.050-1.973-2.347-2.204-2.743s-0.025-0.61 0.174-0.807c0.178-0.177 0.396-0.462 0.594-0.693s0.264-0.396 0.396-0.66c0.132-0.264 0.066-0.495-0.033-0.693s-0.892-2.146-1.222-2.938c-0.322-0.769-0.649-0.665-0.892-0.677-0.231-0.012-0.495-0.015-0.759-0.015s-0.693 0.099-1.056 0.495c-0.363 0.396-1.388 1.356-1.388 3.306s1.421 3.836 1.619 4.101c0.198 0.264 2.794 4.266 6.769 5.982 0.945 0.408 1.684 0.652 2.26 0.835 0.951 0.302 1.816 0.259 2.501 0.157 0.762-0.114 2.348-0.96 2.679-1.887s0.331-1.723 0.231-1.887c-0.099-0.165-0.363-0.264-0.759-0.462z"/>
-        </svg>
+<!-- ════════════ HEADER ════════════ -->
+<header>
+  <div class="h-inner">
+    <a href="#" class="logo" id="brandLogo" aria-label="Arcanum — Voltar ao início">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <polygon points="20,4 37,34 3,34" fill="none" stroke="#4e6e80" stroke-width="2" stroke-linejoin="round"/>
+        <ellipse cx="20" cy="24.5" rx="5.2" ry="3.4" fill="none" stroke="#c9a843" stroke-width="1.5"/>
+        <circle cx="20" cy="24.5" r="2" fill="#c9a843"/>
+      </svg>
+      <div class="logo-text">
+        <span class="n" id="brandN">Arcanum</span>
+        <span class="s" id="brandS">Propriedade Intelectual</span>
+      </div>
     </a>
 
-    <!-- INSTAGRAM FLOAT -->
-    <a href="https://www.instagram.com/arcanumpi"
-       class="instagram-float"
-       aria-label="Siga a Arcanum no Instagram"
-       title="Ver perfil no Instagram"
-       target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </svg>
-    </a>
-
-    <!-- SCROLL TOP -->
-    <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo" title="Voltar ao topo" type="button">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12 4l-8 8h5v8h6v-8h5z"/>
-        </svg>
-    </button>
-
-    <!-- POPUP DE CONFIRMAÇÃO -->
-    <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
-        <div class="popup-content">
-            <div class="popup-icon" aria-hidden="true">✓</div>
-            <h3 id="popupTitle">Mensagem Enviada!</h3>
-            <p>Recebemos sua mensagem com sucesso. Nossa equipe retornará em até 24 horas com orientações iniciais sobre a proteção dos seus ativos intangíveis.</p>
-            <button class="popup-close" onclick="fecharPopup()">Entendi</button>
-        </div>
+    <!-- Nav para a view PI -->
+    <div class="nav-pill" id="navPI" role="navigation" aria-label="Navegação — site Arcanum PI">
+      <a class="nav-btn" href="#marcas">Marcas</a>
+      <a class="nav-btn" href="#patentes">Patentes</a>
+      <a class="nav-btn" href="#software">Software</a>
+      <a class="nav-btn" href="#transferencia">Transferência</a>
+      <a class="nav-btn" href="#faq">FAQ</a>
+      <a class="nav-btn" href="#contato">Contato</a>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main>
-        <!-- HERO -->
-        <section class="hero reveal">
-            <div class="logo-full-wrap">
-                <img data-src="logo-full.png"
-                     class="logo-full lazy-image"
-                     alt="Logo completo Arcanum Propriedade Intelectual"
-                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 200'%3E%3C/svg%3E"
-                     width="640" height="200">
-            </div>
-            <div class="container">
-                <div class="content-wrap">
-                    <h1>Proteção jurídica de ativos intangíveis com visão estratégica de negócio.</h1>
-                    <p>
-                        Estruturamos marcas, patentes e <em>software</em> para que deixem de ser apenas ideias e passem a integrar o patrimônio real da empresa, com segurança jurídica, capacidade de monetização e impacto direto em processos de <em>valuation</em>, expansão societária e operações de <em>M&amp;A</em>.
-                    </p>
-                    <a href="https://wa.me/5516992553003" class="btn" target="_blank" rel="noopener noreferrer">Iniciar atendimento no WhatsApp</a>
-                </div>
-            </div>
-        </section>
+    <!-- Nav para a view Notícias -->
+    <div class="nav-pill" id="navNews" role="navigation" aria-label="Categorias de notícias" hidden>
+      <button class="nav-btn active" data-cat="todos" type="button">Todos</button>
+      <button class="nav-btn" data-cat="tributario" type="button">Tributário</button>
+      <button class="nav-btn" data-cat="fiscal" type="button">Fiscal</button>
+      <button class="nav-btn" data-cat="economico" type="button">Econômico</button>
+      <button class="nav-btn" data-cat="reformas" type="button">Reformas</button>
+      <button class="nav-btn" data-cat="jurisprudencia" type="button">Jurisprudência</button>
+    </div>
 
-        <!-- EXPERIÊNCIA -->
-        <section class="container tight reveal">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2>Experiência comprovada em Propriedade Intelectual</h2>
-                    <p>
-                        Nossa atuação combina expertise técnico-jurídica com visão estratégica de negócio, transformando ativos intangíveis em vantagem competitiva mensurável e auditável para empresas de todos os portes.
-                    </p>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="stat-number">5+</span>
-                            <span class="stat-label">Anos de atuação</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">98%</span>
-                            <span class="stat-label">Taxa de aprovação</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Switcher: Notícias <-> Voltar ao site -->
+    <button class="switcher" id="btnSwitch" type="button" aria-label="Abrir portal de notícias">
+      <span id="switchLabel">Notícias</span>
+      <span aria-hidden="true" id="switchArrow">→</span>
+    </button>
+  </div>
+</header>
 
-        <!-- POR QUE ESCOLHER -->
-        <section class="container tight reveal">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2>Por que escolher a Arcanum</h2>
-                    <div class="diferenciais-grid">
-                        <div class="diferencial-item">
-                            <div class="diferencial-icon" aria-hidden="true">⚡</div>
-                            <div class="diferencial-content">
-                                <h3>Atendimento personalizado</h3>
-                                <p>Consultoria técnica adaptada ao perfil e necessidades específicas de cada empresa.</p>
-                            </div>
-                        </div>
-                        <div class="diferencial-item">
-                            <div class="diferencial-icon" aria-hidden="true">📊</div>
-                            <div class="diferencial-content">
-                                <h3>Acompanhamento em tempo real</h3>
-                                <p>Transparência total no andamento processual e prazos do INPI.</p>
-                            </div>
-                        </div>
-                        <div class="diferencial-item">
-                            <div class="diferencial-icon" aria-hidden="true">🎯</div>
-                            <div class="diferencial-content">
-                                <h3>Visão estratégica de negócio</h3>
-                                <p>Proteção alinhada a operações de M&amp;A, valuation e governança corporativa.</p>
-                            </div>
-                        </div>
-                        <div class="diferencial-item">
-                            <div class="diferencial-icon" aria-hidden="true">💼</div>
-                            <div class="diferencial-content">
-                                <h3>Consultoria jurídica integrada</h3>
-                                <p>Estruturação completa de contratos, cessões e políticas de compliance.</p>
-                            </div>
-                        </div>
-                        <div class="diferencial-item">
-                            <div class="diferencial-icon" aria-hidden="true">🔒</div>
-                            <div class="diferencial-content">
-                                <h3>Segurança jurídica total</h3>
-                                <p>Blindagem patrimonial e redução de riscos em disputas e contingências.</p>
-                            </div>
-                        </div>
-                        <div class="diferencial-item">
-                            <div class="diferencial-icon" aria-hidden="true">⏱️</div>
-                            <div class="diferencial-content">
-                                <h3>Resposta ágil</h3>
-                                <p>Retorno em até 24 horas para demandas urgentes e dúvidas técnicas.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ════════════ TICKER (apenas no modo Notícias) ════════════ -->
+<div class="ticker-wrap" id="ticker" hidden>
+  <div class="ticker-badge">AO VIVO</div>
+  <div class="ticker-track">
+    <div class="ticker-inner" id="tickerInner">
+      <!-- Preenchido dinamicamente pelos índices; fallback abaixo -->
+      <span class="t-item"><b>SELIC</b>—</span>
+      <span class="t-item"><b>IPCA 12m</b>—</span>
+      <span class="t-item"><b>USD/BRL</b>—</span>
+      <span class="t-item"><b>EUR/BRL</b>—</span>
+      <span class="t-item"><b>BTC/BRL</b>—</span>
+      <span class="t-item"><b>Ibovespa</b>—</span>
+    </div>
+  </div>
+</div>
 
-        <!-- IMPORTÂNCIA ESTRATÉGICA -->
-        <section class="container tight reveal">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2>Importância estratégica dos ativos intangíveis</h2>
-                    <p>
-                        No ambiente empresarial contemporâneo, os ativos que mais agregam valor não são necessariamente físicos. Marcas fortes, tecnologias proprietárias e soluções digitais escaláveis constituem a base do valor percebido de uma empresa perante investidores, parceiros e o mercado. Em processos de <em>valuation</em>, esses ativos são mensurados como elementos determinantes do preço da companhia.
-                    </p>
-                    <p>
-                        A ausência de proteção formal transforma tais ativos em riscos jurídicos latentes. Empresas que negligenciam a estruturação da Propriedade Intelectual ficam vulneráveis a disputas, perdas de exclusividade, bloqueios operacionais e até mesmo à inviabilização de operações de captação de recursos. A proteção jurídica converte o intangível em patrimônio auditável, negociável e transferível.
-                    </p>
-                </div>
-            </div>
-        </section>
+<!-- ════════════════════════════════════════════════════════════════
+     VIEW 1 — ARCANUM PROPRIEDADE INTELECTUAL  (site principal)
+     ════════════════════════════════════════════════════════════════ -->
+<main class="page" id="viewPI">
 
-        <!-- MARCAS -->
-        <section id="marcas" class="container tight reveal">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2>Registro de Marcas</h2>
-                    <p>
-                        A marca é o principal vetor de reconhecimento de um negócio. O registro junto ao INPI confere exclusividade de uso em todo o território nacional, impedindo terceiros de explorarem sinais distintivos idênticos ou semelhantes no mesmo segmento. Sem o registro, o empresário opera sob incerteza jurídica: investimentos em branding, marketing e expansão podem ser comprometidos por litígios futuros.
-                    </p>
-                    <p>
-                        Nossa atuação envolve busca de anterioridade, análise de colidências fonéticas e ideológicas, enquadramento estratégico nas classes adequadas, acompanhamento processual e defesa contra oposições. O resultado é a construção de um ativo jurídico sólido, apto a ser licenciado, franqueado ou integrado a operações de <em>M&amp;A</em>.
-                    </p>
-                    <p>
-                        O apelo é claro: negligenciar o registro expõe o empresário ao risco de perder o direito de uso do próprio nome comercial, ser compelido a rebranding forçado e arcar com indenizações por uso indevido. O registro não é custo; é blindagem patrimonial.
-                    </p>
-                </div>
-            </div>
-        </section>
+  <!-- HERO -->
+  <section class="pi-hero">
+    <div>
+      <h1>Propriedade intelectual é o <em>invisível que sustenta o império</em>.</h1>
+      <p>
+        Estruturamos a proteção jurídica das marcas, patentes e <em>softwares</em> que formam o núcleo dos seus ativos intangíveis. Do depósito no INPI ao <em>compliance</em> documental, cada etapa é conduzida com o rigor técnico que protege o valor do seu negócio.
+      </p>
+      <div class="pi-hero-actions">
+        <a href="#contato" class="btn-primary">Fale com um especialista</a>
+        <a href="#marcas" class="btn-ghost">Conhecer serviços</a>
+      </div>
+    </div>
+    <div class="pi-hero-visual">
+      <img src="logo-full.png" alt="Arcanum — Logotipo" loading="lazy">
+    </div>
+  </section>
 
-        <!-- PATENTES -->
-        <section id="patentes" class="container tight reveal">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2>Patentes e Inovação</h2>
-                    <p>
-                        Patentes protegem soluções técnicas, produtos e processos inovadores, criando barreiras de entrada legais contra concorrentes. A concessão de patente assegura ao titular o monopólio temporário de exploração econômica, elemento crucial para capturar retorno sobre investimentos em pesquisa e desenvolvimento.
-                    </p>
-                    <p>
-                        Atuamos desde a busca do estado da técnica até a redação técnica do relatório descritivo e reivindicações, gestão de prazos, respostas a exigências e estratégia de proteção internacional quando aplicável. A inovação, quando desprotegida, se torna commodity; quando patenteada, converte-se em vantagem competitiva sustentável.
-                    </p>
-                    <p>
-                        Ignorar a proteção patentária pode resultar na apropriação por terceiros de soluções desenvolvidas internamente, inviabilizando a exploração exclusiva e reduzindo drasticamente o valor estratégico da empresa em avaliações de <em>valuation</em>.
-                    </p>
-                </div>
-            </div>
-        </section>
+  <!-- PILARES -->
+  <div class="sec"><h2>Pilares da proteção</h2></div>
+  <div class="pi-pillars">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-lbl">Registro</div>
+      <div class="pillar-desc">Depósito estratégico de marcas, patentes e software no INPI.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-lbl">Defesa</div>
+      <div class="pillar-desc">Acompanhamento processual, oposições e recursos administrativos.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-lbl">Estrutura</div>
+      <div class="pillar-desc">Cessões, licenças, franquias e <em>compliance</em> contratual.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <div class="pillar-lbl">Valor</div>
+      <div class="pillar-desc">Ativos intangíveis preparados para <em>valuation</em> e M&amp;A.</div>
+    </div>
+  </div>
 
-        <!-- SOFTWARE -->
-        <section id="software" class="container tight reveal">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2>Proteção de <em>Software</em></h2>
-                    <p>
-                        Em empresas digitais, o <em>software</em> é o núcleo operacional do modelo de negócios. O registro do código-fonte assegura prova de autoria, elemento crítico em disputas envolvendo propriedade intelectual, conflitos societários, saída de colaboradores-chave e processos de auditoria para investimento.
-                    </p>
-                    <p>
-                        Estruturamos a proteção jurídica do código, políticas de propriedade intelectual em contratos de desenvolvimento, cessões de direitos autorais e governança de ativos digitais. Essa abordagem garante segurança para escalar produtos, licenciar tecnologias e estruturar operações de <em>M&amp;A</em> com menor fricção jurídica.
-                    </p>
-                    <p>
-                        A ausência de proteção adequada expõe a empresa a vazamento de tecnologia, disputas de titularidade e bloqueios contratuais que podem comprometer rodadas de investimento e a continuidade operacional.
-                    </p>
-                </div>
-            </div>
-        </section>
+  <!-- MARCAS -->
+  <div class="sec" id="marcas"><h2>Registro de Marcas</h2></div>
+  <article class="pi-card">
+    <div class="pi-sub">Serviço</div>
+    <h3>A sua marca é a sua fortaleza.</h3>
+    <p>A marca é o principal vetor de reconhecimento de um negócio. O registro junto ao INPI confere exclusividade de uso em todo o território nacional, impedindo terceiros de explorarem sinais distintivos idênticos ou semelhantes no mesmo segmento. Sem o registro, o empresário opera sob incerteza jurídica: investimentos em <em>branding</em>, marketing e expansão podem ser comprometidos por litígios futuros.</p>
+    <p>Nossa atuação envolve busca de anterioridade, análise de colidências fonéticas e ideológicas, enquadramento estratégico nas classes adequadas, acompanhamento processual e defesa contra oposições. O resultado é a construção de um ativo jurídico sólido, apto a ser licenciado, franqueado ou integrado a operações de <em>M&amp;A</em>.</p>
+    <p>O apelo é claro: negligenciar o registro expõe o empresário ao risco de perder o direito de uso do próprio nome comercial, ser compelido a <em>rebranding</em> forçado e arcar com indenizações por uso indevido. O registro não é custo; é blindagem patrimonial.</p>
+  </article>
 
-        <!-- TRANSFERÊNCIA -->
-        <section id="transferencia" class="container tight reveal">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2>Transferência de titularidade, contratos e <em>compliance</em></h2>
-                    <p>
-                        A transferência de titularidade de marcas, patentes e direitos autorais exige rigor formal para produzir efeitos perante terceiros. Estruturamos cessões, licenças, contratos de franquia, acordos de confidencialidade e políticas internas de <em>compliance</em> para assegurar a integridade jurídica dos ativos.
-                    </p>
-                    <p>
-                        Em operações societárias, a correta titularidade é condição para fechamento de negócios e auditorias de <em>due diligence</em>. Ativos mal titulados podem gerar contingências, atrasar transações e reduzir o valor percebido da empresa em processos de <em>valuation</em>.
-                    </p>
-                    <p>
-                        Atuamos na regularização de ativos intangíveis, estruturação de portfólios de PI para captação de investimento e suporte jurídico em operações de fusão, aquisição e reestruturação societária.
-                    </p>
-                </div>
-            </div>
-        </section>
+  <!-- PATENTES -->
+  <div class="sec" id="patentes"><h2>Patentes e Inovação</h2></div>
+  <article class="pi-card">
+    <div class="pi-sub">Serviço</div>
+    <h3>Proteja o que diferencia o seu negócio.</h3>
+    <p>Patentes protegem soluções técnicas, produtos e processos inovadores, criando barreiras de entrada legais contra concorrentes. A concessão de patente assegura ao titular o monopólio temporário de exploração econômica, elemento crucial para capturar retorno sobre investimentos em pesquisa e desenvolvimento.</p>
+    <p>Atuamos desde a busca do estado da técnica até a redação técnica do relatório descritivo e reivindicações, gestão de prazos, respostas a exigências e estratégia de proteção internacional quando aplicável. A inovação, quando desprotegida, se torna <em>commodity</em>; quando patenteada, converte-se em vantagem competitiva sustentável.</p>
+    <p>Ignorar a proteção patentária pode resultar na apropriação por terceiros de soluções desenvolvidas internamente, inviabilizando a exploração exclusiva e reduzindo drasticamente o valor estratégico da empresa em avaliações de <em>valuation</em>.</p>
+  </article>
 
-        <!-- NOTÍCIAS & ÍNDICES -->
-        <section id="noticias" class="container tight reveal" aria-labelledby="noticias-title">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2 id="noticias-title">Notícias &amp; Índices</h2>
-                    <p style="margin-bottom:18px;">
-                        Acompanhe em tempo real os principais índices econômicos e as últimas notícias tributárias, fiscais e econômicas das fontes oficiais e da imprensa especializada.
-                    </p>
+  <!-- SOFTWARE -->
+  <div class="sec" id="software"><h2>Proteção de Software</h2></div>
+  <article class="pi-card">
+    <div class="pi-sub">Serviço</div>
+    <h3>Seu código é seu ativo mais crítico.</h3>
+    <p>Em empresas digitais, o <em>software</em> é o núcleo operacional do modelo de negócios. O registro do código-fonte assegura prova de autoria, elemento crítico em disputas envolvendo propriedade intelectual, conflitos societários, saída de colaboradores-chave e processos de auditoria para investimento.</p>
+    <p>Estruturamos a proteção jurídica do código, políticas de propriedade intelectual em contratos de desenvolvimento, cessões de direitos autorais e governança de ativos digitais. Essa abordagem garante segurança para escalar produtos, licenciar tecnologias e estruturar operações de <em>M&amp;A</em> com menor fricção jurídica.</p>
+    <p>A ausência de proteção adequada expõe a empresa a vazamento de tecnologia, disputas de titularidade e bloqueios contratuais que podem comprometer rodadas de investimento e a continuidade operacional.</p>
+  </article>
 
-                    <div class="indices-grid" id="indicesGrid" aria-label="Indicadores econômicos em tempo real">
-                        <div class="indice skeleton"><div class="indice-label">SELIC</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
-                        <div class="indice skeleton"><div class="indice-label">IPCA (12m)</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
-                        <div class="indice skeleton"><div class="indice-label">USD / BRL</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
-                        <div class="indice skeleton"><div class="indice-label">EUR / BRL</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
-                        <div class="indice skeleton"><div class="indice-label">BTC / BRL</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
-                        <div class="indice skeleton"><div class="indice-label">Ibovespa</div><div class="indice-value">—</div><div class="indice-change">—</div></div>
-                    </div>
+  <!-- TRANSFERÊNCIA -->
+  <div class="sec" id="transferencia"><h2>Transferência, Contratos e Compliance</h2></div>
+  <article class="pi-card">
+    <div class="pi-sub">Serviço</div>
+    <h3>Estruture o seu portfólio para o próximo ciclo de valor.</h3>
+    <p>A transferência de titularidade de marcas, patentes e direitos autorais exige rigor formal para produzir efeitos perante terceiros. Estruturamos cessões, licenças, contratos de franquia, acordos de confidencialidade e políticas internas de <em>compliance</em> para assegurar a integridade jurídica dos ativos.</p>
+    <p>Em operações societárias, a correta titularidade é condição para fechamento de negócios e auditorias de <em>due diligence</em>. Ativos mal titulados podem gerar contingências, atrasar transações e reduzir o valor percebido da empresa em processos de <em>valuation</em>.</p>
+    <p>Atuamos na regularização de ativos intangíveis, estruturação de portfólios de PI para captação de investimento e suporte jurídico em operações de fusão, aquisição e reestruturação societária.</p>
+  </article>
 
-                    <div class="rss-status" role="status" aria-live="polite">
-                        <span class="rss-dot" id="rssDot" aria-hidden="true"></span>
-                        <span id="rssStatus">Carregando notícias das fontes RSS…</span>
-                    </div>
+  <!-- FAQ -->
+  <div class="sec" id="faq"><h2>Perguntas Frequentes</h2></div>
+  <div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        Quanto tempo demora o registro de marca?
+        <span class="faq-toggle" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>O processo de registro de marca no INPI, em média, leva de 8 a 24 meses, podendo variar conforme existência de oposições de terceiros, exigências formais do INPI e recursos administrativos durante o processo.</p>
+        <p>Apesar do prazo, o pedido já gera prioridade: a partir do protocolo, terceiros não podem registrar marca idêntica ou semelhante para o mesmo segmento.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        Posso registrar uma marca que já está em uso?
+        <span class="faq-toggle" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Sim. No Brasil, o sistema é baseado no princípio da anterioridade do pedido (quem deposita primeiro tem prioridade).</p>
+        <p>Contudo, quem já utiliza a marca anteriormente pode ter direito de precedência, desde que comprove uso contínuo e de boa-fé. Por isso, é essencial realizar uma busca de anterioridade antes do pedido, para avaliar riscos de oposição ou indeferimento.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        Qual a diferença entre marca nominativa, figurativa e mista?
+        <span class="faq-toggle" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p><strong>Marca nominativa:</strong> protege apenas o nome da marca (ex: "ARCANUM"), independentemente de fonte ou estilo visual.</p>
+        <p><strong>Marca figurativa:</strong> protege apenas o elemento visual (símbolo, ícone, logotipo sem texto).</p>
+        <p><strong>Marca mista:</strong> protege a combinação entre nome + logotipo (forma mais comum no mercado).</p>
+        <p>A escolha do tipo de marca impacta diretamente no alcance da proteção jurídica.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        O que acontece se minha marca for indeferida?
+        <span class="faq-toggle" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Se o pedido for indeferido pelo INPI, ainda é possível apresentar recurso administrativo dentro do prazo legal, ajustar estratégia de proteção (ex: novo pedido, alteração de marca) ou avaliar risco jurídico de uso continuado da marca.</p>
+        <p>Um indeferimento não impede automaticamente o uso, mas aumenta o risco de conflitos, notificações extrajudiciais e ações judiciais.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        Preciso renovar o registro de marca?
+        <span class="faq-toggle" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Sim. O registro de marca no Brasil tem validade de 10 anos, a contar da data da concessão, e pode ser renovado indefinidamente por períodos iguais, mediante pagamento das taxas e comprovação de uso quando exigida.</p>
+        <p>A ausência de renovação implica perda do direito, permitindo que terceiros solicitem o registro do mesmo sinal distintivo.</p>
+      </div></div>
+    </div>
+  </div>
 
-                    <div class="news-filters" role="tablist" aria-label="Filtrar notícias por categoria">
-                        <button class="news-filter active" data-filter="todos" type="button" role="tab" aria-selected="true">Todas</button>
-                        <button class="news-filter" data-filter="tributario" type="button" role="tab" aria-selected="false">Tributário</button>
-                        <button class="news-filter" data-filter="fiscal" type="button" role="tab" aria-selected="false">Fiscal</button>
-                        <button class="news-filter" data-filter="economico" type="button" role="tab" aria-selected="false">Econômico</button>
-                        <button class="news-filter" data-filter="jurisprudencia" type="button" role="tab" aria-selected="false">Jurisprudência</button>
-                        <button class="news-filter" data-filter="reformas" type="button" role="tab" aria-selected="false">Reformas</button>
-                    </div>
-
-                    <div class="news-grid" id="newsGrid" aria-live="polite"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq" class="container tight reveal" aria-labelledby="faq-title">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2 id="faq-title">Perguntas Frequentes</h2>
-                    <p style="margin-bottom:24px;">
-                        Respondemos as dúvidas mais comuns sobre registro de marcas, patentes e proteção de ativos intangíveis.
-                    </p>
-
-                    <div class="faq-item">
-                        <button class="faq-question" type="button" aria-expanded="false">
-                            <h3>Quanto tempo demora o registro de marca?</h3>
-                            <div class="faq-toggle" aria-hidden="true">+</div>
-                        </button>
-                        <div class="faq-answer">
-                            <p>O processo de registro de marca no INPI, em média, leva de 8 a 24 meses, podendo variar conforme existência de oposições de terceiros, exigências formais do INPI e recursos administrativos durante o processo.</p>
-                            <p>Apesar do prazo, o pedido já gera prioridade: a partir do protocolo, terceiros não podem registrar marca idêntica ou semelhante para o mesmo segmento.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question" type="button" aria-expanded="false">
-                            <h3>Posso registrar uma marca que já está em uso?</h3>
-                            <div class="faq-toggle" aria-hidden="true">+</div>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Sim. No Brasil, o sistema é baseado no princípio da anterioridade do pedido (quem deposita primeiro tem prioridade).</p>
-                            <p>Contudo, quem já utiliza a marca anteriormente pode ter direito de precedência, desde que comprove uso contínuo e de boa-fé. Por isso, é essencial realizar uma busca de anterioridade antes do pedido, para avaliar riscos de oposição ou indeferimento.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question" type="button" aria-expanded="false">
-                            <h3>Qual a diferença entre marca nominativa, figurativa e mista?</h3>
-                            <div class="faq-toggle" aria-hidden="true">+</div>
-                        </button>
-                        <div class="faq-answer">
-                            <p><strong>Marca nominativa:</strong> protege apenas o nome da marca (ex: "ARCANUM"), independentemente de fonte ou estilo visual.</p>
-                            <p><strong>Marca figurativa:</strong> protege apenas o elemento visual (símbolo, ícone, logotipo sem texto).</p>
-                            <p><strong>Marca mista:</strong> protege a combinação entre nome + logotipo (forma mais comum no mercado).</p>
-                            <p>A escolha do tipo de marca impacta diretamente no alcance da proteção jurídica.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question" type="button" aria-expanded="false">
-                            <h3>O que acontece se minha marca for indeferida?</h3>
-                            <div class="faq-toggle" aria-hidden="true">+</div>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Se o pedido for indeferido pelo INPI, ainda é possível apresentar recurso administrativo dentro do prazo legal, ajustar estratégia de proteção (ex: novo pedido, alteração de marca) ou avaliar risco jurídico de uso continuado da marca.</p>
-                            <p>Um indeferimento não impede automaticamente o uso, mas aumenta o risco de conflitos, notificações extrajudiciais e ações judiciais.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question" type="button" aria-expanded="false">
-                            <h3>Preciso renovar o registro de marca?</h3>
-                            <div class="faq-toggle" aria-hidden="true">+</div>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Sim. O registro de marca tem validade de 10 anos, contados a partir da concessão, e pode ser renovado indefinidamente por períodos sucessivos de 10 anos.</p>
-                            <p>A não renovação implica na perda do direito exclusivo, permitindo que terceiros registrem a marca.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTATO -->
-        <section id="contato" class="container tight reveal" aria-labelledby="contato-title">
-            <div class="content-wrap">
-                <div class="bubble">
-                    <h2 id="contato-title">Fale com a Arcanum</h2>
-                    <p>
-                        Envie sua mensagem e retornamos com orientações iniciais sobre a proteção dos seus ativos intangíveis.
-                    </p>
-
-                    <form id="formContato" action="https://formsubmit.co/empresagbferreira@gmail.com" method="POST" novalidate>
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://arcanumpi.com.br/#contato-enviado">
-                        <input type="hidden" name="_template" value="table">
-
-                        <div class="form-field">
-                            <label for="nome">Nome completo</label>
-                            <input id="nome" name="nome" type="text" autocomplete="name" required>
-                        </div>
-                        <div class="form-field">
-                            <label for="email">E-mail</label>
-                            <input id="email" name="email" type="email" autocomplete="email" required>
-                        </div>
-                        <div class="form-field">
-                            <label for="empresa">Empresa (opcional)</label>
-                            <input id="empresa" name="empresa" type="text" autocomplete="organization">
-                        </div>
-                        <div class="form-field">
-                            <label for="assunto">Assunto</label>
-                            <input id="assunto" name="assunto" type="text"
-                                   placeholder="Registro de marca, patente, software..." required>
-                        </div>
-                        <div class="form-field">
-                            <label for="mensagem">Mensagem</label>
-                            <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn">Enviar mensagem</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <div class="signature reveal">
-            O invisível que sustenta o seu império.
+  <!-- CONTATO -->
+  <div class="sec" id="contato"><h2>Fale com a Arcanum</h2></div>
+  <div class="contato-grid">
+    <div class="contato-info">
+      <div class="contato-item">
+        <div class="contato-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
         </div>
-    </main>
+        <div>
+          <div class="contato-lbl">E-mail</div>
+          <div class="contato-val"><a href="mailto:empresagbferreira@gmail.com">empresagbferreira@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contato-item">
+        <div class="contato-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <div>
+          <div class="contato-lbl">WhatsApp</div>
+          <div class="contato-val"><a href="https://wa.me/5516992553003" target="_blank" rel="noopener">+55 (16) 99255-3003</a></div>
+        </div>
+      </div>
+      <div class="contato-item">
+        <div class="contato-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div>
+          <div class="contato-lbl">Atuação</div>
+          <div class="contato-val">Ribeirão Preto — SP e todo o Brasil</div>
+        </div>
+      </div>
+      <div class="contato-item">
+        <div class="contato-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </div>
+        <div>
+          <div class="contato-lbl">Instagram</div>
+          <div class="contato-val"><a href="https://www.instagram.com/arcanumpi" target="_blank" rel="noopener">@arcanumpi</a></div>
+        </div>
+      </div>
+    </div>
 
-    <footer>
-        <span id="year"></span> ARCANUM — Propriedade Intelectual &nbsp;·&nbsp;
-        <a href="https://www.instagram.com/arcanumpi" target="_blank" rel="noopener noreferrer"
-           style="color:inherit;text-decoration:none;opacity:.7;transition:opacity .3s;"
-           onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">@arcanumpi</a>
-    </footer>
+    <form id="formContato" class="contato-form" action="https://formsubmit.co/empresagbferreira@gmail.com" method="POST" novalidate>
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://arcanumpi.com.br/#contato-enviado">
+      <input type="hidden" name="_template" value="table">
+      <div class="form-field">
+        <label for="nome">Nome completo</label>
+        <input id="nome" name="nome" type="text" autocomplete="name" required>
+      </div>
+      <div class="form-field">
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="form-field">
+        <label for="empresa">Empresa (opcional)</label>
+        <input id="empresa" name="empresa" type="text" autocomplete="organization">
+      </div>
+      <div class="form-field">
+        <label for="assunto">Assunto</label>
+        <input id="assunto" name="assunto" type="text" placeholder="Registro de marca, patente, software..." required>
+      </div>
+      <div class="form-field">
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Enviar mensagem</button>
+    </form>
+  </div>
 
-    <script defer>
-        // ===== ANO DINÂMICO =====
-        document.getElementById('year').textContent = new Date().getFullYear();
+  <div class="signature">O invisível que sustenta o seu império.</div>
+</main>
 
-        // ===== LAZY LOADING DE IMAGENS =====
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.add('loaded');
-                    imageObserver.unobserve(img);
-                }
-            });
-        }, { rootMargin: '80px' });
-        lazyImages.forEach(img => imageObserver.observe(img));
+<!-- ════════════════════════════════════════════════════════════════
+     VIEW 2 — ARCANUM TAX NEWS  (portal de notícias)
+     ════════════════════════════════════════════════════════════════ -->
+<main class="page" id="viewNews" hidden>
 
-        // ===== PROGRESS BAR DE SCROLL =====
-        const scrollProgress = document.querySelector('.scroll-progress');
-        window.addEventListener('scroll', () => {
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            if (scrollHeight > 0) {
-                scrollProgress.style.transform = `scaleX(${window.scrollY / scrollHeight})`;
-            }
-        }, { passive: true });
+  <div class="alert">
+    <span class="alert-icon">⚡</span>
+    <div class="alert-text">
+      <strong>Atualização:</strong> Selic, IPCA, câmbio e principais feeds de notícias são puxados em tempo real de fontes oficiais e da imprensa especializada. O portal agrega, não edita.
+    </div>
+  </div>
 
-        // ===== MENU MOBILE =====
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
+  <div class="sec"><h2>Indicadores</h2></div>
+  <div class="indicators" id="indicators">
+    <div class="ind sk-ind"><div class="ind-lbl">SELIC</div><div class="ind-val">—</div><div class="ind-ch neutral">—</div></div>
+    <div class="ind sk-ind"><div class="ind-lbl">IPCA (12m)</div><div class="ind-val">—</div><div class="ind-ch neutral">—</div></div>
+    <div class="ind sk-ind"><div class="ind-lbl">USD / BRL</div><div class="ind-val">—</div><div class="ind-ch neutral">—</div></div>
+    <div class="ind sk-ind"><div class="ind-lbl">EUR / BRL</div><div class="ind-val">—</div><div class="ind-ch neutral">—</div></div>
+    <div class="ind sk-ind"><div class="ind-lbl">BTC / BRL</div><div class="ind-val">—</div><div class="ind-ch neutral">—</div></div>
+    <div class="ind sk-ind"><div class="ind-lbl">Ibovespa</div><div class="ind-val">—</div><div class="ind-ch neutral">—</div></div>
+  </div>
 
-        function closeMenu() {
-            menuToggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.setAttribute('aria-label', 'Abrir menu');
-        }
+  <div class="rss-status">
+    <div class="rdot loading" id="rdot"></div>
+    <span id="rstat">Carregando notícias das fontes RSS…</span>
+  </div>
 
-        menuToggle.addEventListener('click', () => {
-            const isOpen = menuToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
-        });
+  <div class="sec"><h2>Destaques</h2></div>
+  <div class="filter-bar" id="fbar">
+    <button class="fbtn active" data-f="todos" type="button">Todos</button>
+    <button class="fbtn" data-f="tributario" type="button">Tributário</button>
+    <button class="fbtn" data-f="fiscal" type="button">Fiscal</button>
+    <button class="fbtn" data-f="economico" type="button">Econômico</button>
+    <button class="fbtn" data-f="reformas" type="button">Reformas</button>
+    <button class="fbtn" data-f="jurisprudencia" type="button">Jurisprudência</button>
+  </div>
+  <div class="g-feat" id="fg"></div>
 
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
+  <div class="sec"><h2>Últimas Notícias</h2></div>
+  <div class="g3" id="ng"></div>
 
-        document.addEventListener('click', (e) => {
-            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-                closeMenu();
-            }
-        });
+  <div class="g2">
+    <div>
+      <div class="sec"><h2>Mais Lidas</h2></div>
+      <div class="list-cards" id="mr"></div>
+    </div>
+    <div class="sidebar">
+      <div class="sb-box">
+        <div class="sb-head">Calendário Fiscal</div>
+        <div class="sb-body" id="cal"></div>
+      </div>
+      <div class="sb-box">
+        <div class="sb-head">Legislação Recente</div>
+        <div class="sb-body" id="leg"></div>
+      </div>
+    </div>
+  </div>
 
-        // ===== SCROLL TOP =====
-        const scrollTopBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-        }, { passive: true });
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+  <div class="newsletter">
+    <div class="nl-text">
+      <h3>Receba o Briefing Diário</h3>
+      <p>As principais notícias tributárias e fiscais no seu e-mail, às 7h da manhã.</p>
+    </div>
+    <div class="nl-form">
+      <input type="email" id="nl-in" placeholder="seu@email.com.br">
+      <button id="nl-btn" type="button">Assinar</button>
+    </div>
+  </div>
 
-        // ===== FAQ =====
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                const isActive = faqItem.classList.contains('active');
+  <div class="sec"><h2>Jurisprudência em Destaque</h2></div>
+  <div class="g4" id="jg"></div>
 
-                // Fecha todos os outros
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    if (item !== faqItem) {
-                        item.classList.remove('active');
-                        const btn = item.querySelector('.faq-question');
-                        if (btn) btn.setAttribute('aria-expanded', 'false');
-                    }
-                });
+  <div class="sec"><h2>Fontes Monitoradas</h2></div>
+  <div class="sources-grid" id="sg"></div>
+</main>
 
-                faqItem.classList.toggle('active', !isActive);
-                question.setAttribute('aria-expanded', !isActive ? 'true' : 'false');
-            });
-        });
+<!-- ════════════ FOOTER (dinâmico conforme a view) ════════════ -->
+<footer>
+  <div class="f-inner">
+    <div class="f-grid">
+      <div>
+        <div class="f-logo">
+          <span class="n" id="footBrandN">Arcanum</span>
+          <span class="s" id="footBrandS">Propriedade Intelectual</span>
+        </div>
+        <p class="f-desc" id="footDesc">
+          Consultoria especializada em registro de marcas, patentes e proteção de <em>software</em> no INPI. Estruturamos a proteção jurídica dos ativos intangíveis que sustentam o valor do seu negócio.
+        </p>
+      </div>
+      <div class="f-col" data-view="pi"><h4>Serviços</h4><ul>
+        <li><a href="#marcas">Registro de Marcas</a></li>
+        <li><a href="#patentes">Patentes e Inovação</a></li>
+        <li><a href="#software">Proteção de Software</a></li>
+        <li><a href="#transferencia">Transferência &amp; Compliance</a></li>
+      </ul></div>
+      <div class="f-col" data-view="pi"><h4>Institucional</h4><ul>
+        <li><a href="#faq">Perguntas Frequentes</a></li>
+        <li><a href="#contato">Fale conosco</a></li>
+        <li><a href="https://www.instagram.com/arcanumpi" target="_blank" rel="noopener">@arcanumpi</a></li>
+        <li><a href="https://wa.me/5516992553003" target="_blank" rel="noopener">WhatsApp</a></li>
+      </ul></div>
+      <div class="f-col" data-view="pi"><h4>Recursos</h4><ul>
+        <li><a href="#" data-goto="news">Arcanum Tax News</a></li>
+        <li><a href="mailto:empresagbferreira@gmail.com">E-mail direto</a></li>
+      </ul></div>
 
-        // ===== EFEITO MAGNÉTICO NOS BOTÕES =====
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const r = btn.getBoundingClientRect();
-                btn.style.setProperty('--mx', `${e.clientX - r.left}px`);
-                btn.style.setProperty('--my', `${e.clientY - r.top}px`);
-            });
-            btn.addEventListener('mouseleave', () => {
-                btn.style.setProperty('--mx', '50%');
-                btn.style.setProperty('--my', '50%');
-            });
-        });
+      <div class="f-col" data-view="news" hidden><h4>Editorias</h4><ul>
+        <li><a href="#" data-filter="tributario">Tributário</a></li>
+        <li><a href="#" data-filter="fiscal">Fiscal</a></li>
+        <li><a href="#" data-filter="economico">Econômico</a></li>
+        <li><a href="#" data-filter="reformas">Reformas</a></li>
+        <li><a href="#" data-filter="jurisprudencia">Jurisprudência</a></li>
+      </ul></div>
+      <div class="f-col" data-view="news" hidden><h4>Recursos</h4><ul>
+        <li><a href="#" data-scroll="cal">Calendário Fiscal</a></li>
+        <li><a href="#" data-scroll="leg">Legislação Recente</a></li>
+        <li><a href="#" data-scroll="indicators">Indicadores</a></li>
+        <li><a href="#" data-scroll="sg">Fontes Monitoradas</a></li>
+      </ul></div>
+      <div class="f-col" data-view="news" hidden><h4>Institucional</h4><ul>
+        <li><a href="#" data-goto="pi">Voltar ao site Arcanum</a></li>
+        <li><a href="#" data-scroll="nl-in">Newsletter</a></li>
+      </ul></div>
+    </div>
+    <div class="f-bot">
+      <span id="footCopy">© <span id="year"></span> Arcanum — Propriedade Intelectual. Todos os direitos reservados.</span>
+      <span id="footNote">Ribeirão Preto — SP · Atuação em todo o Brasil</span>
+    </div>
+    <div class="f-dis" id="footDis" hidden>
+      As informações publicadas neste portal têm caráter informativo e jornalístico. O Arcanum Tax News agrega e linka notícias de fontes externas, não sendo responsável pelo conteúdo de terceiros. Nenhuma informação aqui veiculada constitui aconselhamento jurídico ou tributário. Consulte sempre um profissional habilitado.
+    </div>
+  </div>
+</footer>
 
-        // ===== REVEAL (INTERSECTION OBSERVER) =====
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('in'), index * 80);
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+<!-- Flutuantes (WhatsApp / Instagram / Scroll-top) -->
+<div class="float-contact" aria-label="Contato rápido">
+  <a class="float-btn fl-wa" href="https://wa.me/5516992553003" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 .01 5.37.01 12c0 2.11.55 4.17 1.6 5.98L0 24l6.21-1.63A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.82c-1.86 0-3.67-.5-5.26-1.44l-.38-.22-3.69.97.99-3.6-.25-.37a9.78 9.78 0 0 1-1.54-5.26c0-5.42 4.41-9.82 9.83-9.82 2.63 0 5.09 1.02 6.94 2.88a9.74 9.74 0 0 1 2.89 6.94c0 5.42-4.41 9.82-9.83 9.82zm5.48-7.33c-.3-.15-1.78-.88-2.06-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.95 1.18-.17.2-.35.22-.65.08-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.8-1.67-2.1-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.48-.5-.67-.5l-.57-.01c-.2 0-.52.08-.8.37-.27.3-1.05 1.02-1.05 2.48 0 1.47 1.08 2.88 1.23 3.08.15.2 2.12 3.23 5.13 4.52.72.3 1.27.48 1.7.6.72.23 1.38.2 1.9.12.58-.08 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.07-.12-.27-.2-.57-.35z"/></svg>
+  </a>
+  <a class="float-btn fl-ig" href="https://www.instagram.com/arcanumpi" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+  </a>
+</div>
 
-        // ===== POPUP =====
-        function mostrarPopup() {
-            const overlay = document.getElementById('popupOverlay');
-            overlay.classList.add('active');
-            overlay.querySelector('.popup-close').focus();
-        }
-        function fecharPopup() {
-            document.getElementById('popupOverlay').classList.remove('active');
-            if (window.location.hash === '#contato-enviado') {
-                history.replaceState(null, null, ' ');
-            }
-        }
-        document.getElementById('popupOverlay').addEventListener('click', function(e) {
-            if (e.target === this) fecharPopup();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') fecharPopup();
-        });
-        if (window.location.hash === '#contato-enviado') {
-            setTimeout(mostrarPopup, 400);
-        }
+<button class="stbtn" id="stbtn" aria-label="Voltar ao topo">↑</button>
 
-        // ===== LOADING NO FORMULÁRIO =====
-        document.getElementById('formContato').addEventListener('submit', function() {
-            const btn = this.querySelector('.btn');
-            btn.classList.add('loading');
-            btn.textContent = 'Enviando...';
-        });
+<!-- Modal (notícias) -->
+<div class="modal-bd" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="tag" id="m-tag"></span>
+      <h2 class="ct" id="m-title" style="font-size:1.2rem; padding-right:2.5rem; margin-top:.5rem;"></h2>
+      <button class="modal-x" id="m-close" aria-label="Fechar">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="cm" id="m-meta" style="margin-bottom:1.25rem;"></div>
+      <p id="m-body"></p>
+      <a href="#" class="modal-link" id="m-link" target="_blank" rel="noopener">Ler matéria completa ↗</a>
+    </div>
+  </div>
+</div>
 
-        // ===== NAVEGAÇÃO INTERNA SUAVE (sem overlay desnecessário) =====
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const target = this.getAttribute('href');
-                if (!target || target === '#') return;
-                const element = document.querySelector(target);
-                if (element) {
-                    e.preventDefault();
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    history.pushState(null, null, target);
-                }
-            });
-        });
+<!-- Popup (confirmação de envio do form) -->
+<div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="popup">
+    <h3>Mensagem enviada</h3>
+    <p>Obrigado pelo contato. Retornaremos em breve com as orientações iniciais.</p>
+    <button type="button" class="popup-close" onclick="document.getElementById('popupOverlay').classList.remove('active')">Fechar</button>
+  </div>
+</div>
 
-        // ═══════════════════════════════════════════════════════════════
-        // NOTÍCIAS & ÍNDICES — RSS + indicadores econômicos ao vivo
-        // ═══════════════════════════════════════════════════════════════
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   VIEW SWITCHER  —  alterna entre "Arcanum PI" e "Arcanum Tax News"
+   ═══════════════════════════════════════════════════════════════ */
 
-        // --- Fontes RSS (tributário / fiscal / econômico / jurisprudência / reformas)
-        const RSS_FEEDS = [
-            { name: 'Receita Federal',    url: 'https://www.gov.br/receitafederal/pt-br/assuntos/noticias/RSS',                 cat: 'tributario'     },
-            { name: 'JOTA',               url: 'https://www.jota.info/feed',                                                    cat: 'tributario'     },
-            { name: 'Contábeis',          url: 'https://www.contabeis.com.br/noticias/rss.xml',                                 cat: 'tributario'     },
-            { name: 'Consultor Jurídico', url: 'https://www.conjur.com.br/rss.xml',                                             cat: 'tributario'     },
-            { name: 'Banco Central',      url: 'https://www.bcb.gov.br/api/Feed/noticias/rss.xml',                              cat: 'economico'      },
-            { name: 'InfoMoney',          url: 'https://www.infomoney.com.br/feed/',                                            cat: 'economico'      },
-            { name: 'Valor Econômico',    url: 'https://valor.globo.com/financas/rss.xml',                                      cat: 'economico'      },
-            { name: 'Tesouro Nacional',   url: 'https://www.tesourotransparente.gov.br/noticias/rss',                           cat: 'fiscal'         },
-            { name: 'STF',                url: 'https://portal.stf.jus.br/servicos/rss/noticias.asp',                           cat: 'jurisprudencia' },
-            { name: 'STJ',                url: 'https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/rss.aspx',   cat: 'jurisprudencia' },
-            { name: 'Agência Senado',     url: 'https://www12.senado.leg.br/noticias/rss/ultimas',                              cat: 'reformas'       },
-            { name: 'Agência Câmara',     url: 'https://www.camara.leg.br/noticias/rss.xml',                                    cat: 'reformas'       },
-        ];
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-        const CAT_LABEL = {
-            tributario: 'Tributário',
-            fiscal: 'Fiscal',
-            economico: 'Econômico',
-            jurisprudencia: 'Jurisprudência',
-            reformas: 'Reformas',
-        };
-        const CAT_TAG_CLASS = {
-            tributario: 'tg-tri',
-            fiscal: 'tg-fis',
-            economico: 'tg-eco',
-            jurisprudencia: 'tg-jur',
-            reformas: 'tg-ref',
-        };
+const viewPI    = $('#viewPI');
+const viewNews  = $('#viewNews');
+const navPI     = $('#navPI');
+const navNews   = $('#navNews');
+const ticker    = $('#ticker');
+const brandN    = $('#brandN');
+const brandS    = $('#brandS');
+const footBrandN= $('#footBrandN');
+const footBrandS= $('#footBrandS');
+const footDesc  = $('#footDesc');
+const footCopy  = $('#footCopy');
+const footNote  = $('#footNote');
+const footDis   = $('#footDis');
+const switchLbl = $('#switchLabel');
+const switchArr = $('#switchArrow');
+const btnSwitch = $('#btnSwitch');
+const brandLogo = $('#brandLogo');
 
-        const TAX_KEYWORDS = [
-            'tribut','fiscal','imposto','arrecad','receita federal','selic','copom','irpf','irpj','csll',
-            'pis','cofins','icms','iss','ipi','ibs','cbs','reforma tributária','simples nacional','carf',
-            'pgfn','nota fiscal','nfe','planejamento tributário','contribuição','alíquota','base de cálculo',
-            'isenção','parcelamento','débito fiscal','auto de infração','sped','dctf','dirf','e-social',
-            'reinf','certidão','lucro real','lucro presumido','mei','previdência','inss','orçamento',
-            'déficit','superávit','pib','inflação','economia','desoneração','benefício fiscal','crédito tributário',
-            'câmbio','dívida','tributação','fisco','stf','stj','decreto','instrução normativa','lei complementar',
-            'pec','projeto de lei','senado','câmara','fazenda','bolsa','ibovespa','juros','dólar','banco central',
-        ];
+let currentView = 'pi';
+let rssLoaded = false;
+let indicesLoaded = false;
 
-        const isRelevantNews = (text) => {
-            const s = text.toLowerCase();
-            return TAX_KEYWORDS.some(k => s.includes(k));
-        };
+const BRANDS = {
+  pi: {
+    n: 'Arcanum', s: 'Propriedade Intelectual',
+    title: 'ARCANUM — Propriedade Intelectual | Registro de Marcas, Patentes e Software',
+    footN: 'Arcanum', footS: 'Propriedade Intelectual',
+    footDesc: 'Consultoria especializada em registro de marcas, patentes e proteção de <em>software</em> no INPI. Estruturamos a proteção jurídica dos ativos intangíveis que sustentam o valor do seu negócio.',
+    footCopyHtml: '© <span id="year">' + new Date().getFullYear() + '</span> Arcanum — Propriedade Intelectual. Todos os direitos reservados.',
+    footNote: 'Ribeirão Preto — SP · Atuação em todo o Brasil',
+    switchLabel: 'Notícias', switchArrow: '→',
+    showDis: false,
+  },
+  news: {
+    n: 'Arcanum', s: 'Tax News',
+    title: 'ARCANUM Tax News — Portal de notícias tributárias, fiscais e econômicas',
+    footN: 'Arcanum', footS: 'Tax News',
+    footDesc: 'Portal de notícias tributárias, fiscais e econômicas para profissionais do direito, contabilidade, finanças e consultoria tributária no Brasil. Fontes oficiais e imprensa especializada, agregadas via RSS.',
+    footCopyHtml: '© ' + new Date().getFullYear() + ' Arcanum Tax News. Todos os direitos reservados.',
+    footNote: 'Dados de fontes públicas e RSS oficiais',
+    switchLabel: 'Voltar ao site', switchArrow: '←',
+    showDis: true,
+  },
+};
 
-        // Fallback editorial caso todos os feeds falhem (sem rede ou CORS bloqueado)
-        const NEWS_FALLBACK = [
-            { title: 'Copom mantém taxa Selic e sinaliza cautela nos próximos ciclos', source: 'Banco Central', cat: 'economico', link: 'https://www.bcb.gov.br', summary: 'Comunicado destaca resiliência da atividade e persistência das expectativas de inflação acima da meta. Decisão unânime.', time: 'Atualizando…' },
-            { title: 'Receita Federal publica instrução normativa sobre EFD-Reinf', source: 'Receita Federal', cat: 'tributario', link: 'https://www.gov.br/receitafederal', summary: 'Ajuste no prazo de entrega para o Lucro Real atende demanda do setor empresarial e de entidades contábeis.', time: 'Atualizando…' },
-            { title: 'STF retoma julgamento sobre tributação de depósitos judiciais', source: 'STF', cat: 'jurisprudencia', link: 'https://portal.stf.jus.br', summary: 'Ministros avaliam se valores em depósito devem ser tributados antes do trânsito em julgado. Impacto bilionário.', time: 'Atualizando…' },
-            { title: 'Senado avança na regulamentação do IBS e da CBS', source: 'Agência Senado', cat: 'reformas', link: 'https://www12.senado.leg.br', summary: 'Projeto define alíquotas de referência, Comitê Gestor e cronograma de transição para a Reforma Tributária.', time: 'Atualizando…' },
-            { title: 'Tesouro Nacional registra resultado primário acima das projeções', source: 'Tesouro Nacional', cat: 'fiscal', link: 'https://www.tesouro.fazenda.gov.br', summary: 'Arrecadação federal em alta e contenção de despesas discricionárias sustentam melhora do resultado fiscal.', time: 'Atualizando…' },
-            { title: 'STJ define critérios para dedutibilidade de despesas no IRPJ', source: 'STJ', cat: 'jurisprudencia', link: 'https://www.stj.jus.br', summary: 'Decisão consolida entendimento sobre requisitos de necessidade e usualidade para dedução de despesas operacionais.', time: 'Atualizando…' },
-            { title: 'Câmara aprova ajustes na regulamentação do IVA Dual', source: 'Agência Câmara', cat: 'reformas', link: 'https://www.camara.leg.br', summary: 'Texto define cronograma de redução gradual de PIS, COFINS, IPI, ICMS e ISS e mecanismos de compensação aos Estados.', time: 'Atualizando…' },
-            { title: 'Arrecadação federal mantém trajetória de alta no trimestre', source: 'Receita Federal', cat: 'fiscal', link: 'https://www.gov.br/receitafederal', summary: 'Crescimento real impulsionado por IRPJ, CSLL e reoneração parcial da folha de pagamentos.', time: 'Atualizando…' },
-            { title: 'InfoMoney — Ibovespa acompanha humor global; juros dos EUA em foco', source: 'InfoMoney', cat: 'economico', link: 'https://www.infomoney.com.br', summary: 'Investidores avaliam cenário fiscal doméstico e próximas decisões de política monetária no Brasil e nos EUA.', time: 'Atualizando…' },
-        ];
+const setView = (v) => {
+  currentView = v;
+  const b = BRANDS[v];
 
-        // ---------- Tempo relativo ----------
-        const timeAgo = (dateStr) => {
-            const d = new Date(dateStr);
-            if (isNaN(d.getTime())) return 'Recente';
-            const sec = Math.floor((Date.now() - d.getTime()) / 1000);
-            if (sec < 60)      return 'Agora';
-            if (sec < 3600)    return `Há ${Math.floor(sec/60)} min`;
-            if (sec < 86400)   return `Há ${Math.floor(sec/3600)}h`;
-            if (sec < 172800)  return 'Ontem';
-            return `Há ${Math.floor(sec/86400)} dias`;
-        };
+  // Toggle main areas
+  viewPI.hidden   = v !== 'pi';
+  viewNews.hidden = v !== 'news';
+  navPI.hidden    = v !== 'pi';
+  navNews.hidden  = v !== 'news';
+  ticker.hidden   = v !== 'news';
 
-        const fmtBRL = (n, digits = 2) =>
-            Number(n).toLocaleString('pt-BR', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  // Brand swap (header + footer + title)
+  brandN.textContent = b.n;
+  brandS.textContent = b.s;
+  footBrandN.textContent = b.footN;
+  footBrandS.textContent = b.footS;
+  footDesc.innerHTML = b.footDesc;
+  footCopy.innerHTML = b.footCopyHtml;
+  footNote.textContent = b.footNote;
+  footDis.hidden = !b.showDis;
+  document.title = b.title;
 
-        // ---------- Proxy RSS (allorigins, CORS aberto) ----------
-        const rssProxy = (url) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+  // Footer columns visibility
+  $$('.f-col[data-view="pi"]').forEach(el => el.hidden = v !== 'pi');
+  $$('.f-col[data-view="news"]').forEach(el => el.hidden = v !== 'news');
 
-        const fetchFeed = async (src) => {
-            try {
-                const ctl = new AbortController();
-                const to = setTimeout(() => ctl.abort(), 10000);
-                const r = await fetch(rssProxy(src.url), { signal: ctl.signal });
-                clearTimeout(to);
-                if (!r.ok) return [];
-                const j = await r.json();
-                const doc = new DOMParser().parseFromString(j.contents || '', 'text/xml');
-                const items = [...doc.querySelectorAll('item, entry')].slice(0, 10);
-                return items.map(it => {
-                    const title = (it.querySelector('title')?.textContent || '').trim();
-                    const linkEl = it.querySelector('link');
-                    const link = (linkEl?.getAttribute('href') || linkEl?.textContent || it.querySelector('guid')?.textContent || '#').trim();
-                    const desc = (it.querySelector('description, summary, content')?.textContent || '').replace(/<[^>]+>/g, '').trim().slice(0, 220);
-                    const pub = it.querySelector('pubDate, published, updated')?.textContent || '';
-                    return { title, link, summary: desc, source: src.name, cat: src.cat, time: pub ? timeAgo(pub) : 'Recente' };
-                }).filter(a => a.title && isRelevantNews(a.title + ' ' + a.summary));
-            } catch {
-                return [];
-            }
-        };
+  // Switcher button
+  switchLbl.textContent = b.switchLabel;
+  switchArr.textContent = b.switchArrow;
+  btnSwitch.setAttribute('aria-label', v === 'pi' ? 'Abrir portal de notícias' : 'Voltar ao site Arcanum PI');
 
-        // ---------- Renderização das notícias ----------
-        let allNews = [];
-        let activeFilter = 'todos';
+  // URL hash
+  const hash = v === 'news' ? '#noticias' : '';
+  if (location.hash !== hash) history.replaceState(null, '', hash || location.pathname);
 
-        const buildNewsCard = (a) => {
-            const tgCls = CAT_TAG_CLASS[a.cat] || 'tg-tri';
-            const tgLbl = CAT_LABEL[a.cat] || a.cat;
-            const el = document.createElement('a');
-            el.className = 'news-card';
-            el.href = a.link || '#';
-            el.target = '_blank';
-            el.rel = 'noopener noreferrer';
-            el.innerHTML = `
-                <span class="news-tag ${tgCls}">${tgLbl}</span>
-                <h3>${a.title}</h3>
-                ${a.summary ? `<p>${a.summary}</p>` : ''}
-                <div class="news-meta">
-                    <span class="src">${a.source}</span>
-                    <span>·</span>
-                    <span>${a.time || ''}</span>
-                </div>`;
-            return el;
-        };
+  // Scroll to top on switch
+  window.scrollTo({ top: 0, behavior: 'instant' in window ? 'auto' : 'auto' });
 
-        const buildSkeleton = () => {
-            const el = document.createElement('div');
-            el.className = 'news-card skeleton';
-            el.innerHTML = `
-                <div class="sk-bar" style="width:72px"></div>
-                <div class="sk-bar" style="width:95%"></div>
-                <div class="sk-bar" style="width:78%"></div>
-                <div class="sk-bar" style="width:60%;margin-top:auto"></div>`;
-            return el;
-        };
+  // Lazy-load news content
+  if (v === 'news') {
+    if (!rssLoaded)     { rssLoaded = true;     loadRSS(); }
+    if (!indicesLoaded) { indicesLoaded = true; loadIndices(); }
+  }
+};
 
-        const renderNews = (list) => {
-            const grid = document.getElementById('newsGrid');
-            grid.innerHTML = '';
-            const pool = list.length ? list : NEWS_FALLBACK;
-            pool.slice(0, 9).forEach(a => grid.appendChild(buildNewsCard(a)));
-        };
+btnSwitch.addEventListener('click', () => setView(currentView === 'pi' ? 'news' : 'pi'));
+brandLogo.addEventListener('click', (e) => { e.preventDefault(); setView('pi'); });
 
-        const renderSkeletons = () => {
-            const grid = document.getElementById('newsGrid');
-            grid.innerHTML = '';
-            for (let i = 0; i < 6; i++) grid.appendChild(buildSkeleton());
-        };
+// Deep-link: #noticias opens news view on load
+if (location.hash === '#noticias' || location.hash === '#news') {
+  setView('news');
+} else if (location.hash === '#contato-enviado') {
+  setTimeout(() => { document.getElementById('popupOverlay').classList.add('active'); }, 250);
+}
 
-        const applyFilter = (cat) => {
-            activeFilter = cat;
-            document.querySelectorAll('.news-filter').forEach(b => {
-                const match = b.dataset.filter === cat;
-                b.classList.toggle('active', match);
-                b.setAttribute('aria-selected', match ? 'true' : 'false');
-            });
-            const filtered = cat === 'todos' ? allNews : allNews.filter(a => a.cat === cat);
-            renderNews(filtered.length ? filtered : (cat === 'todos' ? NEWS_FALLBACK : []));
-        };
+// Cross-view links (no rodapé)
+$$('[data-goto]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); setView(a.dataset.goto); }));
+$$('.f-col a[data-filter]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); setView('news'); setTimeout(() => applyFilter(a.dataset.filter), 50); }));
+$$('.f-col a[data-scroll]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); setView('news'); setTimeout(() => { const el = document.getElementById(a.dataset.scroll); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120); }));
 
-        const loadRSS = async () => {
-            const dot = document.getElementById('rssDot');
-            const st  = document.getElementById('rssStatus');
-            renderSkeletons();
-            try {
-                const results = await Promise.allSettled(RSS_FEEDS.map(fetchFeed));
-                const all = results.flatMap(r => r.status === 'fulfilled' ? r.value : []);
-                const okCount = results.filter(r => r.status === 'fulfilled' && r.value.length).length;
-                // mistura leve para diversificar fontes
-                all.sort(() => Math.random() - 0.5);
-                allNews = all;
-                if (all.length) {
-                    dot.className = 'rss-dot live';
-                    st.textContent = `${all.length} notícias · ${okCount}/${RSS_FEEDS.length} fontes ativas · Atualizado ${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
-                } else {
-                    dot.className = 'rss-dot error';
-                    st.textContent = 'Fontes RSS indisponíveis — exibindo conteúdo editorial';
-                }
-            } catch {
-                allNews = [];
-                dot.className = 'rss-dot error';
-                st.textContent = 'Erro ao carregar RSS — exibindo conteúdo editorial';
-            }
-            applyFilter(activeFilter);
-        };
+/* ═══════════════════════════════════════════════════════════════
+   PI VIEW  —  FAQ accordion, form submit, smooth anchors
+   ═══════════════════════════════════════════════════════════════ */
 
-        // ---------- Indicadores econômicos ao vivo ----------
-        const setIndice = (idx, value, change, dir = 'flat') => {
-            const el = document.querySelectorAll('#indicesGrid .indice')[idx];
-            if (!el) return;
-            el.classList.remove('skeleton');
-            el.querySelector('.indice-value').textContent = value;
-            const c = el.querySelector('.indice-change');
-            c.className = `indice-change ${dir}`;
-            c.textContent = change;
-        };
-        const setIndiceError = (idx) => {
-            const el = document.querySelectorAll('#indicesGrid .indice')[idx];
-            if (!el) return;
-            el.classList.remove('skeleton');
-            el.querySelector('.indice-value').textContent = '—';
-            const c = el.querySelector('.indice-change');
-            c.className = 'indice-change flat';
-            c.textContent = 'Indisponível';
-        };
+$$('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isActive = item.classList.contains('active');
+    $$('.faq-item').forEach(i => { i.classList.remove('active'); i.querySelector('.faq-q').setAttribute('aria-expanded', 'false'); });
+    if (!isActive) {
+      item.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
 
-        const loadAwesomeAPI = async () => {
-            // USD-BRL, EUR-BRL, BTC-BRL  (awesomeapi: CORS aberto, sem chave)
-            try {
-                const r = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL', { signal: AbortSignal.timeout(9000) });
-                if (!r.ok) throw 0;
-                const d = await r.json();
-                const pairs = [
-                    { key: 'USDBRL', idx: 2, digits: 4 },
-                    { key: 'EURBRL', idx: 3, digits: 4 },
-                    { key: 'BTCBRL', idx: 4, digits: 0 },
-                ];
-                for (const { key, idx, digits } of pairs) {
-                    const q = d[key];
-                    if (!q) { setIndiceError(idx); continue; }
-                    const val  = Number(q.bid);
-                    const pct  = Number(q.pctChange);
-                    const dir  = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
-                    const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '▶';
-                    setIndice(idx, `R$ ${fmtBRL(val, digits)}`, `${arrw} ${Math.abs(pct).toFixed(2)}%`, dir);
-                }
-            } catch {
-                [2,3,4].forEach(setIndiceError);
-            }
-        };
+$('#formContato').addEventListener('submit', function() {
+  const b = this.querySelector('.form-submit');
+  b.classList.add('loading'); b.textContent = 'Enviando...';
+});
 
-        const loadBCB = async () => {
-            // Banco Central / SGS — CORS aberto, sem chave
-            // 432 = SELIC meta anual, 433 = IPCA mensal
-            const fetchSGS = async (serie, n = 12) => {
-                const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${serie}/dados/ultimos/${n}?formato=json`;
-                const r = await fetch(url, { signal: AbortSignal.timeout(9000) });
-                if (!r.ok) throw 0;
-                return r.json();
-            };
-            // SELIC
-            try {
-                const s = await fetchSGS(432, 1);
-                const last = Number(s[s.length - 1].valor);
-                setIndice(0, `${fmtBRL(last, 2)}%`, 'Meta a.a.', 'flat');
-            } catch { setIndiceError(0); }
-            // IPCA 12 meses
-            try {
-                const s = await fetchSGS(433, 12);
-                const acc12 = s.reduce((p, c) => (1 + Number(c.valor)/100) * p, 1);
-                const pct = (acc12 - 1) * 100;
-                setIndice(1, `${fmtBRL(pct, 2)}%`, 'Acumulado 12m', pct > 4.5 ? 'up' : pct < 3 ? 'down' : 'flat');
-            } catch { setIndiceError(1); }
-        };
+// Smooth scroll for in-view anchors (PI)
+$$('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const target = this.getAttribute('href');
+    if (!target || target === '#' || target === '#noticias') return;
+    const el = document.querySelector(target);
+    if (el && !el.closest('#viewNews')) {
+      e.preventDefault();
+      if (currentView !== 'pi') setView('pi');
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), currentView === 'pi' ? 0 : 120);
+    }
+  });
+});
 
-        const loadIbovespa = async () => {
-            // brapi.dev — CORS aberto, sem chave para 3 req/5s
-            try {
-                const r = await fetch('https://brapi.dev/api/quote/%5EBVSP?range=1d', { signal: AbortSignal.timeout(9000) });
-                if (!r.ok) throw 0;
-                const d = await r.json();
-                const q = d.results && d.results[0];
-                if (!q || q.regularMarketPrice == null) throw 0;
-                const price = Number(q.regularMarketPrice);
-                const pct = Number(q.regularMarketChangePercent || 0);
-                const dir = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
-                const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '▶';
-                setIndice(5, `${price.toLocaleString('pt-BR', { maximumFractionDigits: 0 })} pts`, `${arrw} ${Math.abs(pct).toFixed(2)}%`, dir);
-            } catch { setIndiceError(5); }
-        };
+/* ═══════════════════════════════════════════════════════════════
+   NEWS VIEW  —  RSS engine + indicadores ao vivo
+   ═══════════════════════════════════════════════════════════════ */
 
-        const loadIndices = () => {
-            loadAwesomeAPI();
-            loadBCB();
-            loadIbovespa();
-        };
+const FEEDS = [
+  { name: 'Receita Federal',    short: 'RF', url: 'https://www.gov.br/receitafederal/pt-br/assuntos/noticias/RSS',               cat: 'tributario'     },
+  { name: 'JOTA',               short: 'JO', url: 'https://www.jota.info/feed',                                                    cat: 'tributario'     },
+  { name: 'Contábeis',          short: 'CT', url: 'https://www.contabeis.com.br/noticias/rss.xml',                                cat: 'tributario'     },
+  { name: 'Consultor Jurídico', short: 'CJ', url: 'https://www.conjur.com.br/rss.xml',                                            cat: 'tributario'     },
+  { name: 'Banco Central',      short: 'BC', url: 'https://www.bcb.gov.br/api/Feed/noticias/rss.xml',                             cat: 'economico'      },
+  { name: 'InfoMoney',          short: 'IM', url: 'https://www.infomoney.com.br/feed/',                                           cat: 'economico'      },
+  { name: 'Valor Econômico',    short: 'VE', url: 'https://valor.globo.com/financas/rss.xml',                                     cat: 'economico'      },
+  { name: 'Tesouro Nacional',   short: 'TN', url: 'https://www.tesourotransparente.gov.br/noticias/rss',                          cat: 'fiscal'         },
+  { name: 'STF',                short: 'ST', url: 'https://portal.stf.jus.br/servicos/rss/noticias.asp',                          cat: 'jurisprudencia' },
+  { name: 'STJ',                short: 'SJ', url: 'https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/rss.aspx',   cat: 'jurisprudencia' },
+  { name: 'Agência Senado',     short: 'SF', url: 'https://www12.senado.leg.br/noticias/rss/ultimas',                             cat: 'reformas'       },
+  { name: 'Agência Câmara',     short: 'CD', url: 'https://www.camara.leg.br/noticias/rss.xml',                                   cat: 'reformas'       },
+];
 
-        // ---------- Init seção Notícias ----------
-        document.querySelectorAll('.news-filter').forEach(btn => {
-            btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
-        });
-        loadIndices();
-        loadRSS();
-        // Auto-refresh a cada 10 min (notícias) e 5 min (índices)
-        setInterval(loadRSS, 10 * 60 * 1000);
-        setInterval(loadIndices, 5 * 60 * 1000);
-    </script>
+const CAT_LABEL = { tributario: 'Tributário', fiscal: 'Fiscal', economico: 'Econômico', jurisprudencia: 'Jurisprudência', reformas: 'Reformas' };
+const CAT_TAG   = { tributario: 'tg-tri', fiscal: 'tg-fis', economico: 'tg-eco', jurisprudencia: 'tg-carf', reformas: 'tg-ref' };
+
+const TAX_KW = ['tribut','fiscal','imposto','arrecad','receita federal','selic','copom','irpf','irpj','csll','pis','cofins','icms','iss','ipi','ibs','cbs','reforma tributária','simples nacional','carf','pgfn','nota fiscal','nfe','contribuição','alíquota','base de cálculo','isenção','parcelamento','sped','dctf','dirf','e-social','reinf','certidão','lucro real','lucro presumido','mei','previdência','inss','orçamento','déficit','superávit','pib','inflação','economia','desoneração','benefício fiscal','crédito tributário','câmbio','dívida','tributação','fisco','stf','stj','decreto','instrução normativa','lei complementar','pec','projeto de lei','senado','câmara','fazenda','bolsa','ibovespa','juros','dólar','banco central'];
+
+const isRelevant = (t) => { const s = t.toLowerCase(); return TAX_KW.some(k => s.includes(k)); };
+
+const FALLBACK = [
+  { title: 'Senado vota regulamentação do IBS e CBS; placar incerto após lobby do setor de serviços', source: 'Agência Senado', cat: 'reformas', link: 'https://www12.senado.leg.br', summary: 'O projeto regulamenta os novos tributos da Reforma Tributária. O texto define alíquotas de referência para o IBS e CBS, estabelece o Comitê Gestor e o período de transição de 2026 a 2032.', time: 'Atualizando…' },
+  { title: 'Receita Federal publica IN alterando prazo de entrega da EFD-Reinf para Lucro Real', source: 'Receita Federal', cat: 'tributario', link: 'https://receita.economia.gov.br', summary: 'Instrução Normativa estende o prazo de entrega para o 15º dia útil do mês seguinte ao período de apuração, atendendo demanda do setor empresarial e de entidades contábeis.', time: 'Atualizando…' },
+  { title: 'Tesouro Nacional registra superávit primário acima das projeções', source: 'Tesouro Nacional', cat: 'fiscal', link: 'https://tesouro.fazenda.gov.br', summary: 'Resultado positivo impulsionado pelo crescimento real da arrecadação federal e contenção de despesas discricionárias abaixo do previsto.', time: 'Atualizando…' },
+  { title: 'STF retoma julgamento sobre IRPJ e CSLL sobre depósitos judiciais — impacto bilionário', source: 'STF', cat: 'jurisprudencia', link: 'https://www.stf.jus.br', summary: 'Ministros avaliam se valores em depósito devem ser tributados antes da decisão definitiva. Relator entende que não configuram receita antes do trânsito em julgado.', time: 'Atualizando…' },
+  { title: 'Copom mantém SELIC e sinaliza cautela nos próximos ciclos de corte', source: 'Banco Central', cat: 'economico', link: 'https://www.bcb.gov.br', summary: 'Comunicado destaca resiliência da atividade e persistência das expectativas de inflação acima da meta. Decisão unânime entre os membros do comitê.', time: 'Atualizando…' },
+  { title: 'Câmara aprova substitutivo do PLP com regras da transição para o IVA Dual', source: 'Agência Câmara', cat: 'reformas', link: 'https://www.camara.leg.br', summary: 'Texto define cronograma de redução gradual de PIS, COFINS, IPI, ICMS e ISS entre 2026 e 2032, com mecanismos de compensação para Estados que tiverem perda de receita.', time: 'Atualizando…' },
+  { title: 'CARF publica Súmula sobre créditos de PIS/COFINS em exportações', source: 'CARF', cat: 'tributario', link: 'https://carf.economia.gov.br', summary: 'Créditos apurados nas entradas vinculadas à receita de exportação podem ser ressarcidos em espécie ou compensados com outros tributos federais.', time: 'Atualizando…' },
+  { title: 'Arrecadação federal atinge novo recorde no trimestre', source: 'Receita Federal', cat: 'fiscal', link: 'https://receita.economia.gov.br', summary: 'Crescimento real frente ao ano anterior, impulsionado por IR Pessoa Jurídica, CSLL e reoneração parcial da folha de pagamentos.', time: 'Atualizando…' },
+  { title: 'STJ define que honorários não integram base do IRPJ em contratações jurídicas', source: 'STJ', cat: 'jurisprudencia', link: 'https://www.stj.jus.br', summary: 'Turma decide que honorários pagos em contratações jurídicas de terceiros não integram base do IRPJ e da CSLL quando deduzidos como despesa operacional necessária.', time: 'Atualizando…' },
+];
+
+const JURIS = [
+  { title: 'ICMS-ST na base de cálculo do PIS/COFINS',           source: 'STF',   tgcls: 'tg-stf',  tglbl: 'STF',   summary: 'STF reafirma que ICMS-ST pago pelo substituído não integra base do PIS/COFINS. Aplica por analogia a tese do RE 574.706.', link: 'https://www.stf.jus.br', time: 'Recente' },
+  { title: 'Multa qualificada exige prova de dolo específico',    source: 'STJ',   tgcls: 'tg-stj',  tglbl: 'STJ',   summary: 'Multa de 150% exige prova de conduta dolosa. Erro formal ou lançamento incorreto não basta — a Fazenda deve demonstrar o dolo específico de fraudar o fisco.', link: 'https://www.stj.jus.br', time: 'Recente' },
+  { title: 'Ágio interno em reestruturações societárias',         source: 'CARF',  tgcls: 'tg-carf', tglbl: 'CARF',  summary: 'Afasta dedutibilidade de ágio gerado entre partes relacionadas sem propósito negocial demonstrável. Precedente relevante para planejamento tributário de grupos.', link: 'https://carf.economia.gov.br', time: 'Recente' },
+  { title: 'Exclusão do ISS da base do PIS/COFINS',               source: 'TRF-3', tgcls: 'tg-trf',  tglbl: 'TRF-3', summary: 'TRF-3 aplica por analogia a tese do STF sobre ICMS e reconhece direito à exclusão do ISS da base de cálculo das contribuições para prestadores de serviço.', link: 'https://www.trf3.jus.br', time: 'Recente' },
+];
+
+const CALENDAR = [
+  { date: '30/04', label: 'PGFN — Transação',       note: 'Encerra prazo de adesão' },
+  { date: '07/05', label: 'Copom — Reunião',        note: 'Decisão sobre SELIC' },
+  { date: '15/05', label: 'DCTF — mensal',          note: 'Entrega obrigatória' },
+  { date: '31/05', label: 'IRPF — pessoa física',   note: 'Prazo final de entrega' },
+  { date: '15/06', label: 'EFD-Reinf — Lucro Real', note: 'Prazo de entrega' },
+];
+
+const LEGIS = [
+  { code: 'IN RFB recente',    desc: 'Prazo EFD-Reinf — Lucro Real',     date: '—' },
+  { code: 'LC 214/25',          desc: 'Regulamenta IBS e CBS',             date: '—' },
+  { code: 'Portaria MF — IRRF', desc: 'Novas alíquotas do IRRF',           date: '—' },
+  { code: 'Res. CGSN',          desc: 'Tabelas Simples Nacional',          date: '—' },
+];
+
+const SOURCES = [
+  { n: 'Receita Federal', s: 'RF' }, { n: 'JOTA', s: 'JO' }, { n: 'Valor Econômico', s: 'VE' }, { n: 'STF', s: 'ST' },
+  { n: 'STJ', s: 'SJ' }, { n: 'CARF', s: 'CA' }, { n: 'Banco Central', s: 'BC' }, { n: 'Câmara Dep.', s: 'CD' },
+  { n: 'Senado Federal', s: 'SF' }, { n: 'Tesouro Nacional', s: 'TN' }, { n: 'InfoMoney', s: 'IM' }, { n: 'Consultor Jur.', s: 'CJ' },
+  { n: 'Contábeis', s: 'CT' }, { n: 'Diário Oficial', s: 'DU' }, { n: 'TRF-3', s: 'T3' }, { n: 'PGFN', s: 'PG' },
+];
+
+let allArt = [], curFilter = 'todos';
+
+const proxyUrl = (u) => 'https://api.allorigins.win/get?url=' + encodeURIComponent(u);
+
+const timeAgo = (d) => {
+  const dt = new Date(d); if (isNaN(dt.getTime())) return 'Recente';
+  const s = Math.floor((Date.now() - dt.getTime()) / 1000);
+  if (s < 60) return 'Agora';
+  if (s < 3600) return 'Há ' + Math.floor(s/60) + ' min';
+  if (s < 86400) return 'Há ' + Math.floor(s/3600) + 'h';
+  if (s < 172800) return 'Ontem';
+  return 'Há ' + Math.floor(s/86400) + ' dias';
+};
+
+const fmtBRL = (n, dig=2) => Number(n).toLocaleString('pt-BR', { minimumFractionDigits: dig, maximumFractionDigits: dig });
+
+async function fetchFeed(src) {
+  try {
+    const ctl = new AbortController();
+    const to = setTimeout(() => ctl.abort(), 9000);
+    const r = await fetch(proxyUrl(src.url), { signal: ctl.signal });
+    clearTimeout(to);
+    if (!r.ok) return [];
+    const j = await r.json();
+    const doc = new DOMParser().parseFromString(j.contents || '', 'text/xml');
+    return Array.from(doc.querySelectorAll('item, entry')).slice(0, 12).map(it => {
+      const title = (it.querySelector('title')?.textContent || '').trim();
+      const linkEl = it.querySelector('link');
+      const link = (linkEl?.getAttribute('href') || linkEl?.textContent || it.querySelector('guid')?.textContent || '#').trim();
+      const summary = (it.querySelector('description, summary, content')?.textContent || '').replace(/<[^>]+>/g, '').trim().slice(0, 260);
+      const pub = it.querySelector('pubDate, published, updated')?.textContent || '';
+      return { title, link, summary, source: src.name, cat: src.cat, time: pub ? timeAgo(pub) : 'Recente' };
+    }).filter(a => a.title && isRelevant(a.title + ' ' + a.summary));
+  } catch { return []; }
+}
+
+function showModal(a) {
+  const cat = a.cat || 'tributario';
+  const tgc = a.tgcls || (CAT_TAG[cat] || 'tg-tri');
+  const tgl = a.tglbl || (CAT_LABEL[cat] || cat);
+  $('#m-tag').className = 'tag ' + tgc;
+  $('#m-tag').textContent = tgl;
+  $('#m-title').textContent = a.title;
+  $('#m-meta').innerHTML = '<span class="src">' + a.source + '</span><span class="dot"> · </span><span>' + (a.time || '') + '</span>';
+  $('#m-body').textContent = a.summary || a.title;
+  $('#m-link').href = a.link || '#';
+  $('#modal').classList.add('open');
+}
+
+function mkCard(a, extra = '') {
+  const cat = a.cat || 'tributario';
+  const tgc = a.tgcls || (CAT_TAG[cat] || 'tg-tri');
+  const tgl = a.tglbl || (CAT_LABEL[cat] || cat);
+  const d = document.createElement('div');
+  d.className = 'card' + (extra ? ' ' + extra : '');
+  d.innerHTML = '<span class="tag ' + tgc + '">' + tgl + '</span>' +
+                '<h3 class="ct">' + a.title + '</h3>' +
+                (a.summary ? '<p class="ce">' + a.summary + '</p>' : '') +
+                '<div class="cm"><span class="src">' + a.source + '</span><span class="dot">·</span><span>' + (a.time || '') + '</span></div>';
+  d.addEventListener('click', () => showModal(a));
+  return d;
+}
+function mkHero(a) {
+  const d = document.createElement('div');
+  d.className = 'card card-hero';
+  d.innerHTML = '<span class="tag tg-des">Destaque</span>' +
+                '<h2 class="ct">' + a.title + '</h2>' +
+                '<p class="ce">' + (a.summary || '') + '</p>' +
+                '<div class="cm"><span class="src">' + a.source + '</span><span class="dot">·</span><span>' + (a.time || '') + '</span></div>';
+  d.addEventListener('click', () => showModal(a));
+  return d;
+}
+function mkListItem(a, n) {
+  const d = document.createElement('div');
+  d.className = 'list-item';
+  d.innerHTML = '<div class="lnum">' + n + '</div>' +
+                '<div><div class="ltitle">' + a.title + '</div>' +
+                '<div class="cm" style="margin-top:.3rem;"><span class="src">' + a.source + '</span><span class="dot">·</span><span>' + (a.time || '') + '</span></div></div>';
+  d.addEventListener('click', () => showModal(a));
+  return d;
+}
+function sk(h = '160px') {
+  const d = document.createElement('div'); d.className = 'card'; d.style.minHeight = h;
+  d.innerHTML = '<div class="sk" style="width:70px;height:18px;margin-bottom:.65rem;"></div>' +
+                '<div class="sk" style="width:100%;height:15px;margin-bottom:.4rem;"></div>' +
+                '<div class="sk" style="width:82%;height:15px;margin-bottom:.4rem;"></div>' +
+                '<div class="sk" style="width:58%;height:13px;margin-bottom:.85rem;"></div>' +
+                '<div class="sk" style="width:110px;height:11px;"></div>';
+  return d;
+}
+
+function renderSkeletons() {
+  const fg = $('#fg'), ng = $('#ng'), mr = $('#mr');
+  fg.innerHTML = ''; ng.innerHTML = ''; mr.innerHTML = '';
+  const hero = document.createElement('div');
+  hero.className = 'card card-hero';
+  hero.style.cssText = 'background:rgba(78,110,128,.12);justify-content:flex-end;';
+  fg.appendChild(hero); fg.appendChild(sk()); fg.appendChild(sk());
+  for (let i = 0; i < 6; i++) ng.appendChild(sk());
+  for (let i = 1; i <= 5; i++) {
+    const d = document.createElement('div'); d.className = 'list-item';
+    d.innerHTML = '<div class="lnum" style="opacity:.1">' + i + '</div><div style="flex:1">' +
+                  '<div class="sk" style="width:100%;height:14px;margin-bottom:.35rem;"></div>' +
+                  '<div class="sk" style="width:68%;height:14px;margin-bottom:.5rem;"></div>' +
+                  '<div class="sk" style="width:90px;height:10px;"></div></div>';
+    mr.appendChild(d);
+  }
+}
+
+function renderArticles(list) {
+  const fg = $('#fg'), ng = $('#ng'), mr = $('#mr');
+  fg.innerHTML = ''; ng.innerHTML = ''; mr.innerHTML = '';
+  const pool = list.length ? list : FALLBACK;
+  fg.appendChild(mkHero(pool[0]));
+  fg.appendChild(mkCard(pool[1] || pool[0]));
+  fg.appendChild(mkCard(pool[2] || pool[0]));
+  pool.slice(3, 9).forEach(a => ng.appendChild(mkCard(a)));
+  pool.slice(0, 5).forEach((a, i) => mr.appendChild(mkListItem(a, i + 1)));
+}
+
+function applyFilter(cat) {
+  curFilter = cat;
+  $$('#fbar .fbtn').forEach(b => b.classList.toggle('active', b.dataset.f === cat));
+  $$('#navNews .nav-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  const list = cat === 'todos' ? allArt : allArt.filter(a => a.cat === cat);
+  renderArticles(list.length ? list : allArt);
+}
+
+async function loadRSS() {
+  renderSkeletons();
+  const dot = $('#rdot'), st = $('#rstat');
+  try {
+    const results = await Promise.allSettled(FEEDS.map(fetchFeed));
+    const all = results.filter(r => r.status === 'fulfilled').flatMap(r => r.value);
+    all.sort(() => Math.random() - 0.5);
+    allArt = all.length >= 5 ? all : FALLBACK;
+    const ok = results.filter(r => r.status === 'fulfilled' && r.value.length).length;
+    dot.className = 'rdot ' + (all.length ? 'live' : 'error');
+    st.textContent = all.length
+      ? (all.length + ' notícias · ' + ok + ' fontes ativas · Atualizado ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }))
+      : 'Fontes RSS indisponíveis — exibindo conteúdo editorial';
+  } catch {
+    allArt = FALLBACK;
+    dot.className = 'rdot error';
+    st.textContent = 'Erro ao carregar RSS — exibindo conteúdo editorial';
+  }
+  renderArticles(curFilter === 'todos' ? allArt : allArt.filter(a => a.cat === curFilter));
+}
+
+function renderStatic() {
+  const jg = $('#jg');
+  JURIS.forEach(a => {
+    const d = document.createElement('div'); d.className = 'card';
+    d.innerHTML = '<span class="tag ' + a.tgcls + '">' + a.tglbl + '</span>' +
+                  '<h3 class="ct">' + a.title + '</h3><p class="ce">' + a.summary + '</p>' +
+                  '<div class="cm"><span class="src">' + a.source + '</span><span class="dot">·</span><span>' + a.time + '</span></div>';
+    d.addEventListener('click', () => showModal(a));
+    jg.appendChild(d);
+  });
+
+  const cal = $('#cal');
+  CALENDAR.forEach(c => {
+    cal.innerHTML += '<div class="cal-item">' +
+                     '<span class="cal-date">' + c.date + '</span>' +
+                     '<div><div class="cal-lbl">' + c.label + '</div><div class="cal-note">' + c.note + '</div></div></div>';
+  });
+
+  const leg = $('#leg');
+  LEGIS.forEach(l => {
+    leg.innerHTML += '<div class="leg-item">' +
+                     '<div class="leg-code">' + l.code + '</div>' +
+                     '<div class="leg-desc">' + l.desc + '</div>' +
+                     '<div class="leg-date">' + l.date + '</div></div>';
+  });
+
+  const sg = $('#sg');
+  SOURCES.forEach(s => {
+    sg.innerHTML += '<div class="src-card"><div class="src-logo">' + s.s + '</div><span class="src-name">' + s.n + '</span></div>';
+  });
+}
+
+/* Indicadores ao vivo */
+function updateIndicator(idx, val, chText, dir = 'neutral') {
+  const el = $$('#indicators .ind')[idx]; if (!el) return;
+  el.classList.remove('sk-ind');
+  el.querySelector('.ind-val').textContent = val;
+  const c = el.querySelector('.ind-ch'); c.className = 'ind-ch ' + dir; c.textContent = chText;
+  updateTicker(idx, val);
+}
+function indicatorError(idx, label = 'Indisponível') {
+  const el = $$('#indicators .ind')[idx]; if (!el) return;
+  el.classList.remove('sk-ind');
+  el.querySelector('.ind-val').textContent = '—';
+  const c = el.querySelector('.ind-ch'); c.className = 'ind-ch neutral'; c.textContent = label;
+}
+function updateTicker(idx, val) {
+  const labels = ['SELIC', 'IPCA 12m', 'USD/BRL', 'EUR/BRL', 'BTC/BRL', 'Ibovespa'];
+  const items = $$('#tickerInner .t-item');
+  if (items[idx]) items[idx].innerHTML = '<b>' + labels[idx] + '</b>' + val;
+}
+
+async function loadAwesome() {
+  try {
+    const r = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL', { signal: AbortSignal.timeout(9000) });
+    if (!r.ok) throw 0;
+    const d = await r.json();
+    [['USDBRL', 2, 4], ['EURBRL', 3, 4], ['BTCBRL', 4, 0]].forEach(([k, idx, dig]) => {
+      const q = d[k]; if (!q) { indicatorError(idx); return; }
+      const val = Number(q.bid); const pct = Number(q.pctChange);
+      const dir = pct > 0 ? 'up' : pct < 0 ? 'down' : 'neutral';
+      const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '▶';
+      updateIndicator(idx, 'R$ ' + fmtBRL(val, dig), arrw + ' ' + Math.abs(pct).toFixed(2) + '%', dir);
+    });
+  } catch { [2, 3, 4].forEach(i => indicatorError(i)); }
+}
+async function loadBCB() {
+  const fetchSGS = async (serie, n = 1) => {
+    const r = await fetch('https://api.bcb.gov.br/dados/serie/bcdata.sgs.' + serie + '/dados/ultimos/' + n + '?formato=json', { signal: AbortSignal.timeout(9000) });
+    if (!r.ok) throw 0; return r.json();
+  };
+  try { const s = await fetchSGS(432, 1); const last = Number(s[s.length-1].valor); updateIndicator(0, fmtBRL(last, 2) + '%', 'Meta a.a.', 'neutral'); }
+  catch { indicatorError(0); }
+  try { const s = await fetchSGS(433, 12); const acc = s.reduce((p, c) => (1 + Number(c.valor)/100) * p, 1); const pct = (acc-1)*100; updateIndicator(1, fmtBRL(pct, 2) + '%', 'Acumulado 12m', pct > 4.5 ? 'up' : pct < 3 ? 'down' : 'neutral'); }
+  catch { indicatorError(1); }
+}
+async function loadIbov() {
+  try {
+    const r = await fetch('https://brapi.dev/api/quote/%5EBVSP?range=1d', { signal: AbortSignal.timeout(9000) });
+    if (!r.ok) throw 0;
+    const d = await r.json(); const q = d.results && d.results[0];
+    if (!q || q.regularMarketPrice == null) throw 0;
+    const price = Number(q.regularMarketPrice); const pct = Number(q.regularMarketChangePercent || 0);
+    const dir = pct > 0 ? 'up' : pct < 0 ? 'down' : 'neutral';
+    const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '▶';
+    updateIndicator(5, price.toLocaleString('pt-BR', { maximumFractionDigits: 0 }) + ' pts', arrw + ' ' + Math.abs(pct).toFixed(2) + '%', dir);
+  } catch { indicatorError(5); }
+}
+const loadIndices = () => { loadAwesome(); loadBCB(); loadIbov(); };
+
+/* News UI bindings */
+$$('#fbar .fbtn').forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.f)));
+$$('#navNews .nav-btn').forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.cat)));
+
+$('#m-close').addEventListener('click', () => $('#modal').classList.remove('open'));
+$('#modal').addEventListener('click', (e) => { if (e.target === $('#modal')) $('#modal').classList.remove('open'); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { $('#modal').classList.remove('open'); $('#popupOverlay').classList.remove('active'); } });
+
+$('#nl-btn').addEventListener('click', () => {
+  const inp = $('#nl-in');
+  if (inp.value.includes('@')) { inp.value = ''; inp.placeholder = '✓ Cadastro realizado!'; setTimeout(() => inp.placeholder = 'seu@email.com.br', 3000); }
+  else { inp.placeholder = 'Insira um e-mail válido'; inp.focus(); }
+});
+
+/* Scroll to top */
+const stbtn = $('#stbtn');
+window.addEventListener('scroll', () => stbtn.classList.toggle('on', scrollY > 400));
+stbtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* Render static pieces of news immediately (sidebar, juris, sources do not need network) */
+renderStatic();
+
+/* Hash listener for browser back/forward */
+window.addEventListener('hashchange', () => {
+  const want = (location.hash === '#noticias' || location.hash === '#news') ? 'news' : 'pi';
+  if (want !== currentView) setView(want);
+});
+
+/* Auto-refresh (somente quando a view de notícias já foi carregada) */
+setInterval(() => { if (rssLoaded) loadRSS(); }, 10 * 60 * 1000);
+setInterval(() => { if (indicesLoaded) loadIndices(); }, 5 * 60 * 1000);
+</script>
+
 </body>
 </html>
