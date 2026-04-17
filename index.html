@@ -1237,26 +1237,32 @@ $$('a[href^="#"]').forEach(link => {
    NEWS VIEW  —  RSS engine + indicadores ao vivo
    ═══════════════════════════════════════════════════════════════ */
 
+/* Curated RSS feeds — each URL was verified end-to-end (valid <rss>/<atom:feed>,
+   ≥1 item, reachable via the CORS proxies below). URLs that 404'd, returned
+   HTML, or were blocked were removed or replaced — e.g. CARF/PGFN/Fazenda have
+   no public RSS, STJ/Migalhas block bots, BCB deprecated their feed. Swapped
+   in Folha Mercado, G1 Economia, Poder360, NeoFeed, MoneyTimes, InvestNews
+   which all serve clean RSS. */
 const FEEDS = [
-  { name: 'Receita Federal',    short: 'RF', url: 'https://www.gov.br/receitafederal/pt-br/assuntos/noticias/RSS',               cat: 'tributario'     },
-  { name: 'JOTA',               short: 'JO', url: 'https://www.jota.info/feed',                                                    cat: 'tributario'     },
-  { name: 'Contábeis',          short: 'CT', url: 'https://www.contabeis.com.br/noticias/rss.xml',                                cat: 'tributario'     },
-  { name: 'Consultor Jurídico', short: 'CJ', url: 'https://www.conjur.com.br/rss.xml',                                            cat: 'tributario'     },
-  { name: 'CARF',               short: 'CA', url: 'https://www.gov.br/carf/pt-br/assuntos/noticias/RSS',                           cat: 'tributario'     },
-  { name: 'PGFN',               short: 'PG', url: 'https://www.gov.br/pgfn/pt-br/assuntos/noticias/RSS',                           cat: 'tributario'     },
-  { name: 'Min. da Fazenda',    short: 'MF', url: 'https://www.gov.br/fazenda/pt-br/assuntos/noticias/RSS',                        cat: 'fiscal'         },
-  { name: 'Banco Central',      short: 'BC', url: 'https://www.bcb.gov.br/api/Feed/noticias/rss.xml',                             cat: 'economico'      },
-  { name: 'InfoMoney',          short: 'IM', url: 'https://www.infomoney.com.br/feed/',                                           cat: 'economico'      },
-  { name: 'Valor Econômico',    short: 'VE', url: 'https://pox.globo.com/rss/valor',                                              cat: 'economico'      },
-  { name: 'Exame',              short: 'EX', url: 'https://exame.com/feed/',                                                       cat: 'economico'      },
-  { name: 'Agência Brasil',     short: 'AB', url: 'https://agenciabrasil.ebc.com.br/rss/economia/feed.xml',                        cat: 'economico'      },
-  { name: 'CNN Brasil Economia',short: 'CN', url: 'https://www.cnnbrasil.com.br/economia/feed/',                                   cat: 'economico'      },
-  { name: 'Tesouro Nacional',   short: 'TN', url: 'https://www.tesourotransparente.gov.br/noticias/rss',                          cat: 'fiscal'         },
-  { name: 'STF',                short: 'ST', url: 'https://portal.stf.jus.br/servicos/rss/noticias.asp',                          cat: 'jurisprudencia' },
-  { name: 'STJ',                short: 'SJ', url: 'https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/rss.aspx',   cat: 'jurisprudencia' },
-  { name: 'Migalhas Tributário',short: 'MG', url: 'https://www.migalhas.com.br/arquivos/rss/migalhas-tributario.xml',              cat: 'jurisprudencia' },
-  { name: 'Agência Senado',     short: 'SF', url: 'https://www12.senado.leg.br/noticias/rss/ultimas',                             cat: 'reformas'       },
-  { name: 'Agência Câmara',     short: 'CD', url: 'https://www.camara.leg.br/noticias/rss.xml',                                   cat: 'reformas'       },
+  { name: 'Receita Federal',    short: 'RF', url: 'https://www.gov.br/receitafederal/pt-br/assuntos/noticias/RSS', cat: 'tributario'     },
+  { name: 'JOTA',               short: 'JO', url: 'https://www.jota.info/feed',                                    cat: 'tributario'     },
+  { name: 'Contábeis',          short: 'CT', url: 'https://www.contabeis.com.br/rss/noticias',                     cat: 'tributario'     },
+  { name: 'Consultor Jurídico', short: 'CJ', url: 'https://www.conjur.com.br/rss.xml',                             cat: 'jurisprudencia' },
+  { name: 'STF',                short: 'ST', url: 'https://noticias.stf.jus.br/feed',                              cat: 'jurisprudencia' },
+  { name: 'Agência Senado',     short: 'SF', url: 'https://www12.senado.leg.br/noticias/feed/rss',                 cat: 'reformas'       },
+  { name: 'Poder360',           short: 'P3', url: 'https://www.poder360.com.br/feed/',                             cat: 'reformas'       },
+  { name: 'Tesouro Nacional',   short: 'TN', url: 'https://www.tesourotransparente.gov.br/@@rss.xml',              cat: 'fiscal'         },
+  { name: 'Valor Econômico',    short: 'VE', url: 'https://pox.globo.com/rss/valor',                               cat: 'economico'      },
+  { name: 'Folha Mercado',      short: 'FM', url: 'https://feeds.folha.uol.com.br/mercado/rss091.xml',             cat: 'economico'      },
+  { name: 'G1 Economia',        short: 'G1', url: 'https://pox.globo.com/rss/g1/economia',                         cat: 'economico'      },
+  { name: 'O Globo',            short: 'OG', url: 'https://pox.globo.com/rss/oglobo',                              cat: 'economico'      },
+  { name: 'InfoMoney',          short: 'IM', url: 'https://www.infomoney.com.br/feed/',                            cat: 'economico'      },
+  { name: 'Exame',              short: 'EX', url: 'https://exame.com/feed/',                                       cat: 'economico'      },
+  { name: 'Agência Brasil',     short: 'AB', url: 'https://agenciabrasil.ebc.com.br/rss/economia/feed.xml',        cat: 'economico'      },
+  { name: 'CNN Brasil',         short: 'CN', url: 'https://www.cnnbrasil.com.br/feed/',                            cat: 'economico'      },
+  { name: 'NeoFeed',            short: 'NF', url: 'https://neofeed.com.br/feed/',                                  cat: 'economico'      },
+  { name: 'MoneyTimes',         short: 'MT', url: 'https://www.moneytimes.com.br/feed/',                           cat: 'economico'      },
+  { name: 'InvestNews',         short: 'IN', url: 'https://investnews.com.br/feed/',                               cat: 'economico'      },
 ];
 
 const CAT_LABEL = { tributario: 'Tributário', fiscal: 'Fiscal', economico: 'Econômico', jurisprudencia: 'Jurisprudência', reformas: 'Reformas' };
@@ -1300,21 +1306,18 @@ const LEGIS = [
   { code: 'Res. CGSN',          desc: 'Tabelas Simples Nacional',          date: '—' },
 ];
 
-const SOURCES = [
-  { n: 'Receita Federal', s: 'RF' }, { n: 'JOTA', s: 'JO' }, { n: 'Valor Econômico', s: 'VE' }, { n: 'STF', s: 'ST' },
-  { n: 'STJ', s: 'SJ' }, { n: 'CARF', s: 'CA' }, { n: 'Banco Central', s: 'BC' }, { n: 'Câmara Dep.', s: 'CD' },
-  { n: 'Senado Federal', s: 'SF' }, { n: 'Tesouro Nacional', s: 'TN' }, { n: 'InfoMoney', s: 'IM' }, { n: 'Consultor Jur.', s: 'CJ' },
-  { n: 'Contábeis', s: 'CT' }, { n: 'Diário Oficial', s: 'DU' }, { n: 'TRF-3', s: 'T3' }, { n: 'PGFN', s: 'PG' },
-];
+/* Sources grid display — kept in sync with the FEEDS array above. */
+const SOURCES = FEEDS.map(f => ({ n: f.name, s: f.short }));
 
 let allArt = [], curFilter = 'todos', rssStats = { ok: 0, total: 0 }, renderScheduled = false;
 
-/* Multiple CORS proxies — tried in order, first to succeed wins. Keeps RSS
-   resilient to single-proxy outages / rate limits. */
+/* CORS proxies raced in parallel via Promise.any — whichever responds first
+   with a valid feed wins, remaining requests are aborted. Drops ~15s of
+   cascading timeouts when a proxy is slow or rate-limited. corsproxy.io was
+   removed because it started returning 403 (requires paid tier/referrer). */
 const PROXIES = [
   (u) => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u),
-  (u) => 'https://corsproxy.io/?' + encodeURIComponent(u),
-  (u) => 'https://api.codetabs.com/v1/proxy/?quest=' + encodeURIComponent(u),
+  (u) => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u),
 ];
 
 /* Escape HTML special chars before interpolation into innerHTML.
@@ -1344,15 +1347,20 @@ const parseDate = (s) => { const d = new Date(s); return isNaN(d.getTime()) ? 0 
 
 const fmtBRL = (n, dig=2) => Number(n).toLocaleString('pt-BR', { minimumFractionDigits: dig, maximumFractionDigits: dig });
 
-async function fetchText(url, proxy, timeoutMs = 6000) {
+async function fetchText(url, proxy, outerSignal, timeoutMs = 5000) {
   const ctl = new AbortController();
   const to = setTimeout(() => ctl.abort(), timeoutMs);
+  // Forward outer abort (from Promise.any winner) so losers cancel quickly
+  const onOuter = () => ctl.abort();
+  if (outerSignal) outerSignal.addEventListener('abort', onOuter);
   try {
     const r = await fetch(proxy(url), { signal: ctl.signal, headers: { 'Accept': 'application/rss+xml, application/xml, text/xml, */*' } });
-    clearTimeout(to);
-    if (!r.ok) throw 0;
+    if (!r.ok) throw new Error('http ' + r.status);
     return await r.text();
-  } catch (e) { clearTimeout(to); throw e; }
+  } finally {
+    clearTimeout(to);
+    if (outerSignal) outerSignal.removeEventListener('abort', onOuter);
+  }
 }
 
 function parseFeedXml(text, src) {
@@ -1372,14 +1380,22 @@ function parseFeedXml(text, src) {
 }
 
 async function fetchFeed(src) {
-  for (const proxy of PROXIES) {
-    try {
-      const text = await fetchText(src.url, proxy);
-      const items = parseFeedXml(text, src);
-      if (items.length) return items;
-    } catch {}
+  /* Race all proxies in parallel; first one to return a parseable feed wins.
+     Losers are aborted via the shared signal for fast cleanup. */
+  const outer = new AbortController();
+  try {
+    const items = await Promise.any(PROXIES.map(async (proxy) => {
+      const text = await fetchText(src.url, proxy, outer.signal);
+      const parsed = parseFeedXml(text, src);
+      if (!parsed.length) throw new Error('empty');
+      return parsed;
+    }));
+    outer.abort();
+    return items;
+  } catch {
+    outer.abort();
+    return [];
   }
-  return [];
 }
 
 function showModal(a) {
