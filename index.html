@@ -5,13 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARCANUM — Propriedade Intelectual | Registro de Marcas, Patentes e Software</title>
 
-<!-- Security headers (meta fallback; prefer equivalent HTTP headers at the hosting layer) -->
-<meta http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.allorigins.win https://api.bcb.gov.br https://brapi.dev https://economia.awesomeapi.com.br; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Permissions-Policy"
-      content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()">
-
 <meta name="description" content="Registro de marcas, patentes e proteção de software no INPI. Consultoria especializada em propriedade intelectual para empresas em Ribeirão Preto e todo Brasil.">
 <meta name="keywords" content="registro de marca, patente, propriedade intelectual, INPI, software, Ribeirão Preto, advogado marcas, registro INPI">
 <meta name="author" content="Arcanum Propriedade Intelectual">
@@ -22,8 +15,13 @@
 <meta property="og:url" content="https://arcanumpi.com.br">
 <meta property="og:locale" content="pt_BR">
 <link rel="canonical" href="https://arcanumpi.com.br">
-<!-- Security headers (meta fallback; prefer real HTTP headers at hosting layer) -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.bcb.gov.br https://economia.awesomeapi.com.br https://brapi.dev https://api.allorigins.win https://corsproxy.io https://api.codetabs.com https://api.rss2json.com; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<!-- Security headers (meta fallback; prefer real HTTP headers at hosting layer).
+     NOTE: clickjacking protection cannot be delivered via <meta> — frame-ancestors
+     is silently ignored by browsers in meta CSP (per CSP3 spec), and there is no
+     X-Frame-Options meta equivalent. Configure `X-Frame-Options: DENY` or a real
+     `Content-Security-Policy: frame-ancestors 'none'` HTTP header at the hosting
+     or CDN layer (e.g. Cloudflare Transform Rules) to actually block framing. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.bcb.gov.br https://economia.awesomeapi.com.br https://brapi.dev https://api.allorigins.win https://corsproxy.io https://api.codetabs.com https://api.rss2json.com; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()">
 <link rel="icon" type="image/png" href="logo-icon.png">
