@@ -519,12 +519,13 @@ header {
 .modal-link { display: inline-flex; align-items: center; gap: .4rem; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); text-decoration: none; border: 1px solid rgba(78,110,128,.24); padding: .5rem 1.1rem; border-radius: var(--rp); background: rgba(78,110,128,.07); transition: all .15s; margin-top: .5rem; }
 .modal-link:hover { background: var(--slate); color: #fff; border-color: var(--slate); }
 
-/* Scroll top */
+/* Scroll top (empilhado no mesmo stack dos botões flutuantes) */
 .stbtn {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 50; width: 44px; height: 44px; border-radius: 50%;
+  width: 44px; height: 44px; border-radius: 50%;
   background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.92);
   color: var(--slate); font-size: 16px; cursor: pointer; display: none; align-items: center; justify-content: center;
   backdrop-filter: blur(20px); box-shadow: 0 4px 20px var(--glass-shadow); transition: all .2s;
+  margin-right: 4px; /* centraliza em relação aos botões de 52px */
 }
 .stbtn.on { display: flex; }
 .stbtn:hover { background: rgba(255,255,255,.9); transform: translateY(-2px); }
@@ -1164,8 +1165,9 @@ footer {
   </div>
 </footer>
 
-<!-- Flutuantes (WhatsApp / Instagram / Scroll-top) -->
+<!-- Flutuantes (Scroll-top / WhatsApp / Instagram) -->
 <div class="float-contact" aria-label="Contato rápido">
+  <button class="stbtn" id="stbtn" aria-label="Voltar ao topo">↑</button>
   <a class="float-btn fl-wa" href="https://wa.me/5516992553003" target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 .01 5.37.01 12c0 2.11.55 4.17 1.6 5.98L0 24l6.21-1.63A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.82c-1.86 0-3.67-.5-5.26-1.44l-.38-.22-3.69.97.99-3.6-.25-.37a9.78 9.78 0 0 1-1.54-5.26c0-5.42 4.41-9.82 9.83-9.82 2.63 0 5.09 1.02 6.94 2.88a9.74 9.74 0 0 1 2.89 6.94c0 5.42-4.41 9.82-9.83 9.82zm5.48-7.33c-.3-.15-1.78-.88-2.06-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.95 1.18-.17.2-.35.22-.65.08-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.8-1.67-2.1-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.48-.5-.67-.5l-.57-.01c-.2 0-.52.08-.8.37-.27.3-1.05 1.02-1.05 2.48 0 1.47 1.08 2.88 1.23 3.08.15.2 2.12 3.23 5.13 4.52.72.3 1.27.48 1.7.6.72.23 1.38.2 1.9.12.58-.08 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.07-.12-.27-.2-.57-.35z"/></svg>
   </a>
@@ -1173,8 +1175,6 @@ footer {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
   </a>
 </div>
-
-<button class="stbtn" id="stbtn" aria-label="Voltar ao topo">↑</button>
 
 <!-- Modal (notícias) -->
 <div class="modal-bd" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
