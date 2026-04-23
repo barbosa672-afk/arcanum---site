@@ -184,6 +184,11 @@
   --amber:  #b07820;
 
   --r1: 10px; --r2: 16px; --r3: 22px; --r4: 32px; --rp: 999px;
+
+  /* Apple-style easings (quart-out / quint-in-out / spring) */
+  --e-out:     cubic-bezier(0.22, 1, 0.36, 1);
+  --e-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --e-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -608,7 +613,26 @@ footer {
   border-radius: var(--r2); padding: 1.25rem 1.25rem;
   backdrop-filter: blur(24px);
   box-shadow: 0 2px 18px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
+  position: relative; overflow: hidden;
+  transition: transform .55s var(--e-out), box-shadow .55s var(--e-out), border-color .4s var(--e-out);
+  will-change: transform;
 }
+.pillar::after {
+  /* light sweep estilo reflexo de vidro */
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .9s var(--e-out);
+  pointer-events: none; mix-blend-mode: overlay;
+}
+.pillar:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 38px rgba(78,110,128,.16), inset 0 1px 0 rgba(255,255,255,1);
+  border-color: rgba(255,255,255,1);
+}
+.pillar:hover::after { transform: translateX(120%); }
+.pillar .pillar-num { transition: color .4s var(--e-out); }
+.pillar:hover .pillar-num { color: var(--ink); }
 .pillar-num { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--slate); line-height: 1; }
 .pillar-num::first-letter { color: var(--gold); }
 .pillar-lbl { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-4); margin-top: .4rem; }
@@ -751,6 +775,96 @@ footer {
   .float-contact { right: 14px; bottom: 14px; }
   .float-btn { width: 46px; height: 46px; }
   .float-btn svg { width: 22px; height: 22px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   APPLE-STYLE SUBTLE ANIMATIONS (glass / spring / scroll-reveal)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Scroll-reveal — só ativo quando JS marca html.js-anim */
+html.js-anim .reveal {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .9s var(--e-out), transform .9s var(--e-out);
+  will-change: opacity, transform;
+}
+html.js-anim .reveal.in-view { opacity: 1; transform: none; }
+
+/* Header ganha sombra/saturação sutil ao rolar (estilo barra iOS/macOS) */
+header {
+  transition: background .4s var(--e-out), box-shadow .4s var(--e-out),
+              backdrop-filter .4s var(--e-out);
+}
+body.scrolled header {
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(40px) saturate(1.9);
+  -webkit-backdrop-filter: blur(40px) saturate(1.9);
+  box-shadow: 0 1px 0 rgba(78,110,128,0.08), 0 10px 30px rgba(78,110,128,0.10);
+}
+.nav-pill { transition: box-shadow .4s var(--e-out), transform .4s var(--e-out); }
+body.scrolled .nav-pill {
+  box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1px 0 rgba(255,255,255,1);
+}
+.nav-btn { transition: all .3s var(--e-out); }
+
+/* Botões CTA — hover/press Apple-style */
+.btn-primary, .btn-ghost { transition: transform .35s var(--e-out), box-shadow .35s var(--e-out), background .35s var(--e-out), color .35s var(--e-out); }
+.btn-primary:active, .btn-ghost:active, .switcher:active { transform: translateY(0) scale(.97); transition-duration: .12s; }
+.switcher { transition: transform .35s var(--e-out), box-shadow .35s var(--e-out), background .35s var(--e-out); }
+
+/* Botões flutuantes — spring-in */
+.float-btn { transition: transform .45s var(--e-spring), box-shadow .4s var(--e-out); }
+.float-btn:active { transform: scale(.94); transition-duration: .1s; }
+.float-contact .float-btn { animation: floatIn .55s var(--e-out) both; }
+.float-contact .float-btn:nth-child(2) { animation-delay: .08s; }
+.float-contact .float-btn:nth-child(3) { animation-delay: .16s; }
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(14px) scale(.9); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* Scroll-top: entrada suave quando .on é aplicado */
+.stbtn { transition: transform .35s var(--e-spring), background .3s var(--e-out), box-shadow .3s var(--e-out), opacity .3s var(--e-out); }
+.stbtn.on { animation: stbtnIn .45s var(--e-spring); }
+.stbtn:active { transform: scale(.92); transition-duration: .1s; }
+@keyframes stbtnIn {
+  from { opacity: 0; transform: translateY(10px) scale(.85); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* Modal — entrada com blur crescente + scale suave */
+.modal-bd { transition: background .35s var(--e-out), backdrop-filter .35s var(--e-out); }
+.modal-bd.open { animation: mbdIn .35s var(--e-out); }
+.modal-bd.open .modal { animation: modalIn .55s var(--e-out); }
+@keyframes mbdIn   { from { background: rgba(30,58,74,0); backdrop-filter: blur(0); } to { background: rgba(30,58,74,.3); backdrop-filter: blur(12px); } }
+@keyframes modalIn { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+
+/* Popup (confirmação) */
+.popup-overlay.active { animation: mbdIn .3s var(--e-out); }
+.popup-overlay.active .popup { animation: modalIn .5s var(--e-out); }
+
+/* Hero logo — flutuação contínua extremamente sutil (~3px) */
+.pi-hero-visual img {
+  animation: heroFloat 7s var(--e-in-out) infinite;
+  transition: transform .6s var(--e-out), filter .6s var(--e-out);
+}
+.pi-hero-visual:hover img { filter: drop-shadow(0 28px 50px rgba(78,110,128,.32)); }
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* FAQ — hover ganha leve lift */
+.faq-item { transition: transform .4s var(--e-out), box-shadow .4s var(--e-out), background .3s var(--e-out); }
+.faq-item:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(78,110,128,.12); }
+
+/* Respeita usuários com redução de movimento ativada */
+@media (prefers-reduced-motion: reduce) {
+  html.js-anim .reveal { opacity: 1; transform: none; transition: none; }
+  .pi-hero-visual img, .float-contact .float-btn, .stbtn.on,
+  .modal-bd.open, .modal-bd.open .modal,
+  .popup-overlay.active, .popup-overlay.active .popup { animation: none !important; }
+  .pillar::after { display: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
 }
 </style>
 </head>
@@ -1787,10 +1901,27 @@ $('#nl-btn').addEventListener('click', () => {
   else { inp.placeholder = 'Insira um e-mail válido'; inp.focus(); }
 });
 
-/* Scroll to top */
+/* Scroll to top + header scrolled state */
 const stbtn = $('#stbtn');
-window.addEventListener('scroll', () => stbtn.classList.toggle('on', scrollY > 400));
+window.addEventListener('scroll', () => {
+  stbtn.classList.toggle('on', scrollY > 400);
+  document.body.classList.toggle('scrolled', scrollY > 14);
+}, { passive: true });
 stbtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* Scroll-reveal — Apple-style fade/slide quando elementos entram no viewport */
+(function initScrollReveal(){
+  if (!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js-anim');
+  const targets = document.querySelectorAll('.pillar, .pi-card, .faq-item, .sec, .contato-grid, .g-feat, footer .f-inner');
+  targets.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  targets.forEach(el => io.observe(el));
+})();
 
 /* Render static pieces of news immediately (sidebar, juris, sources do not need network) */
 renderStatic();
