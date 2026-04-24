@@ -1964,6 +1964,7 @@ const loadIndices = () => { loadAwesome(); loadBCB(); loadBrapi(); };
   let dragStartOffset = 0;
   let dragMoved = false;
   let paused = false;
+  let reducedMotion = false;
 
   const recomputeHalf = () => { halfWidth = inner.scrollWidth / 2; };
   recomputeHalf();
@@ -1973,14 +1974,15 @@ const loadIndices = () => { loadAwesome(); loadBCB(); loadBrapi(); };
 
   function normalize() {
     if (halfWidth <= 0) return;
-    if (offset <= -halfWidth) offset += halfWidth;
-    if (offset > 0) offset -= halfWidth;
+    /* Mantém offset em (-halfWidth, 0] mesmo depois de drags longos */
+    offset = ((offset % halfWidth) + halfWidth) % halfWidth - halfWidth;
+    if (offset === -halfWidth) offset = 0;
   }
 
   function frame(ts) {
     if (!lastTs) lastTs = ts;
     const dt = (ts - lastTs) / 1000; lastTs = ts;
-    if (!dragging && !paused) offset -= speed * dt;
+    if (!dragging && !paused && !reducedMotion) offset -= speed * dt;
     normalize();
     inner.style.transform = 'translateX(' + offset.toFixed(2) + 'px)';
     requestAnimationFrame(frame);
@@ -2017,8 +2019,15 @@ const loadIndices = () => { loadAwesome(); loadBCB(); loadBrapi(); };
   /* Previne click acidental em links internos dentro do ticker após drag */
   track.addEventListener('click', (e) => { if (dragMoved) { e.preventDefault(); e.stopPropagation(); } }, true);
 
-  /* Respeita prefers-reduced-motion: só atualiza posição quando usuário arrastar */
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { paused = true; }
+  /* Respeita prefers-reduced-motion (flag separada de `paused` para não ser
+     reativada por mouseleave; atualiza em tempo real se a preferência mudar) */
+  if (window.matchMedia) {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    reducedMotion = mq.matches;
+    const onChange = (ev) => { reducedMotion = ev.matches; };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
 })();
 
 /* News UI bindings */
