@@ -1,0 +1,188 @@
+<!-- ════════════════════════════════════════════════════════════════
+     VIEW 3 — FERRAMENTAS (Calculadora Tributária + Simulador de Marca)
+     ════════════════════════════════════════════════════════════════ -->
+<main class="page" id="viewTools" hidden>
+
+  <div class="sec"><h2>Ferramentas Arcanum</h2><p style="color: var(--ink-3); margin-top: .5rem;">Calculadoras e simuladores para auxiliar na tomada de decisão tributária e análise de marcas.</p></div>
+
+  <!-- TABS NAVIGATION -->
+  <div class="filter-bar" style="margin-bottom: 2rem;">
+    <button class="fbtn active" data-tool="calc" type="button">💰 Calculadora Tributária</button>
+    <button class="fbtn" data-tool="marca" type="button">™️ Simulador de Marca</button>
+  </div>
+
+  <!-- TAB 1: CALCULADORA TRIBUTÁRIA -->
+  <div id="toolCalc" class="tool-content" style="display: block;">
+    <div class="sb-box" style="margin-bottom: 2rem;">
+      <div class="sb-head">Calculadora de Regime Tributário</div>
+      <div class="sb-body" style="padding: 2rem;">
+        <p style="color: var(--ink-3); margin-bottom: 1.5rem;">Simule a carga tributária entre diferentes regimes e a Reforma Tributária (IBS/CBS).</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+          <div class="form-field">
+            <label for="calcRevenue">Faturamento Anual (R$)</label>
+            <input type="number" id="calcRevenue" value="100000" placeholder="100000" style="width: 100%; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.72); border-radius: var(--r2); background: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);">
+          </div>
+          <div class="form-field">
+            <label for="calcEmployees">Número de Funcionários</label>
+            <input type="number" id="calcEmployees" value="5" placeholder="5" style="width: 100%; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.72); border-radius: var(--r2); background: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);">
+          </div>
+        </div>
+
+        <button class="fbtn" onclick="calculateTaxes()" type="button" style="background: linear-gradient(135deg, var(--slate), var(--ink-2)); color: #fff; border-color: rgba(255,255,255,.22); padding: .65rem 1.5rem; width: 100%; margin-bottom: 2rem; cursor: pointer;">🔍 Calcular</button>
+
+        <div id="calcResults" style="display: none;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
+              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">Simples Nacional</div>
+              <div style="font-size: 1.8rem; font-weight: 700; color: var(--slate); margin-bottom: .5rem;" id="calcSimples">R$ 8.000</div>
+              <div style="font-size: 12px; color: var(--ink-4);">~8% do faturamento</div>
+            </div>
+            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
+              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">Lucro Presumido</div>
+              <div style="font-size: 1.8rem; font-weight: 700; color: var(--slate); margin-bottom: .5rem;" id="calcPresumido">R$ 25.000</div>
+              <div style="font-size: 12px; color: var(--ink-4);">~25% do faturamento</div>
+            </div>
+            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
+              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">Lucro Real</div>
+              <div style="font-size: 1.8rem; font-weight: 700; color: var(--slate); margin-bottom: .5rem;" id="calcReal">R$ 34.000</div>
+              <div style="font-size: 12px; color: var(--ink-4);">~34% do faturamento</div>
+            </div>
+            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
+              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">IVA Dual (Teste 2026)</div>
+              <div style="font-size: 1.8rem; font-weight: 700; color: var(--green); margin-bottom: .5rem;" id="calcIVATeste">R$ 1.000</div>
+              <div style="font-size: 12px; color: var(--ink-4);">~1% (alíquota teste)</div>
+            </div>
+            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
+              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">IVA Dual (Padrão)</div>
+              <div style="font-size: 1.8rem; font-weight: 700; color: var(--green); margin-bottom: .5rem;" id="calcIVAPadrao">R$ 26.500</div>
+              <div style="font-size: 12px; color: var(--ink-4);">~26,5% com crédito</div>
+            </div>
+          </div>
+          <div style="background: var(--gold-g); border: 1px solid var(--gold-b); border-radius: var(--r2); padding: 1.25rem; margin-top: 1.5rem; color: var(--gold-d); font-size: 13px; line-height: 1.6;">
+            <strong>💡 Nota Importante:</strong> Os cálculos são aproximados e baseados em alíquotas padrão. A Reforma Tributária (IBS/CBS) entra em transição em 2026 com alíquotas teste. Com crédito pleno (não cumulatividade), pode resultar em economia para muitas empresas. Consulte sempre um contador ou especialista para análise detalhada.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: SIMULADOR DE MARCA -->
+  <div id="toolMarca" class="tool-content" style="display: none;">
+    <div class="sb-box" style="margin-bottom: 2rem;">
+      <div class="sb-head">Simulador de Viabilidade de Marca</div>
+      <div class="sb-body" style="padding: 2rem;">
+        <p style="color: var(--ink-3); margin-bottom: 1.5rem;">Análise preliminar de disponibilidade para registro no INPI.</p>
+        
+        <div class="form-field" style="margin-bottom: 2rem;">
+          <label for="brandName" style="display: block; margin-bottom: .5rem; font-weight: 600; color: var(--ink);">Nome da Marca</label>
+          <input type="text" id="brandName" placeholder="Digite o nome da sua marca..." style="width: 100%; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.72); border-radius: var(--r2); background: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);">
+        </div>
+
+        <button class="fbtn" onclick="analyzeBrand()" type="button" style="background: linear-gradient(135deg, var(--slate), var(--ink-2)); color: #fff; border-color: rgba(255,255,255,.22); padding: .65rem 1.5rem; width: 100%; margin-bottom: 2rem; cursor: pointer;">🔍 Analisar</button>
+
+        <div id="brandResults" style="display: none;">
+          <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem;">
+              <div id="brandStatusDot" style="width: 12px; height: 12px; border-radius: 50%; background: var(--amber);"></div>
+              <div style="font-weight: 700; color: var(--ink); font-size: 1.1rem;" id="brandStatus">Analisando...</div>
+            </div>
+            <p id="brandMessage" style="color: var(--ink-3); margin-bottom: 1rem; font-size: 13px;"></p>
+            <div style="margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: .5rem; font-size: 12px;">
+                <span style="font-weight: 600;">Score de Viabilidade</span>
+                <span id="brandScore" style="font-weight: 700;">65%</span>
+              </div>
+              <div style="height: 6px; background: rgba(78,110,128,.1); border-radius: 3px; overflow: hidden;">
+                <div id="brandBar" style="height: 100%; background: linear-gradient(90deg, var(--slate), var(--gold)); width: 65%; transition: width .6s ease-out;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem; margin-bottom: 1.5rem;">
+            <div style="font-weight: 700; color: var(--ink); margin-bottom: 1rem;">Análise Detalhada</div>
+            <div id="brandDetails" style="font-size: 13px; color: var(--ink-3); line-height: 1.7;"></div>
+          </div>
+
+          <div style="background: var(--gold-g); border: 1px solid var(--gold-b); border-radius: var(--r2); padding: 1.25rem; color: var(--gold-d); font-size: 13px; line-height: 1.6;">
+            <strong>⚠️ Importante:</strong> Esta é uma análise preliminar baseada em critérios gerais. Para confirmação oficial de disponibilidade, consulte o INPI (Instituto Nacional da Propriedade Industrial) ou um especialista em propriedade intelectual.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// Tool switcher
+document.querySelectorAll('[data-tool]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-tool]').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tool-content').forEach(c => c.style.display = 'none');
+    btn.classList.add('active');
+    const tool = btn.dataset.tool;
+    if (tool === 'calc') document.getElementById('toolCalc').style.display = 'block';
+    else if (tool === 'marca') document.getElementById('toolMarca').style.display = 'block';
+  });
+});
+
+// Calculadora
+function formatCurrency(val) {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
+}
+
+function calculateTaxes() {
+  const revenue = parseFloat(document.getElementById('calcRevenue').value) || 0;
+  const simples = revenue * 0.08;
+  const presumido = revenue * 0.25;
+  const real = revenue * 0.34;
+  const ivaTeste = revenue * 0.01;
+  const ivaPadrao = revenue * 0.265;
+
+  document.getElementById('calcSimples').textContent = formatCurrency(simples);
+  document.getElementById('calcPresumido').textContent = formatCurrency(presumido);
+  document.getElementById('calcReal').textContent = formatCurrency(real);
+  document.getElementById('calcIVATeste').textContent = formatCurrency(ivaTeste);
+  document.getElementById('calcIVAPadrao').textContent = formatCurrency(ivaPadrao);
+  document.getElementById('calcResults').style.display = 'block';
+}
+
+// Simulador de Marca
+function analyzeBrand() {
+  const brand = document.getElementById('brandName').value.toLowerCase();
+  if (!brand.trim()) { alert('Por favor, digite um nome de marca'); return; }
+
+  const commonWords = ['tech', 'shop', 'store', 'digital', 'online', 'service', 'pro', 'smart', 'cloud', 'net', 'web'];
+  const hasCommon = commonWords.some(w => brand.includes(w));
+  const hasNumbers = /\d/.test(brand);
+  const hasSpecial = /[^a-z0-9\s]/.test(brand);
+  const len = brand.replace(/\s/g, '').length;
+
+  let status = 'Média', score = 65, color = 'var(--amber)', dot = 'var(--amber)';
+  if (len < 3 || len > 15) { status = 'Baixa'; score = 40; color = 'var(--red)'; dot = 'var(--red)'; }
+  else if (!hasCommon && !hasNumbers && !hasSpecial) { status = 'Alta'; score = 85; color = 'var(--green)'; dot = 'var(--green)'; }
+
+  let details = '✓ Comprimento adequado<br>';
+  if (len < 3) details = '❌ Muito curta (difícil proteger)<br>';
+  else if (len > 15) details = '⚠️ Muito longa (confusão)<br>';
+  if (hasCommon) details += '⚠️ Contém palavras genéricas<br>';
+  else details += '✓ Nome distintivo<br>';
+  if (hasSpecial) details += '⚠️ Caracteres especiais';
+  else details += '✓ Sem caracteres especiais<br>';
+  if (hasNumbers) details += '⚠️ Números (menor proteção)';
+  else details += '✓ Sem números';
+
+  document.getElementById('brandStatusDot').style.background = dot;
+  document.getElementById('brandStatus').textContent = status + ' Viabilidade';
+  document.getElementById('brandMessage').textContent = status === 'Alta' ? 'Excelente! Sua marca tem alta viabilidade.' : status === 'Média' ? 'Boa viabilidade com alguns pontos a considerar.' : 'Recomendamos ajustes antes de registrar.';
+  document.getElementById('brandScore').textContent = score + '%';
+  document.getElementById('brandBar').style.width = score + '%';
+  document.getElementById('brandBar').style.background = `linear-gradient(90deg, ${color}, ${color})`;
+  document.getElementById('brandDetails').innerHTML = details;
+  document.getElementById('brandResults').style.display = 'block';
+}
+
+// Calcular ao carregar
+calculateTaxes();
+</script>
