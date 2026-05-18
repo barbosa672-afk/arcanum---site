@@ -311,11 +311,22 @@ header {
   font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
   padding: .45rem .9rem; align-self: stretch; display: flex; align-items: center;
 }
-.ticker-track { flex: 1; overflow: hidden; padding: .45rem 0; }
-.ticker-inner { display: inline-flex; gap: 3rem; animation: tick 60s linear infinite; }
-@keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-.t-item { font-size: 11.5px; color: var(--ink-3); white-space: nowrap; }
-.t-item b { color: var(--gold-d); font-weight: 600; margin-right: .35rem; }
+.ticker-track {
+  flex: 1; overflow: hidden; padding: .45rem 0;
+  cursor: grab; user-select: none; -webkit-user-select: none;
+  touch-action: pan-y; /* permite scroll vertical da página, captura horizontal */
+}
+.ticker-track.dragging { cursor: grabbing; }
+.ticker-inner {
+  display: inline-flex; gap: 2.25rem;
+  will-change: transform;
+}
+.t-item { font-size: 11.5px; color: var(--ink-3); white-space: nowrap; display: inline-flex; align-items: baseline; gap: .35rem; }
+.t-item b { color: var(--ink-2); font-weight: 700; font-size: 11px; letter-spacing: .04em; }
+.t-item .val { color: var(--ink); font-weight: 600; }
+.t-item .pct { font-size: 10.5px; font-weight: 600; padding: 1px 6px; border-radius: 999px; background: rgba(78,110,128,.08); color: var(--ink-3); }
+.t-item.up   .pct { background: rgba(42,124,82,.12);  color: var(--green); }
+.t-item.down .pct { background: rgba(184,64,64,.12);  color: var(--red); }
 
 /* ─────────── PAGE ─────────── */
 .page { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 2rem 1.5rem; }
@@ -918,15 +929,24 @@ body.scrolled .nav-pill {
 <!-- ════════════ TICKER (apenas no modo Notícias) ════════════ -->
 <div class="ticker-wrap" id="ticker" hidden>
   <div class="ticker-badge">AO VIVO</div>
-  <div class="ticker-track">
+  <div class="ticker-track" id="tickerTrack">
     <div class="ticker-inner" id="tickerInner">
-      <!-- Preenchido dinamicamente pelos índices; fallback abaixo -->
-      <span class="t-item"><b>SELIC</b>—</span>
-      <span class="t-item"><b>IPCA 12m</b>—</span>
-      <span class="t-item"><b>USD/BRL</b>—</span>
-      <span class="t-item"><b>EUR/BRL</b>—</span>
-      <span class="t-item"><b>BTC/BRL</b>—</span>
-      <span class="t-item"><b>Ibovespa</b>—</span>
+      <!-- Conjunto base (duplicado por JS para loop infinito) -->
+      <span class="t-item" data-k="SELIC"><b>SELIC</b><span class="val">—</span></span>
+      <span class="t-item" data-k="IPCA"><b>IPCA 12m</b><span class="val">—</span></span>
+      <span class="t-item" data-k="USDBRL"><b>USD/BRL</b><span class="val">—</span></span>
+      <span class="t-item" data-k="EURBRL"><b>EUR/BRL</b><span class="val">—</span></span>
+      <span class="t-item" data-k="BTCBRL"><b>BTC/BRL</b><span class="val">—</span></span>
+      <span class="t-item" data-k="IBOV"><b>Ibovespa</b><span class="val">—</span></span>
+      <span class="t-item" data-k="PETR4"><b>PETR4</b><span class="val">—</span></span>
+      <span class="t-item" data-k="VALE3"><b>VALE3</b><span class="val">—</span></span>
+      <span class="t-item" data-k="ITUB4"><b>ITUB4</b><span class="val">—</span></span>
+      <span class="t-item" data-k="BBDC4"><b>BBDC4</b><span class="val">—</span></span>
+      <span class="t-item" data-k="ABEV3"><b>ABEV3</b><span class="val">—</span></span>
+      <span class="t-item" data-k="B3SA3"><b>B3SA3</b><span class="val">—</span></span>
+      <span class="t-item" data-k="WEGE3"><b>WEGE3</b><span class="val">—</span></span>
+      <span class="t-item" data-k="BBAS3"><b>BBAS3</b><span class="val">—</span></span>
+      <span class="t-item" data-k="MGLU3"><b>MGLU3</b><span class="val">—</span></span>
     </div>
   </div>
 </div>
@@ -2021,13 +2041,19 @@ function renderStatic() {
   });
 }
 
-/* Indicadores ao vivo */
+/* ════════ Ticker ao-vivo: config + marquee + drag ════════ */
+/* Cole aqui seu token grátis da brapi.dev (https://brapi.dev/dashboard)
+   para ativar Ibovespa + ações brasileiras no ticker. Sem token, os
+   campos permanecem '—' mas o ticker segue funcionando normalmente. */
+const BRAPI_TOKEN = '';
+const STOCKS = ['PETR4','VALE3','ITUB4','BBDC4','ABEV3','B3SA3','WEGE3','BBAS3','MGLU3'];
+
+/* Indicadores ao vivo (cards) */
 function updateIndicator(idx, val, chText, dir = 'neutral') {
   const el = $$('#indicators .ind')[idx]; if (!el) return;
   el.classList.remove('sk-ind');
   el.querySelector('.ind-val').textContent = val;
   const c = el.querySelector('.ind-ch'); c.className = 'ind-ch ' + dir; c.textContent = chText;
-  updateTicker(idx, val);
 }
 function indicatorError(idx, label = 'Indisponível') {
   const el = $$('#indicators .ind')[idx]; if (!el) return;
@@ -2035,10 +2061,20 @@ function indicatorError(idx, label = 'Indisponível') {
   el.querySelector('.ind-val').textContent = '—';
   const c = el.querySelector('.ind-ch'); c.className = 'ind-ch neutral'; c.textContent = label;
 }
-function updateTicker(idx, val) {
-  const labels = ['SELIC', 'IPCA 12m', 'USD/BRL', 'EUR/BRL', 'BTC/BRL', 'Ibovespa'];
-  const items = $$('#tickerInner .t-item');
-  if (items[idx]) items[idx].innerHTML = '<b>' + labels[idx] + '</b>' + val;
+
+/* Atualiza uma (ou todas duplicadas) entrada(s) do ticker pelo data-k */
+function updateTickerKey(key, val, pct) {
+  const dir = pct > 0 ? 'up' : pct < 0 ? 'down' : 'neutral';
+  const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '';
+  document.querySelectorAll('#tickerInner .t-item[data-k="' + key + '"]').forEach(el => {
+    el.classList.remove('up','down'); if (dir !== 'neutral') el.classList.add(dir);
+    const valEl = el.querySelector('.val'); if (valEl) valEl.textContent = val;
+    let pctEl = el.querySelector('.pct');
+    if (pct != null && !Number.isNaN(pct)) {
+      if (!pctEl) { pctEl = document.createElement('span'); pctEl.className = 'pct'; el.appendChild(pctEl); }
+      pctEl.textContent = (arrw ? arrw + ' ' : '') + Math.abs(pct).toFixed(2) + '%';
+    } else if (pctEl) { pctEl.remove(); }
+  });
 }
 
 async function loadAwesome() {
@@ -2046,12 +2082,13 @@ async function loadAwesome() {
     const r = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL', { signal: AbortSignal.timeout(9000) });
     if (!r.ok) throw 0;
     const d = await r.json();
-    [['USDBRL', 2, 4], ['EURBRL', 3, 4], ['BTCBRL', 4, 0]].forEach(([k, idx, dig]) => {
+    [['USDBRL', 2, 4, 'USDBRL'], ['EURBRL', 3, 4, 'EURBRL'], ['BTCBRL', 4, 0, 'BTCBRL']].forEach(([k, idx, dig, tkey]) => {
       const q = d[k]; if (!q) { indicatorError(idx); return; }
       const val = Number(q.bid); const pct = Number(q.pctChange);
       const dir = pct > 0 ? 'up' : pct < 0 ? 'down' : 'neutral';
       const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '▶';
       updateIndicator(idx, 'R$ ' + fmtBRL(val, dig), arrw + ' ' + Math.abs(pct).toFixed(2) + '%', dir);
+      updateTickerKey(tkey, 'R$ ' + fmtBRL(val, dig), pct);
     });
   } catch { [2, 3, 4].forEach(i => indicatorError(i)); }
 }
@@ -2060,24 +2097,130 @@ async function loadBCB() {
     const r = await fetch('https://api.bcb.gov.br/dados/serie/bcdata.sgs.' + serie + '/dados/ultimos/' + n + '?formato=json', { signal: AbortSignal.timeout(9000) });
     if (!r.ok) throw 0; return r.json();
   };
-  try { const s = await fetchSGS(432, 1); const last = Number(s[s.length-1].valor); updateIndicator(0, fmtBRL(last, 2) + '%', 'Meta a.a.', 'neutral'); }
-  catch { indicatorError(0); }
-  try { const s = await fetchSGS(433, 12); const acc = s.reduce((p, c) => (1 + Number(c.valor)/100) * p, 1); const pct = (acc-1)*100; updateIndicator(1, fmtBRL(pct, 2) + '%', 'Acumulado 12m', pct > 4.5 ? 'up' : pct < 3 ? 'down' : 'neutral'); }
-  catch { indicatorError(1); }
-}
-async function loadIbov() {
   try {
-    const r = await fetch('https://brapi.dev/api/quote/%5EBVSP?range=1d', { signal: AbortSignal.timeout(9000) });
-    if (!r.ok) throw 0;
-    const d = await r.json(); const q = d.results && d.results[0];
-    if (!q || q.regularMarketPrice == null) throw 0;
-    const price = Number(q.regularMarketPrice); const pct = Number(q.regularMarketChangePercent || 0);
-    const dir = pct > 0 ? 'up' : pct < 0 ? 'down' : 'neutral';
-    const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '▶';
-    updateIndicator(5, price.toLocaleString('pt-BR', { maximumFractionDigits: 0 }) + ' pts', arrw + ' ' + Math.abs(pct).toFixed(2) + '%', dir);
-  } catch { indicatorError(5); }
+    const s = await fetchSGS(432, 1); const last = Number(s[s.length-1].valor);
+    updateIndicator(0, fmtBRL(last, 2) + '%', 'Meta a.a.', 'neutral');
+    updateTickerKey('SELIC', fmtBRL(last, 2) + '%', null);
+  } catch { indicatorError(0); }
+  try {
+    const s = await fetchSGS(433, 12); const acc = s.reduce((p, c) => (1 + Number(c.valor)/100) * p, 1); const pct = (acc-1)*100;
+    updateIndicator(1, fmtBRL(pct, 2) + '%', 'Acumulado 12m', pct > 4.5 ? 'up' : pct < 3 ? 'down' : 'neutral');
+    updateTickerKey('IPCA', fmtBRL(pct, 2) + '%', null);
+  } catch { indicatorError(1); }
 }
-const loadIndices = () => { loadAwesome(); loadBCB(); loadIbov(); };
+async function loadBrapi() {
+  if (!BRAPI_TOKEN) { indicatorError(5, 'Token brapi ausente'); return; }
+  const symbols = ['^BVSP', ...STOCKS].join(',');
+  try {
+    const r = await fetch('https://brapi.dev/api/quote/' + encodeURIComponent(symbols) + '?token=' + encodeURIComponent(BRAPI_TOKEN), { signal: AbortSignal.timeout(12000) });
+    if (!r.ok) throw 0;
+    const d = await r.json(); const results = d.results || [];
+    results.forEach(q => {
+      if (!q || q.regularMarketPrice == null) return;
+      const sym = q.symbol; const price = Number(q.regularMarketPrice);
+      const pct = Number(q.regularMarketChangePercent || 0);
+      if (sym === '^BVSP') {
+        const dir = pct > 0 ? 'up' : pct < 0 ? 'down' : 'neutral';
+        const arrw = pct > 0 ? '▲' : pct < 0 ? '▼' : '▶';
+        updateIndicator(5, price.toLocaleString('pt-BR', { maximumFractionDigits: 0 }) + ' pts', arrw + ' ' + Math.abs(pct).toFixed(2) + '%', dir);
+        updateTickerKey('IBOV', price.toLocaleString('pt-BR', { maximumFractionDigits: 0 }) + ' pts', pct);
+      } else {
+        updateTickerKey(sym, 'R$ ' + fmtBRL(price, 2), pct);
+      }
+    });
+  } catch { indicatorError(5, 'Indisponível'); }
+}
+const loadIndices = () => { loadAwesome(); loadBCB(); loadBrapi(); };
+
+/* ── Marquee (JS-driven) com suporte a drag ── */
+(function initMarquee(){
+  const track = document.getElementById('tickerTrack');
+  const inner = document.getElementById('tickerInner');
+  if (!track || !inner) return;
+
+  /* Duplica o conteúdo para loop contínuo sem espaço em branco */
+  const dupe = () => {
+    const originals = Array.from(inner.children);
+    originals.forEach(el => inner.appendChild(el.cloneNode(true)));
+  };
+  dupe();
+  /* Re-duplica sempre que updateTickerKey rodar? Não — updateTickerKey já
+     usa querySelectorAll e atualiza todas as cópias via data-k. */
+
+  const speed = 55; /* px/s — levemente acima do antigo ~40 px/s */
+  let offset = 0;
+  let halfWidth = 0;
+  let lastTs = 0;
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartOffset = 0;
+  let dragMoved = false;
+  let paused = false;
+  let reducedMotion = false;
+
+  const recomputeHalf = () => { halfWidth = inner.scrollWidth / 2; };
+  recomputeHalf();
+  window.addEventListener('resize', recomputeHalf);
+  /* Recalcula depois que valores dinâmicos chegam (ex.: R$ 5,1234) */
+  new MutationObserver(() => recomputeHalf()).observe(inner, { childList: true, subtree: true, characterData: true });
+
+  function normalize() {
+    if (halfWidth <= 0) return;
+    /* Mantém offset em (-halfWidth, 0] mesmo depois de drags longos */
+    offset = ((offset % halfWidth) + halfWidth) % halfWidth - halfWidth;
+    if (offset === -halfWidth) offset = 0;
+  }
+
+  function frame(ts) {
+    if (!lastTs) lastTs = ts;
+    const dt = (ts - lastTs) / 1000; lastTs = ts;
+    if (!dragging && !paused && !reducedMotion) offset -= speed * dt;
+    normalize();
+    inner.style.transform = 'translateX(' + offset.toFixed(2) + 'px)';
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* Pausa quando usuário passa o mouse */
+  track.addEventListener('mouseenter', () => { paused = true; });
+  track.addEventListener('mouseleave', () => { paused = false; });
+
+  /* Drag (pointer events cobrem mouse + touch + caneta) */
+  track.addEventListener('pointerdown', (e) => {
+    dragging = true; dragMoved = false;
+    dragStartX = e.clientX;
+    dragStartOffset = offset;
+    track.classList.add('dragging');
+    try { track.setPointerCapture(e.pointerId); } catch {}
+  });
+  track.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - dragStartX;
+    if (Math.abs(dx) > 3) dragMoved = true;
+    offset = dragStartOffset + dx;
+  });
+  const endDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    track.classList.remove('dragging');
+  };
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+  track.addEventListener('lostpointercapture', endDrag);
+
+  /* Previne click acidental em links internos dentro do ticker após drag */
+  track.addEventListener('click', (e) => { if (dragMoved) { e.preventDefault(); e.stopPropagation(); } }, true);
+
+  /* Respeita prefers-reduced-motion (flag separada de `paused` para não ser
+     reativada por mouseleave; atualiza em tempo real se a preferência mudar) */
+  if (window.matchMedia) {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    reducedMotion = mq.matches;
+    const onChange = (ev) => { reducedMotion = ev.matches; };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+})();
 
 /* News UI bindings */
 $$('#fbar .fbtn').forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.f)));
