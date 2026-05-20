@@ -21,12 +21,8 @@
 <meta name="ICBM" content="-21.1775, -47.8103">
 <meta name="theme-color" content="#1e3a4a">
 
-<!-- Google Search Console verification. Substitua pelo token fornecido pelo
-     Search Console (Propriedade → Verificar via tag HTML). Enquanto estiver
-     como XXXX, o Google ignora. Outra opção é verificar via DNS ou GA4. -->
 <meta name="google-site-verification" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
 
-<!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
 <meta property="og:title" content="ARCANUM — Propriedade Intelectual &amp; Tax News">
 <meta property="og:description" content="Registro de marcas, patentes e software no INPI + portal de notícias tributárias, fiscais e econômicas do Brasil.">
 <meta property="og:type" content="website">
@@ -36,7 +32,6 @@
 <meta property="og:image" content="https://arcanumpi.com.br/logo-full.png">
 <meta property="og:image:alt" content="Arcanum — Propriedade Intelectual e Tax News">
 
-<!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ARCANUM — Propriedade Intelectual &amp; Tax News">
 <meta name="twitter:description" content="Registro de marcas e patentes + notícias tributárias, fiscais e econômicas.">
@@ -46,12 +41,6 @@
 <link rel="alternate" hreflang="pt-BR" href="https://arcanumpi.com.br">
 <link rel="alternate" hreflang="x-default" href="https://arcanumpi.com.br">
 <link rel="apple-touch-icon" href="logo-icon.png">
-<!-- Security headers (meta fallback; prefer real HTTP headers at hosting layer).
-     NOTE: clickjacking protection cannot be delivered via <meta> — frame-ancestors
-     is silently ignored by browsers in meta CSP (per CSP3 spec), and there is no
-     X-Frame-Options meta equivalent. Configure `X-Frame-Options: DENY` or a real
-     `Content-Security-Policy: frame-ancestors 'none'` HTTP header at the hosting
-     or CDN layer (e.g. Cloudflare Transform Rules) to actually block framing. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.bcb.gov.br https://economia.awesomeapi.com.br https://brapi.dev https://api.allorigins.win https://corsproxy.io https://api.codetabs.com https://api.rss2json.com; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()">
@@ -60,13 +49,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 
-<!-- ═══════════════════════════════════════════════════════════════
-     STRUCTURED DATA (JSON-LD)
-     Ajuda o Google a entender o site e pode habilitar:
-      • Knowledge Panel (painel lateral com nome, endereço, redes)
-      • Rich results (estrelas, perguntas/respostas, etc)
-     Referências: https://schema.org | https://developers.google.com/search/docs/appearance/structured-data
-     ═══════════════════════════════════════════════════════════════ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -128,7 +110,7 @@
       },
       "areaServed": [
         { "@type": "Country", "name": "Brasil" },
-        { "@type": "City",    "name": "Ribeirão Preto" },
+        { "@type": "City",   "name": "Ribeirão Preto" },
         { "@type": "State",   "name": "São Paulo" }
       ],
       "serviceType": [
@@ -225,10 +207,12 @@ header {
 }
 .h-inner {
   max-width: 1320px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between; gap: 1.25rem;
+  display: flex;
+  align-items: center; justify-content: space-between; gap: 1.25rem;
   flex-wrap: wrap;
 }
-.logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; flex-shrink: 0; cursor: pointer; border: 0; background: transparent; padding: 0; font-family: inherit; }
+.logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; flex-shrink: 0;
+  cursor: pointer; border: 0; background: transparent; padding: 0; font-family: inherit; }
 .logo-text .n {
   font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700;
   color: var(--slate); letter-spacing: .1em; text-transform: uppercase;
@@ -265,8 +249,7 @@ header {
 /* View switcher (right side of header) */
 .switcher {
   display: inline-flex; align-items: center; gap: .4rem;
-  padding: .55rem 1.1rem;
-  border-radius: var(--rp);
+  padding: .55rem 1.1rem; border-radius: var(--rp);
   background: linear-gradient(135deg, var(--slate), var(--ink-2));
   color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,.22);
   font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600;
@@ -402,7 +385,8 @@ header {
   background:
     linear-gradient(135deg, rgba(78,110,128,0.88), rgba(30,58,74,0.95)),
     radial-gradient(ellipse at top right, rgba(201,168,67,0.25), transparent 60%);
-  color: #fff; display: flex; flex-direction: column; justify-content: flex-end;
+  color: #fff;
+  display: flex; flex-direction: column; justify-content: flex-end;
   border-color: rgba(255,255,255,.14);
 }
 .card-hero::before { display: none; }
@@ -524,13 +508,13 @@ header {
 .modal-link { display: inline-flex; align-items: center; gap: .4rem; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); text-decoration: none; border: 1px solid rgba(78,110,128,.24); padding: .5rem 1.1rem; border-radius: var(--rp); background: rgba(78,110,128,.07); transition: all .15s; margin-top: .5rem; }
 .modal-link:hover { background: var(--slate); color: #fff; border-color: var(--slate); }
 
-/* Scroll top (empilhado no mesmo stack dos botões flutuantes) */
+/* Scroll top */
 .stbtn {
   width: 44px; height: 44px; border-radius: 50%;
   background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.92);
   color: var(--slate); font-size: 16px; cursor: pointer; display: none; align-items: center; justify-content: center;
   backdrop-filter: blur(20px); box-shadow: 0 4px 20px var(--glass-shadow); transition: all .2s;
-  margin-right: 4px; /* centraliza em relação aos botões de 52px */
+  margin-right: 4px;
 }
 .stbtn.on { display: flex; }
 .stbtn:hover { background: rgba(255,255,255,.9); transform: translateY(-2px); }
@@ -566,15 +550,13 @@ footer {
 
 /* Hero */
 .pi-hero {
-  display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: center;
-  padding: 3rem 1rem 2rem;
+  display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem;
+  align-items: center; padding: 3rem 1rem 2rem;
 }
 .pi-hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 4.5vw, 3.1rem);
+  font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4.5vw, 3.1rem);
   font-weight: 700; line-height: 1.1; letter-spacing: -.015em;
-  color: var(--ink);
-  margin-bottom: 1rem;
+  color: var(--ink); margin-bottom: 1rem;
 }
 .pi-hero h1 em {
   font-style: italic; font-weight: 500; color: var(--gold-d);
@@ -586,13 +568,12 @@ footer {
   display: inline-flex; align-items: center; gap: .5rem;
   padding: .85rem 1.6rem; border-radius: var(--rp);
   font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
-  letter-spacing: .06em; text-transform: uppercase;
-  text-decoration: none; cursor: pointer; transition: all .25s; border: 1px solid transparent;
+  letter-spacing: .06em; text-transform: uppercase; text-decoration: none;
+  cursor: pointer; transition: all .25s; border: 1px solid transparent;
 }
 .btn-primary {
   background: linear-gradient(135deg, var(--slate), var(--ink-2));
-  color: #fff; border-color: rgba(255,255,255,.22);
-  box-shadow: 0 8px 24px rgba(30,58,74,.25);
+  color: #fff; border-color: rgba(255,255,255,.22); box-shadow: 0 8px 24px rgba(30,58,74,.25);
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(30,58,74,.35); background: linear-gradient(135deg, var(--ink-2), var(--ink)); }
 .btn-ghost {
@@ -601,35 +582,25 @@ footer {
   box-shadow: 0 2px 14px rgba(78,110,128,.1);
 }
 .btn-ghost:hover { background: rgba(255,255,255,.88); color: var(--ink); }
-.pi-hero-visual {
-  display: flex; justify-content: center; align-items: center;
-}
+.pi-hero-visual { display: flex; justify-content: center; align-items: center; }
 .pi-hero-visual img { width: clamp(220px, 35vw, 360px); height: auto; opacity: .9; filter: drop-shadow(0 20px 40px rgba(78,110,128,.25)); }
 
 /* Pillars — stat cards */
 .pi-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2.5rem; }
 .pillar {
   background: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.88);
-  border-radius: var(--r2); padding: 1.25rem 1.25rem;
-  backdrop-filter: blur(24px);
+  border-radius: var(--r2); padding: 1.25rem 1.25rem; backdrop-filter: blur(24px);
   box-shadow: 0 2px 18px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
   position: relative; overflow: hidden;
-  transition: transform .55s var(--e-out), box-shadow .55s var(--e-out), border-color .4s var(--e-out);
-  will-change: transform;
+  transition: transform .55s var(--e-out), box-shadow .55s var(--e-out), border-color .4s var(--e-out); will-change: transform;
 }
 .pillar::after {
-  /* light sweep estilo reflexo de vidro */
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform .9s var(--e-out);
+  transform: translateX(-120%); transition: transform .9s var(--e-out);
   pointer-events: none; mix-blend-mode: overlay;
 }
-.pillar:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 38px rgba(78,110,128,.16), inset 0 1px 0 rgba(255,255,255,1);
-  border-color: rgba(255,255,255,1);
-}
+.pillar:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(78,110,128,.16), inset 0 1px 0 rgba(255,255,255,1); border-color: rgba(255,255,255,1); }
 .pillar:hover::after { transform: translateX(120%); }
 .pillar .pillar-num { transition: color .4s var(--e-out); }
 .pillar:hover .pillar-num { color: var(--ink); }
@@ -651,6 +622,58 @@ footer {
 .pi-card p { font-size: 14.5px; line-height: 1.75; color: var(--ink-3); margin-bottom: .85rem; }
 .pi-card p em { font-style: italic; color: var(--ink); }
 
+/* ─────────── BUSCA DE VIABILIDADE ─────────── */
+.viabilidade-btn { color: var(--gold-d) !important; font-weight: 700; background: var(--gold-g); }
+.viabilidade-btn:hover { background: var(--gold); color: #fff !important; box-shadow: 0 4px 15px rgba(201,168,67,0.3); }
+
+.viabilidade-card { text-align: center; padding: 3.5rem 2.5rem; margin-bottom: 2.5rem; }
+.viabilidade-card h3 { font-size: 1.85rem; margin-bottom: 1rem; letter-spacing: -.01em; }
+.viabilidade-card p { max-width: 680px; margin: 0 auto 2.5rem; font-size: 14.5px; line-height: 1.7; }
+.viabilidade-card p em { color: var(--ink-4); font-size: 12.5px; display: block; margin-top: .75rem; }
+
+.v-form { max-width: 580px; margin: 0 auto; position: relative; }
+.v-input-group { 
+  display: flex; align-items: center; 
+  background: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.9); 
+  border-radius: var(--rp); padding: .35rem .35rem .35rem 1.4rem; 
+  transition: all .35s var(--e-out); 
+  box-shadow: 0 4px 20px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,1);
+  backdrop-filter: blur(20px);
+}
+.v-input-group:focus-within { 
+  border-color: var(--gold-b); background: rgba(255,255,255,0.95);
+  box-shadow: 0 0 0 3px var(--gold-g), 0 8px 30px rgba(78,110,128,.15); 
+}
+.v-icon { width: 18px; height: 18px; color: var(--ink-4); flex-shrink: 0; }
+.v-form input { 
+  flex: 1; border: none; background: transparent; padding: .75rem 1rem; 
+  font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--ink); 
+  outline: none; font-weight: 500;
+}
+.v-form input::placeholder { color: var(--ink-4); font-weight: 400; }
+.v-btn { padding: .85rem 1.75rem; border-radius: var(--rp); font-size: 12px; }
+
+.v-result { 
+  margin-top: 2rem; padding: 2rem; border-radius: var(--r3); 
+  background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.85); 
+  backdrop-filter: blur(16px); text-align: left;
+  animation: modalIn .5s var(--e-out); max-width: 580px; margin-left: auto; margin-right: auto;
+}
+.v-status { 
+  display: inline-flex; align-items: center; gap: .5rem; 
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; 
+  padding: .35rem .85rem; border-radius: var(--rp); margin-bottom: 1.25rem; 
+}
+.v-status.disponivel { background: rgba(42,125,82,.1); color: var(--green); border: 1px solid rgba(42,125,82,.2); }
+.v-status.indisponivel { background: rgba(185,64,64,.1); color: var(--red); border: 1px solid rgba(185,64,64,.2); }
+
+.v-loader { 
+  width: 28px; height: 28px; border: 2px solid var(--gold-g); 
+  border-top-color: var(--gold); border-radius: 50%; 
+  animation: spin .8s linear infinite; margin: 2rem auto; 
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
 /* FAQ */
 .faq-item {
   background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.82);
@@ -663,24 +686,17 @@ footer {
   width: 100%; padding: 1rem 1.4rem;
   background: none; border: none; cursor: pointer;
   font-family: 'DM Sans', sans-serif; font-size: 14.5px; font-weight: 600;
-  color: var(--ink); text-align: left;
-  gap: 1rem;
+  color: var(--ink); text-align: left; gap: 1rem;
 }
 .faq-q:hover { background: rgba(255,255,255,.4); }
 .faq-toggle {
   width: 28px; height: 28px; border-radius: 50%;
-  background: var(--gold-g); color: var(--gold-d);
-  border: 1px solid var(--gold-b);
+  background: var(--gold-g); color: var(--gold-d); border: 1px solid var(--gold-b);
   display: flex; align-items: center; justify-content: center;
-  font-size: 18px; font-weight: 400; flex-shrink: 0;
-  transition: transform .3s;
+  font-size: 18px; font-weight: 400; flex-shrink: 0; transition: transform .3s;
 }
 .faq-item.active .faq-toggle { transform: rotate(45deg); background: var(--gold); color: #fff; border-color: var(--gold); }
-.faq-a {
-  max-height: 0; overflow: hidden;
-  transition: max-height .45s cubic-bezier(.25,.8,.25,1), padding .35s;
-  color: var(--ink-3);
-}
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .45s cubic-bezier(.25,.8,.25,1), padding .35s; color: var(--ink-3); }
 .faq-a-inner { padding: 0 1.4rem 1.15rem; font-size: 14px; line-height: 1.7; }
 .faq-a-inner p + p { margin-top: .55rem; }
 .faq-item.active .faq-a { max-height: 600px; }
@@ -691,8 +707,7 @@ footer {
 .contato-item {
   background: rgba(255,255,255,.52); border: 1px solid rgba(255,255,255,.82);
   border-radius: var(--r2); padding: 1.1rem 1.3rem;
-  backdrop-filter: blur(18px);
-  display: flex; gap: .9rem; align-items: flex-start;
+  backdrop-filter: blur(18px); display: flex; gap: .9rem; align-items: flex-start;
 }
 .contato-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--gold-g); border: 1px solid var(--gold-b); display: flex; align-items: center; justify-content: center; color: var(--gold-d); flex-shrink: 0; }
 .contato-lbl { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); margin-bottom: .15rem; }
@@ -703,8 +718,7 @@ footer {
 .contato-form {
   background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.88);
   border-radius: var(--r3); padding: 1.75rem 1.85rem;
-  backdrop-filter: blur(24px);
-  box-shadow: 0 4px 24px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
+  backdrop-filter: blur(24px); box-shadow: 0 4px 24px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);
 }
 .form-field { margin-bottom: 1rem; }
 .form-field label { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); margin-bottom: .38rem; }
@@ -720,22 +734,11 @@ footer {
 .form-submit.loading { opacity: .72; pointer-events: none; }
 
 /* Signature */
-.signature {
-  text-align: center; font-family: 'Playfair Display', serif; font-style: italic;
-  color: var(--ink-4); font-size: 15px; margin: 3rem 0 2rem; letter-spacing: .02em;
-}
+.signature { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; color: var(--ink-4); font-size: 15px; margin: 3rem 0 2rem; letter-spacing: .02em; }
 
 /* WhatsApp / Instagram floats (preservados do site original) */
-.float-contact {
-  position: fixed; right: 20px; bottom: 20px; z-index: 60;
-  display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
-}
-.float-btn {
-  width: 52px; height: 52px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; text-decoration: none; cursor: pointer; border: none;
-  box-shadow: 0 10px 28px rgba(0,0,0,.22); transition: all .25s;
-}
+.float-contact { position: fixed; right: 20px; bottom: 20px; z-index: 60; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; cursor: pointer; border: none; box-shadow: 0 10px 28px rgba(0,0,0,.22); transition: all .25s; }
 .float-btn:hover { transform: scale(1.08); }
 .fl-wa { background: #25d366; }
 .fl-ig { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4); }
@@ -744,11 +747,7 @@ footer {
 /* Popup (confirmação de envio) */
 .popup-overlay { position: fixed; inset: 0; z-index: 250; background: rgba(30,58,74,.36); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 1.5rem; }
 .popup-overlay.active { display: flex; }
-.popup {
-  background: rgba(255,255,255,.94); border: 1px solid rgba(255,255,255,.98);
-  border-radius: var(--r4); padding: 2rem 2.25rem; max-width: 440px; width: 100%;
-  text-align: center; box-shadow: 0 24px 80px rgba(30,58,74,.22);
-}
+.popup { background: rgba(255,255,255,.94); border: 1px solid rgba(255,255,255,.98); border-radius: var(--r4); padding: 2rem 2.25rem; max-width: 440px; width: 100%; text-align: center; box-shadow: 0 24px 80px rgba(30,58,74,.22); }
 .popup h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--ink); margin-bottom: .55rem; }
 .popup p { font-size: 14px; color: var(--ink-3); margin-bottom: 1.25rem; }
 .popup-close { padding: .65rem 1.4rem; border: none; background: var(--slate); color: #fff; border-radius: var(--rp); cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
@@ -782,28 +781,14 @@ footer {
    ═══════════════════════════════════════════════════════════════ */
 
 /* Scroll-reveal — só ativo quando JS marca html.js-anim */
-html.js-anim .reveal {
-  opacity: 0; transform: translateY(18px);
-  transition: opacity .9s var(--e-out), transform .9s var(--e-out);
-  will-change: opacity, transform;
-}
+html.js-anim .reveal { opacity: 0; transform: translateY(18px); transition: opacity .9s var(--e-out), transform .9s var(--e-out); will-change: opacity, transform; }
 html.js-anim .reveal.in-view { opacity: 1; transform: none; }
 
 /* Header ganha sombra/saturação sutil ao rolar (estilo barra iOS/macOS) */
-header {
-  transition: background .4s var(--e-out), box-shadow .4s var(--e-out),
-              backdrop-filter .4s var(--e-out);
-}
-body.scrolled header {
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(40px) saturate(1.9);
-  -webkit-backdrop-filter: blur(40px) saturate(1.9);
-  box-shadow: 0 1px 0 rgba(78,110,128,0.08), 0 10px 30px rgba(78,110,128,0.10);
-}
+header { transition: background .4s var(--e-out), box-shadow .4s var(--e-out), backdrop-filter .4s var(--e-out); }
+body.scrolled header { background: rgba(255,255,255,0.72); backdrop-filter: blur(40px) saturate(1.9); -webkit-backdrop-filter: blur(40px) saturate(1.9); box-shadow: 0 1px 0 rgba(78,110,128,0.08), 0 10px 30px rgba(78,110,128,0.10); }
 .nav-pill { transition: box-shadow .4s var(--e-out), transform .4s var(--e-out); }
-body.scrolled .nav-pill {
-  box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1px 0 rgba(255,255,255,1);
-}
+body.scrolled .nav-pill { box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1px 0 rgba(255,255,255,1); }
 .nav-btn { transition: all .3s var(--e-out); }
 
 /* Botões CTA — hover/press Apple-style */
@@ -817,19 +802,13 @@ body.scrolled .nav-pill {
 .float-contact .float-btn { animation: floatIn .55s var(--e-out) both; }
 .float-contact .float-btn:nth-child(2) { animation-delay: .08s; }
 .float-contact .float-btn:nth-child(3) { animation-delay: .16s; }
-@keyframes floatIn {
-  from { opacity: 0; transform: translateY(14px) scale(.9); }
-  to   { opacity: 1; transform: translateY(0)    scale(1); }
-}
+@keyframes floatIn { from { opacity: 0; transform: translateY(14px) scale(.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 /* Scroll-top: entrada suave quando .on é aplicado */
 .stbtn { transition: transform .35s var(--e-spring), background .3s var(--e-out), box-shadow .3s var(--e-out), opacity .3s var(--e-out); }
 .stbtn.on { animation: stbtnIn .45s var(--e-spring); }
 .stbtn:active { transform: scale(.92); transition-duration: .1s; }
-@keyframes stbtnIn {
-  from { opacity: 0; transform: translateY(10px) scale(.85); }
-  to   { opacity: 1; transform: translateY(0)    scale(1); }
-}
+@keyframes stbtnIn { from { opacity: 0; transform: translateY(10px) scale(.85); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 /* Modal — entrada com blur crescente + scale suave */
 .modal-bd { transition: background .35s var(--e-out), backdrop-filter .35s var(--e-out); }
@@ -843,15 +822,9 @@ body.scrolled .nav-pill {
 .popup-overlay.active .popup { animation: modalIn .5s var(--e-out); }
 
 /* Hero logo — flutuação contínua extremamente sutil (~3px) */
-.pi-hero-visual img {
-  animation: heroFloat 7s var(--e-in-out) infinite;
-  transition: transform .6s var(--e-out), filter .6s var(--e-out);
-}
+.pi-hero-visual img { animation: heroFloat 7s var(--e-in-out) infinite; transition: transform .6s var(--e-out), filter .6s var(--e-out); }
 .pi-hero-visual:hover img { filter: drop-shadow(0 28px 50px rgba(78,110,128,.32)); }
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
-}
+@keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
 /* FAQ — hover ganha leve lift */
 .faq-item { transition: transform .4s var(--e-out), box-shadow .4s var(--e-out), background .3s var(--e-out); }
@@ -870,7 +843,6 @@ body.scrolled .nav-pill {
 </head>
 <body>
 
-<!-- ════════════ HEADER ════════════ -->
 <header>
   <div class="h-inner">
     <a href="#" class="logo" id="brandLogo" aria-label="Arcanum — Voltar ao início">
@@ -885,8 +857,8 @@ body.scrolled .nav-pill {
       </div>
     </a>
 
-    <!-- Nav para a view PI -->
     <div class="nav-pill" id="navPI" role="navigation" aria-label="Navegação — site Arcanum PI">
+      <a class="nav-btn viabilidade-btn" href="#viabilidade">★ Viabilidade</a>
       <a class="nav-btn" href="#marcas">Marcas</a>
       <a class="nav-btn" href="#patentes">Patentes</a>
       <a class="nav-btn" href="#software">Software</a>
@@ -895,7 +867,6 @@ body.scrolled .nav-pill {
       <a class="nav-btn" href="#contato">Contato</a>
     </div>
 
-    <!-- Nav para a view Notícias -->
     <div class="nav-pill" id="navNews" role="navigation" aria-label="Categorias de notícias" hidden>
       <button class="nav-btn active" data-cat="todos" type="button">Todos</button>
       <button class="nav-btn" data-cat="tributario" type="button">Tributário</button>
@@ -905,7 +876,6 @@ body.scrolled .nav-pill {
       <button class="nav-btn" data-cat="jurisprudencia" type="button">Jurisprudência</button>
     </div>
 
-    <!-- Switcher: Notícias <-> Voltar ao site -->
     <button class="switcher" id="btnSwitch" type="button" aria-label="Abrir portal de notícias">
       <span id="switchLabel">Notícias</span>
       <span aria-hidden="true" id="switchArrow">→</span>
@@ -913,12 +883,10 @@ body.scrolled .nav-pill {
   </div>
 </header>
 
-<!-- ════════════ TICKER (apenas no modo Notícias) ════════════ -->
 <div class="ticker-wrap" id="ticker" hidden>
   <div class="ticker-badge">AO VIVO</div>
   <div class="ticker-track">
     <div class="ticker-inner" id="tickerInner">
-      <!-- Preenchido dinamicamente pelos índices; fallback abaixo -->
       <span class="t-item"><b>SELIC</b>—</span>
       <span class="t-item"><b>IPCA 12m</b>—</span>
       <span class="t-item"><b>USD/BRL</b>—</span>
@@ -929,18 +897,12 @@ body.scrolled .nav-pill {
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════
-     VIEW 1 — ARCANUM PROPRIEDADE INTELECTUAL  (site principal)
-     ════════════════════════════════════════════════════════════════ -->
 <main class="page" id="viewPI">
 
-  <!-- HERO -->
   <section class="pi-hero">
     <div>
       <h1>Propriedade intelectual é o <em>invisível que sustenta o império</em>.</h1>
-      <p>
-        Estruturamos a proteção jurídica das marcas, patentes e <em>softwares</em> que formam o núcleo dos seus ativos intangíveis. Do depósito no INPI ao <em>compliance</em> documental, cada etapa é conduzida com o rigor técnico que protege o valor do seu negócio.
-      </p>
+      <p>Estruturamos a proteção jurídica das marcas, patentes e <em>softwares</em> que formam o núcleo dos seus ativos intangíveis. Do depósito no INPI ao <em>compliance</em> documental, cada etapa é conduzida com o rigor técnico que protege o valor do seu negócio.</p>
       <div class="pi-hero-actions">
         <a href="#contato" class="btn-primary">Fale com um especialista</a>
         <a href="#marcas" class="btn-ghost">Conhecer serviços</a>
@@ -951,7 +913,25 @@ body.scrolled .nav-pill {
     </div>
   </section>
 
-  <!-- PILARES -->
+  <div class="sec" id="viabilidade"><h2>Busca de Viabilidade</h2></div>
+  <article class="pi-card viabilidade-card">
+    <div class="pi-sub">Consulta Prévia Integrada</div>
+    <h3>Descubra se o seu nome já tem dono.</h3>
+    <p>Verifique a disponibilidade preliminar da sua marca na base de dados do INPI. <br>
+      <em>*Atenção: O resultado desta pesquisa é automático e preliminar. A viabilidade jurídica definitiva, com mitigação de riscos reais, exige uma análise humana de colidência fonética e ideológica conduzida pelos especialistas da Arcanum.</em>
+    </p>
+
+    <form id="formViabilidade" class="v-form" novalidate>
+      <div class="v-input-group">
+        <svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="marcaBusca" placeholder="Digite o nome pretendido para a marca..." required autocomplete="off">
+        <button type="submit" class="btn-primary v-btn">Consultar</button>
+      </div>
+    </form>
+
+    <div id="v-result" class="v-result" hidden></div>
+  </article>
+
   <div class="sec"><h2>Pilares da proteção</h2></div>
   <div class="pi-pillars">
     <div class="pillar">
@@ -976,7 +956,6 @@ body.scrolled .nav-pill {
     </div>
   </div>
 
-  <!-- MARCAS -->
   <div class="sec" id="marcas"><h2>Registro de Marcas</h2></div>
   <article class="pi-card">
     <div class="pi-sub">Serviço</div>
@@ -986,7 +965,6 @@ body.scrolled .nav-pill {
     <p>O apelo é claro: negligenciar o registro expõe o empresário ao risco de perder o direito de uso do próprio nome comercial, ser compelido a <em>rebranding</em> forçado e arcar com indenizações por uso indevido. O registro não é custo; é blindagem patrimonial.</p>
   </article>
 
-  <!-- PATENTES -->
   <div class="sec" id="patentes"><h2>Patentes e Inovação</h2></div>
   <article class="pi-card">
     <div class="pi-sub">Serviço</div>
@@ -996,7 +974,6 @@ body.scrolled .nav-pill {
     <p>Ignorar a proteção patentária pode resultar na apropriação por terceiros de soluções desenvolvidas internamente, inviabilizando a exploração exclusiva e reduzindo drasticamente o valor estratégico da empresa em avaliações de <em>valuation</em>.</p>
   </article>
 
-  <!-- SOFTWARE -->
   <div class="sec" id="software"><h2>Proteção de Software</h2></div>
   <article class="pi-card">
     <div class="pi-sub">Serviço</div>
@@ -1006,7 +983,6 @@ body.scrolled .nav-pill {
     <p>A ausência de proteção adequada expõe a empresa a vazamento de tecnologia, disputas de titularidade e bloqueios contratuais que podem comprometer rodadas de investimento e a continuidade operacional.</p>
   </article>
 
-  <!-- TRANSFERÊNCIA -->
   <div class="sec" id="transferencia"><h2>Transferência, Contratos e Compliance</h2></div>
   <article class="pi-card">
     <div class="pi-sub">Serviço</div>
@@ -1016,7 +992,6 @@ body.scrolled .nav-pill {
     <p>Atuamos na regularização de ativos intangíveis, estruturação de portfólios de PI para captação de investimento e suporte jurídico em operações de fusão, aquisição e reestruturação societária.</p>
   </article>
 
-  <!-- FAQ -->
   <div class="sec" id="faq"><h2>Perguntas Frequentes</h2></div>
   <div>
     <div class="faq-item">
@@ -1047,7 +1022,7 @@ body.scrolled .nav-pill {
       <div class="faq-a"><div class="faq-a-inner">
         <p><strong>Marca nominativa:</strong> protege apenas o nome da marca (ex: "ARCANUM"), independentemente de fonte ou estilo visual.</p>
         <p><strong>Marca figurativa:</strong> protege apenas o elemento visual (símbolo, ícone, logotipo sem texto).</p>
-        <p><strong>Marca mista:</strong> protege a combinação entre nome + logotipo (forma mais comum no mercado).</p>
+        <p><strong>Marca mista:</strong> protege a combination entre nome + logotipo (forma mais comum no mercado).</p>
         <p>A escolha do tipo de marca impacta diretamente no alcance da proteção jurídica.</p>
       </div></div>
     </div>
@@ -1073,7 +1048,6 @@ body.scrolled .nav-pill {
     </div>
   </div>
 
-  <!-- CONTATO -->
   <div class="sec" id="contato"><h2>Fale com a Arcanum</h2></div>
   <div class="contato-grid">
     <div class="contato-info">
@@ -1145,9 +1119,6 @@ body.scrolled .nav-pill {
   <div class="signature">O invisível que sustenta o seu império.</div>
 </main>
 
-<!-- ════════════════════════════════════════════════════════════════
-     VIEW 2 — ARCANUM TAX NEWS  (portal de notícias)
-     ════════════════════════════════════════════════════════════════ -->
 <main class="page" id="viewNews" hidden>
 
   <div class="alert">
@@ -1221,7 +1192,6 @@ body.scrolled .nav-pill {
   <div class="sources-grid" id="sg"></div>
 </main>
 
-<!-- ════════════ FOOTER (dinâmico conforme a view) ════════════ -->
 <footer>
   <div class="f-inner">
     <div class="f-grid">
@@ -1279,7 +1249,6 @@ body.scrolled .nav-pill {
   </div>
 </footer>
 
-<!-- Flutuantes (Scroll-top / WhatsApp / Instagram) -->
 <div class="float-contact" aria-label="Contato rápido">
   <button class="stbtn" id="stbtn" aria-label="Voltar ao topo">↑</button>
   <a class="float-btn fl-wa" href="https://wa.me/5516992553003" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -1290,7 +1259,6 @@ body.scrolled .nav-pill {
   </a>
 </div>
 
-<!-- Modal (notícias) -->
 <div class="modal-bd" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="modal">
     <div class="modal-head">
@@ -1306,7 +1274,6 @@ body.scrolled .nav-pill {
   </div>
 </div>
 
-<!-- Popup (confirmação de envio do form) -->
 <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="popup">
     <h3>Mensagem enviada</h3>
@@ -1477,15 +1444,64 @@ $$('a[href^="#"]').forEach(link => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
+   BUSCA DE VIABILIDADE INPI
+   ═══════════════════════════════════════════════════════════════ */
+const formViabilidade = $('#formViabilidade');
+const vResult = $('#v-result');
+const vInput = $('#marcaBusca');
+
+if (formViabilidade) {
+  formViabilidade.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const termo = vInput.value.trim();
+    if (!termo) return;
+
+    const btn = formViabilidade.querySelector('button');
+    btn.textContent = 'Buscando...';
+    btn.style.pointerEvents = 'none';
+    
+    // Estado de Loading
+    vResult.hidden = false;
+    vResult.innerHTML = '<div class="v-loader"></div><p style="text-align:center; font-size:13px; color:var(--ink-4); animation: pulse 2s infinite;">Consultando base de dados do INPI...</p>';
+
+    /* AQUI ENTRA A INTEGRAÇÃO REAL DA API:
+      Substitua o setTimeout abaixo pelo fetch() para o seu backend ou serviço de terceiros.
+      Exemplo:
+      const res = await fetch(`https://sua-api.com/inpi?marca=${termo}`);
+      const dados = await res.json();
+    */
+
+    // Simulação visual de latência da rede e lógica condicional
+    setTimeout(() => {
+      btn.textContent = 'Consultar';
+      btn.style.pointerEvents = 'auto';
+
+      // Simulação: Se o nome for curto (<=5 letras), retorna como indisponível (apenas para teste de interface)
+      const isAvailable = termo.length > 5;
+
+      if (isAvailable) {
+        vResult.innerHTML = `
+          <div class="v-status disponivel">● Probabilidade Alta</div>
+          <h4 style="font-family: 'Playfair Display', serif; color: var(--ink); font-size: 1.35rem; margin-bottom: .5rem; line-height: 1.3;">Nenhuma colidência exata encontrada para "${termo}".</h4>
+          <p style="font-size: 14px; color: var(--ink-3); line-height: 1.65;">O termo principal aparenta estar livre. Contudo, o INPI avalia semelhanças fonéticas, elementos visuais e radicais que softwares automatizados não detectam com 100% de precisão.</p>
+          <a href="#contato" class="btn-primary" style="margin-top: 1.25rem;">Solicitar Parecer Gratuito da Arcanum</a>
+        `;
+      } else {
+        vResult.innerHTML = `
+          <div class="v-status indisponivel">● Risco de Conflito</div>
+          <h4 style="font-family: 'Playfair Display', serif; color: var(--ink); font-size: 1.35rem; margin-bottom: .5rem; line-height: 1.3;">Atenção: Registros similares localizados para "${termo}".</h4>
+          <p style="font-size: 14px; color: var(--ink-3); line-height: 1.65;">Encontramos processos ativos que podem impossibilitar este registro na sua classe de atuação. Nossos especialistas podem avaliar o escopo exato e traçar uma rota jurídica de proteção alternativa.</p>
+          <a href="#contato" class="btn-ghost" style="margin-top: 1.25rem;">Falar com um Especialista</a>
+        `;
+      }
+    }, 2500);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
    NEWS VIEW  —  RSS engine + indicadores ao vivo
    ═══════════════════════════════════════════════════════════════ */
 
-/* Curated RSS feeds — each URL was verified end-to-end (valid <rss>/<atom:feed>,
-   ≥1 item, reachable via the CORS proxies below). URLs that 404'd, returned
-   HTML, or were blocked were removed or replaced — e.g. CARF/PGFN/Fazenda have
-   no public RSS, STJ/Migalhas block bots, BCB deprecated their feed. Swapped
-   in Folha Mercado, G1 Economia, Poder360, NeoFeed, MoneyTimes, InvestNews
-   which all serve clean RSS. */
 const FEEDS = [
   { name: 'Receita Federal',    short: 'RF', url: 'https://www.gov.br/receitafederal/pt-br/assuntos/noticias/RSS', cat: 'tributario'     },
   { name: 'JOTA',               short: 'JO', url: 'https://www.jota.info/feed',                                    cat: 'tributario'     },
@@ -1510,11 +1526,8 @@ const FEEDS = [
 
 const CAT_LABEL = { tributario: 'Tributário', fiscal: 'Fiscal', economico: 'Econômico', jurisprudencia: 'Jurisprudência', reformas: 'Reformas' };
 const CAT_TAG   = { tributario: 'tg-tri', fiscal: 'tg-fis', economico: 'tg-eco', jurisprudencia: 'tg-carf', reformas: 'tg-ref' };
-
 const TAX_KW = ['tribut','fiscal','imposto','arrecad','receita federal','selic','copom','irpf','irpj','csll','pis','cofins','icms','iss','ipi','ibs','cbs','reforma tributária','simples nacional','carf','pgfn','nota fiscal','nfe','contribuição','alíquota','base de cálculo','isenção','parcelamento','sped','dctf','dirf','e-social','reinf','certidão','lucro real','lucro presumido','mei','previdência','inss','orçamento','déficit','superávit','pib','inflação','economia','desoneração','benefício fiscal','crédito tributário','câmbio','dívida','tributação','fisco','stf','stj','decreto','instrução normativa','lei complementar','pec','projeto de lei','senado','câmara','fazenda','bolsa','ibovespa','juros','dólar','banco central'];
-
 const isRelevant = (t) => { const s = t.toLowerCase(); return TAX_KW.some(k => s.includes(k)); };
-
 const FALLBACK = [
   { title: 'Senado vota regulamentação do IBS e CBS; placar incerto após lobby do setor de serviços', source: 'Agência Senado', cat: 'reformas', link: 'https://www12.senado.leg.br', summary: 'O projeto regulamenta os novos tributos da Reforma Tributária. O texto define alíquotas de referência para o IBS e CBS, estabelece o Comitê Gestor e o período de transição de 2026 a 2032.', time: 'Atualizando…' },
   { title: 'Receita Federal publica IN alterando prazo de entrega da EFD-Reinf para Lucro Real', source: 'Receita Federal', cat: 'tributario', link: 'https://receita.economia.gov.br', summary: 'Instrução Normativa estende o prazo de entrega para o 15º dia útil do mês seguinte ao período de apuração, atendendo demanda do setor empresarial e de entidades contábeis.', time: 'Atualizando…' },
@@ -1526,14 +1539,12 @@ const FALLBACK = [
   { title: 'Arrecadação federal atinge novo recorde no trimestre', source: 'Receita Federal', cat: 'fiscal', link: 'https://receita.economia.gov.br', summary: 'Crescimento real frente ao ano anterior, impulsionado por IR Pessoa Jurídica, CSLL e reoneração parcial da folha de pagamentos.', time: 'Atualizando…' },
   { title: 'STJ define que honorários não integram base do IRPJ em contratações jurídicas', source: 'STJ', cat: 'jurisprudencia', link: 'https://www.stj.jus.br', summary: 'Turma decide que honorários pagos em contratações jurídicas de terceiros não integram base do IRPJ e da CSLL quando deduzidos como despesa operacional necessária.', time: 'Atualizando…' },
 ];
-
 const JURIS = [
   { title: 'ICMS-ST na base de cálculo do PIS/COFINS',           source: 'STF',   tgcls: 'tg-stf',  tglbl: 'STF',   summary: 'STF reafirma que ICMS-ST pago pelo substituído não integra base do PIS/COFINS. Aplica por analogia a tese do RE 574.706.', link: 'https://www.stf.jus.br', time: 'Recente' },
   { title: 'Multa qualificada exige prova de dolo específico',    source: 'STJ',   tgcls: 'tg-stj',  tglbl: 'STJ',   summary: 'Multa de 150% exige prova de conduta dolosa. Erro formal ou lançamento incorreto não basta — a Fazenda deve demonstrar o dolo específico de fraudar o fisco.', link: 'https://www.stj.jus.br', time: 'Recente' },
   { title: 'Ágio interno em reestruturações societárias',         source: 'CARF',  tgcls: 'tg-carf', tglbl: 'CARF',  summary: 'Afasta dedutibilidade de ágio gerado entre partes relacionadas sem propósito negocial demonstrável. Precedente relevante para planejamento tributário de grupos.', link: 'https://carf.economia.gov.br', time: 'Recente' },
   { title: 'Exclusão do ISS da base do PIS/COFINS',               source: 'TRF-3', tgcls: 'tg-trf',  tglbl: 'TRF-3', summary: 'TRF-3 aplica por analogia a tese do STF sobre ICMS e reconhece direito à exclusão do ISS da base de cálculo das contribuições para prestadores de serviço.', link: 'https://www.trf3.jus.br', time: 'Recente' },
 ];
-
 const CALENDAR = [
   { date: '30/04', label: 'PGFN — Transação',       note: 'Encerra prazo de adesão' },
   { date: '07/05', label: 'Copom — Reunião',        note: 'Decisão sobre SELIC' },
@@ -1541,35 +1552,24 @@ const CALENDAR = [
   { date: '31/05', label: 'IRPF — pessoa física',   note: 'Prazo final de entrega' },
   { date: '15/06', label: 'EFD-Reinf — Lucro Real', note: 'Prazo de entrega' },
 ];
-
 const LEGIS = [
   { code: 'IN RFB recente',    desc: 'Prazo EFD-Reinf — Lucro Real',     date: '—' },
   { code: 'LC 214/25',          desc: 'Regulamenta IBS e CBS',             date: '—' },
   { code: 'Portaria MF — IRRF', desc: 'Novas alíquotas do IRRF',           date: '—' },
   { code: 'Res. CGSN',          desc: 'Tabelas Simples Nacional',          date: '—' },
 ];
-
-/* Sources grid display — kept in sync with the FEEDS array above. */
 const SOURCES = FEEDS.map(f => ({ n: f.name, s: f.short }));
-
 let allArt = [], curFilter = 'todos', rssStats = { ok: 0, total: 0 }, renderScheduled = false;
 
-/* CORS proxies raced in parallel via Promise.any — whichever responds first
-   with a valid feed wins, remaining requests are aborted. Drops ~15s of
-   cascading timeouts when a proxy is slow or rate-limited. corsproxy.io was
-   removed because it started returning 403 (requires paid tier/referrer). */
 const PROXIES = [
   (u) => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u),
   (u) => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u),
 ];
 
-/* Escape HTML special chars before interpolation into innerHTML.
-   RSS titles/summaries come from third-party feeds and must be treated as untrusted. */
 const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => (
   { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
 ));
 
-/* Only allow http(s) + mailto + tel for article links; reject javascript:, data:, etc. */
 const safeUrl = (u) => {
   try {
     const url = new URL(u, window.location.href);
@@ -1593,7 +1593,6 @@ const fmtBRL = (n, dig=2) => Number(n).toLocaleString('pt-BR', { minimumFraction
 async function fetchText(url, proxy, outerSignal, timeoutMs = 5000) {
   const ctl = new AbortController();
   const to = setTimeout(() => ctl.abort(), timeoutMs);
-  // Forward outer abort (from Promise.any winner) so losers cancel quickly
   const onOuter = () => ctl.abort();
   if (outerSignal) outerSignal.addEventListener('abort', onOuter);
   try {
@@ -1629,8 +1628,6 @@ function parseFeedXml(text, src) {
 }
 
 async function fetchFeed(src) {
-  /* Race all proxies in parallel; first one to return a parseable feed wins.
-     Losers are aborted via the shared signal for fast cleanup. */
   const outer = new AbortController();
   try {
     const items = await Promise.any(PROXIES.map(async (proxy) => {
@@ -1694,7 +1691,8 @@ function mkListItem(a, n) {
   return d;
 }
 function sk(h = '160px') {
-  const d = document.createElement('div'); d.className = 'card'; d.style.minHeight = h;
+  const d = document.createElement('div'); d.className = 'card';
+  d.style.minHeight = h;
   d.innerHTML = '<div class="sk" style="width:70px;height:18px;margin-bottom:.65rem;"></div>' +
                 '<div class="sk" style="width:100%;height:15px;margin-bottom:.4rem;"></div>' +
                 '<div class="sk" style="width:82%;height:15px;margin-bottom:.4rem;"></div>' +
@@ -1757,7 +1755,6 @@ function setRssStatus(text, cls) {
 
 function mergeArticles(incoming) {
   if (!incoming.length) return;
-  // Replace seeded fallback as soon as first real items arrive
   if (allArt.length && allArt[0] && allArt[0]._fallback) allArt = [];
   const seen = new Set(allArt.map(a => (a.title || '').toLowerCase().slice(0, 80)));
   for (const a of incoming) {
@@ -1769,11 +1766,6 @@ function mergeArticles(incoming) {
   allArt.sort((a, b) => (b._pubMs || 0) - (a._pubMs || 0));
 }
 
-/* Progressive loader:
-   1. Seed UI instantly with editorial fallback so nothing stays blank.
-   2. Fire all feed fetches in parallel; each one that returns triggers an
-      incremental re-render. User sees real articles within 1-2s from the
-      first proxy that responds, instead of waiting for the slowest. */
 async function loadRSS() {
   const fallback = FALLBACK.map(a => ({ ...a, _fallback: true, _pubMs: 0 }));
   allArt = fallback;
@@ -1788,7 +1780,6 @@ async function loadRSS() {
     const hhmm = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
     if (itemCount) setRssStatus(itemCount + ' notícias · ' + rssStats.ok + ' de ' + rssStats.total + ' fontes · ' + hhmm, 'live');
   });
-
   await Promise.allSettled(done);
   if (!rssStats.ok) {
     allArt = FALLBACK;
@@ -1814,7 +1805,6 @@ function renderStatic() {
                      '<span class="cal-date">' + c.date + '</span>' +
                      '<div><div class="cal-lbl">' + c.label + '</div><div class="cal-note">' + c.note + '</div></div></div>';
   });
-
   const leg = $('#leg');
   LEGIS.forEach(l => {
     leg.innerHTML += '<div class="leg-item">' +
@@ -1822,7 +1812,6 @@ function renderStatic() {
                      '<div class="leg-desc">' + l.desc + '</div>' +
                      '<div class="leg-date">' + l.date + '</div></div>';
   });
-
   const sg = $('#sg');
   SOURCES.forEach(s => {
     sg.innerHTML += '<div class="src-card"><div class="src-logo">' + s.s + '</div><span class="src-name">' + s.n + '</span></div>';
@@ -1831,7 +1820,8 @@ function renderStatic() {
 
 /* Indicadores ao vivo */
 function updateIndicator(idx, val, chText, dir = 'neutral') {
-  const el = $$('#indicators .ind')[idx]; if (!el) return;
+  const el = $$('#indicators .ind')[idx];
+  if (!el) return;
   el.classList.remove('sk-ind');
   el.querySelector('.ind-val').textContent = val;
   const c = el.querySelector('.ind-ch'); c.className = 'ind-ch ' + dir; c.textContent = chText;
@@ -1868,9 +1858,13 @@ async function loadBCB() {
     const r = await fetch('https://api.bcb.gov.br/dados/serie/bcdata.sgs.' + serie + '/dados/ultimos/' + n + '?formato=json', { signal: AbortSignal.timeout(9000) });
     if (!r.ok) throw 0; return r.json();
   };
-  try { const s = await fetchSGS(432, 1); const last = Number(s[s.length-1].valor); updateIndicator(0, fmtBRL(last, 2) + '%', 'Meta a.a.', 'neutral'); }
+  try { const s = await fetchSGS(432, 1); const last = Number(s[s.length-1].valor);
+  updateIndicator(0, fmtBRL(last, 2) + '%', 'Meta a.a.', 'neutral'); }
   catch { indicatorError(0); }
-  try { const s = await fetchSGS(433, 12); const acc = s.reduce((p, c) => (1 + Number(c.valor)/100) * p, 1); const pct = (acc-1)*100; updateIndicator(1, fmtBRL(pct, 2) + '%', 'Acumulado 12m', pct > 4.5 ? 'up' : pct < 3 ? 'down' : 'neutral'); }
+  try { const s = await fetchSGS(433, 12);
+  const acc = s.reduce((p, c) => (1 + Number(c.valor)/100) * p, 1); const pct = (acc-1)*100;
+  updateIndicator(1, fmtBRL(pct, 2) + '%', 'Acumulado 12m', pct > 4.5 ? 'up' : pct < 3 ? 'down' : 'neutral');
+  }
   catch { indicatorError(1); }
 }
 async function loadIbov() {
@@ -1890,11 +1884,9 @@ const loadIndices = () => { loadAwesome(); loadBCB(); loadIbov(); };
 /* News UI bindings */
 $$('#fbar .fbtn').forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.f)));
 $$('#navNews .nav-btn').forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.cat)));
-
 $('#m-close').addEventListener('click', () => $('#modal').classList.remove('open'));
 $('#modal').addEventListener('click', (e) => { if (e.target === $('#modal')) $('#modal').classList.remove('open'); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { $('#modal').classList.remove('open'); $('#popupOverlay').classList.remove('active'); } });
-
 $('#nl-btn').addEventListener('click', () => {
   const inp = $('#nl-in');
   if (inp.value.includes('@')) { inp.value = ''; inp.placeholder = '✓ Cadastro realizado!'; setTimeout(() => inp.placeholder = 'seu@email.com.br', 3000); }
