@@ -891,8 +891,9 @@ body.scrolled .nav-pill {
       <a class="nav-btn" href="#patentes">Patentes</a>
       <a class="nav-btn" href="#software">Software</a>
       <a class="nav-btn" href="#transferencia">Transferência</a>
+      <a class="nav-btn" href="#calculadora">Calculadora Tributária</a>
+      <a class="nav-btn" href="#marca">Viabilidade de Marca</a>
       <a class="nav-btn" href="#faq">FAQ</a>
-      <a class="nav-btn" href="#ferramentas">Ferramentas</a>
       <a class="nav-btn" href="#contato">Contato</a>
     </div>
 
@@ -903,7 +904,6 @@ body.scrolled .nav-pill {
       <button class="nav-btn" data-cat="fiscal" type="button">Fiscal</button>
       <button class="nav-btn" data-cat="economico" type="button">Econômico</button>
       <button class="nav-btn" data-cat="reformas" type="button">Reformas</button>
-      <button class="nav-btn" data-cat="ferramentas" type="button">Ferramentas</button>
       <button class="nav-btn" data-cat="jurisprudencia" type="button">Jurisprudência</button>
     </div>
 
@@ -1224,120 +1224,6 @@ body.scrolled .nav-pill {
 </main>
 
 <!-- ════════════════════════════════════════════════════════════════
-     VIEW 3 — FERRAMENTAS (Calculadora Tributária + Simulador de Marca)
-     ════════════════════════════════════════════════════════════════ -->
-<main class="page" id="viewTools" hidden>
-
-  <div class="sec"><h2>Ferramentas Arcanum</h2><p style="color: var(--ink-3); margin-top: .5rem;">Calculadoras e simuladores para auxiliar na tomada de decisão tributária e análise de marcas.</p></div>
-
-  <!-- TABS NAVIGATION -->
-  <div class="filter-bar" style="margin-bottom: 2rem;">
-    <button class="fbtn active" data-tool="calc" type="button">💰 Calculadora Tributária</button>
-    <button class="fbtn" data-tool="marca" type="button">™️ Simulador de Marca</button>
-  </div>
-
-  <!-- TAB 1: CALCULADORA TRIBUTÁRIA -->
-  <div id="toolCalc" class="tool-content" style="display: block;">
-    <div class="sb-box" style="margin-bottom: 2rem;">
-      <div class="sb-head">Calculadora de Regime Tributário</div>
-      <div class="sb-body" style="padding: 2rem;">
-        <p style="color: var(--ink-3); margin-bottom: 1.5rem;">Simule a carga tributária entre diferentes regimes e a Reforma Tributária (IBS/CBS).</p>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-          <div class="form-field">
-            <label for="calcRevenue">Faturamento Anual (R$)</label>
-            <input type="number" id="calcRevenue" value="100000" placeholder="100000" style="width: 100%; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.72); border-radius: var(--r2); background: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);">
-          </div>
-          <div class="form-field">
-            <label for="calcEmployees">Número de Funcionários</label>
-            <input type="number" id="calcEmployees" value="5" placeholder="5" style="width: 100%; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.72); border-radius: var(--r2); background: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);">
-          </div>
-        </div>
-
-        <button class="fbtn" onclick="calculateTaxes()" type="button" style="background: linear-gradient(135deg, var(--slate), var(--ink-2)); color: #fff; border-color: rgba(255,255,255,.22); padding: .65rem 1.5rem; width: 100%; margin-bottom: 2rem; cursor: pointer;">🔍 Calcular</button>
-
-        <div id="calcResults" style="display: none;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
-            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
-              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">Simples Nacional</div>
-              <div style="font-size: 1.8rem; font-weight: 700; color: var(--slate); margin-bottom: .5rem;" id="calcSimples">R$ 8.000</div>
-              <div style="font-size: 12px; color: var(--ink-4);">~8% do faturamento</div>
-            </div>
-            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
-              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">Lucro Presumido</div>
-              <div style="font-size: 1.8rem; font-weight: 700; color: var(--slate); margin-bottom: .5rem;" id="calcPresumido">R$ 25.000</div>
-              <div style="font-size: 12px; color: var(--ink-4);">~25% do faturamento</div>
-            </div>
-            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
-              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">Lucro Real</div>
-              <div style="font-size: 1.8rem; font-weight: 700; color: var(--slate); margin-bottom: .5rem;" id="calcReal">R$ 34.000</div>
-              <div style="font-size: 12px; color: var(--ink-4);">~34% do faturamento</div>
-            </div>
-            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
-              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">IVA Dual (Teste 2026)</div>
-              <div style="font-size: 1.8rem; font-weight: 700; color: var(--green); margin-bottom: .5rem;" id="calcIVATeste">R$ 1.000</div>
-              <div style="font-size: 12px; color: var(--ink-4);">~1% (alíquota teste)</div>
-            </div>
-            <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem;">
-              <div style="font-weight: 700; color: var(--ink); margin-bottom: .5rem;">IVA Dual (Padrão)</div>
-              <div style="font-size: 1.8rem; font-weight: 700; color: var(--green); margin-bottom: .5rem;" id="calcIVAPadrao">R$ 26.500</div>
-              <div style="font-size: 12px; color: var(--ink-4);">~26,5% com crédito</div>
-            </div>
-          </div>
-          <div style="background: var(--gold-g); border: 1px solid var(--gold-b); border-radius: var(--r2); padding: 1.25rem; margin-top: 1.5rem; color: var(--gold-d); font-size: 13px; line-height: 1.6;">
-            <strong>💡 Nota Importante:</strong> Os cálculos são aproximados e baseados em alíquotas padrão. A Reforma Tributária (IBS/CBS) entra em transição em 2026 com alíquotas teste. Com crédito pleno (não cumulatividade), pode resultar em economia para muitas empresas. Consulte sempre um contador ou especialista para análise detalhada.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB 2: SIMULADOR DE MARCA -->
-  <div id="toolMarca" class="tool-content" style="display: none;">
-    <div class="sb-box" style="margin-bottom: 2rem;">
-      <div class="sb-head">Simulador de Viabilidade de Marca</div>
-      <div class="sb-body" style="padding: 2rem;">
-        <p style="color: var(--ink-3); margin-bottom: 1.5rem;">Análise preliminar de disponibilidade para registro no INPI.</p>
-        
-        <div class="form-field" style="margin-bottom: 2rem;">
-          <label for="brandName" style="display: block; margin-bottom: .5rem; font-weight: 600; color: var(--ink);">Nome da Marca</label>
-          <input type="text" id="brandName" placeholder="Digite o nome da sua marca..." style="width: 100%; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.72); border-radius: var(--r2); background: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);">
-        </div>
-
-        <button class="fbtn" onclick="analyzeBrand()" type="button" style="background: linear-gradient(135deg, var(--slate), var(--ink-2)); color: #fff; border-color: rgba(255,255,255,.22); padding: .65rem 1.5rem; width: 100%; margin-bottom: 2rem; cursor: pointer;">🔍 Analisar</button>
-
-        <div id="brandResults" style="display: none;">
-          <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem; margin-bottom: 1.5rem;">
-            <div style="display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem;">
-              <div id="brandStatusDot" style="width: 12px; height: 12px; border-radius: 50%; background: var(--amber);"></div>
-              <div style="font-weight: 700; color: var(--ink); font-size: 1.1rem;" id="brandStatus">Analisando...</div>
-            </div>
-            <p id="brandMessage" style="color: var(--ink-3); margin-bottom: 1rem; font-size: 13px;"></p>
-            <div style="margin-bottom: 1rem;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: .5rem; font-size: 12px;">
-                <span style="font-weight: 600;">Score de Viabilidade</span>
-                <span id="brandScore" style="font-weight: 700;">65%</span>
-              </div>
-              <div style="height: 6px; background: rgba(78,110,128,.1); border-radius: 3px; overflow: hidden;">
-                <div id="brandBar" style="height: 100%; background: linear-gradient(90deg, var(--slate), var(--gold)); width: 65%; transition: width .6s ease-out;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem; margin-bottom: 1.5rem;">
-            <div style="font-weight: 700; color: var(--ink); margin-bottom: 1rem;">Análise Detalhada</div>
-            <div id="brandDetails" style="font-size: 13px; color: var(--ink-3); line-height: 1.7;"></div>
-          </div>
-
-          <div style="background: var(--gold-g); border: 1px solid var(--gold-b); border-radius: var(--r2); padding: 1.25rem; color: var(--gold-d); font-size: 13px; line-height: 1.6;">
-            <strong>⚠️ Importante:</strong> Esta é uma análise preliminar baseada em critérios gerais. Para confirmação oficial de disponibilidade, consulte o INPI (Instituto Nacional da Propriedade Industrial) ou um especialista em propriedade intelectual.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</main>
 
 <script>
 // Tool switcher
@@ -1410,6 +1296,287 @@ function analyzeBrand() {
 
 // Calcular ao carregar
 calculateTaxes();
+</script>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     VIEW 3 — CALCULADORA TRIBUTÁRIA (Regime Tributário + Reforma)
+     ════════════════════════════════════════════════════════════════ -->
+<main class="page" id="viewCalc" hidden>
+
+  <div style="padding: 3rem 1rem 2rem; display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: center;">
+    <div>
+      <h1 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4.5vw, 3.1rem); font-weight: 700; line-height: 1.1; letter-spacing: -.015em; color: var(--ink); margin-bottom: 1rem;">
+        Calculadora de <em style="font-style: italic; font-weight: 500; color: var(--gold-d); background: linear-gradient(180deg, transparent 62%, var(--gold-g) 62%);">Regime Tributário</em>
+      </h1>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--ink-3); margin-bottom: 1.75rem; max-width: 560px;">
+        Simule a carga tributária entre diferentes regimes (Simples Nacional, Lucro Presumido, Lucro Real) e compare com a Reforma Tributária (IVA Dual com IBS/CBS).
+      </p>
+      <div style="background: var(--gold-g); border: 1px solid var(--gold-b); border-radius: var(--r2); padding: 1.25rem; color: var(--gold-d); font-size: 13px; line-height: 1.6;">
+        <strong>💡 Reforma Tributária 2026:</strong> A transição começa em 2026 com alíquotas teste. Com crédito pleno (não cumulatividade), pode resultar em economia significativa. Consulte sempre um contador para análise precisa.
+      </div>
+    </div>
+    <div style="background: rgba(255,255,255,.56); border: 1px solid rgba(255,255,255,.85); border-radius: var(--r3); padding: 2rem; backdrop-filter: blur(24px); box-shadow: 0 2px 20px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);">
+      <div style="font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); margin-bottom: 1.5rem;">Dados da Empresa</div>
+      
+      <div class="form-field" style="margin-bottom: 1.5rem;">
+        <label for="calcRevenue" style="display: block; margin-bottom: .5rem; font-weight: 600; color: var(--ink); font-size: 13px;">Faturamento Anual (R$)</label>
+        <input type="number" id="calcRevenue" value="500000" placeholder="500000" style="width: 100%; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.72); border-radius: var(--r2); background: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); box-sizing: border-box;">
+      </div>
+
+      <div class="form-field" style="margin-bottom: 2rem;">
+        <label for="calcEmployees" style="display: block; margin-bottom: .5rem; font-weight: 600; color: var(--ink); font-size: 13px;">Número de Funcionários</label>
+        <input type="number" id="calcEmployees" value="10" placeholder="10" style="width: 100%; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.72); border-radius: var(--r2); background: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); box-sizing: border-box;">
+      </div>
+
+      <button onclick="calculateTaxesView()" style="width: 100%; padding: .85rem 1.6rem; border-radius: var(--rp); background: linear-gradient(135deg, var(--slate), var(--ink-2)); color: #fff; border: 1px solid rgba(255,255,255,.22); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; box-shadow: 0 8px 24px rgba(30,58,74,.25); transition: all .25s;">
+        🔍 Calcular Impostos
+      </button>
+    </div>
+  </div>
+
+  <div class="sec" style="padding: 2rem 1rem 1rem;"><h2>Resultados da Simulação</h2></div>
+
+  <div id="calcResultsContainer" style="display: none; padding: 0 1rem 2rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+      
+      <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem; cursor: default; transition: all .2s;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); margin-bottom: .5rem;">Simples Nacional</div>
+        <div style="font-size: 2rem; font-weight: 700; color: var(--slate); margin-bottom: .5rem;" id="calcSimples">R$ 40.000</div>
+        <div style="font-size: 12px; color: var(--ink-4); line-height: 1.5;">
+          <div style="margin-bottom: .3rem;"><strong>~8%</strong> do faturamento</div>
+          <div style="font-size: 11px; color: var(--ink-5);">Imposto único simplificado</div>
+        </div>
+      </div>
+
+      <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem; cursor: default; transition: all .2s;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); margin-bottom: .5rem;">Lucro Presumido</div>
+        <div style="font-size: 2rem; font-weight: 700; color: var(--slate); margin-bottom: .5rem;" id="calcPresumido">R$ 125.000</div>
+        <div style="font-size: 12px; color: var(--ink-4); line-height: 1.5;">
+          <div style="margin-bottom: .3rem;"><strong>~25%</strong> do faturamento</div>
+          <div style="font-size: 11px; color: var(--ink-5);">IR + CSLL + PIS + COFINS</div>
+        </div>
+      </div>
+
+      <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem; cursor: default; transition: all .2s;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); margin-bottom: .5rem;">Lucro Real</div>
+        <div style="font-size: 2rem; font-weight: 700; color: var(--slate); margin-bottom: .5rem;" id="calcReal">R$ 170.000</div>
+        <div style="font-size: 12px; color: var(--ink-4); line-height: 1.5;">
+          <div style="margin-bottom: .3rem;"><strong>~34%</strong> do faturamento</div>
+          <div style="font-size: 11px; color: var(--ink-5);">IR + CSLL + PIS + COFINS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" style="padding: 2rem 0 1rem;"><h3 style="font-size: 1.3rem;">Reforma Tributária (IVA Dual)</h3></div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+      
+      <div class="src-card" style="background: linear-gradient(135deg, rgba(42,124,82,.08), rgba(42,124,82,.04)); border: 1px solid rgba(42,124,82,.2); border-radius: var(--r2); padding: 1.5rem; cursor: default;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--green); margin-bottom: .5rem;">IVA Dual - Teste 2026</div>
+        <div style="font-size: 2rem; font-weight: 700; color: var(--green); margin-bottom: .5rem;" id="calcIVATeste">R$ 5.000</div>
+        <div style="font-size: 12px; color: var(--ink-4); line-height: 1.5;">
+          <div style="margin-bottom: .3rem;"><strong>~1%</strong> alíquota teste</div>
+          <div style="font-size: 11px; color: var(--ink-5);">IBS 0,1% + CBS 0,9%</div>
+        </div>
+      </div>
+
+      <div class="src-card" style="background: linear-gradient(135deg, rgba(42,124,82,.08), rgba(42,124,82,.04)); border: 1px solid rgba(42,124,82,.2); border-radius: var(--r2); padding: 1.5rem; cursor: default;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--green); margin-bottom: .5rem;">IVA Dual - Padrão</div>
+        <div style="font-size: 2rem; font-weight: 700; color: var(--green); margin-bottom: .5rem;" id="calcIVAPadrao">R$ 132.500</div>
+        <div style="font-size: 12px; color: var(--ink-4); line-height: 1.5;">
+          <div style="margin-bottom: .3rem;"><strong>~26,5%</strong> com crédito</div>
+          <div style="font-size: 11px; color: var(--ink-5);">IBS ~15% + CBS ~11,5%</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: rgba(78,110,128,.07); border: 1px solid rgba(78,110,128,.14); border-radius: var(--r2); padding: 1.5rem; margin-bottom: 2rem;">
+      <div style="font-size: 12px; color: var(--ink-3); line-height: 1.8;">
+        <strong style="color: var(--ink);">📊 Análise:</strong> Os valores acima são aproximados e baseados em alíquotas padrão. A escolha do regime tributário depende de vários fatores como margem de lucro, tipo de atividade, e planejamento fiscal. <strong>Consulte sempre um contador ou especialista tributário</strong> antes de tomar decisões baseadas nesta simulação.
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function formatCurrency(val) {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
+}
+
+function calculateTaxesView() {
+  const revenue = parseFloat(document.getElementById('calcRevenue').value) || 0;
+  
+  const simples = revenue * 0.08;
+  const presumido = revenue * 0.25;
+  const real = revenue * 0.34;
+  const ivaTeste = revenue * 0.01;
+  const ivaPadrao = revenue * 0.265;
+
+  document.getElementById('calcSimples').textContent = formatCurrency(simples);
+  document.getElementById('calcPresumido').textContent = formatCurrency(presumido);
+  document.getElementById('calcReal').textContent = formatCurrency(real);
+  document.getElementById('calcIVATeste').textContent = formatCurrency(ivaTeste);
+  document.getElementById('calcIVAPadrao').textContent = formatCurrency(ivaPadrao);
+  
+  document.getElementById('calcResultsContainer').style.display = 'block';
+}
+
+// Calcular ao carregar
+calculateTaxesView();
+</script>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     VIEW 4 — VIABILIDADE DE MARCA (Análise para INPI)
+     ════════════════════════════════════════════════════════════════ -->
+<main class="page" id="viewMarca" hidden>
+
+  <div style="padding: 3rem 1rem 2rem; display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: center;">
+    <div>
+      <h1 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4.5vw, 3.1rem); font-weight: 700; line-height: 1.1; letter-spacing: -.015em; color: var(--ink); margin-bottom: 1rem;">
+        Viabilidade de <em style="font-style: italic; font-weight: 500; color: var(--gold-d); background: linear-gradient(180deg, transparent 62%, var(--gold-g) 62%);">Registro de Marca</em>
+      </h1>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--ink-3); margin-bottom: 1.75rem; max-width: 560px;">
+        Análise preliminar de viabilidade para registro de marca no INPI. Avaliamos critérios como comprimento, distintividade, e conformidade com requisitos básicos de registrabilidade.
+      </p>
+      <div style="background: var(--gold-g); border: 1px solid var(--gold-b); border-radius: var(--r2); padding: 1.25rem; color: var(--gold-d); font-size: 13px; line-height: 1.6;">
+        <strong>⚠️ Importante:</strong> Esta é uma análise preliminar. Para confirmação oficial, consulte o INPI ou um especialista em propriedade intelectual.
+      </div>
+    </div>
+    <div style="background: rgba(255,255,255,.56); border: 1px solid rgba(255,255,255,.85); border-radius: var(--r3); padding: 2rem; backdrop-filter: blur(24px); box-shadow: 0 2px 20px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.95);">
+      <div style="font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); margin-bottom: 1.5rem;">Análise de Marca</div>
+      
+      <div class="form-field" style="margin-bottom: 2rem;">
+        <label for="brandName" style="display: block; margin-bottom: .5rem; font-weight: 600; color: var(--ink); font-size: 13px;">Nome da Marca</label>
+        <input type="text" id="brandName" placeholder="Digite o nome da sua marca..." style="width: 100%; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.72); border-radius: var(--r2); background: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); box-sizing: border-box;">
+      </div>
+
+      <button onclick="analyzeBrandView()" style="width: 100%; padding: .85rem 1.6rem; border-radius: var(--rp); background: linear-gradient(135deg, var(--slate), var(--ink-2)); color: #fff; border: 1px solid rgba(255,255,255,.22); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; box-shadow: 0 8px 24px rgba(30,58,74,.25); transition: all .25s;">
+        🔍 Analisar Marca
+      </button>
+    </div>
+  </div>
+
+  <div id="brandResultsContainer" style="display: none; padding: 0 1rem 2rem;">
+    <div class="sec" style="padding: 2rem 0 1rem;"><h2>Resultado da Análise</h2></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2.5rem;">
+      
+      <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem; cursor: default;">
+        <div style="display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem;">
+          <div id="brandStatusDot" style="width: 14px; height: 14px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 8px currentColor;"></div>
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate);" id="brandStatus">Analisando...</div>
+        </div>
+        <p id="brandMessage" style="color: var(--ink-3); margin-bottom: 1rem; font-size: 13px; line-height: 1.6;"></p>
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: .5rem; font-size: 12px; font-weight: 600;">
+            <span>Score de Viabilidade</span>
+            <span id="brandScore">65%</span>
+          </div>
+          <div style="height: 8px; background: rgba(78,110,128,.1); border-radius: 4px; overflow: hidden;">
+            <div id="brandBar" style="height: 100%; background: linear-gradient(90deg, var(--slate), var(--gold)); width: 65%; transition: width .6s cubic-bezier(0.22, 1, 0.36, 1);"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="src-card" style="background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.82); border-radius: var(--r2); padding: 1.5rem; cursor: default;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); margin-bottom: 1rem;">Critérios Avaliados</div>
+        <div id="brandDetails" style="font-size: 12px; color: var(--ink-3); line-height: 1.8;"></div>
+      </div>
+    </div>
+
+    <div style="background: rgba(78,110,128,.07); border: 1px solid rgba(78,110,128,.14); border-radius: var(--r2); padding: 1.5rem; margin-bottom: 2rem;">
+      <div style="font-size: 12px; color: var(--ink-3); line-height: 1.8;">
+        <strong style="color: var(--ink);">📋 Próximos Passos:</strong>
+        <ol style="margin-left: 1.5rem; margin-top: .5rem;">
+          <li>Realize uma busca oficial no INPI (www.inpi.gov.br) para confirmar disponibilidade</li>
+          <li>Verifique marcas similares em categorias relacionadas</li>
+          <li>Consulte um especialista em propriedade intelectual</li>
+          <li>Prepare a documentação necessária para o registro</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function analyzeBrandView() {
+  const brand = document.getElementById('brandName').value.toLowerCase().trim();
+  if (!brand) { alert('Por favor, digite um nome de marca'); return; }
+
+  const commonWords = ['tech', 'shop', 'store', 'digital', 'online', 'service', 'pro', 'smart', 'cloud', 'net', 'web', 'app', 'soft', 'system', 'solution'];
+  const hasCommon = commonWords.some(w => brand.includes(w));
+  const hasNumbers = /\d/.test(brand);
+  const hasSpecial = /[^a-z0-9\s]/.test(brand);
+  const len = brand.replace(/\s/g, '').length;
+
+  let status = 'Média', score = 65, color = 'var(--amber)', dot = 'var(--amber)';
+  
+  if (len < 3 || len > 20) { 
+    status = 'Baixa'; score = 35; color = 'var(--red)'; dot = 'var(--red)'; 
+  } else if (!hasCommon && !hasNumbers && !hasSpecial && len >= 5 && len <= 15) { 
+    status = 'Alta'; score = 85; color = 'var(--green)'; dot = 'var(--green)'; 
+  } else if (!hasCommon && !hasSpecial) {
+    status = 'Média-Alta'; score = 75; color = 'var(--gold)'; dot = 'var(--gold)';
+  }
+
+  let details = '';
+  
+  // Comprimento
+  if (len < 3) {
+    details += '❌ <strong>Comprimento:</strong> Muito curta (difícil de proteger visualmente)<br>';
+  } else if (len > 20) {
+    details += '⚠️ <strong>Comprimento:</strong> Muito longa (pode causar confusão)<br>';
+  } else if (len < 5) {
+    details += '⚠️ <strong>Comprimento:</strong> Curta (proteção limitada)<br>';
+  } else {
+    details += '✓ <strong>Comprimento:</strong> Adequado para registro<br>';
+  }
+
+  // Distintividade
+  if (hasCommon) {
+    details += '⚠️ <strong>Distintividade:</strong> Contém palavras genéricas (maior chance de rejeição)<br>';
+  } else {
+    details += '✓ <strong>Distintividade:</strong> Nome original e distintivo<br>';
+  }
+
+  // Caracteres especiais
+  if (hasSpecial) {
+    details += '⚠️ <strong>Caracteres:</strong> Contém símbolos especiais (complica o registro)<br>';
+  } else {
+    details += '✓ <strong>Caracteres:</strong> Sem símbolos especiais<br>';
+  }
+
+  // Números
+  if (hasNumbers) {
+    details += '⚠️ <strong>Números:</strong> Contém dígitos (reduz proteção visual)';
+  } else {
+    details += '✓ <strong>Números:</strong> Sem números (melhor proteção)';
+  }
+
+  document.getElementById('brandStatusDot').style.background = dot;
+  document.getElementById('brandStatusDot').style.boxShadow = `0 0 8px ${dot}`;
+  document.getElementById('brandStatus').textContent = status + ' Viabilidade';
+  
+  if (status === 'Alta') {
+    document.getElementById('brandMessage').textContent = '✓ Excelente! Sua marca tem alta viabilidade de registro no INPI. Apresenta boas características de distintividade e conformidade com requisitos básicos.';
+  } else if (status === 'Média-Alta') {
+    document.getElementById('brandMessage').textContent = '✓ Boa viabilidade! Sua marca tem potencial de registro, mas recomendamos verificação oficial no INPI antes de investir em proteção.';
+  } else if (status === 'Média') {
+    document.getElementById('brandMessage').textContent = '⚠️ Viabilidade moderada. Existem alguns pontos a considerar. Consulte um especialista para análise mais detalhada.';
+  } else {
+    document.getElementById('brandMessage').textContent = '❌ Baixa viabilidade. Recomendamos ajustes significativos antes de tentar o registro oficial.';
+  }
+  
+  document.getElementById('brandScore').textContent = score + '%';
+  document.getElementById('brandBar').style.width = score + '%';
+  document.getElementById('brandBar').style.background = `linear-gradient(90deg, ${color}, ${color})`;
+  document.getElementById('brandDetails').innerHTML = details;
+  document.getElementById('brandResultsContainer').style.display = 'block';
+}
 </script>
 
 
@@ -2168,6 +2335,82 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('hashchange', () => {
   if (location.hash === '#ferramentas') {
     setView('tools');
+  }
+});
+
+
+/* ════════════════════════════════════════════════════════════════
+   VIEWS PARA CALCULADORA E MARCA
+   ════════════════════════════════════════════════════════════════ */
+
+const setViewCalc = () => {
+  currentView = 'calc';
+  document.getElementById('viewPI').hidden = true;
+  document.getElementById('viewNews').hidden = true;
+  document.getElementById('viewCalc').hidden = false;
+  document.getElementById('viewMarca').hidden = true;
+  document.getElementById('navPI').hidden = true;
+  document.getElementById('navNews').hidden = true;
+  document.getElementById('ticker').hidden = true;
+  document.getElementById('btnSwitch').textContent = '← Voltar';
+  document.getElementById('switchLabel').textContent = 'Voltar';
+  document.getElementById('switchArrow').textContent = '←';
+};
+
+const setViewMarca = () => {
+  currentView = 'marca';
+  document.getElementById('viewPI').hidden = true;
+  document.getElementById('viewNews').hidden = true;
+  document.getElementById('viewCalc').hidden = true;
+  document.getElementById('viewMarca').hidden = false;
+  document.getElementById('navPI').hidden = true;
+  document.getElementById('navNews').hidden = true;
+  document.getElementById('ticker').hidden = true;
+  document.getElementById('btnSwitch').textContent = '← Voltar';
+  document.getElementById('switchLabel').textContent = 'Voltar';
+  document.getElementById('switchArrow').textContent = '←';
+};
+
+/* Modificar setView para incluir calc e marca */
+const originalSetView = setView;
+setView = (v) => {
+  if (v === 'calc') {
+    setViewCalc();
+  } else if (v === 'marca') {
+    setViewMarca();
+  } else {
+    originalSetView(v);
+  }
+};
+
+/* Listeners para #calculadora e #marca */
+document.addEventListener('DOMContentLoaded', () => {
+  const calcBtns = document.querySelectorAll('[href="#calculadora"]');
+  const marcaBtns = document.querySelectorAll('[href="#marca"]');
+  
+  calcBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      setView('calc');
+      location.hash = '#calculadora';
+    });
+  });
+  
+  marcaBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      setView('marca');
+      location.hash = '#marca';
+    });
+  });
+});
+
+/* Hash listeners */
+window.addEventListener('hashchange', () => {
+  if (location.hash === '#calculadora') {
+    setView('calc');
+  } else if (location.hash === '#marca') {
+    setView('marca');
   }
 });
 
