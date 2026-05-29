@@ -695,6 +695,9 @@ footer {
 .v-match-sub { margin-top: .4rem; color: var(--ink-4); font-size: 12px; line-height: 1.55; }
 .v-result-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
 .v-hint { font-size: 12px !important; color: var(--ink-4) !important; margin-top: 1rem; }
+.v-points { display: grid; gap: .55rem; margin: 1.15rem 0; }
+.v-point { display: flex; gap: .55rem; align-items: flex-start; padding: .75rem .85rem; border-radius: var(--r2); background: rgba(255,255,255,.46); border: 1px solid rgba(255,255,255,.75); color: var(--ink-3); font-size: 13px; line-height: 1.5; }
+.v-point b { color: var(--ink); font-weight: 700; }
 
 .v-loader { 
   width: 28px; height: 28px; border: 2px solid var(--gold-g); 
@@ -813,19 +816,77 @@ footer {
    APPLE-STYLE SUBTLE ANIMATIONS (glass / spring / scroll-reveal)
    ═══════════════════════════════════════════════════════════════ */
 
+body::before { animation: bgBreathe 18s var(--e-in-out) infinite alternate; transform-origin: center; }
+@keyframes bgBreathe {
+  from { transform: scale(1) translate3d(0,0,0); filter: saturate(1); }
+  to   { transform: scale(1.025) translate3d(-.6%, .4%, 0); filter: saturate(1.08); }
+}
+
 /* Scroll-reveal — só ativo quando JS marca html.js-anim */
-html.js-anim .reveal { opacity: 0; transform: translateY(18px); transition: opacity .9s var(--e-out), transform .9s var(--e-out); will-change: opacity, transform; }
-html.js-anim .reveal.in-view { opacity: 1; transform: none; }
+html.js-anim .reveal {
+  opacity: 0;
+  transform: translateY(22px) scale(.985);
+  filter: blur(8px);
+  transition:
+    opacity .9s var(--e-out) var(--rv-delay, 0ms),
+    transform .95s var(--e-out) var(--rv-delay, 0ms),
+    filter .9s var(--e-out) var(--rv-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+html.js-anim .reveal.in-view { opacity: 1; transform: none; filter: blur(0); }
 
 /* Header ganha sombra/saturação sutil ao rolar (estilo barra iOS/macOS) */
 header { transition: background .4s var(--e-out), box-shadow .4s var(--e-out), backdrop-filter .4s var(--e-out); }
 body.scrolled header { background: rgba(255,255,255,0.72); backdrop-filter: blur(40px) saturate(1.9); -webkit-backdrop-filter: blur(40px) saturate(1.9); box-shadow: 0 1px 0 rgba(78,110,128,0.08), 0 10px 30px rgba(78,110,128,0.10); }
 .nav-pill { transition: box-shadow .4s var(--e-out), transform .4s var(--e-out); }
 body.scrolled .nav-pill { box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1px 0 rgba(255,255,255,1); }
-.nav-btn { transition: all .3s var(--e-out); }
+.nav-btn { transition: transform .35s var(--e-out), background .35s var(--e-out), color .35s var(--e-out), box-shadow .35s var(--e-out); }
+.nav-btn:hover, .fbtn:hover { transform: translateY(-1px); }
+
+/* Cards — lift mais macio + brilho diagonal contido */
+.card, .pillar, .pi-card, .ind, .sb-box, .contato-item, .src-card {
+  transition:
+    transform .58s var(--e-out),
+    box-shadow .58s var(--e-out),
+    border-color .45s var(--e-out),
+    background .45s var(--e-out);
+}
+.pi-card, .sb-box, .contato-item { position: relative; overflow: hidden; }
+.card::after, .pi-card::after, .contato-item::after, .sb-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 28%, rgba(255,255,255,.38) 50%, transparent 72%);
+  transform: translateX(-125%);
+  transition: transform 1.05s var(--e-out);
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+.card:hover::after, .pi-card:hover::after, .contato-item:hover::after, .sb-box:hover::after { transform: translateX(125%); }
+.card:hover, .pi-card:hover, .src-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 44px rgba(78,110,128,.18), inset 0 1px 0 rgba(255,255,255,1);
+}
+.card:hover .tag { transform: translateY(-1px); }
+.tag { transition: transform .35s var(--e-out), background .35s var(--e-out), color .35s var(--e-out); }
 
 /* Botões CTA — hover/press Apple-style */
-.btn-primary, .btn-ghost { transition: transform .35s var(--e-out), box-shadow .35s var(--e-out), background .35s var(--e-out), color .35s var(--e-out); }
+.btn-primary, .btn-ghost, .switcher, .fbtn {
+  position: relative;
+  overflow: hidden;
+  transition: transform .35s var(--e-out), box-shadow .35s var(--e-out), background .35s var(--e-out), color .35s var(--e-out);
+}
+.btn-primary::after, .btn-ghost::after, .switcher::after, .fbtn::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.45) 46%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .8s var(--e-out);
+  pointer-events: none;
+}
+.btn-primary:hover::after, .btn-ghost:hover::after, .switcher:hover::after, .fbtn:hover::after { transform: translateX(120%); }
+.btn-primary:hover, .switcher:hover { transform: translateY(-2px); }
 .btn-primary:active, .btn-ghost:active, .switcher:active { transform: translateY(0) scale(.97); transition-duration: .12s; }
 .switcher { transition: transform .35s var(--e-out), box-shadow .35s var(--e-out), background .35s var(--e-out); }
 
@@ -855,9 +916,19 @@ body.scrolled .nav-pill { box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1
 .popup-overlay.active .popup { animation: modalIn .5s var(--e-out); }
 
 /* Hero logo — flutuação contínua extremamente sutil (~3px) */
-.pi-hero-visual img { animation: heroFloat 7s var(--e-in-out) infinite; transition: transform .6s var(--e-out), filter .6s var(--e-out); }
+.pi-hero-visual img { animation: heroFloat 7s var(--e-in-out) infinite; transition: transform .6s var(--e-out), filter .6s var(--e-out), opacity .6s var(--e-out); }
 .pi-hero-visual:hover img { filter: drop-shadow(0 28px 50px rgba(78,110,128,.32)); }
 @keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+.v-input-group { animation: searchSettle .7s var(--e-out) both; }
+.v-input-group:focus-within .v-icon { color: var(--gold-d); transform: scale(1.08); }
+.v-icon { transition: transform .35s var(--e-spring), color .35s var(--e-out); }
+.v-result { animation: viabilityIn .62s var(--e-out); }
+.v-point { animation: pointIn .55s var(--e-out) both; }
+.v-point:nth-child(2) { animation-delay: .08s; }
+@keyframes searchSettle { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes viabilityIn { from { opacity: 0; transform: translateY(16px) scale(.98); filter: blur(8px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes pointIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
 
 /* FAQ — hover ganha leve lift */
 .faq-item { transition: transform .4s var(--e-out), box-shadow .4s var(--e-out), background .3s var(--e-out); }
@@ -867,6 +938,7 @@ body.scrolled .nav-pill { box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1
 @media (prefers-reduced-motion: reduce) {
   html.js-anim .reveal { opacity: 1; transform: none; transition: none; }
   .pi-hero-visual img, .float-contact .float-btn, .stbtn.on,
+  body::before, .v-input-group, .v-result, .v-point,
   .modal-bd.open, .modal-bd.open .modal,
   .popup-overlay.active, .popup-overlay.active .popup { animation: none !important; }
   .pillar::after { display: none; }
@@ -948,10 +1020,10 @@ body.scrolled .nav-pill { box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1
 
   <div class="sec" id="viabilidade"><h2>Busca de Viabilidade</h2></div>
   <article class="pi-card viabilidade-card">
-    <div class="pi-sub">Pesquisa Preliminar</div>
-    <h3>Pesquise o nome da sua marca.</h3>
-    <p>Digite o nome que pretende registrar e veja se a pesquisa automática encontra sinais de atenção na base pública consultada. <br>
-      <em>*Atenção: este resultado é apenas um ponto de partida para o empresário. A análise jurídica, as classes corretas, os riscos reais e a estratégia de depósito devem ser avaliados diretamente pelos especialistas da Arcanum.</em>
+    <div class="pi-sub">Consulta Preliminar</div>
+    <h3>Descubra se o nome parece viável.</h3>
+    <p>Digite o nome que pretende registrar e receba uma leitura automática inicial de viabilidade. <br>
+      <em>*Atenção: o resultado é apenas preliminar. A confirmação depende de análise profissional de classe, segmento, colidência fonética, distintividade e estratégia de depósito conduzida pela Arcanum.</em>
     </p>
 
     <form id="formViabilidade" class="v-form" novalidate>
@@ -1322,10 +1394,8 @@ body.scrolled .nav-pill { box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-/* Endpoints devem ficar no backend para proteger tokens de APIs como Infosimples/NewsAPI/GNews. */
 const ARCANUM_CONFIG = Object.assign({
   trademarkEndpoint: '',
-  trademarkSourceUrl: 'https://busca.inpi.gov.br/pePI/jsp/marcas/Pesquisa_classe_basica.jsp',
   newsEndpoint: '',
   rss2jsonApiKey: ''
 }, window.ARCANUM_CONFIG || {});
@@ -1489,29 +1559,6 @@ $$('a[href^="#"]').forEach(link => {
 const formViabilidade = $('#formViabilidade');
 const vResult = $('#v-result');
 const vInput = $('#marcaBusca');
-const vClasse = $('#classeNice');
-
-const NICE_LABELS = {
-  1: 'Químicos', 2: 'Tintas', 3: 'Cosméticos', 4: 'Combustíveis', 5: 'Farmacêuticos',
-  6: 'Metais', 7: 'Máquinas', 8: 'Ferramentas', 9: 'Tecnologia', 10: 'Medicina',
-  11: 'Iluminação', 12: 'Veículos', 13: 'Armas', 14: 'Joias', 15: 'Instrumentos',
-  16: 'Papelaria', 17: 'Borracha', 18: 'Couro', 19: 'Construção', 20: 'Móveis',
-  21: 'Utensílios', 22: 'Cordas', 23: 'Fios', 24: 'Tecidos', 25: 'Vestuário',
-  26: 'Aviamentos', 27: 'Tapetes', 28: 'Brinquedos', 29: 'Alimentos', 30: 'Café e massas',
-  31: 'Agrícolas', 32: 'Bebidas sem álcool', 33: 'Bebidas alcoólicas', 34: 'Tabaco',
-  35: 'Publicidade', 36: 'Finanças', 37: 'Construção e reparo', 38: 'Telecom',
-  39: 'Transporte', 40: 'Tratamento de materiais', 41: 'Educação', 42: 'Tecnologia',
-  43: 'Alimentação', 44: 'Saúde', 45: 'Jurídicos'
-};
-
-if (vClasse && vClasse.options.length === 1) {
-  for (let i = 1; i <= 45; i++) {
-    const opt = document.createElement('option');
-    opt.value = String(i).padStart(2, '0');
-    opt.textContent = 'NCL ' + opt.value + ' · ' + NICE_LABELS[i];
-    vClasse.appendChild(opt);
-  }
-}
 
 const vEsc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => (
   { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
@@ -1526,162 +1573,85 @@ function normalizaMarca(v) {
     .toLowerCase();
 }
 
-function extrairProcessos(raw) {
-  const roots = [raw, raw?.data, raw?.result, raw?.resultado, raw?.payload];
-  if (Array.isArray(raw?.data)) roots.push(raw.data[0]);
-  for (const root of roots) {
-    if (!root) continue;
-    if (Array.isArray(root)) {
-      const first = root[0];
-      if (Array.isArray(first?.processos)) return first.processos;
-      if (Array.isArray(first?.results)) return first.results;
-      if (Array.isArray(first?.items)) return first.items;
-      return root;
-    }
-    if (Array.isArray(root.processos)) return root.processos;
-    if (Array.isArray(root.results)) return root.results;
-    if (Array.isArray(root.items)) return root.items;
-  }
-  return [];
-}
+const TERMOS_FRACOS = new Set([
+  'brasil', 'brazil', 'br', 'oficial', 'premium', 'prime', 'gold', 'max', 'super', 'mega', 'top',
+  'shop', 'store', 'center', 'market', 'digital', 'online', 'tech', 'tec', 'solutions', 'solucoes',
+  'consultoria', 'servicos', 'comercio', 'industria', 'grupo', 'company', 'empresa', 'negocios',
+  'delivery', 'food', 'fit', 'pet', 'moda', 'beauty', 'finance', 'capital', 'bank'
+]);
 
-function totalProcessos(raw, processos) {
-  const roots = [raw, raw?.data, raw?.result, raw?.resultado, raw?.payload];
-  if (Array.isArray(raw?.data)) roots.push(raw.data[0]);
-  for (const root of roots) {
-    const node = Array.isArray(root) ? root[0] : root;
-    const total = Number(node?.processos_total ?? node?.total_processos ?? node?.total ?? node?.count);
-    if (Number.isFinite(total)) return total;
-  }
-  return processos.length;
-}
+const RADICAIS_SENSIVEIS = [
+  'apple', 'google', 'meta', 'instagram', 'facebook', 'whatsapp', 'microsoft', 'tesla',
+  'nike', 'adidas', 'coca cola', 'cocacola', 'nubank', 'itau', 'bradesco', 'santander'
+];
 
-function normalizaProcesso(p) {
-  const cps = Array.isArray(p?.classificacao_produtos_servicos) ? p.classificacao_produtos_servicos[0] : null;
-  const titulares = Array.isArray(p?.titulares) ? p.titulares.join(', ') : p?.titulares;
+function analisarViabilidadeLocal(termo) {
+  const normal = normalizaMarca(termo);
+  const palavras = normal.split(/\s+/).filter(Boolean);
+  const distintas = palavras.filter(p => !TERMOS_FRACOS.has(p));
+  const fracas = palavras.filter(p => TERMOS_FRACOS.has(p));
+  const temMarcaFamosa = RADICAIS_SENSIVEIS.some(r => normal.includes(r));
+  const muitoCurto = normal.replace(/\s/g, '').length <= 4;
+  const generico = palavras.length > 0 && distintas.length === 0;
+  const compostoComum = fracas.length >= Math.max(1, palavras.length - 1);
+  const palavraForte = distintas.some(p => p.length >= 6);
+
+  if (temMarcaFamosa || muitoCurto || generico) {
+    return {
+      status: 'risco-alto',
+      label: 'Risco de conflito',
+      title: 'Atenção: o nome "' + termo + '" exige cautela antes de uso ou depósito.',
+      message: 'A leitura automática encontrou sinais de baixa distintividade, termo curto/genérico ou possível aproximação com marca conhecida. Isso não significa indeferimento certo, mas indica que o empresário deve falar com a Arcanum antes de avançar.',
+      chips: ['Análise preliminar automática', 'Risco aparente elevado', 'Contato recomendado'],
+      points: [
+        '<b>Não use como decisão final.</b> A viabilidade depende de classe, atividade e comparação com marcas anteriores.',
+        '<b>Próximo passo:</b> envie o nome para a Arcanum avaliar alternativas, ajustes e estratégia.'
+      ]
+    };
+  }
+
+  if (compostoComum || (!palavraForte && normal.length < 8) || palavras.length >= 4) {
+    return {
+      status: 'risco-medio',
+      label: 'Viabilidade condicionada',
+      title: 'O nome "' + termo + '" pode ser viável, mas precisa de análise técnica.',
+      message: 'A pesquisa preliminar não bloqueia o nome automaticamente, mas encontrou fatores que costumam exigir avaliação profissional: termos comuns, expressão muito curta ou composição pouco distintiva.',
+      chips: ['Pesquisa preliminar', 'Revisão profissional necessária', 'Sem garantia automática'],
+      points: [
+        '<b>Possível caminho:</b> a marca pode ser ajustada, combinada com elemento distintivo ou analisada em classes específicas.',
+        '<b>Próximo passo:</b> fale com a Arcanum para confirmar risco real de colidência.'
+      ]
+    };
+  }
+
   return {
-    marca: p?.marca || p?.nome_marca || p?.title || '',
-    numero: p?.numero || p?.numero_processo || p?.processo || '',
-    situacao: p?.situacao || p?.status || '',
-    classe: p?.classe || p?.ncl || p?.classe_nice || cps?.classe_nice || '',
-    titular: p?.titular || titulares || p?.depositante || '',
-    tipo: p?.tipo || p?.apresentacao || ''
+    status: 'risco-baixo',
+    label: 'Viabilidade aparente alta',
+    title: 'Boa notícia: "' + termo + '" parece viável nesta triagem inicial.',
+    message: 'Não foram identificados sinais automáticos fortes de baixa distintividade ou conflito evidente. Ainda assim, a confirmação depende de busca profissional de anterioridade e análise jurídica.',
+    chips: ['Resultado preliminar favorável', 'Não é parecer jurídico', 'Contato recomendado'],
+    points: [
+      '<b>Oportunidade:</b> o nome aparenta ter distintividade suficiente para iniciar uma análise de registro.',
+      '<b>Próximo passo:</b> fale com a Arcanum para verificar classe correta, riscos fonéticos e estratégia de depósito.'
+    ]
   };
 }
 
-function processoAtivo(p) {
-  const s = normalizaMarca(p.situacao);
-  if (!s) return true;
-  if (/(arquivad|extint|caduc|indeferid|anulad|desist|expirad|inativ|baixad)/.test(s)) return false;
-  return true;
-}
-
-function mesmaClasse(p, ncl) {
-  if (!ncl) return true;
-  const raw = String(p.classe || '');
-  const digits = String(Number(ncl));
-  return new RegExp('(^|\\D)0?' + digits + '(\\D|$)').test(raw);
-}
-
-function ordenarUnicos(grupos) {
-  const seen = new Set();
-  const out = [];
-  grupos.flat().forEach((p) => {
-    const key = normalizaMarca(p.marca) + '|' + String(p.numero);
-    if (seen.has(key)) return;
-    seen.add(key);
-    out.push(p);
-  });
-  return out;
-}
-
-async function consultarMarcaApi(termo, ncl) {
-  if (!ARCANUM_CONFIG.trademarkEndpoint) throw new Error('endpoint ausente');
-  const url = new URL(ARCANUM_CONFIG.trademarkEndpoint, window.location.origin);
-  url.searchParams.set('marca', termo);
-  url.searchParams.set('pedidos_vivos', 'true');
-  url.searchParams.set('pesquisa_textual', 'true');
-  if (ncl) url.searchParams.set('ncl', ncl);
-  const res = await fetch(url.href, {
-    headers: { 'Accept': 'application/json' },
-    signal: AbortSignal.timeout(16000)
-  });
-  if (!res.ok) throw new Error('http ' + res.status);
-  return res.json();
-}
-
-function renderViabilidade(dados, termo, ncl) {
-  const processos = extrairProcessos(dados).map(normalizaProcesso).filter(p => p.marca || p.numero);
-  const total = totalProcessos(dados, processos);
-  const alvo = normalizaMarca(termo);
-  const ativos = processos.filter(processoAtivo);
-  const exatos = ativos.filter(p => normalizaMarca(p.marca) === alvo);
-  const similares = ativos.filter((p) => {
-    const marca = normalizaMarca(p.marca);
-    return marca && alvo && (marca.includes(alvo) || alvo.includes(marca));
-  });
-  const mesmaClasseAtivos = ativos.filter(p => mesmaClasse(p, ncl));
-  const exatosMesmaClasse = exatos.filter(p => mesmaClasse(p, ncl));
-  const matches = ordenarUnicos([exatosMesmaClasse, mesmaClasseAtivos, exatos, similares, ativos]).slice(0, 6);
-
-  let status = 'risco-baixo';
-  let label = 'Pesquisa preliminar concluída';
-  let title = 'Não encontramos coincidência evidente para "' + termo + '" nesta busca inicial.';
-  let message = 'Isso é um bom sinal para começar, mas não substitui a análise profissional. A Arcanum pode verificar classes, semelhanças fonéticas e riscos que uma busca automática não fecha sozinha.';
-
-  if (exatosMesmaClasse.length) {
-    status = 'risco-alto';
-    label = 'Atenção necessária';
-    title = 'Encontramos possível anterioridade para "' + termo + '".';
-    message = 'Antes de usar ou registrar esse nome, fale com a Arcanum para entender o alcance do conflito, a classe correta e os caminhos possíveis.';
-  } else if (mesmaClasseAtivos.length || exatos.length || similares.length) {
-    status = 'risco-medio';
-    label = 'Pontos para verificar';
-    title = 'A busca encontrou nomes parecidos com "' + termo + '".';
-    message = 'Pode haver espaço para registro, mas é importante analisar segmento, classe, titularidade e semelhança do sinal antes de decidir.';
-  }
-
-  const matchHtml = matches.length ? `
-    <div class="v-matches">
-      ${matches.map(p => `
-        <div class="v-match">
-          <div class="v-match-top"><span>${vEsc(p.marca || 'Marca sem nome')}</span><span>${vEsc(p.numero || '—')}</span></div>
-          <div class="v-match-sub">${vEsc(p.situacao || 'Situação não informada')} · Dados preliminares para análise da Arcanum</div>
-        </div>
-      `).join('')}
-    </div>
-  ` : '<p class="v-hint">Nenhum processo foi retornado pela API para os filtros informados.</p>';
-
+function renderViabilidadeLocal(termo) {
+  const r = analisarViabilidadeLocal(termo);
   vResult.innerHTML = `
-    <div class="v-status ${status}">● ${label}</div>
-    <h4>${vEsc(title)}</h4>
-    <p>${vEsc(message)}</p>
+    <div class="v-status ${r.status}">● ${vEsc(r.label)}</div>
+    <h4>${vEsc(r.title)}</h4>
+    <p>${vEsc(r.message)}</p>
     <div class="v-meta">
-      <span class="v-chip">Pesquisa automática preliminar</span>
-      <span class="v-chip">${vEsc(total)} ocorrência(s) retornada(s)</span>
-      <span class="v-chip">Sem parecer jurídico automático</span>
+      ${r.chips.map(chip => '<span class="v-chip">' + vEsc(chip) + '</span>').join('')}
     </div>
-    ${matchHtml}
-    <p class="v-hint">Use este resultado para iniciar a conversa. Os pormenores da viabilidade, estratégia de classes e risco de colidência devem ser tratados diretamente com a Arcanum.</p>
+    <div class="v-points">
+      ${r.points.map(point => '<div class="v-point">• <span>' + point + '</span></div>').join('')}
+    </div>
+    <p class="v-hint">Esta ferramenta serve para orientar o primeiro contato do empresário. A resposta definitiva deve ser dada após análise profissional da Arcanum.</p>
     <div class="v-result-actions">
-      <a href="#contato" class="btn-primary">Quero falar com a Arcanum</a>
-      <a href="${vEsc(ARCANUM_CONFIG.trademarkSourceUrl)}" class="btn-ghost" target="_blank" rel="noopener">Abrir busca oficial do INPI</a>
-    </div>
-  `;
-}
-
-function renderViabilidadeErro(termo, ncl) {
-  vResult.innerHTML = `
-    <div class="v-status risco-medio">● Pesquisa preliminar</div>
-    <h4>Nome pesquisado: "${vEsc(termo)}".</h4>
-    <p>Esta consulta inicial não substitui a análise profissional. Para saber se vale registrar, é preciso avaliar classe, segmento de atuação, semelhanças fonéticas e riscos de colidência. A Arcanum faz essa leitura técnica com você.</p>
-    <div class="v-meta">
-      <span class="v-chip">${vEsc(termo)}</span>
-      <span class="v-chip">Triagem inicial sem parecer automático</span>
-    </div>
-    <div class="v-result-actions">
-      <a href="#contato" class="btn-primary">Quero analisar com a Arcanum</a>
-      <a href="${vEsc(ARCANUM_CONFIG.trademarkSourceUrl)}" class="btn-ghost" target="_blank" rel="noopener">Abrir busca pública do INPI</a>
+      <a href="#contato" class="btn-primary">Falar com a Arcanum</a>
     </div>
   `;
 }
@@ -1691,7 +1661,6 @@ if (formViabilidade) {
     e.preventDefault();
     const termo = vInput.value.trim();
     if (!termo) return;
-    const ncl = vClasse ? vClasse.value : '';
 
     const btn = formViabilidade.querySelector('button');
     btn.textContent = 'Buscando...';
@@ -1699,19 +1668,14 @@ if (formViabilidade) {
     formViabilidade.setAttribute('aria-busy', 'true');
     
     vResult.hidden = false;
-    vResult.innerHTML = '<div class="v-loader"></div><p style="text-align:center; font-size:13px; color:var(--ink-4); animation: pulse 2s infinite;">Preparando orientação preliminar...</p>';
+    vResult.innerHTML = '<div class="v-loader"></div><p style="text-align:center; font-size:13px; color:var(--ink-4); animation: pulse 2s infinite;">Analisando sinais preliminares de viabilidade...</p>';
 
-    try {
-      const dados = await consultarMarcaApi(termo, ncl);
-      renderViabilidade(dados, termo, ncl);
-    } catch (err) {
-      console.warn('[INPI] consulta automática não configurada:', err?.message || err);
-      renderViabilidadeErro(termo, ncl);
-    } finally {
+    setTimeout(() => {
+      renderViabilidadeLocal(termo);
       btn.textContent = 'Consultar';
       btn.disabled = false;
       formViabilidade.removeAttribute('aria-busy');
-    }
+    }, 1200);
   });
 }
 
