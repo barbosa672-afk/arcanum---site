@@ -1324,7 +1324,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 /* Endpoints devem ficar no backend para proteger tokens de APIs como Infosimples/NewsAPI/GNews. */
 const ARCANUM_CONFIG = Object.assign({
-  trademarkEndpoint: '/api/marcas/viabilidade',
+  trademarkEndpoint: '',
   trademarkSourceUrl: 'https://busca.inpi.gov.br/pePI/jsp/marcas/Pesquisa_classe_basica.jsp',
   newsEndpoint: '',
   rss2jsonApiKey: ''
@@ -1672,16 +1672,16 @@ function renderViabilidade(dados, termo, ncl) {
 
 function renderViabilidadeErro(termo, ncl) {
   vResult.innerHTML = `
-    <div class="v-status erro">● Consulta indisponível</div>
-    <h4>Não foi possível acessar a consulta automática agora.</h4>
-    <p>Ainda assim, o empresário pode enviar o nome para a Arcanum e receber a orientação correta sobre os próximos passos.</p>
+    <div class="v-status risco-medio">● Pesquisa preliminar</div>
+    <h4>Nome pesquisado: "${vEsc(termo)}".</h4>
+    <p>Esta consulta inicial não substitui a análise profissional. Para saber se vale registrar, é preciso avaliar classe, segmento de atuação, semelhanças fonéticas e riscos de colidência. A Arcanum faz essa leitura técnica com você.</p>
     <div class="v-meta">
       <span class="v-chip">${vEsc(termo)}</span>
-      <span class="v-chip">Pesquisa preliminar</span>
+      <span class="v-chip">Triagem inicial sem parecer automático</span>
     </div>
     <div class="v-result-actions">
-      <a href="${vEsc(ARCANUM_CONFIG.trademarkSourceUrl)}" class="btn-ghost" target="_blank" rel="noopener">Abrir busca oficial do INPI</a>
-      <a href="#contato" class="btn-primary">Enviar nome para análise</a>
+      <a href="#contato" class="btn-primary">Quero analisar com a Arcanum</a>
+      <a href="${vEsc(ARCANUM_CONFIG.trademarkSourceUrl)}" class="btn-ghost" target="_blank" rel="noopener">Abrir busca pública do INPI</a>
     </div>
   `;
 }
@@ -1699,13 +1699,13 @@ if (formViabilidade) {
     formViabilidade.setAttribute('aria-busy', 'true');
     
     vResult.hidden = false;
-    vResult.innerHTML = '<div class="v-loader"></div><p style="text-align:center; font-size:13px; color:var(--ink-4); animation: pulse 2s infinite;">Consultando dados públicos do INPI...</p>';
+    vResult.innerHTML = '<div class="v-loader"></div><p style="text-align:center; font-size:13px; color:var(--ink-4); animation: pulse 2s infinite;">Preparando orientação preliminar...</p>';
 
     try {
       const dados = await consultarMarcaApi(termo, ncl);
       renderViabilidade(dados, termo, ncl);
     } catch (err) {
-      console.warn('[INPI] consulta indisponível:', err?.message || err);
+      console.warn('[INPI] consulta automática não configurada:', err?.message || err);
       renderViabilidadeErro(termo, ncl);
     } finally {
       btn.textContent = 'Consultar';
