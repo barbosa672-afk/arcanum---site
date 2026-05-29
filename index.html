@@ -651,7 +651,22 @@ footer {
   outline: none; font-weight: 500;
 }
 .v-form input::placeholder { color: var(--ink-4); font-weight: 400; }
+.v-form select {
+  border: 1px solid rgba(78,110,128,.14);
+  background: rgba(255,255,255,.7);
+  color: var(--ink-3);
+  border-radius: var(--rp);
+  padding: .68rem .85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  outline: none;
+  max-width: 150px;
+  cursor: pointer;
+}
+.v-form select:focus { border-color: var(--gold-b); box-shadow: 0 0 0 3px var(--gold-g); }
 .v-btn { padding: .85rem 1.75rem; border-radius: var(--rp); font-size: 12px; }
+.v-btn[disabled] { opacity: .68; cursor: progress; transform: none; box-shadow: none; }
 
 .v-result { 
   margin-top: 2rem; padding: 2rem; border-radius: var(--r3); 
@@ -666,6 +681,20 @@ footer {
 }
 .v-status.disponivel { background: rgba(42,125,82,.1); color: var(--green); border: 1px solid rgba(42,125,82,.2); }
 .v-status.indisponivel { background: rgba(185,64,64,.1); color: var(--red); border: 1px solid rgba(185,64,64,.2); }
+.v-status.risco-baixo { background: rgba(42,125,82,.1); color: var(--green); border: 1px solid rgba(42,125,82,.2); }
+.v-status.risco-medio { background: rgba(176,120,32,.12); color: var(--amber); border: 1px solid rgba(176,120,32,.24); }
+.v-status.risco-alto, .v-status.erro { background: rgba(185,64,64,.1); color: var(--red); border: 1px solid rgba(185,64,64,.2); }
+.v-result h4 { font-family: 'Playfair Display', serif; color: var(--ink); font-size: 1.35rem; margin-bottom: .5rem; line-height: 1.3; }
+.v-result p { font-size: 14px; color: var(--ink-3); line-height: 1.65; margin-bottom: .85rem; }
+.v-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0 1.25rem; }
+.v-chip { border: 1px solid rgba(78,110,128,.14); background: rgba(255,255,255,.56); border-radius: var(--rp); padding: .35rem .7rem; color: var(--ink-4); font-size: 11px; font-weight: 600; }
+.v-matches { display: grid; gap: .7rem; margin: 1.25rem 0; }
+.v-match { padding: .9rem 1rem; border-radius: var(--r2); background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.8); }
+.v-match-top { display: flex; justify-content: space-between; gap: .75rem; color: var(--ink); font-size: 13px; font-weight: 700; line-height: 1.35; }
+.v-match-top span:last-child { color: var(--gold-d); white-space: nowrap; }
+.v-match-sub { margin-top: .4rem; color: var(--ink-4); font-size: 12px; line-height: 1.55; }
+.v-result-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
+.v-hint { font-size: 12px !important; color: var(--ink-4) !important; margin-top: 1rem; }
 
 .v-loader { 
   width: 28px; height: 28px; border: 2px solid var(--gold-g); 
@@ -771,6 +800,10 @@ footer {
   .indicators { grid-template-columns: repeat(2, 1fr); } .nav-pill { max-width: 100%; }
   .pi-pillars { grid-template-columns: 1fr; }
   .pi-card { padding: 1.5rem 1.25rem; }
+  .v-input-group { border-radius: var(--r2); align-items: stretch; flex-wrap: wrap; padding: .75rem; }
+  .v-icon { margin: .85rem .2rem .85rem .4rem; }
+  .v-form input { min-width: calc(100% - 34px); padding-right: .25rem; }
+  .v-form select, .v-btn { width: 100%; max-width: none; justify-content: center; }
   .float-contact { right: 14px; bottom: 14px; }
   .float-btn { width: 46px; height: 46px; }
   .float-btn svg { width: 22px; height: 22px; }
@@ -915,10 +948,10 @@ body.scrolled .nav-pill { box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1
 
   <div class="sec" id="viabilidade"><h2>Busca de Viabilidade</h2></div>
   <article class="pi-card viabilidade-card">
-    <div class="pi-sub">Consulta Prévia Integrada</div>
-    <h3>Descubra se o seu nome já tem dono.</h3>
-    <p>Verifique a disponibilidade preliminar da sua marca na base de dados do INPI. <br>
-      <em>*Atenção: O resultado desta pesquisa é automático e preliminar. A viabilidade jurídica definitiva, com mitigação de riscos reais, exige uma análise humana de colidência fonética e ideológica conduzida pelos especialistas da Arcanum.</em>
+    <div class="pi-sub">Pesquisa Preliminar</div>
+    <h3>Pesquise o nome da sua marca.</h3>
+    <p>Digite o nome que pretende registrar e veja se a pesquisa automática encontra sinais de atenção na base pública consultada. <br>
+      <em>*Atenção: este resultado é apenas um ponto de partida para o empresário. A análise jurídica, as classes corretas, os riscos reais e a estratégia de depósito devem ser avaliados diretamente pelos especialistas da Arcanum.</em>
     </p>
 
     <form id="formViabilidade" class="v-form" novalidate>
@@ -1289,6 +1322,13 @@ body.scrolled .nav-pill { box-shadow: 0 8px 28px rgba(78,110,128,.18), inset 0 1
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+/* Endpoints devem ficar no backend para proteger tokens de APIs como Infosimples/NewsAPI/GNews. */
+const ARCANUM_CONFIG = Object.assign({
+  trademarkEndpoint: '/api/marcas/viabilidade',
+  trademarkSourceUrl: 'https://busca.inpi.gov.br/pePI/jsp/marcas/Pesquisa_classe_basica.jsp',
+  newsEndpoint: '',
+  rss2jsonApiKey: ''
+}, window.ARCANUM_CONFIG || {});
 
 const viewPI    = $('#viewPI');
 const viewNews  = $('#viewNews');
@@ -1449,52 +1489,229 @@ $$('a[href^="#"]').forEach(link => {
 const formViabilidade = $('#formViabilidade');
 const vResult = $('#v-result');
 const vInput = $('#marcaBusca');
+const vClasse = $('#classeNice');
+
+const NICE_LABELS = {
+  1: 'Químicos', 2: 'Tintas', 3: 'Cosméticos', 4: 'Combustíveis', 5: 'Farmacêuticos',
+  6: 'Metais', 7: 'Máquinas', 8: 'Ferramentas', 9: 'Tecnologia', 10: 'Medicina',
+  11: 'Iluminação', 12: 'Veículos', 13: 'Armas', 14: 'Joias', 15: 'Instrumentos',
+  16: 'Papelaria', 17: 'Borracha', 18: 'Couro', 19: 'Construção', 20: 'Móveis',
+  21: 'Utensílios', 22: 'Cordas', 23: 'Fios', 24: 'Tecidos', 25: 'Vestuário',
+  26: 'Aviamentos', 27: 'Tapetes', 28: 'Brinquedos', 29: 'Alimentos', 30: 'Café e massas',
+  31: 'Agrícolas', 32: 'Bebidas sem álcool', 33: 'Bebidas alcoólicas', 34: 'Tabaco',
+  35: 'Publicidade', 36: 'Finanças', 37: 'Construção e reparo', 38: 'Telecom',
+  39: 'Transporte', 40: 'Tratamento de materiais', 41: 'Educação', 42: 'Tecnologia',
+  43: 'Alimentação', 44: 'Saúde', 45: 'Jurídicos'
+};
+
+if (vClasse && vClasse.options.length === 1) {
+  for (let i = 1; i <= 45; i++) {
+    const opt = document.createElement('option');
+    opt.value = String(i).padStart(2, '0');
+    opt.textContent = 'NCL ' + opt.value + ' · ' + NICE_LABELS[i];
+    vClasse.appendChild(opt);
+  }
+}
+
+const vEsc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => (
+  { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+));
+
+function normalizaMarca(v) {
+  return String(v || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/gi, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function extrairProcessos(raw) {
+  const roots = [raw, raw?.data, raw?.result, raw?.resultado, raw?.payload];
+  if (Array.isArray(raw?.data)) roots.push(raw.data[0]);
+  for (const root of roots) {
+    if (!root) continue;
+    if (Array.isArray(root)) {
+      const first = root[0];
+      if (Array.isArray(first?.processos)) return first.processos;
+      if (Array.isArray(first?.results)) return first.results;
+      if (Array.isArray(first?.items)) return first.items;
+      return root;
+    }
+    if (Array.isArray(root.processos)) return root.processos;
+    if (Array.isArray(root.results)) return root.results;
+    if (Array.isArray(root.items)) return root.items;
+  }
+  return [];
+}
+
+function totalProcessos(raw, processos) {
+  const roots = [raw, raw?.data, raw?.result, raw?.resultado, raw?.payload];
+  if (Array.isArray(raw?.data)) roots.push(raw.data[0]);
+  for (const root of roots) {
+    const node = Array.isArray(root) ? root[0] : root;
+    const total = Number(node?.processos_total ?? node?.total_processos ?? node?.total ?? node?.count);
+    if (Number.isFinite(total)) return total;
+  }
+  return processos.length;
+}
+
+function normalizaProcesso(p) {
+  const cps = Array.isArray(p?.classificacao_produtos_servicos) ? p.classificacao_produtos_servicos[0] : null;
+  const titulares = Array.isArray(p?.titulares) ? p.titulares.join(', ') : p?.titulares;
+  return {
+    marca: p?.marca || p?.nome_marca || p?.title || '',
+    numero: p?.numero || p?.numero_processo || p?.processo || '',
+    situacao: p?.situacao || p?.status || '',
+    classe: p?.classe || p?.ncl || p?.classe_nice || cps?.classe_nice || '',
+    titular: p?.titular || titulares || p?.depositante || '',
+    tipo: p?.tipo || p?.apresentacao || ''
+  };
+}
+
+function processoAtivo(p) {
+  const s = normalizaMarca(p.situacao);
+  if (!s) return true;
+  if (/(arquivad|extint|caduc|indeferid|anulad|desist|expirad|inativ|baixad)/.test(s)) return false;
+  return true;
+}
+
+function mesmaClasse(p, ncl) {
+  if (!ncl) return true;
+  const raw = String(p.classe || '');
+  const digits = String(Number(ncl));
+  return new RegExp('(^|\\D)0?' + digits + '(\\D|$)').test(raw);
+}
+
+function ordenarUnicos(grupos) {
+  const seen = new Set();
+  const out = [];
+  grupos.flat().forEach((p) => {
+    const key = normalizaMarca(p.marca) + '|' + String(p.numero);
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push(p);
+  });
+  return out;
+}
+
+async function consultarMarcaApi(termo, ncl) {
+  if (!ARCANUM_CONFIG.trademarkEndpoint) throw new Error('endpoint ausente');
+  const url = new URL(ARCANUM_CONFIG.trademarkEndpoint, window.location.origin);
+  url.searchParams.set('marca', termo);
+  url.searchParams.set('pedidos_vivos', 'true');
+  url.searchParams.set('pesquisa_textual', 'true');
+  if (ncl) url.searchParams.set('ncl', ncl);
+  const res = await fetch(url.href, {
+    headers: { 'Accept': 'application/json' },
+    signal: AbortSignal.timeout(16000)
+  });
+  if (!res.ok) throw new Error('http ' + res.status);
+  return res.json();
+}
+
+function renderViabilidade(dados, termo, ncl) {
+  const processos = extrairProcessos(dados).map(normalizaProcesso).filter(p => p.marca || p.numero);
+  const total = totalProcessos(dados, processos);
+  const alvo = normalizaMarca(termo);
+  const ativos = processos.filter(processoAtivo);
+  const exatos = ativos.filter(p => normalizaMarca(p.marca) === alvo);
+  const similares = ativos.filter((p) => {
+    const marca = normalizaMarca(p.marca);
+    return marca && alvo && (marca.includes(alvo) || alvo.includes(marca));
+  });
+  const mesmaClasseAtivos = ativos.filter(p => mesmaClasse(p, ncl));
+  const exatosMesmaClasse = exatos.filter(p => mesmaClasse(p, ncl));
+  const matches = ordenarUnicos([exatosMesmaClasse, mesmaClasseAtivos, exatos, similares, ativos]).slice(0, 6);
+
+  let status = 'risco-baixo';
+  let label = 'Pesquisa preliminar concluída';
+  let title = 'Não encontramos coincidência evidente para "' + termo + '" nesta busca inicial.';
+  let message = 'Isso é um bom sinal para começar, mas não substitui a análise profissional. A Arcanum pode verificar classes, semelhanças fonéticas e riscos que uma busca automática não fecha sozinha.';
+
+  if (exatosMesmaClasse.length) {
+    status = 'risco-alto';
+    label = 'Atenção necessária';
+    title = 'Encontramos possível anterioridade para "' + termo + '".';
+    message = 'Antes de usar ou registrar esse nome, fale com a Arcanum para entender o alcance do conflito, a classe correta e os caminhos possíveis.';
+  } else if (mesmaClasseAtivos.length || exatos.length || similares.length) {
+    status = 'risco-medio';
+    label = 'Pontos para verificar';
+    title = 'A busca encontrou nomes parecidos com "' + termo + '".';
+    message = 'Pode haver espaço para registro, mas é importante analisar segmento, classe, titularidade e semelhança do sinal antes de decidir.';
+  }
+
+  const matchHtml = matches.length ? `
+    <div class="v-matches">
+      ${matches.map(p => `
+        <div class="v-match">
+          <div class="v-match-top"><span>${vEsc(p.marca || 'Marca sem nome')}</span><span>${vEsc(p.numero || '—')}</span></div>
+          <div class="v-match-sub">${vEsc(p.situacao || 'Situação não informada')} · Dados preliminares para análise da Arcanum</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : '<p class="v-hint">Nenhum processo foi retornado pela API para os filtros informados.</p>';
+
+  vResult.innerHTML = `
+    <div class="v-status ${status}">● ${label}</div>
+    <h4>${vEsc(title)}</h4>
+    <p>${vEsc(message)}</p>
+    <div class="v-meta">
+      <span class="v-chip">Pesquisa automática preliminar</span>
+      <span class="v-chip">${vEsc(total)} ocorrência(s) retornada(s)</span>
+      <span class="v-chip">Sem parecer jurídico automático</span>
+    </div>
+    ${matchHtml}
+    <p class="v-hint">Use este resultado para iniciar a conversa. Os pormenores da viabilidade, estratégia de classes e risco de colidência devem ser tratados diretamente com a Arcanum.</p>
+    <div class="v-result-actions">
+      <a href="#contato" class="btn-primary">Quero falar com a Arcanum</a>
+      <a href="${vEsc(ARCANUM_CONFIG.trademarkSourceUrl)}" class="btn-ghost" target="_blank" rel="noopener">Abrir busca oficial do INPI</a>
+    </div>
+  `;
+}
+
+function renderViabilidadeErro(termo, ncl) {
+  vResult.innerHTML = `
+    <div class="v-status erro">● Consulta indisponível</div>
+    <h4>Não foi possível acessar a consulta automática agora.</h4>
+    <p>Ainda assim, o empresário pode enviar o nome para a Arcanum e receber a orientação correta sobre os próximos passos.</p>
+    <div class="v-meta">
+      <span class="v-chip">${vEsc(termo)}</span>
+      <span class="v-chip">Pesquisa preliminar</span>
+    </div>
+    <div class="v-result-actions">
+      <a href="${vEsc(ARCANUM_CONFIG.trademarkSourceUrl)}" class="btn-ghost" target="_blank" rel="noopener">Abrir busca oficial do INPI</a>
+      <a href="#contato" class="btn-primary">Enviar nome para análise</a>
+    </div>
+  `;
+}
 
 if (formViabilidade) {
   formViabilidade.addEventListener('submit', async (e) => {
     e.preventDefault();
     const termo = vInput.value.trim();
     if (!termo) return;
+    const ncl = vClasse ? vClasse.value : '';
 
     const btn = formViabilidade.querySelector('button');
     btn.textContent = 'Buscando...';
-    btn.style.pointerEvents = 'none';
+    btn.disabled = true;
+    formViabilidade.setAttribute('aria-busy', 'true');
     
-    // Estado de Loading
     vResult.hidden = false;
-    vResult.innerHTML = '<div class="v-loader"></div><p style="text-align:center; font-size:13px; color:var(--ink-4); animation: pulse 2s infinite;">Consultando base de dados do INPI...</p>';
+    vResult.innerHTML = '<div class="v-loader"></div><p style="text-align:center; font-size:13px; color:var(--ink-4); animation: pulse 2s infinite;">Consultando dados públicos do INPI...</p>';
 
-    /* AQUI ENTRA A INTEGRAÇÃO REAL DA API:
-      Substitua o setTimeout abaixo pelo fetch() para o seu backend ou serviço de terceiros.
-      Exemplo:
-      const res = await fetch(`https://sua-api.com/inpi?marca=${termo}`);
-      const dados = await res.json();
-    */
-
-    // Simulação visual de latência da rede e lógica condicional
-    setTimeout(() => {
+    try {
+      const dados = await consultarMarcaApi(termo, ncl);
+      renderViabilidade(dados, termo, ncl);
+    } catch (err) {
+      console.warn('[INPI] consulta indisponível:', err?.message || err);
+      renderViabilidadeErro(termo, ncl);
+    } finally {
       btn.textContent = 'Consultar';
-      btn.style.pointerEvents = 'auto';
-
-      // Simulação: Se o nome for curto (<=5 letras), retorna como indisponível (apenas para teste de interface)
-      const isAvailable = termo.length > 5;
-
-      if (isAvailable) {
-        vResult.innerHTML = `
-          <div class="v-status disponivel">● Probabilidade Alta</div>
-          <h4 style="font-family: 'Playfair Display', serif; color: var(--ink); font-size: 1.35rem; margin-bottom: .5rem; line-height: 1.3;">Nenhuma colidência exata encontrada para "${termo}".</h4>
-          <p style="font-size: 14px; color: var(--ink-3); line-height: 1.65;">O termo principal aparenta estar livre. Contudo, o INPI avalia semelhanças fonéticas, elementos visuais e radicais que softwares automatizados não detectam com 100% de precisão.</p>
-          <a href="#contato" class="btn-primary" style="margin-top: 1.25rem;">Solicitar Parecer Gratuito da Arcanum</a>
-        `;
-      } else {
-        vResult.innerHTML = `
-          <div class="v-status indisponivel">● Risco de Conflito</div>
-          <h4 style="font-family: 'Playfair Display', serif; color: var(--ink); font-size: 1.35rem; margin-bottom: .5rem; line-height: 1.3;">Atenção: Registros similares localizados para "${termo}".</h4>
-          <p style="font-size: 14px; color: var(--ink-3); line-height: 1.65;">Encontramos processos ativos que podem impossibilitar este registro na sua classe de atuação. Nossos especialistas podem avaliar o escopo exato e traçar uma rota jurídica de proteção alternativa.</p>
-          <a href="#contato" class="btn-ghost" style="margin-top: 1.25rem;">Falar com um Especialista</a>
-        `;
-      }
-    }, 2500);
+      btn.disabled = false;
+      formViabilidade.removeAttribute('aria-busy');
+    }
   });
 }
 
@@ -1561,9 +1778,17 @@ const LEGIS = [
 const SOURCES = FEEDS.map(f => ({ n: f.name, s: f.short }));
 let allArt = [], curFilter = 'todos', rssStats = { ok: 0, total: 0 }, renderScheduled = false;
 
-const PROXIES = [
-  (u) => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u),
-  (u) => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u),
+const NEWS_ADAPTERS = [
+  {
+    name: 'rss2json',
+    kind: 'json',
+    url: (u) => {
+      const key = ARCANUM_CONFIG.rss2jsonApiKey ? '&api_key=' + encodeURIComponent(ARCANUM_CONFIG.rss2jsonApiKey) : '';
+      return 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(u) + key;
+    }
+  },
+  { name: 'AllOrigins', kind: 'xml', url: (u) => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u) },
+  { name: 'CodeTabs',   kind: 'xml', url: (u) => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u) }
 ];
 
 const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => (
@@ -1590,19 +1815,60 @@ const parseDate = (s) => { const d = new Date(s); return isNaN(d.getTime()) ? 0 
 
 const fmtBRL = (n, dig=2) => Number(n).toLocaleString('pt-BR', { minimumFractionDigits: dig, maximumFractionDigits: dig });
 
-async function fetchText(url, proxy, outerSignal, timeoutMs = 5000) {
+const htmlDecoder = document.createElement('textarea');
+function stripHtml(v) {
+  const text = String(v || '').replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ');
+  htmlDecoder.innerHTML = text;
+  return htmlDecoder.value.replace(/\s+/g, ' ').trim();
+}
+
+function articleKey(a) {
+  return String(a.title || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+    .slice(0, 110);
+}
+
+function inferNewsCat(a, fallback = 'tributario') {
+  const s = ((a.title || '') + ' ' + (a.summary || '') + ' ' + (a.source || '')).toLowerCase();
+  if (/(stf|stj|carf|tribunal|jurisprud|acórd|recurso|julgamento)/.test(s)) return 'jurisprudencia';
+  if (/(reforma tribut|ibs|cbs|iva dual|plp|senado|câmara|congresso)/.test(s)) return 'reformas';
+  if (/(tesouro|orçamento|déficit|superávit|resultado primário|arcabouço)/.test(s)) return 'fiscal';
+  if (/(selic|ipca|câmbio|dólar|ibovespa|banco central|inflação|pib|mercado)/.test(s)) return 'economico';
+  return fallback;
+}
+
+function articleScore(a) {
+  const text = ((a.title || '') + ' ' + (a.summary || '')).toLowerCase();
+  const kwScore = TAX_KW.reduce((acc, kw) => acc + (text.includes(kw) ? 1 : 0), 0);
+  const official = /(receita federal|stf|stj|senado|tesouro|banco central|agência brasil)/i.test(a.source || '') ? 4 : 0;
+  const recency = a._pubMs ? Math.max(0, 4 - ((Date.now() - a._pubMs) / 86400000)) : 0;
+  return kwScore + official + recency;
+}
+
+async function fetchWithTimeout(url, kind = 'text', outerSignal, timeoutMs = 6500) {
   const ctl = new AbortController();
   const to = setTimeout(() => ctl.abort(), timeoutMs);
   const onOuter = () => ctl.abort();
   if (outerSignal) outerSignal.addEventListener('abort', onOuter);
   try {
-    const r = await fetch(proxy(url), { signal: ctl.signal, headers: { 'Accept': 'application/rss+xml, application/xml, text/xml, */*' } });
+    const accept = kind === 'json' ? 'application/json, text/json, */*' : 'application/rss+xml, application/atom+xml, application/xml, text/xml, */*';
+    const r = await fetch(url, { signal: ctl.signal, headers: { 'Accept': accept } });
     if (!r.ok) throw new Error('http ' + r.status);
-    return await r.text();
+    return kind === 'json' ? r.json() : r.text();
   } finally {
     clearTimeout(to);
     if (outerSignal) outerSignal.removeEventListener('abort', onOuter);
   }
+}
+
+function feedChildText(node, names) {
+  const wanted = names.map(n => n.toLowerCase());
+  const child = Array.from(node.children).find(el => wanted.includes((el.localName || el.nodeName || '').toLowerCase()));
+  return child?.textContent || '';
 }
 
 function parseFeedXml(text, src) {
@@ -1615,11 +1881,14 @@ function parseFeedXml(text, src) {
       const title = (it.querySelector('title')?.textContent || '').trim();
       const linkEl = it.querySelector('link');
       const link = (linkEl?.getAttribute('href') || linkEl?.textContent || it.querySelector('guid')?.textContent || '#').trim();
-      const summary = (it.querySelector('description, summary, content')?.textContent || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 300);
+      const summaryRaw = it.querySelector('description, summary')?.textContent || feedChildText(it, ['encoded', 'content']);
+      const summary = stripHtml(summaryRaw).slice(0, 300);
       const pub = it.querySelector('pubDate, published, updated')?.textContent || '';
       const pd = new Date(pub);
       const pubMs = isNaN(pd.getTime()) ? 0 : pd.getTime();
-      return { title, link, summary, source: src.name, cat: src.cat, time: pub ? timeAgo(pub) : 'Recente', _pubMs: pubMs };
+      const article = { title, link, summary, source: src.name, cat: src.cat, time: pub ? timeAgo(pub) : 'Recente', _pubMs: pubMs };
+      article.cat = inferNewsCat(article, src.cat);
+      return article;
     }).filter(a => a.title);
   } catch (e) {
     console.warn('[RSS] parseFeedXml failed for', src?.name, e?.message || e);
@@ -1627,20 +1896,67 @@ function parseFeedXml(text, src) {
   }
 }
 
+function parseFeedJson(data, src) {
+  const items = Array.isArray(data?.items) ? data.items : Array.isArray(data?.articles) ? data.articles : [];
+  return items.slice(0, 15).map(it => {
+    const pub = it.pubDate || it.publishedAt || it.published || it.updated || '';
+    const pd = new Date(pub);
+    const pubMs = isNaN(pd.getTime()) ? 0 : pd.getTime();
+    const article = {
+      title: (it.title || '').trim(),
+      link: (it.link || it.url || it.guid || '#').trim(),
+      summary: stripHtml(it.description || it.content || it.summary || '').slice(0, 300),
+      source: src.name,
+      cat: src.cat,
+      time: pub ? timeAgo(pub) : 'Recente',
+      _pubMs: pubMs
+    };
+    article.cat = inferNewsCat(article, src.cat);
+    return article;
+  }).filter(a => a.title);
+}
+
 async function fetchFeed(src) {
   const outer = new AbortController();
   try {
-    const items = await Promise.any(PROXIES.map(async (proxy) => {
-      const text = await fetchText(src.url, proxy, outer.signal);
-      const parsed = parseFeedXml(text, src);
+    const items = await Promise.any(NEWS_ADAPTERS.map(async (adapter) => {
+      const payload = await fetchWithTimeout(adapter.url(src.url), adapter.kind, outer.signal);
+      const parsed = adapter.kind === 'json' ? parseFeedJson(payload, src) : parseFeedXml(payload, src);
       if (!parsed.length) throw new Error('empty');
-      return parsed;
+      const relevant = parsed.filter(a => isRelevant([a.title, a.summary, a.source].join(' ')));
+      return relevant.length ? relevant : parsed;
     }));
     outer.abort();
     return items;
   } catch (e) {
-    console.warn('[RSS]', src?.name, 'all proxies failed:', e?.errors?.map(x => x?.message).join(' | ') || e?.message || e);
+    console.warn('[RSS]', src?.name, 'all adapters failed:', e?.errors?.map(x => x?.message).join(' | ') || e?.message || e);
     outer.abort();
+    return [];
+  }
+}
+
+async function fetchNewsEndpoint() {
+  if (!ARCANUM_CONFIG.newsEndpoint) return [];
+  try {
+    const data = await fetchWithTimeout(ARCANUM_CONFIG.newsEndpoint, 'json', null, 9000);
+    const raw = Array.isArray(data) ? data : (data.articles || data.items || data.data || []);
+    return raw.map((it) => {
+      const pub = it.publishedAt || it.pubDate || it.published || it.updated || it.date || '';
+      const pd = new Date(pub);
+      const article = {
+        title: (it.title || '').trim(),
+        link: it.url || it.link || '#',
+        summary: stripHtml(it.description || it.summary || it.content || '').slice(0, 300),
+        source: it.source?.name || it.source || 'Arcanum News API',
+        cat: it.cat || it.category || 'tributario',
+        time: pub ? timeAgo(pub) : 'Recente',
+        _pubMs: isNaN(pd.getTime()) ? 0 : pd.getTime()
+      };
+      article.cat = inferNewsCat(article, article.cat);
+      return article;
+    }).filter(a => a.title);
+  } catch (e) {
+    console.warn('[News API] endpoint failed:', e?.message || e);
     return [];
   }
 }
@@ -1723,10 +2039,11 @@ function renderArticles(list) {
   const fg = $('#fg'), ng = $('#ng'), mr = $('#mr');
   fg.innerHTML = ''; ng.innerHTML = ''; mr.innerHTML = '';
   const pool = list.length ? list : FALLBACK;
+  const ranked = [...pool].sort((a, b) => articleScore(b) - articleScore(a));
   fg.appendChild(mkHero(pool[0]));
   for (let i = 1; i < Math.min(5, pool.length); i++) fg.appendChild(mkCard(pool[i]));
   pool.slice(5, 20).forEach(a => ng.appendChild(mkCard(a)));
-  pool.slice(0, 8).forEach((a, i) => mr.appendChild(mkListItem(a, i + 1)));
+  ranked.slice(0, 8).forEach((a, i) => mr.appendChild(mkListItem(a, i + 1)));
 }
 
 function applyFilter(cat) {
@@ -1756,9 +2073,10 @@ function setRssStatus(text, cls) {
 function mergeArticles(incoming) {
   if (!incoming.length) return;
   if (allArt.length && allArt[0] && allArt[0]._fallback) allArt = [];
-  const seen = new Set(allArt.map(a => (a.title || '').toLowerCase().slice(0, 80)));
+  const seen = new Set(allArt.map(articleKey));
   for (const a of incoming) {
-    const key = (a.title || '').toLowerCase().slice(0, 80);
+    const key = articleKey(a);
+    if (!key) continue;
     if (seen.has(key)) continue;
     seen.add(key);
     allArt.push(a);
@@ -1774,17 +2092,32 @@ async function loadRSS() {
   rssStats = { ok: 0, total: FEEDS.length };
   let itemCount = 0;
 
-  const done = FEEDS.map(async (src) => {
+  const endpointItems = await fetchNewsEndpoint();
+  if (endpointItems.length) {
+    itemCount += endpointItems.length;
+    mergeArticles(endpointItems);
+    scheduleRender();
+    setRssStatus(itemCount + ' notícias via API própria · carregando fontes RSS…', 'live');
+  }
+
+  const loadSource = async (src) => {
     const items = await fetchFeed(src);
     if (items.length) { rssStats.ok++; itemCount += items.length; mergeArticles(items); scheduleRender(); }
     const hhmm = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
     if (itemCount) setRssStatus(itemCount + ' notícias · ' + rssStats.ok + ' de ' + rssStats.total + ' fontes · ' + hhmm, 'live');
-  });
-  await Promise.allSettled(done);
-  if (!rssStats.ok) {
+  };
+
+  for (let i = 0; i < FEEDS.length; i += 5) {
+    await Promise.allSettled(FEEDS.slice(i, i + 5).map(loadSource));
+  }
+
+  if (!itemCount) {
     allArt = FALLBACK;
     renderArticles(allArt);
     setRssStatus('Fontes RSS indisponíveis — exibindo conteúdo editorial', 'error');
+  } else {
+    const hhmm = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    setRssStatus(itemCount + ' notícias atualizadas · ' + rssStats.ok + ' de ' + rssStats.total + ' fontes · ' + hhmm, 'live');
   }
 }
 
